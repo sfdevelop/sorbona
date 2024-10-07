@@ -1,0 +1,42 @@
+.btn {
+	padding: 15px 40px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: fit-content;
+	text-align: center;
+	font-size: 14px;
+	font-weight: 500;
+	line-height: 140%;
+	text-transform: uppercase;
+	border: 1px solid #2B2A29;;
+	cursor: pointer;
+	font-size: 14px;
+	font-weight: 500;
+	line-height: 140%;
+	transition: linear .2s;
+	background-color: transparent;
+	&:hover {
+		background-color: #000;
+		color: #fff;
+	}
+
+	&--dark {
+		background-color: #2B2A29;
+		color: #fff;
+		color: rgb(254, 254, 254);
+		font-size: 12px;
+		font-weight: 500;
+		&:hover{
+			background-color: transparent;
+			color: #2B2A29;
+		}
+	}
+	&--yellow{
+		background-color: #FFED00;
+		color: #2B2A29;
+		&:hover{
+			color: #fff !important;
+		}
+	}
+}

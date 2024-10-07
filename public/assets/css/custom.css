@@ -1,0 +1,43 @@
+table.table-basic .table-actions a i,
+table.table-custom .table-actions a i,
+table.table-basic .table-actions a img,
+table.table-custom .table-actions a img,
+table.table-basic .table-actions a svg,
+table.table-custom .table-actions a svg {
+    width: 16px;
+    color: var(--color-light);
+}
+table.table-custom .table-actions {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: end;
+    -ms-flex-pack: end;
+    justify-content: flex-end;
+}
+table.table-custom .table-actions a:not(:last-child) {
+    margin-right: 16px;
+}
+.form-control.is-invalid, .was-validated .form-control:invalid {
+    border-color: #dc3545!important;
+}
+.cursor-pointer:hover{
+    cursor: pointer;
+}
+.profile_custom input{
+    padding-left: 40px!important;
+}
+.accordion__custom p{
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.cke_notification_warning{
+    display: none!important;}
+.two_td td{
+    padding-top: 7px!important;
+    padding-bottom: 7px!important;
+    border: none!important;
+}

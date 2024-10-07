@@ -1,0 +1,16 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns="http://www.w3.org/2000/svg">
+<metadata>Copyright (C) 2024 by original authors @ fontello.com</metadata>
+<defs>
+<font id="sf_icon" horiz-adv-x="1000" >
+<font-face font-family="sf_icon" font-weight="400" font-stretch="normal" units-per-em="1000" ascent="850" descent="-150" />
+<missing-glyph horiz-adv-x="1000" />
+<glyph glyph-name="facebook" unicode="&#xe801;" d="M541 83v244h82l12 94h-94v61c0 27 8 46 47 46l51 0v85c-9 1-39 4-74 4-72 0-122-44-122-126v-70h-81v-94h81v-244h98z" horiz-adv-x="1000" />
+
+<glyph glyph-name="tiktok" unicode="&#xe802;" d="M735 483c-30 0-59 10-81 27-26 20-45 48-51 82-2 8-3 16-3 25h-87v-238l0-131c0-34-23-64-54-74-10-3-20-5-29-4-14 0-26 4-36 11-23 13-39 38-39 66-1 44 35 80 79 80 9 0 17-1 25-4v89c-8 1-17 1-25 1-48 0-94-20-126-56-24-27-39-62-41-98-3-48 15-94 49-127 5-5 10-10 15-14 30-22 65-35 103-35 8 0 17 1 25 2 35 5 67 21 93 47 31 31 49 72 49 116l-1 194c15-11 32-21 49-28 28-12 56-18 86-17v86c0 0 0 0 0 0z" horiz-adv-x="1000" />
+
+<glyph glyph-name="insta" unicode="&#xe803;" d="M500 448c-54 0-98-44-98-98 0-54 44-98 98-98 54 0 98 44 98 98 0 54-44 98-98 98z m148 169h-296c-65 0-119-54-119-119v-296c0-65 54-119 119-119h296c65 0 119 54 119 119v296c0 65-54 119-119 119z m-148-440c-95 0-173 78-173 173 0 95 78 173 173 173 95 0 173-78 173-173 0-95-78-173-173-173z m176 314c-20 0-36 17-36 37 0 20 16 36 36 36 21 0 37-16 37-36 0-20-16-37-37-37z" horiz-adv-x="1000" />
+</font>
+</defs>
+</svg>

@@ -1,0 +1,20 @@
+{
+  "preset": "laravel",
+  "rules": {
+    "doctrine_annotation_indentation": true,
+    "array_indentation": true,
+    "assign_null_coalescing_to_coalesce_equal": true,
+    "no_superfluous_phpdoc_tags": false,
+    "braces": true,
+    "comment_to_phpdoc": true,
+    "blank_line_after_opening_tag": true,
+    "cast_spaces": true,
+    "class_attributes_separation": true,
+    "class_definition": true,
+    "combine_consecutive_issets": true,
+    "constant_case": true,
+    "elseif": true,
+    "explicit_indirect_variable": true,
+    "doctrine_annotation_braces": true
+  }
+}

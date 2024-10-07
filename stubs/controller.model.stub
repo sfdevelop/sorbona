@@ -1,0 +1,83 @@
+<?php
+
+namespace {{ namespace }};
+
+use {{ namespacedModel }};
+use {{ rootNamespace }}Http\Controllers\Admin\BaseAdminController;
+use {{ namespacedRequests }}
+use Illuminate\Http\RedirectResponse;
+use Illuminate\View\View;
+
+class {{ class }} extends BaseAdminController
+{
+
+     public static string $model = '{{ modelVariable }}';
+
+     public function __construct(
+         public string $nameImageCollection = '{{ modelVariable }}'
+     )
+     {
+     }
+    /**
+     * Display a listing of the resource.
+     */
+    public function index(): View
+    {
+        $items = {{ model }}::query()->withTranslation()->oldest('id')->paginate();
+
+        $title = '{{ modelVariable }}';
+
+        return view('admin.' . self::$model . '.index', compact('title', 'items'));
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     */
+    public function create({{ model }} ${{ modelVariable }}): View
+    {
+        $title = 'Create {{ modelVariable }}';
+
+        return view('admin.' . self::$model . '.create', compact('title'))
+            ->with(['item' => ${{ modelVariable }}]);
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     */
+    public function store({{ storeRequest }} $request, {{ model }} ${{ modelVariable }}): RedirectResponse
+    {
+       return $this->baseStore($request, ${{ modelVariable }}, self::$model);
+    }
+
+    /**
+     * Display the specified resource.
+     */
+    public function show({{ model }} ${{ modelVariable }})
+    {
+        //
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     */
+    public function edit({{ model }} ${{ modelVariable }}): View
+    {
+      return view('admin.' . self::$model . '.update', ['item' => ${{ modelVariable }}, 'title' => 'Update {{ modelVariable }}']);
+    }
+
+    /**
+     * Update the specified resource in storage.
+     */
+    public function update({{ updateRequest }} $request, {{ model }} ${{ modelVariable }}): RedirectResponse
+    {
+        return $this->baseUpdate($request, ${{ modelVariable }}, self::$model);
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     */
+    public function destroy({{ model }} ${{ modelVariable }}): RedirectResponse
+    {
+        return $this->baseDestroy(${{ modelVariable }});
+    }
+}
