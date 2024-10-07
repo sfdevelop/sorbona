@@ -48,6 +48,7 @@ return [
     'category_service' => 'Категорії Послуг',
     'sort' => 'Сортування',
     'in_main' => 'Відображати на головній',
+    'is_public' => 'Опубліковано',
     'create_category' => 'Створити Категорію',
     'update_category' => 'Оновити Категорію',
     'parent_category' => 'Батьківська категорія',

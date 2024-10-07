@@ -25,9 +25,9 @@ class StoreCategoryRequest extends BaseRequest
         $rules = [
             'sort' => 'required|string',
             'file' => 'nullable|image',
-            'salePercent' => 'nullable|sometimes|numeric|between:1,100',
             'category_id' => 'nullable|sometimes:exists:categories,id',
             'in_main' => 'boolean',
+            'is_public' => 'boolean',
         ];
 
         $rules += RuleFactory::make([
@@ -42,6 +42,7 @@ class StoreCategoryRequest extends BaseRequest
     {
         $this->merge([
             'in_main' => $this->boolean('in_main'),
+            'is_public' => $this->boolean('is_public'),
         ]);
     }
 }

@@ -1,10 +1,9 @@
 {
     "name": "laravel/laravel",
     "type": "project",
-    "description": " МАГАЗИН СПОРЯДЖЕННЯ БУРЕВІЙ",
+    "description": " sorbona shop ",
     "keywords": ["laravel", "FOXiK","sfdevelop"],
     "develop": ["info@sfdevelop.com"],
-    "design": ["garbuzikne8@gmail.com"],
     "license": "MIT",
     "require": {
         "php": "^8.1",

@@ -43,13 +43,14 @@ class Category extends Model implements HasMedia, TranslatableContract
      */
     protected $fillable = [
         'category_id',
-        'salePercent',
         'sort',
         'in_main',
+        'is_public',
     ];
 
     protected $casts = [
         'in_main' => 'boolean',
+        'is_public' => 'boolean',
     ];
 
     /**
@@ -59,9 +60,9 @@ class Category extends Model implements HasMedia, TranslatableContract
      * $imageCollectionName - image collection name
      * $noImage - url on image photo (no image)
      * */
-    private static int $imageWith = 500;
+    private static int $imageWith = 100;
 
-    private static int $imageHeight = 650;
+    private static int $imageHeight = 100;
 
     private static string $imageCollectionName = 'category';
 
@@ -86,7 +87,7 @@ class Category extends Model implements HasMedia, TranslatableContract
 
     public function childrenCategories(): HasMany
     {
-        return $this->hasMany(Category::class)->with('categories')->withTranslation();
+        return $this->hasMany(Category::class)->with('categories')->withTranslation()->orderBy('sort');
     }
 
 

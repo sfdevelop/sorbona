@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('categories', function (Blueprint $table) {
-            $table->integer('salePercent')->nullable()->after('category_id');
+            $table->boolean('is_public')->after('sort')->default(true);
         });
     }
 
@@ -22,7 +22,7 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('categories', function (Blueprint $table) {
-            //
+            $table->dropColumn('in_main');
         });
     }
 };

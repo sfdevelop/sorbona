@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Collection;
 
 class CategoryRepository implements CategoryRepositoryInterface
 {
-    public function getAllCategoriesOnce(): ?Collection
+    public function getAllCategoriesOnce(): Collection
     {
         return Category::query()
             ->withTranslation()
@@ -15,7 +15,7 @@ class CategoryRepository implements CategoryRepositoryInterface
             ->once();
     }
 
-    public function getAllCategoriesWithTrans(): ?Collection
+    public function getAllCategoriesWithTrans(): Collection
     {
         return Category::query()
             ->trans()
@@ -23,7 +23,7 @@ class CategoryRepository implements CategoryRepositoryInterface
             ->get();
     }
 
-    public function getParentCategoriesOnce(): ?Collection
+    public function getParentCategoriesOnce(): Collection
     {
         return Category::query()
             ->whereNull('category_id')
@@ -32,7 +32,7 @@ class CategoryRepository implements CategoryRepositoryInterface
             ->once();
     }
 
-    public function getCategoriesWithoutChildrenCategories(): ?Collection
+    public function getCategoriesWithoutChildrenCategories(): Collection
     {
         return Category::query()
             ->whereNull('category_id')
@@ -49,5 +49,23 @@ class CategoryRepository implements CategoryRepositoryInterface
             ->where('in_main', true)
             ->oldest('sort')
             ->get();
+    }
+
+    public function getMainCategoriesWithChildrenOneLevel()
+    {
+        $ddd =  Category::query()
+            ->withTranslation() // Предварительно загружаем названия категорий
+            ->whereNull('category_id') // Выбираем только родительские категории
+            ->with(['childrenCategories']) // Предварительно загружаем подкатегории
+            ->oldest('sort')
+            ->get()
+            ->flatMap(function ($category) {
+                // Объединяем родительскую категорию и её подкатегории в один список
+                return collect([$category])->merge($category->childrenCategories);
+            });
+
+//        dd($ddd);
+
+        return $ddd->sortBy('title');
     }
 }

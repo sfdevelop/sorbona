@@ -12,9 +12,9 @@ class CategorySeeder extends Seeder
 
     private static string $collectionName = 'category';
 
-    private static int $with = 500;
+    private static int $with = 100;
 
-    private static int $height = 650;
+    private static int $height = 100;
 
     /**
      * Run the database seeds.
