@@ -6,10 +6,9 @@ use App\Models\Category;
 use App\Repository\Product\ProductRepositoryInterface;
 use Illuminate\Http\Request;
 
-
 class ProductsInCategoryViewModel extends BaseViewModel
 {
-//    use CustomSeoTrait;
+    //    use CustomSeoTrait;
 
     public function __construct(
         public Category $category,
@@ -17,7 +16,7 @@ class ProductsInCategoryViewModel extends BaseViewModel
         protected ProductRepositoryInterface $productRepository,
 
     ) {
-//        $this->setSeoData($this->settingsRepository->getSetting());
+        //        $this->setSeoData($this->settingsRepository->getSetting());
     }
 
     public function categoryProducts(): mixed
@@ -34,6 +33,5 @@ class ProductsInCategoryViewModel extends BaseViewModel
     public function uniqueColors()
     {
         return $this->productRepository->getUniqColorsFromProduct(category_id: $this->category->id);
-
     }
 }

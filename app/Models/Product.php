@@ -25,6 +25,7 @@ class Product extends Model implements HasMedia, TranslatableContract
 {
     use CreatedFormatTrait;
     use Filterable;
+    use Filterable;
     use HasFactory;
     use MetaDataPolymorphic;
     use ProductPriceTrait;
@@ -32,7 +33,6 @@ class Product extends Model implements HasMedia, TranslatableContract
     use SlugGableTrait;
     use Translatable;
     use TranslateScopeTrait;
-    use Filterable;
 
     protected $table = 'products';
 

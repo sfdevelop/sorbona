@@ -4,7 +4,6 @@ namespace App\ViewModels;
 
 use App\Http\Controllers\Traits\CustomSeoTrait;
 use App\Repository\Category\CategoryRepositoryInterface;
-use App\Repository\Setting\SettingRepositoryInterface;
 
 class CatalogViewModel extends BaseViewModel
 {
@@ -14,7 +13,7 @@ class CatalogViewModel extends BaseViewModel
         protected CategoryRepositoryInterface $categoryRepository,
 
     ) {
-//        $this->setSeoData($this->settingsRepository->getSetting());
+        //        $this->setSeoData($this->settingsRepository->getSetting());
     }
 
     /**

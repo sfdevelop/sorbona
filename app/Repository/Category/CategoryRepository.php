@@ -53,7 +53,7 @@ class CategoryRepository implements CategoryRepositoryInterface
 
     public function getMainCategoriesWithChildrenOneLevel()
     {
-        $ddd =  Category::query()
+        $ddd = Category::query()
             ->withTranslation() // Предварительно загружаем названия категорий
             ->whereNull('category_id') // Выбираем только родительские категории
             ->with(['childrenCategories']) // Предварительно загружаем подкатегории
@@ -64,7 +64,7 @@ class CategoryRepository implements CategoryRepositoryInterface
                 return collect([$category])->merge($category->childrenCategories);
             });
 
-//        dd($ddd);
+        //        dd($ddd);
 
         return $ddd->sortBy('title');
     }

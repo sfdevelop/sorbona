@@ -2,7 +2,6 @@
 
 use App\Http\Controllers\Front\BestsellerController;
 use App\Http\Controllers\Front\CatalogController;
-use App\Http\Controllers\Front\CategoryController;
 use App\Http\Controllers\Front\HomeController;
 use App\Http\Controllers\Front\ProductsInCategoryController;
 use App\Http\Controllers\Front\SaleController;
@@ -14,7 +13,7 @@ Route::get('category/{category:slug}/subcategory', SubcategoryController::class)
 Route::get('sale', SaleController::class)->name('sale');
 Route::get('bestseller', BestsellerController::class)->name('bestseller');
 //Route::get('about-us', \App\Http\Controllers\Front\AboutController::class)->name('aboutUs');
-Route::get('products-in-category/category/{category:slug}', ProductsInCategoryController::class)->name('filter');;
+Route::get('products-in-category/category/{category:slug}', ProductsInCategoryController::class)->name('filter');
 //Route::get('product/{product:slug}', \App\Http\Controllers\Front\ProductController::class)->name('product');
 //Route::get('login', \App\Http\Controllers\Front\LoginController::class)->name('login');
 //Route::get('sign-up', \App\Http\Controllers\Front\SignUpController::class)->name('signUp');

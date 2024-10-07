@@ -59,14 +59,13 @@ class ProductRepository implements ProductRepositoryInterface
             })
             ->once();
 
-//        ->sortBy(function ($product) {
-//        return floatval(preg_replace('/[^0-9.]/', '',
-//            $product->now_price));
-//    });
+        //        ->sortBy(function ($product) {
+        //        return floatval(preg_replace('/[^0-9.]/', '',
+        //            $product->now_price));
+        //    });
     }
 
-
-    final static function filterAble(array $request, string $class): mixed
+    final public static function filterAble(array $request, string $class): mixed
     {
         return app()->make($class, ['queryParams' => array_filter($request)]);
     }

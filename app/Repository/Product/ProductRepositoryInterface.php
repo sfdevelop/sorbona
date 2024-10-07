@@ -20,5 +20,5 @@ interface ProductRepositoryInterface
         int $category_id,
     ): array|Collection;
 
-    public function getUniqColorsFromProduct(int $category_id,);
+    public function getUniqColorsFromProduct(int $category_id);
 }

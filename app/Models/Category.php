@@ -90,7 +90,6 @@ class Category extends Model implements HasMedia, TranslatableContract
         return $this->hasMany(Category::class)->with('categories')->withTranslation()->orderBy('sort');
     }
 
-
     public function parentCategory(): BelongsTo
     {
         return $this->belongsTo(Category::class, 'category_id')->withTranslation();

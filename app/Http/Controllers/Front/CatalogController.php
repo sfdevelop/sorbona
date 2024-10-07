@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Front;
 
 use App\Repository\Category\CategoryRepositoryInterface;
-use App\Repository\Setting\SettingRepositoryInterface;
 use App\ViewModels\CatalogViewModel;
 
 class CatalogController extends BaseFrontController

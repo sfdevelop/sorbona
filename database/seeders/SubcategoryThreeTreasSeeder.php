@@ -3,7 +3,6 @@
 namespace Database\Seeders;
 
 use App\Models\Category;
-use Database\Seeders\Traits\SeedUploadImageTrait;
 use Illuminate\Database\Seeder;
 
 class SubcategoryThreeTreasSeeder extends Seeder

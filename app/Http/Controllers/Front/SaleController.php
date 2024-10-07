@@ -2,10 +2,7 @@
 
 namespace App\Http\Controllers\Front;
 
-use App\Repository\Category\CategoryRepositoryInterface;
 use App\Repository\Product\ProductRepositoryInterface;
-use App\Repository\Setting\SettingRepositoryInterface;
-use App\ViewModels\CatalogViewModel;
 use App\ViewModels\SaleViewModel;
 use Spatie\ViewModels\ViewModel;
 

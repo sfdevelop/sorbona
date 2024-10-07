@@ -24,7 +24,7 @@ class CategoryController extends BaseAdminController
         $items = Category::query()
             ->whereNull('category_id')
             ->withCount('childrenCategories')
-            ->with(['childrenCategories','childrenCategories.childrenCategories'])
+            ->with(['childrenCategories', 'childrenCategories.childrenCategories'])
             ->withTranslation()
             ->oldest('sort')
             ->paginate();
