@@ -13,6 +13,82 @@
 
 namespace App\Models{
 /**
+ * App\Models\Article
+ *
+ * @property int title
+ * @property int description
+ * @property int $id
+ * @property string $slug
+ * @property int $sort
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read mixed $additional_web
+ * @property-read mixed $created_format
+ * @property-read mixed $created_human
+ * @property-read mixed $description_seo
+ * @property-read mixed $img_jpg
+ * @property-read mixed $img_main
+ * @property-read mixed $img_original
+ * @property-read mixed $img_web
+ * @property-read mixed $many_web
+ * @property-read \Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection<int, \Spatie\MediaLibrary\MediaCollections\Models\Media> $media
+ * @property-read int|null $media_count
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Metadata> $metadata
+ * @property-read int|null $metadata_count
+ * @property-read mixed $preview
+ * @property-read mixed $title_seo
+ * @property-read \App\Models\ArticleTranslation|null $translation
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\ArticleTranslation> $translations
+ * @property-read int|null $translations_count
+ * @method static \Database\Factories\ArticleFactory factory($count = null, $state = [])
+ * @method static \Illuminate\Database\Eloquent\Builder|Article findSimilarSlugs(string $attribute, array $config, string $slug)
+ * @method static \Illuminate\Database\Eloquent\Builder|Article listsTranslations(string $translationField)
+ * @method static \Illuminate\Database\Eloquent\Builder|Article newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Article newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Article notTranslatedIn(?string $locale = null)
+ * @method static \Illuminate\Database\Eloquent\Builder|Article orWhereTranslation(string $translationField, $value, ?string $locale = null)
+ * @method static \Illuminate\Database\Eloquent\Builder|Article orWhereTranslationLike(string $translationField, $value, ?string $locale = null)
+ * @method static \Illuminate\Database\Eloquent\Builder|Article orderByTranslation(string $translationField, string $sortMethod = 'asc')
+ * @method static \Illuminate\Database\Eloquent\Builder|Article query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Article trans()
+ * @method static \Illuminate\Database\Eloquent\Builder|Article translated()
+ * @method static \Illuminate\Database\Eloquent\Builder|Article translatedIn(?string $locale = null)
+ * @method static \Illuminate\Database\Eloquent\Builder|Article whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Article whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Article whereSlug($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Article whereSort($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Article whereTranslation(string $translationField, $value, ?string $locale = null, string $method = 'whereHas', string $operator = '=')
+ * @method static \Illuminate\Database\Eloquent\Builder|Article whereTranslationLike(string $translationField, $value, ?string $locale = null)
+ * @method static \Illuminate\Database\Eloquent\Builder|Article whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Article withTranslation(?string $locale = null)
+ * @method static \Illuminate\Database\Eloquent\Builder|Article withUniqueSlugConstraints(\Illuminate\Database\Eloquent\Model $model, string $attribute, array $config, string $slug)
+ */
+	class Article extends \Eloquent implements \Astrotomic\Translatable\Contracts\Translatable, \Spatie\MediaLibrary\HasMedia {}
+}
+
+namespace App\Models{
+/**
+ * App\Models\ArticleTranslation
+ *
+ * @property int $id
+ * @property int $article_id
+ * @property string $locale
+ * @property string $title
+ * @property string $description
+ * @method static \Illuminate\Database\Eloquent\Builder|ArticleTranslation newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|ArticleTranslation newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|ArticleTranslation query()
+ * @method static \Illuminate\Database\Eloquent\Builder|ArticleTranslation whereArticleId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ArticleTranslation whereDescription($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ArticleTranslation whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ArticleTranslation whereLocale($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ArticleTranslation whereTitle($value)
+ */
+	class ArticleTranslation extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
  * App\Models\Category
  *
  * @property int $id

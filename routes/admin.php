@@ -8,6 +8,7 @@ Route::view('/start', 'admin/start/start')->name('admin.start');
 
 Route::resource('category', \App\Http\Controllers\Admin\CategoryController::class)->names('admin.category');
 Route::resource('manufacturer', \App\Http\Controllers\Admin\ManufacturerController::class)->names('admin.manufacturer');
+Route::resource('article', \App\Http\Controllers\Admin\ArticleController::class)->names('admin.article');
 Route::resource('product', \App\Http\Controllers\Admin\ProductController::class)->names('admin.product');
 Route::resource('color', \App\Http\Controllers\Admin\ColorController::class)->names('admin.color');
 Route::resource('slider', \App\Http\Controllers\Admin\SliderController::class)->names('admin.slider');
