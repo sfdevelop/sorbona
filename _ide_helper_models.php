@@ -18,8 +18,9 @@ namespace App\Models{
  * @property int $id
  * @property string $slug
  * @property int|null $category_id
- * @property int|null $salePercent
  * @property int $sort
+ * @property bool $is_public
+ * @property bool $in_main
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read mixed $additional_web
@@ -59,7 +60,8 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Category whereCategoryId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Category whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Category whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Category whereSalePercent($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Category whereInMain($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Category whereIsPublic($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Category whereSlug($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Category whereSort($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Category whereTranslation(string $translationField, $value, ?string $locale = null, string $method = 'whereHas', string $operator = '=')
@@ -282,6 +284,80 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Feedback whereUpdatedAt($value)
  */
 	class Feedback extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * App\Models\Manufacturer
+ *
+ * @property int $id
+ * @property int $sort
+ * @property string|null $year
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read mixed $additional_web
+ * @property-read mixed $created_format
+ * @property-read mixed $created_human
+ * @property-read mixed $img_jpg
+ * @property-read mixed $img_main
+ * @property-read mixed $img_original
+ * @property-read mixed $img_web
+ * @property-read mixed $many_web
+ * @property-read \Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection<int, \Spatie\MediaLibrary\MediaCollections\Models\Media> $media
+ * @property-read int|null $media_count
+ * @property-read mixed $preview
+ * @property-read \App\Models\ManufacturerTranslation|null $translation
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\ManufacturerTranslation> $translations
+ * @property-read int|null $translations_count
+ * @method static \Database\Factories\ManufacturerFactory factory($count = null, $state = [])
+ * @method static \Illuminate\Database\Eloquent\Builder|Manufacturer listsTranslations(string $translationField)
+ * @method static \Illuminate\Database\Eloquent\Builder|Manufacturer newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Manufacturer newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Manufacturer notTranslatedIn(?string $locale = null)
+ * @method static \Illuminate\Database\Eloquent\Builder|Manufacturer orWhereTranslation(string $translationField, $value, ?string $locale = null)
+ * @method static \Illuminate\Database\Eloquent\Builder|Manufacturer orWhereTranslationLike(string $translationField, $value, ?string $locale = null)
+ * @method static \Illuminate\Database\Eloquent\Builder|Manufacturer orderByTranslation(string $translationField, string $sortMethod = 'asc')
+ * @method static \Illuminate\Database\Eloquent\Builder|Manufacturer query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Manufacturer trans()
+ * @method static \Illuminate\Database\Eloquent\Builder|Manufacturer translated()
+ * @method static \Illuminate\Database\Eloquent\Builder|Manufacturer translatedIn(?string $locale = null)
+ * @method static \Illuminate\Database\Eloquent\Builder|Manufacturer whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Manufacturer whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Manufacturer whereSort($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Manufacturer whereTranslation(string $translationField, $value, ?string $locale = null, string $method = 'whereHas', string $operator = '=')
+ * @method static \Illuminate\Database\Eloquent\Builder|Manufacturer whereTranslationLike(string $translationField, $value, ?string $locale = null)
+ * @method static \Illuminate\Database\Eloquent\Builder|Manufacturer whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Manufacturer whereYear($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Manufacturer withTranslation(?string $locale = null)
+ */
+	class Manufacturer extends \Eloquent implements \Astrotomic\Translatable\Contracts\Translatable, \Spatie\MediaLibrary\HasMedia {}
+}
+
+namespace App\Models{
+/**
+ * App\Models\ManufacturerTranslation
+ *
+ * @property int $id
+ * @property int $manufacturer_id
+ * @property string $locale
+ * @property string $title
+ * @property string|null $description
+ * @property string|null $all_title
+ * @property string|null $specialization
+ * @property string|null $flat
+ * @method static \Illuminate\Database\Eloquent\Builder|ManufacturerTranslation newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|ManufacturerTranslation newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|ManufacturerTranslation query()
+ * @method static \Illuminate\Database\Eloquent\Builder|ManufacturerTranslation whereAllTitle($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ManufacturerTranslation whereDescription($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ManufacturerTranslation whereFlat($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ManufacturerTranslation whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ManufacturerTranslation whereLocale($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ManufacturerTranslation whereManufacturerId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ManufacturerTranslation whereSpecialization($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ManufacturerTranslation whereTitle($value)
+ */
+	class ManufacturerTranslation extends \Eloquent {}
 }
 
 namespace App\Models{
@@ -828,9 +904,11 @@ namespace App\Models{
  * @property int $slider_id
  * @property string $locale
  * @property string $title
+ * @property string|null $description
  * @method static \Illuminate\Database\Eloquent\Builder|SliderTranslation newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|SliderTranslation newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|SliderTranslation query()
+ * @method static \Illuminate\Database\Eloquent\Builder|SliderTranslation whereDescription($value)
  * @method static \Illuminate\Database\Eloquent\Builder|SliderTranslation whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|SliderTranslation whereLocale($value)
  * @method static \Illuminate\Database\Eloquent\Builder|SliderTranslation whereSliderId($value)

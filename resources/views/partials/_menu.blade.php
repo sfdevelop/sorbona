@@ -41,6 +41,18 @@
             </a>
         </li>
 
+        <li class="l_sidebar">
+            <a
+                    href="{{route('admin.manufacturer.index')}}"
+                    @class([
+                        'active'=> Request::is('admin/manufacturer/*','admin/manufacturer'),
+                        ])
+            >
+                <i class="nav-icon las la-palette"></i>
+                <span class="menu-text">{{__('admin.manufacturer')}}</span>
+            </a>
+        </li>
+
         <li class="menu-title mt-30">
             <span>{{__('admin.orders')}}</span>
         </li>
