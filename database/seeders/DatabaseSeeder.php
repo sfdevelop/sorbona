@@ -30,6 +30,8 @@ class DatabaseSeeder extends Seeder
             //            $this->call([BestsellerSeeder::class]);
             //            $this->call([NewProductSeeder::class]);
         }
+        $this->call([PoliticSeeder::class]);
+
         //
         //        $this->call([SliderSeeder::class]);
         //        $this->call([AboutMainSeeder::class]);

@@ -187,5 +187,6 @@ return [
     'stickers' => 'Стікери',
 
     'cannot_delete_with_children' => 'Ви не можете видалити дану категорію, бо в неї є підкатегорії',
-    'manufacturer' => 'Виробник',
+    'manufacturer' => 'Виробники',
+    'article' => 'Новини',
 ];

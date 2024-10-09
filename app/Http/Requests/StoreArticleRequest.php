@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use Astrotomic\Translatable\Validation\RuleFactory;
 use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -27,10 +28,10 @@ class StoreArticleRequest extends BaseRequest
             'file' => 'nullable|image',
         ];
 
-        foreach (config('translatable.locales') as $locale) {
-            $rules[$locale . '.title'] = 'required';
-            $rules[$locale . '.description'] = 'required';
-        }
+        $rules += RuleFactory::make([
+            '%title%' => 'required|string',
+            '%description%' => 'required|string',
+        ]);
 
         return $rules;
     }

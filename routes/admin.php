@@ -26,3 +26,5 @@ Route::singleton('mainAbout', \App\Http\Controllers\Admin\Single\MainPageControl
 Route::singleton('pageAbout', \App\Http\Controllers\Admin\Single\AboutPageController::class)->names('admin.pageAbout');
 Route::singleton('setting', SettingsController::class)->names('admin.setting');
 Route::singleton('profile', ProfileController::class)->names('admin.profile');
+
+Route::singleton('politic', \App\Http\Controllers\Admin\Single\PoliticPageController::class)->names('admin.politic');
