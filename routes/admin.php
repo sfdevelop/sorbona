@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\Single\SettingsController;
 
 Route::view('/start', 'admin/start/start')->name('admin.start');
 
+Route::resource('currency', \App\Http\Controllers\Admin\CurrencyController::class)->names('admin.currency');
 Route::resource('category', \App\Http\Controllers\Admin\CategoryController::class)->names('admin.category');
 Route::resource('manufacturer', \App\Http\Controllers\Admin\ManufacturerController::class)->names('admin.manufacturer');
 Route::resource('article', \App\Http\Controllers\Admin\ArticleController::class)->names('admin.article');

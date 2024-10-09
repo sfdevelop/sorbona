@@ -5,7 +5,19 @@
             <span>{{__('admin.shop')}}</span>
         </li>
 
-{{--        @include('partials.main._dictionary')--}}
+        {{--        @include('partials.main._dictionary')--}}
+
+        <li class="l_sidebar">
+            <a
+                    href="{{route('admin.currency.index')}}"
+                    @class([
+                        'active'=> Request::is('admin/currency/*','admin/currency'),
+                        ])
+            >
+                <i class=" nav-icon  las la-coins"></i>
+                <span class="menu-text">{{__('admin.currency')}}</span>
+            </a>
+        </li>
 
         <li class="l_sidebar">
             <a

@@ -325,6 +325,30 @@ namespace App\Models{
 
 namespace App\Models{
 /**
+ * App\Models\Currency
+ *
+ * @property int $id
+ * @property string $title
+ * @property string $currency
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read mixed $created_format
+ * @property-read mixed $created_human
+ * @method static \Database\Factories\CurrencyFactory factory($count = null, $state = [])
+ * @method static \Illuminate\Database\Eloquent\Builder|Currency newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Currency newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Currency query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Currency whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Currency whereCurrency($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Currency whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Currency whereTitle($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Currency whereUpdatedAt($value)
+ */
+	class Currency extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
  * App\Models\Example
  *
  * @method static \Database\Factories\ExampleFactory factory($count = null, $state = [])
@@ -857,10 +881,11 @@ namespace App\Models{
  * @property int $id
  * @property string|null $facebook
  * @property string|null $instagram
- * @property string|null $linkedin
  * @property string $email
  * @property string $phone
  * @property string|null $phone2
+ * @property string|null $website
+ * @property string|null $map
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read mixed $description_seo
@@ -887,12 +912,13 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Setting whereFacebook($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Setting whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Setting whereInstagram($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Setting whereLinkedin($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Setting whereMap($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Setting wherePhone($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Setting wherePhone2($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Setting whereTranslation(string $translationField, $value, ?string $locale = null, string $method = 'whereHas', string $operator = '=')
  * @method static \Illuminate\Database\Eloquent\Builder|Setting whereTranslationLike(string $translationField, $value, ?string $locale = null)
  * @method static \Illuminate\Database\Eloquent\Builder|Setting whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Setting whereWebsite($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Setting withTranslation(?string $locale = null)
  */
 	class Setting extends \Eloquent implements \Astrotomic\Translatable\Contracts\Translatable {}
@@ -906,9 +932,6 @@ namespace App\Models{
  * @property int $setting_id
  * @property string $locale
  * @property string $address
- * @property string $work
- * @property string $weekend
- * @property string|null $text
  * @property string|null $textForMail
  * @method static \Illuminate\Database\Eloquent\Builder|SettingTranslation newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|SettingTranslation newQuery()
@@ -917,10 +940,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|SettingTranslation whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|SettingTranslation whereLocale($value)
  * @method static \Illuminate\Database\Eloquent\Builder|SettingTranslation whereSettingId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|SettingTranslation whereText($value)
  * @method static \Illuminate\Database\Eloquent\Builder|SettingTranslation whereTextForMail($value)
- * @method static \Illuminate\Database\Eloquent\Builder|SettingTranslation whereWeekend($value)
- * @method static \Illuminate\Database\Eloquent\Builder|SettingTranslation whereWork($value)
  */
 	class SettingTranslation extends \Eloquent {}
 }
