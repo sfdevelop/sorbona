@@ -81,7 +81,7 @@
             <a
                     href="{{route('admin.politic.edit')}}"
                     @class([
-                        'active'=> Request::is('admin/admin.politic/*','admin/admin.politic'),
+                        'active'=> Request::is('admin/politic/*','admin/politic'),
                         ])
             >
                 <i class="nav-icon  las la-clipboard-list"></i>
@@ -91,9 +91,21 @@
 
         <li class="l_sidebar">
             <a
+                    href="{{route('admin.offerta.edit')}}"
+                    @class([
+                        'active'=> Request::is('admin/offerta/*','admin/offerta'),
+                        ])
+            >
+                <i class="nav-icon  las la-clipboard-list"></i>
+                <span class="menu-text">{{__('admin.offerta')}}</span>
+            </a>
+        </li>
+
+        <li class="l_sidebar">
+            <a
                     href="{{route('admin.return.edit')}}"
                     @class([
-                        'active'=> Request::is('admin/admin.return/*','admin/admin.return'),
+                        'active'=> Request::is('admin/return/*','admin/return'),
                         ])
             >
                 <i class="nav-icon  las la-clipboard-list"></i>

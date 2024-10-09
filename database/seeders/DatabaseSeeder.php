@@ -23,6 +23,7 @@ class DatabaseSeeder extends Seeder
             $this->call([SubcategorySeeder::class]);
             $this->call([SubcategoryThreeTreasSeeder::class]);
             $this->call([ManufacturerSeeder::class]);
+            $this->call([ArticleSeeder::class]);
 
             //            $this->call([ProductSeeder::class]);
             //            $this->call([ProductCategorySeeder::class]);
@@ -32,6 +33,8 @@ class DatabaseSeeder extends Seeder
         }
         $this->call([PoliticSeeder::class]);
         $this->call([ReturnSeeder::class]);
+        $this->call([OfertaSeeder::class]);
+
         $this->call([SettingSeeder::class]);
 
         //
