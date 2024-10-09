@@ -17,7 +17,7 @@ trait SlugGableTrait
     {
         return [
             'slug' => [
-                'source' => 'title:en',
+                'source' => 'title:uk',
             ],
         ];
     }
