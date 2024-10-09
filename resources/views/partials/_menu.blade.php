@@ -84,8 +84,20 @@
                         'active'=> Request::is('admin/admin.politic/*','admin/admin.politic'),
                         ])
             >
-                <i class="nav-icon  las la-rss-square"></i>
-                <span class="menu-text">{{__('admin.admin.politic')}}</span>
+                <i class="nav-icon  las la-clipboard-list"></i>
+                <span class="menu-text">{{__('admin.politic')}}</span>
+            </a>
+        </li>
+
+        <li class="l_sidebar">
+            <a
+                    href="{{route('admin.return.edit')}}"
+                    @class([
+                        'active'=> Request::is('admin/admin.return/*','admin/admin.return'),
+                        ])
+            >
+                <i class="nav-icon  las la-clipboard-list"></i>
+                <span class="menu-text">{{__('admin.return')}}</span>
             </a>
         </li>
 

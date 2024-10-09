@@ -28,3 +28,4 @@ Route::singleton('setting', SettingsController::class)->names('admin.setting');
 Route::singleton('profile', ProfileController::class)->names('admin.profile');
 
 Route::singleton('politic', \App\Http\Controllers\Admin\Single\PoliticPageController::class)->names('admin.politic');
+Route::singleton('return', \App\Http\Controllers\Admin\Single\ReturnPageController::class)->names('admin.return');

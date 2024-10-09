@@ -31,6 +31,7 @@ class DatabaseSeeder extends Seeder
             //            $this->call([NewProductSeeder::class]);
         }
         $this->call([PoliticSeeder::class]);
+        $this->call([ReturnSeeder::class]);
 
         //
         //        $this->call([SliderSeeder::class]);
