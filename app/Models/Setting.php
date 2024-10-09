@@ -22,18 +22,15 @@ class Setting extends Model implements TranslatableContract
 
     public array $translatedAttributes = [
         'address',
-        'work',
-        'weekend',
-        'text',
-        'textForMail',
     ];
 
     protected $fillable = [
         'facebook',
         'instagram',
-        'linkedin',
         'email',
         'phone',
         'phone2',
+        'map',
+        'website',
     ];
 }

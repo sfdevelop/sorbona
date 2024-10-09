@@ -8,10 +8,6 @@
             <a href="{{route('admin.setting.edit')}}">
                 <img src="{{ asset('assets/img/svg/settings.svg') }}" alt="settings" class="svg"> Settings</a>
         </li>
-{{--        <li>--}}
-{{--            <a href="">--}}
-{{--                <img src="{{ asset('assets/img/svg/key.svg') }}" alt="key" class="svg"> Billing</a>--}}
-{{--        </li>--}}
 
     </ul>
     <a href="" class="nav-author__signout" onclick="event.preventDefault();document.getElementById('logout').submit();">

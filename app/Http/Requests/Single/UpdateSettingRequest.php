@@ -3,6 +3,7 @@
 namespace App\Http\Requests\Single;
 
 use App\Http\Requests\BaseRequest;
+use Astrotomic\Translatable\Validation\RuleFactory;
 
 class UpdateSettingRequest extends BaseRequest
 {
@@ -20,25 +21,18 @@ class UpdateSettingRequest extends BaseRequest
     public function rules(): array
     {
         $rules = [
-            'email' => 'required|email:rfc,dns',
-            'phone' => 'required|string',
-            'phone2' => 'nullable|string',
-            'phone3' => 'nullable|string',
-            'phone4' => 'nullable|string',
-            'facebook' => 'nullable|string',
+            'email'     => 'required|email:rfc,dns',
+            'phone'     => 'required|string',
+            'phone2'    => 'nullable|string',
+            'facebook'  => 'nullable|string',
             'instagram' => 'nullable|string',
-            'linkedin' => 'required|string',
-            //            'map' => 'required|string',
+            'website'   => 'required|string',
+            'map'       => 'required|string',
         ];
 
-        foreach (config('translatable.locales') as $locale) {
-            //            $rules[$locale . '.address'] = 'required';
-            $rules[$locale.'.work'] = 'required';
-            $rules[$locale.'.weekend'] = 'required';
-            $rules[$locale.'.text'] = 'required';
-            $rules[$locale.'.address'] = 'required';
-            $rules[$locale.'.textForMail'] = 'nullable';
-        }
+        $rules += RuleFactory::make([
+            '%address%' => 'required|string',
+        ]);
 
         return $rules;
     }

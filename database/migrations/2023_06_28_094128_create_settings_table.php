@@ -15,10 +15,11 @@ return new class extends Migration
             $table->id();
             $table->text('facebook')->nullable();
             $table->text('instagram')->nullable();
-            $table->text('linkedin')->nullable();
             $table->string('email');
             $table->string('phone');
             $table->string('phone2')->nullable();
+            $table->string('website')->nullable();
+            $table->longText('map')->nullable();
             $table->timestamps();
         });
     }

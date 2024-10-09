@@ -32,6 +32,7 @@ class DatabaseSeeder extends Seeder
         }
         $this->call([PoliticSeeder::class]);
         $this->call([ReturnSeeder::class]);
+        $this->call([SettingSeeder::class]);
 
         //
         //        $this->call([SliderSeeder::class]);
@@ -41,6 +42,6 @@ class DatabaseSeeder extends Seeder
         //        $this->call([ValuesSeeder::class]);
         //        $this->call([OfferSeeder::class]);
         //        $this->call([AboutPageSeeder::class]);
-        $this->call([SettingSeeder::class]);
+//        $this->call([SettingSeeder::class]);
     }
 }

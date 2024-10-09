@@ -48,49 +48,7 @@
                                     :item="$item"
                                     :locale="$locale"
                             />
-
-                            <x-input-lang
-                                    with="25"
-                                    type="text"
-                                    title="{{__('admin.text')}}*"
-                                    name="text"
-                                    :item="$item"
-                                    :locale="$locale"
-                            />
-
-                            <x-text-area-lang
-                                    with="25"
-                                    type="text"
-                                    title="{{__('admin.textForMail')}}*"
-                                    name="textForMail"
-                                    :item="$item"
-                                    :locale="$locale"
-                            />
-
-
-                            <div class="row">
-                                <div class="col col-md-6">
-                                    <x-input-lang
-                                            with="25"
-                                            type="text"
-                                            title="{{__('validation.attributes.work')}}"
-                                            name="work"
-                                            :item="$item"
-                                            :locale="$locale"
-                                    />
-                                </div>
-                                <div class="col col-md-6">
-                                    <x-input-lang
-                                            with="25"
-                                            type="text"
-                                            title="{{__('validation.attributes.weekend')}}"
-                                            name="weekend"
-                                            :item="$item"
-                                            :locale="$locale"
-                                    />
-                                </div>
-                            </div>
-                            @include('layout.SEOData.Seo')
+                            {{--                            @include('layout.SEOData.Seo')--}}
                         </div>
                     @endforeach
                 </div>
@@ -140,12 +98,11 @@
                 :item="$item"
         />
     </div>
-
     <div class="col col-sm-4">
         <x-input
                 with="25"
                 type="string"
-                title="Telegram"
+                title="instagram"
                 name="instagram"
                 :item="$item"
         />
@@ -155,19 +112,19 @@
         <x-input
                 with="25"
                 type="string"
-                title="linkedin"
-                name="linkedin"
+                title="website"
+                name="website"
                 :item="$item"
         />
     </div>
 </div>
 
-{{--<x-text-area--}}
-{{--        with="25"--}}
-{{--        title="{{__('validation.attributes.map')}}"--}}
-{{--        name="map"--}}
-{{--        :item="$item"--}}
-{{--/>--}}
+<x-text-area
+        with="25"
+        title="{{__('validation.attributes.map')}}"
+        name="map"
+        :item="$item"
+/>
 
 
 
