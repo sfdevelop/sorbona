@@ -17,12 +17,20 @@ return new class extends Migration
             $table->bigInteger('page_id')->unsigned();
             $table->string('locale')->index();
 
-            $table->string('title');
+
             $table->longText('titleSectionAboutUs')->nullable();
-            $table->longText('description')->nullable();
+
             $table->longText('titleDownAboutUs')->nullable();
             $table->longText('descriptionRememberAboutUs')->nullable();
             $table->longText('textFeedBackAboutUs')->nullable();
+
+            $table->string('title');
+            $table->longText('descriptionShort')->nullable();
+            $table->longText('description')->nullable();
+            $table->longText('notoriety')->nullable();
+            $table->longText('assortment')->nullable();
+            $table->longText('cooperate')->nullable();
+            $table->longText('comfort')->nullable();
 
             $table->unique(['page_id', 'locale']);
             $table->foreign('page_id')

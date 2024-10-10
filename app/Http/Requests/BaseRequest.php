@@ -28,6 +28,12 @@ class BaseRequest extends FormRequest
         return RuleFactory::make([
             '%title%' => __('validation.attributes.title'),
             '%description%' => __('validation.attributes.description'),
+            '%descriptionShort%' => __('validation.attributes.descriptionShort'),
+
+            '%notoriety%' => __('validation.attributes.notoriety'),
+            '%assortment%' => __('validation.attributes.assortment'),
+            '%cooperate%' => __('validation.attributes.cooperate'),
+            '%comfort%' => __('validation.attributes.comfort'),
         ]);
     }
 }

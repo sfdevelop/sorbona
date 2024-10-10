@@ -39,6 +39,12 @@ class Page extends Model implements HasMedia, TranslatableContract
         'titleDownAboutUs',
         'descriptionRememberAboutUs',
         'textFeedBackAboutUs',
+
+        'descriptionShort',
+        'notoriety',
+        'assortment',
+        'cooperate',
+        'comfort',
     ];
 
     //        /**

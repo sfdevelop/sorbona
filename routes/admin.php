@@ -34,3 +34,4 @@ Route::singleton('profile', ProfileController::class)->names('admin.profile');
 Route::singleton('politic', \App\Http\Controllers\Admin\Single\PoliticPageController::class)->names('admin.politic');
 Route::singleton('return', \App\Http\Controllers\Admin\Single\ReturnPageController::class)->names('admin.return');
 Route::singleton('offerta', \App\Http\Controllers\Admin\Single\OfertaPageController::class)->names('admin.offerta');
+Route::singleton('optionMain', \App\Http\Controllers\Admin\Single\OptionMainPageController::class)->names('admin.optionMain');

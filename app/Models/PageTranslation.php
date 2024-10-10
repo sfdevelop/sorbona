@@ -23,5 +23,11 @@ class PageTranslation extends Model
         'titleDownAboutUs',
         'descriptionRememberAboutUs',
         'textFeedBackAboutUs',
+
+        'descriptionShort',
+        'notoriety',
+        'assortment',
+        'cooperate',
+        'comfort',
     ];
 }

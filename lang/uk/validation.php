@@ -216,5 +216,11 @@ return [
         'specialization' => 'Спеціалізація',
         'flat' => 'Штаб-квартира',
         'year' => 'Рік заснування',
+
+        'descriptionShort' => 'Короткий опис',
+        'notoriety' => 'Відомий',
+        'assortment' => 'Асортимент',
+        'cooperate' => 'Співпраця',
+        'comfort' => 'Зручність',
     ],
 ];

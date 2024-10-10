@@ -6,6 +6,8 @@
 
                         'admin/benefit',
                         'admin/benefit/*',
+                        'admin/optionMain/*',
+                        'admin/optionMain',
                         )
     ])
 >
@@ -15,6 +17,17 @@
         <span class="toggle-icon"></span>
     </a>
     <ul>
+        <li class="l_sidebar">
+            <a
+                    href="{{route('admin.optionMain.edit')}}"
+                    @class([
+                        'active'=> Request::is('admin/optionMain/*','admin/optionMain'),
+                        ])
+            >
+                {{__('admin.option')}}
+            </a>
+        </li>
+
         <li class="l_sidebar">
             <a
                     href="{{route('admin.benefit.index')}}"
