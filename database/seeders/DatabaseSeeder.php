@@ -34,6 +34,7 @@ class DatabaseSeeder extends Seeder
         $this->call([PoliticSeeder::class]);
         $this->call([ReturnSeeder::class]);
         $this->call([OfertaSeeder::class]);
+        $this->call([BenefitSeeder::class]);
 
         $this->call([SettingSeeder::class]);
 

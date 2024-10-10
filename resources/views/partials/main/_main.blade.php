@@ -3,12 +3,9 @@
             'has-child',
              'open'=>
                 Request::is(
-                        'admin/slider/*',
-                        'admin/slider',
-                        'admin/mainAbout',
-                        'admin/mainAbout/*',
-                        'admin/chose',
-                        'admin/chose/*',
+
+                        'admin/benefit',
+                        'admin/benefit/*',
                         )
     ])
 >
@@ -20,34 +17,12 @@
     <ul>
         <li class="l_sidebar">
             <a
-                    href="{{route('admin.slider.index')}}"
+                    href="{{route('admin.benefit.index')}}"
                     @class([
-                        'active'=> Request::is('admin/slider/*','admin/slider'),
+                        'active'=> Request::is('admin/benefit/*','admin/benefit'),
                         ])
             >
-                {{__('admin.slide')}}
-            </a>
-        </li>
-
-        <li class="l_sidebar">
-            <a
-                    href="{{route('admin.mainAbout.edit')}}"
-                    @class([
-                        'active'=> Request::is('admin/mainAbout/*','admin/mainAbout'),
-                        ])
-            >
-                {{__('admin.aboutMain')}}
-            </a>
-        </li>
-
-        <li class="l_sidebar">
-            <a
-                    href="{{route('admin.chose.index')}}"
-                    @class([
-                        'active'=> Request::is('admin/chose/*','admin/chose'),
-                        ])
-            >
-                {{__('admin.chose')}}
+                {{__('admin.benefit')}}
             </a>
         </li>
     </ul>

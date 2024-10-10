@@ -89,6 +89,70 @@ namespace App\Models{
 
 namespace App\Models{
 /**
+ * App\Models\Benefit
+ *
+ * @property int $id
+ * @property int $sort
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read mixed $additional_web
+ * @property-read mixed $created_format
+ * @property-read mixed $created_human
+ * @property-read mixed $img_jpg
+ * @property-read mixed $img_main
+ * @property-read mixed $img_original
+ * @property-read mixed $img_web
+ * @property-read mixed $many_web
+ * @property-read \Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection<int, \Spatie\MediaLibrary\MediaCollections\Models\Media> $media
+ * @property-read int|null $media_count
+ * @property-read mixed $preview
+ * @property-read \App\Models\BenefitTranslation|null $translation
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\BenefitTranslation> $translations
+ * @property-read int|null $translations_count
+ * @method static \Database\Factories\BenefitFactory factory($count = null, $state = [])
+ * @method static \Illuminate\Database\Eloquent\Builder|Benefit listsTranslations(string $translationField)
+ * @method static \Illuminate\Database\Eloquent\Builder|Benefit newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Benefit newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Benefit notTranslatedIn(?string $locale = null)
+ * @method static \Illuminate\Database\Eloquent\Builder|Benefit orWhereTranslation(string $translationField, $value, ?string $locale = null)
+ * @method static \Illuminate\Database\Eloquent\Builder|Benefit orWhereTranslationLike(string $translationField, $value, ?string $locale = null)
+ * @method static \Illuminate\Database\Eloquent\Builder|Benefit orderByTranslation(string $translationField, string $sortMethod = 'asc')
+ * @method static \Illuminate\Database\Eloquent\Builder|Benefit query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Benefit trans()
+ * @method static \Illuminate\Database\Eloquent\Builder|Benefit translated()
+ * @method static \Illuminate\Database\Eloquent\Builder|Benefit translatedIn(?string $locale = null)
+ * @method static \Illuminate\Database\Eloquent\Builder|Benefit whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Benefit whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Benefit whereSort($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Benefit whereTranslation(string $translationField, $value, ?string $locale = null, string $method = 'whereHas', string $operator = '=')
+ * @method static \Illuminate\Database\Eloquent\Builder|Benefit whereTranslationLike(string $translationField, $value, ?string $locale = null)
+ * @method static \Illuminate\Database\Eloquent\Builder|Benefit whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Benefit withTranslation(?string $locale = null)
+ */
+	class Benefit extends \Eloquent implements \Astrotomic\Translatable\Contracts\Translatable, \Spatie\MediaLibrary\HasMedia {}
+}
+
+namespace App\Models{
+/**
+ * App\Models\BenefitTranslation
+ *
+ * @property int $id
+ * @property int $benefit_id
+ * @property string $locale
+ * @property string $title
+ * @method static \Illuminate\Database\Eloquent\Builder|BenefitTranslation newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|BenefitTranslation newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|BenefitTranslation query()
+ * @method static \Illuminate\Database\Eloquent\Builder|BenefitTranslation whereBenefitId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|BenefitTranslation whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|BenefitTranslation whereLocale($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|BenefitTranslation whereTitle($value)
+ */
+	class BenefitTranslation extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
  * App\Models\Category
  *
  * @property int $id
@@ -329,7 +393,7 @@ namespace App\Models{
  *
  * @property int $id
  * @property string $title
- * @property string $currency
+ * @property-write string $currency
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read mixed $created_format
