@@ -43,6 +43,19 @@
 
             </a>
         </li>
+
+        <li class="l_sidebar">
+            <a
+                    href="{{route('admin.filter.index')}}"
+                    @class([
+                        'active'=> Request::is('admin/filter/*','admin/filter'),
+                        ])
+            >
+                <i class="nav-icon las la-tags"></i>
+                <span class="menu-text">{{__('admin.filter')}}</span>
+
+            </a>
+        </li>
         <li class="l_sidebar">
             <a
                     href="{{route('admin.product.index')}}"

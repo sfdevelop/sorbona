@@ -11,6 +11,7 @@ Route::resource('category', \App\Http\Controllers\Admin\CategoryController::clas
 Route::resource('manufacturer', \App\Http\Controllers\Admin\ManufacturerController::class)->names('admin.manufacturer');
 Route::resource('article', \App\Http\Controllers\Admin\ArticleController::class)->names('admin.article');
 Route::resource('benefit', \App\Http\Controllers\Admin\BenefitController::class)->names('admin.benefit');
+Route::resource('filter', \App\Http\Controllers\Admin\FilterController::class)->names('admin.filter');
 
 
 Route::resource('product', \App\Http\Controllers\Admin\ProductController::class)->names('admin.product');

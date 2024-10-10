@@ -452,6 +452,61 @@ namespace App\Models{
 
 namespace App\Models{
 /**
+ * App\Models\Filter
+ *
+ * @property int $id
+ * @property int $sort
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read mixed $created_format
+ * @property-read mixed $created_human
+ * @property-read \App\Models\FilterTranslation|null $translation
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\FilterTranslation> $translations
+ * @property-read int|null $translations_count
+ * @method static \Database\Factories\FilterFactory factory($count = null, $state = [])
+ * @method static \Illuminate\Database\Eloquent\Builder|Filter listsTranslations(string $translationField)
+ * @method static \Illuminate\Database\Eloquent\Builder|Filter newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Filter newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Filter notTranslatedIn(?string $locale = null)
+ * @method static \Illuminate\Database\Eloquent\Builder|Filter orWhereTranslation(string $translationField, $value, ?string $locale = null)
+ * @method static \Illuminate\Database\Eloquent\Builder|Filter orWhereTranslationLike(string $translationField, $value, ?string $locale = null)
+ * @method static \Illuminate\Database\Eloquent\Builder|Filter orderByTranslation(string $translationField, string $sortMethod = 'asc')
+ * @method static \Illuminate\Database\Eloquent\Builder|Filter query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Filter trans()
+ * @method static \Illuminate\Database\Eloquent\Builder|Filter translated()
+ * @method static \Illuminate\Database\Eloquent\Builder|Filter translatedIn(?string $locale = null)
+ * @method static \Illuminate\Database\Eloquent\Builder|Filter whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Filter whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Filter whereSort($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Filter whereTranslation(string $translationField, $value, ?string $locale = null, string $method = 'whereHas', string $operator = '=')
+ * @method static \Illuminate\Database\Eloquent\Builder|Filter whereTranslationLike(string $translationField, $value, ?string $locale = null)
+ * @method static \Illuminate\Database\Eloquent\Builder|Filter whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Filter withTranslation(?string $locale = null)
+ */
+	class Filter extends \Eloquent implements \Astrotomic\Translatable\Contracts\Translatable {}
+}
+
+namespace App\Models{
+/**
+ * App\Models\FilterTranslation
+ *
+ * @property int $id
+ * @property int $filter_id
+ * @property string $locale
+ * @property string $title
+ * @method static \Illuminate\Database\Eloquent\Builder|FilterTranslation newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|FilterTranslation newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|FilterTranslation query()
+ * @method static \Illuminate\Database\Eloquent\Builder|FilterTranslation whereFilterId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|FilterTranslation whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|FilterTranslation whereLocale($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|FilterTranslation whereTitle($value)
+ */
+	class FilterTranslation extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
  * App\Models\Manufacturer
  *
  * @property int $id
@@ -801,19 +856,29 @@ namespace App\Models{
  * @property int $id
  * @property int $page_id
  * @property string $locale
- * @property string $title
  * @property string|null $titleSectionAboutUs
- * @property string|null $description
  * @property string|null $titleDownAboutUs
  * @property string|null $descriptionRememberAboutUs
  * @property string|null $textFeedBackAboutUs
+ * @property string $title
+ * @property string|null $descriptionShort
+ * @property string|null $description
+ * @property string|null $notoriety
+ * @property string|null $assortment
+ * @property string|null $cooperate
+ * @property string|null $comfort
  * @method static \Illuminate\Database\Eloquent\Builder|PageTranslation newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|PageTranslation newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|PageTranslation query()
+ * @method static \Illuminate\Database\Eloquent\Builder|PageTranslation whereAssortment($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|PageTranslation whereComfort($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|PageTranslation whereCooperate($value)
  * @method static \Illuminate\Database\Eloquent\Builder|PageTranslation whereDescription($value)
  * @method static \Illuminate\Database\Eloquent\Builder|PageTranslation whereDescriptionRememberAboutUs($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|PageTranslation whereDescriptionShort($value)
  * @method static \Illuminate\Database\Eloquent\Builder|PageTranslation whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|PageTranslation whereLocale($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|PageTranslation whereNotoriety($value)
  * @method static \Illuminate\Database\Eloquent\Builder|PageTranslation wherePageId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|PageTranslation whereTextFeedBackAboutUs($value)
  * @method static \Illuminate\Database\Eloquent\Builder|PageTranslation whereTitle($value)
