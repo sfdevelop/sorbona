@@ -7,7 +7,7 @@
                 <div class="breadcrumb-main">
                     <h4 class="text-capitalize breadcrumb-title d-flex align-items-center">{{__('admin.update')}}</h4>
                     <div class="breadcrumb-action justify-content-center flex-wrap">
-                        {{--                        {{ Breadcrumbs::render('___________', $item) }}--}}
+                        {{ Breadcrumbs::render('___________', $item) }}
                     </div>
                 </div>
             </div>
@@ -18,7 +18,7 @@
                 <div class="col-sm-10 col-10">
                     <div class="mt-40 mb-50">
                         <form
-                                action="{{ route('admin.filter.update', $item->id )}}"
+                                action="{{ route('admin._________.update', $item->id )}}"
                                 method="POST"
                                 enctype="multipart/form-data"
                         >
@@ -28,11 +28,9 @@
 
                             <div class="edit-profile__body">
 
-                                @include('admin.filter.partials.formFilter')
+                                @include('____________________.formArticle')
 
                                 <x-button :message="__('admin.save')"/>
-
-                                @livewire('admin.add-value-from-filter-live-wier', ['filter' => $item])
                             </div>
                         </form>
                     </div>

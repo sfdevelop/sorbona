@@ -460,6 +460,8 @@ namespace App\Models{
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read mixed $created_format
  * @property-read mixed $created_human
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\FilterValue> $filterValues
+ * @property-read int|null $filter_values_count
  * @property-read \App\Models\FilterTranslation|null $translation
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\FilterTranslation> $translations
  * @property-read int|null $translations_count
@@ -503,6 +505,64 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|FilterTranslation whereTitle($value)
  */
 	class FilterTranslation extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * App\Models\FilterValue
+ *
+ * @property int $id
+ * @property int $filter_id
+ * @property int $sort
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read mixed $created_format
+ * @property-read mixed $created_human
+ * @property-read \App\Models\Filter $filter
+ * @property-read \App\Models\FilterValueTranslation|null $translation
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\FilterValueTranslation> $translations
+ * @property-read int|null $translations_count
+ * @method static \Database\Factories\FilterValueFactory factory($count = null, $state = [])
+ * @method static \Illuminate\Database\Eloquent\Builder|FilterValue listsTranslations(string $translationField)
+ * @method static \Illuminate\Database\Eloquent\Builder|FilterValue newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|FilterValue newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|FilterValue notTranslatedIn(?string $locale = null)
+ * @method static \Illuminate\Database\Eloquent\Builder|FilterValue orWhereTranslation(string $translationField, $value, ?string $locale = null)
+ * @method static \Illuminate\Database\Eloquent\Builder|FilterValue orWhereTranslationLike(string $translationField, $value, ?string $locale = null)
+ * @method static \Illuminate\Database\Eloquent\Builder|FilterValue orderByTranslation(string $translationField, string $sortMethod = 'asc')
+ * @method static \Illuminate\Database\Eloquent\Builder|FilterValue query()
+ * @method static \Illuminate\Database\Eloquent\Builder|FilterValue trans()
+ * @method static \Illuminate\Database\Eloquent\Builder|FilterValue translated()
+ * @method static \Illuminate\Database\Eloquent\Builder|FilterValue translatedIn(?string $locale = null)
+ * @method static \Illuminate\Database\Eloquent\Builder|FilterValue whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|FilterValue whereFilterId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|FilterValue whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|FilterValue whereSort($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|FilterValue whereTranslation(string $translationField, $value, ?string $locale = null, string $method = 'whereHas', string $operator = '=')
+ * @method static \Illuminate\Database\Eloquent\Builder|FilterValue whereTranslationLike(string $translationField, $value, ?string $locale = null)
+ * @method static \Illuminate\Database\Eloquent\Builder|FilterValue whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|FilterValue withTranslation(?string $locale = null)
+ */
+	class FilterValue extends \Eloquent implements \Astrotomic\Translatable\Contracts\Translatable {}
+}
+
+namespace App\Models{
+/**
+ * App\Models\FilterValueTranslation
+ *
+ * @property int $id
+ * @property int $filter_value_id
+ * @property string $locale
+ * @property string $title
+ * @method static \Illuminate\Database\Eloquent\Builder|FilterValueTranslation newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|FilterValueTranslation newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|FilterValueTranslation query()
+ * @method static \Illuminate\Database\Eloquent\Builder|FilterValueTranslation whereFilterValueId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|FilterValueTranslation whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|FilterValueTranslation whereLocale($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|FilterValueTranslation whereTitle($value)
+ */
+	class FilterValueTranslation extends \Eloquent {}
 }
 
 namespace App\Models{

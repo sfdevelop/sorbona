@@ -5,9 +5,9 @@
         <div class="row">
             <div class="col-lg-12">
                 <div class="breadcrumb-main">
-                    <h4 class="text-capitalize breadcrumb-title d-flex align-items-center">{{__('admin.update')}}</h4>
+                    <h4 class="text-capitalize breadcrumb-title d-flex align-items-center">{{__('admin.create')}}</h4>
                     <div class="breadcrumb-action justify-content-center flex-wrap">
-                        {{--                        {{ Breadcrumbs::render('___________', $item) }}--}}
+                        {{ Breadcrumbs::render('__________') }}
                     </div>
                 </div>
             </div>
@@ -18,21 +18,19 @@
                 <div class="col-sm-10 col-10">
                     <div class="mt-40 mb-50">
                         <form
-                                action="{{ route('admin.filter.update', $item->id )}}"
+                                action="{{ route('admin._________.store' )}}"
                                 method="POST"
                                 enctype="multipart/form-data"
                         >
                             @csrf
-                            @method('put')
 
 
                             <div class="edit-profile__body">
 
-                                @include('admin.filter.partials.formFilter')
+                                @include('_________.formArticle')
 
                                 <x-button :message="__('admin.save')"/>
 
-                                @livewire('admin.add-value-from-filter-live-wier', ['filter' => $item])
                             </div>
                         </form>
                     </div>

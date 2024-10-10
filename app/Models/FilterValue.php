@@ -8,16 +8,16 @@ use Astrotomic\Translatable\Contracts\Translatable as TranslatableContract;
 use Astrotomic\Translatable\Translatable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class Filter extends Model implements TranslatableContract
+class FilterValue extends Model implements TranslatableContract
 {
     use HasFactory;
     use Translatable;
     use CreatedFormatTrait;
     use TranslateScopeTrait;
 
-    protected $table = 'filters';
+    protected $table = 'filter_values';
     protected $perPage = 20;
 
         /**
@@ -34,8 +34,8 @@ class Filter extends Model implements TranslatableContract
             'sort',
         ];
 
-    public function filterValues():HasMany
+    public function filter(): BelongsTo
     {
-        return $this->hasMany(FilterValue::class);
+        return $this->belongsTo(Filter::class);
     }
 }
