@@ -7,11 +7,7 @@ use Number;
 
 trait ProductPriceTrait
 {
-    /**
-     * Присваиваем old_price цену в колонке price
-     *
-     * @return Attribute
-     */
+
     public function oldPrice(): Attribute
     {
         return new Attribute(
@@ -22,11 +18,7 @@ trait ProductPriceTrait
         );
     }
 
-    /**
-     * Узнаем цену, ели есть новая значит присваиваем новую цену, если нет оставляем текущую
-     *
-     * @return Attribute
-     */
+
     public function nowPrice(): Attribute
     {
         return new Attribute(
@@ -34,16 +26,46 @@ trait ProductPriceTrait
         );
     }
 
+    public function priceFromTen(): Attribute
+    {
+        return new Attribute(
+            get: fn() => $this->getPriceFromTen(),
+        );
+    }
+
+    public function priceFromTwenty(): Attribute
+    {
+        return new Attribute(
+            get: fn() => $this->getPriceFromTwenty(),
+        );
+    }
+
     private function calculateNowPrice(): bool|string|null
     {
-        $country = getCountry($this->currency->title);
+        $currencyValue = $this->currency['currency'];
 
-        if (is_null($this->newPrice)) {
-            return Number::currency($this->price, $this->currency->title,
-                $country);
+        $price = $this->price * $currencyValue;
+
+        if (is_null($this->sale)) {
+            return Number::format($price, precision: 2, locale: 'uk');
         }
 
-        return Number::currency($this->newPrice, $this->currency->title,
-            $country);
+        $percentSalePrice = $price * (1 - $this->sale / 100);
+
+        return Number::format($percentSalePrice, precision: 2, locale: 'uk');
+    }
+
+    private function getPriceFromTen(): bool|string|null
+    {
+        $currencyValue = $this->currency['currency'];
+
+        return Number::format($this->priceTen * $currencyValue, precision: 2, locale: 'uk');
+    }
+
+    private function getPriceFromTwenty(): bool|string|null
+    {
+        $currencyValue = $this->currency['currency'];
+
+        return Number::format($this->priceTwenty * $currencyValue, precision: 2, locale: 'uk');
     }
 }

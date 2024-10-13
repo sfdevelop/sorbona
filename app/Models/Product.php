@@ -96,9 +96,9 @@ class Product extends Model implements HasMedia, TranslatableContract
         'img_web',
         'preview',
         'created_format',
-//        'old_price',
-//        'now_price',
-        //        'percent_sale',
+        'now_price',
+        'price_from_ten',
+        'price_from_twenty',
         'short_description',
     ];
 
@@ -107,9 +107,13 @@ class Product extends Model implements HasMedia, TranslatableContract
         return $this->belongsToMany(Category::class)->withTranslation();
     }
 
+    /**
+     * @return BelongsTo
+     * @property-read
+     */
     public function currency(): BelongsTo
     {
-        return $this->belongsTo(Currency::class);
+        return $this->belongsTo(Currency::class)->select(['id', 'title', 'currency' ]);
     }
 
     public function filterValues(): BelongsToMany

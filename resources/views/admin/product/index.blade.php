@@ -48,6 +48,10 @@
                                         <th>
                                             <span class="userDatatable-title">{{__('admin.price')}}</span>
                                         </th>
+
+                                        <th>
+                                            <span class="userDatatable-title">{{__('admin.currency')}}</span>
+                                        </th>
                                         <th>
                                             <span class="userDatatable-title">{{__('admin.sale_text')}}</span>
                                         </th>
@@ -102,9 +106,17 @@
                                             </td>
                                             <td>
                                                 <div class="userDatatable-content">
-                                                    <small class="text-success">{{$item->now_price}}</small>
+                                                    <small class="text-success">Ціна: {{$item->now_price}} ₴</small>
                                                     <br>
-                                                    <small class="text-gray text-decoration-line-through">{{$item->old_price}}</small>
+                                                    <small class="text-primary">Ціна для 10: {{$item->price_from_ten}} ₴</small>
+                                                    <br>
+                                                    <small class="text-warning">Ціна для 100: {{$item->price_from_twenty}} ₴</small>
+                                                </div>
+                                            </td>
+
+                                            <td>
+                                                <div class="userDatatable-content">
+                                                    {{$item->currency->title}}
                                                 </div>
                                             </td>
 

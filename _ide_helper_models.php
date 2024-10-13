@@ -958,6 +958,8 @@ namespace App\Models{
  * @property-read mixed $now_price
  * @property-read mixed $old_price
  * @property-read mixed $preview
+ * @property-read mixed $price_from_ten
+ * @property-read mixed $price_from_twenty
  * @property-read mixed $short_description
  * @property-read mixed $title_seo
  * @property-read \App\Models\ProductTranslation|null $translation

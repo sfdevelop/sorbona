@@ -44,3 +44,6 @@ table.table-custom .table-actions a:not(:last-child) {
 .select2{
     text-align: left!important;
 }
+*{
+    text-transform:none!important;
+}
