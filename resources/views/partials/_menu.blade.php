@@ -1,47 +1,10 @@
 <div class="sidebar__menu-group">
     <ul class="sidebar_nav">
 
+        @include('partials.main._dictionary')
+
         <li class="menu-title mt-30">
             <span>{{__('admin.shop')}}</span>
-        </li>
-
-        {{--        @include('partials.main._dictionary')--}}
-
-        <li class="l_sidebar">
-            <a
-                    href="{{route('admin.currency.index')}}"
-                    @class([
-                        'active'=> Request::is('admin/currency/*','admin/currency'),
-                        ])
-            >
-                <i class=" nav-icon  las la-coins"></i>
-                <span class="menu-text">{{__('admin.currency')}}</span>
-            </a>
-        </li>
-
-        <li class="l_sidebar">
-            <a
-                    href="{{route('admin.manufacturer.index')}}"
-                    @class([
-                        'active'=> Request::is('admin/manufacturer/*','admin/manufacturer'),
-                        ])
-            >
-                <i class="nav-icon las la-industry"></i>
-                <span class="menu-text">{{__('admin.manufacturer')}}</span>
-            </a>
-        </li>
-
-        <li class="l_sidebar">
-            <a
-                    href="{{route('admin.category.index')}}"
-                    @class([
-                        'active'=> Request::is('admin/category/*','admin/category'),
-                        ])
-            >
-                <i class="nav-icon las la-tags"></i>
-                <span class="menu-text">{{__('admin.category')}}</span>
-
-            </a>
         </li>
 
         <li class="l_sidebar">
@@ -51,8 +14,20 @@
                         'active'=> Request::is('admin/filter/*','admin/filter'),
                         ])
             >
-                <i class="nav-icon las la-tags"></i>
+                <i class="nav-icon las la-filter"></i>
                 <span class="menu-text">{{__('admin.filter')}}</span>
+
+            </a>
+        </li>
+        <li class="l_sidebar">
+            <a
+                    href="{{route('admin.category.index')}}"
+                    @class([
+                        'active'=> Request::is('admin/category/*','admin/category'),
+                        ])
+            >
+                <i class="nav-icon las la-tags"></i>
+                <span class="menu-text">{{__('admin.category')}}</span>
 
             </a>
         </li>
@@ -67,40 +42,32 @@
                 <span class="menu-text">{{__('admin.product')}}</span>
             </a>
         </li>
-        <li class="l_sidebar">
-            <a
-                    href="{{route('admin.color.index')}}"
-                    @class([
-                        'active'=> Request::is('admin/color/*','admin/color'),
-                        ])
-            >
-                <i class="nav-icon las la-palette"></i>
-                <span class="menu-text">{{__('admin.color')}}</span>
-            </a>
-        </li>
 
         <li class="menu-title mt-30">
             <span>{{__('admin.orders')}}</span>
         </li>
 
-        <li class="l_sidebar">
-            <a
-                    href="{{route('admin.order.index')}}"
-                    @class([
-                        'active'=> Request::is(
-                            'admin/orders/*',
-                            'admin/orders',
-                                 ),
-                        ])
-            >
-                <i class="nav-icon las la-wallet"></i>
-                <span class="menu-text">{{__('admin.orders')}}</span>
-            </a>
-        </li>
+{{--        <li class="l_sidebar">--}}
+{{--            <a--}}
+{{--                    href="{{route('admin.order.index')}}"--}}
+{{--                    @class([--}}
+{{--                        'active'=> Request::is(--}}
+{{--                            'admin/orders/*',--}}
+{{--                            'admin/orders',--}}
+{{--                                 ),--}}
+{{--                        ])--}}
+{{--            >--}}
+{{--                <i class="nav-icon las la-wallet"></i>--}}
+{{--                <span class="menu-text">{{__('admin.orders')}}</span>--}}
+{{--            </a>--}}
+{{--        </li>--}}
 
         <li class="menu-title mt-30">
             <span>{{__('admin.page')}}</span>
         </li>
+
+        @include('partials.main._main')
+        @include('partials.main._about')
 
         <li class="l_sidebar">
             <a
@@ -149,9 +116,6 @@
                 <span class="menu-text">{{__('admin.article')}}</span>
             </a>
         </li>
-
-        @include('partials.main._main')
-        @include('partials.main._about')
 
 
         <li class="menu-title mt-30">

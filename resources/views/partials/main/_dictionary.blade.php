@@ -3,62 +3,39 @@
             'has-child',
              'open'=>
                 Request::is(
-                        'admin/category/*',
-                        'admin/category',
-                        'admin/product',
-                        'admin/product/*',
-                        'admin/color',
-                        'admin/color/*',
-                        'admin/size/*',
-                        'admin/size',
+                        'admin/manufacturer/*',
+                        'admin/manufacturer',
+                        'admin/currency',
+                        'admin/currency/*',
                         )
     ])
 >
     <a href="#" class="">
-        <i class="nav-icon las la-store"></i>
-        <span class="menu-text">{{__('admin.shop')}}</span>
+        <i class="nav-icon  las la-book"></i>
+        <span class="menu-text">{{__('admin.dictionary')}}</span>
         <span class="toggle-icon"></span>
     </a>
     <ul>
         <li class="l_sidebar">
             <a
-                    href="{{route('admin.category.index')}}"
+                    href="{{route('admin.currency.index')}}"
                     @class([
-                        'active'=> Request::is('admin/category/*','admin/category'),
+                        'active'=> Request::is('admin/currency/*','admin/currency'),
                         ])
             >
-                {{__('admin.category')}}
+                <i class=" nav-icon  las la-coins"></i>
+                <span class="menu-text">{{__('admin.currency')}}</span>
             </a>
         </li>
         <li class="l_sidebar">
             <a
-                    href="{{route('admin.product.index')}}"
+                    href="{{route('admin.manufacturer.index')}}"
                     @class([
-                        'active'=> Request::is('admin/product/*','admin/product'),
+                        'active'=> Request::is('admin/manufacturer/*','admin/manufacturer'),
                         ])
             >
-                {{__('admin.product')}}
-            </a>
-        </li>
-        <li class="l_sidebar">
-            <a
-                    href="{{route('admin.color.index')}}"
-                    @class([
-                        'active'=> Request::is('admin/color/*','admin/color'),
-                        ])
-            >
-                {{__('admin.color')}}
-            </a>
-        </li>
-
-        <li class="l_sidebar">
-            <a
-                    href="{{route('admin.size.index')}}"
-                    @class([
-                        'active'=> Request::is('admin/size/*','admin/size'),
-                        ])
-            >
-                {{__('admin.size')}}
+                <i class="nav-icon las la-industry"></i>
+                <span class="menu-text">{{__('admin.manufacturer')}}</span>
             </a>
         </li>
     </ul>

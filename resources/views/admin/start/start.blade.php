@@ -33,7 +33,6 @@
                     @include('admin.start.partials.all')
                     @include('admin.start.partials.photo')
                     @include('admin.start.partials.notify')
-                    @include('admin.start.partials.presale')
                 </div>
             </div>
         </div>
