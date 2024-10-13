@@ -942,9 +942,10 @@ namespace App\Models{
  * @property-read int|null $categories_count
  * @property-read mixed $created_format
  * @property-read mixed $created_human
- * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Currency> $currency
- * @property-read int|null $currency_count
+ * @property-read \App\Models\Currency $currency
  * @property-read mixed $description_seo
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\FilterValue> $filterValues
+ * @property-read int|null $filter_values_count
  * @property-read mixed $img_jpg
  * @property-read mixed $img_main
  * @property-read mixed $img_original

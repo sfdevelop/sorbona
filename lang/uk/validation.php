@@ -222,5 +222,7 @@ return [
         'assortment' => 'Асортимент',
         'cooperate' => 'Співпраця',
         'comfort' => 'Зручність',
+        'filter_id' => 'Фільтр',
+        'value_id' => 'Значення',
     ],
 ];
