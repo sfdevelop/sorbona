@@ -108,9 +108,9 @@
                                                 <div class="userDatatable-content">
                                                     <small class="text-success">Ціна: {{$item->now_price}} ₴</small>
                                                     <br>
-                                                    <small class="text-primary">Ціна для 10: {{$item->price_from_ten}} ₴</small>
+                                                    <small class="text-primary">Ціна від {{$item->qtyMilkoopt}}: {{$item->price_from_ten}} ₴</small>
                                                     <br>
-                                                    <small class="text-warning">Ціна для 100: {{$item->price_from_twenty}} ₴</small>
+                                                    <small class="text-warning">Ціна від {{$item->qtyOpt}}: {{$item->price_from_twenty}} ₴</small>
                                                 </div>
                                             </td>
 

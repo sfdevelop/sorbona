@@ -84,7 +84,7 @@
                                             :locale="$locale"
                                     />
 
-                                    @include('layout.SEOData.Seo')
+{{--                                    @include('layout.SEOData.Seo')--}}
 
                                 </div>
                             @endforeach

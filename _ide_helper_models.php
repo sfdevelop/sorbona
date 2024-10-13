@@ -927,8 +927,10 @@ namespace App\Models{
  * @property string $slug
  * @property string $sku
  * @property float $price
+ * @property int $qtyMilkoopt
  * @property int|null $sale
  * @property float|null $priceTen
+ * @property int $qtyOpt
  * @property float|null $priceTwenty
  * @property int $sort
  * @property bool $is_public
@@ -991,6 +993,8 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Product wherePrice($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Product wherePriceTen($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Product wherePriceTwenty($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Product whereQtyMilkoopt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Product whereQtyOpt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Product whereSale($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Product whereSku($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Product whereSlug($value)

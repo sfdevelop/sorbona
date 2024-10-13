@@ -3,6 +3,7 @@
     <div class="form-group select-px-15 tagSelect-rtl">
         <label class="il-gray fs-14 fw-500 align-center mb-10">{{__('admin.category')}}</label>
         <select
+                name="category_id"
                 class="form-control category {{ $errors->has('category_id') ? ' is-invalid' : '' }}"
         >
             <option value=""></option>

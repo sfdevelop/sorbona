@@ -67,6 +67,9 @@ class Product extends Model implements HasMedia, TranslatableContract
         'is_new',
         'is_top',
         'in_stock',
+
+        'qtyMilkoopt',
+        'qtyOpt',
     ];
 
     protected $casts = [

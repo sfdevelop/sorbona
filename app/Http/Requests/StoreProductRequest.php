@@ -30,6 +30,8 @@ class StoreProductRequest extends BaseRequest
             'is_public'         => 'boolean',
             'is_top'         => 'boolean',
             'in_stock'         => 'boolean',
+            'qtyMilkoopt'         => 'required|integer',
+            'qtyOpt'         => 'required|integer',
         ];
 
         $rules += RuleFactory::make([

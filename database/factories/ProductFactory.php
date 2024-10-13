@@ -21,7 +21,7 @@ class ProductFactory extends Factory
             'title:en' => fake()->text(50),
             'title:uk' => fake()->text(50),
 
-            'description:en' => \FakeParagraph::countParagraph(4, 12),
+            'description:ru' => \FakeParagraph::countParagraph(4, 12),
             'description:uk' => \FakeParagraph::countParagraph(4, 12),
 
             'price' => rand(5000, 7000),
@@ -38,6 +38,9 @@ class ProductFactory extends Factory
             'priceTwenty' => rand(3800, 4000),
             'is_top' => fake()->boolean(10),
             'is_new' => fake()->boolean(15),
+
+            'qtyMilkoopt' => rand(20, 30),
+            'qtyOpt' => rand(50, 70),
 
         ];
     }
