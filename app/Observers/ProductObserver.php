@@ -16,8 +16,7 @@ class ProductObserver
      */
     public function updated(Product $product): void
     {
-        $this->addColorsIds($product);
-        $this->addSizesIds($product);
+
     }
 
     /**
@@ -44,37 +43,4 @@ class ProductObserver
         //
     }
 
-    private function addColorsIds(Product $product): void
-    {
-        if ($product->isDirty('colors')) {
-            $colors = $product->colors;
-
-            if (is_array($colors)) {
-                $colorKeys = array_keys($colors);
-
-                $product->colorsIds = $colorKeys;
-
-                $product::withoutEvents(function () use ($product) {
-                    $product->save();
-                });
-            }
-        }
-    }
-
-    private function addSizesIds(Product $product): void
-    {
-        if ($product->isDirty('sizes')) {
-            $sizes = $product->sizes;
-
-            if (is_array($sizes)) {
-                $colorKeys = array_keys($sizes);
-
-                $product->sizesIds = $colorKeys;
-
-                $product::withoutEvents(function () use ($product) {
-                    $product->save();
-                });
-            }
-        }
-    }
 }

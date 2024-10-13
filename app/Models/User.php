@@ -18,8 +18,6 @@ class User extends Authenticatable
     use HasApiTokens, HasFactory, Notifiable;
     use HasRoles;
 
-    protected $with = 'wishlist';
-
     /**
      * The attributes that are mass assignable.
      *
@@ -55,22 +53,6 @@ class User extends Authenticatable
     ];
 
     /**
-     * @return BelongsToMany
-     */
-    public function wishlist(): BelongsToMany
-    {
-        return $this->belongsToMany(Product::class, 'wishlist');
-    }
-
-    /**
-     * @return BelongsToMany
-     */
-    public function see(): BelongsToMany
-    {
-        return $this->belongsToMany(Product::class, 'see');
-    }
-
-    /**
      * @return HasMany
      */
     public function orders(): HasMany
@@ -78,8 +60,4 @@ class User extends Authenticatable
         return $this->hasMany(Order::class);
     }
 
-    public function getWishlistIdsAttribute(): array
-    {
-        return $this->wishlist()->once()->pluck('product_id')->toArray();
-    }
 }

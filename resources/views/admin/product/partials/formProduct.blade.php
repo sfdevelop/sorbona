@@ -1,41 +1,33 @@
 <div class="row">
+
     <div class="col-12 col-lg-8 order-1 order-lg-0">
         <div class=" mb-25">
             @php /** @var \App\Models\Product $item */ @endphp
             <div class="card mt-25">
                 <div class="card-body">
 
-                    <div class="col-12 col-lg-12 ">
+                    @include('admin.product.partials._category')
 
-                        <div class="form-group select-px-15 tagSelect-rtl">
-                            <label class="il-gray fs-14 fw-500 align-center mb-10">{{__('admin.category')}}</label>
-                            <select
-                                    name="category[]"
-                                    class="form-control category {{ $errors->has('category') ? ' is-invalid' : '' }}"
-                                    multiple="multiple"
-                            >
-                                @foreach(CategoryFacade::getCategoriesWithoutChildrenCategories() as $category)
-                                    <option value="{{$category->id}}">{{$category->title}}</option>
-                                @endforeach
-                            </select>
+                    <div class="row">
 
+                        @include('admin.product.partials._manufacturer')
 
-                            @if ($errors->has('category'))
-                                <span class="error text-danger small">{{ $errors->first('category') }}</span>
-                            @endif
+                        <div class="col-12 col-lg-6">
+
+                            <x-input
+                                    with="25"
+                                    type="text"
+                                    title="{{__('admin.sku')}}"
+                                    name="sku"
+                                    :item="$item"
+                            />
+
                         </div>
-                    </div>
-                    <div class="col-12">
-                        <x-input
-                                with="25"
-                                type="text"
-                                title="{{__('admin.sku')}}"
-                                name="sku"
-                                :item="$item"
-                        />
                     </div>
                 </div>
             </div>
+
+            @include('admin.product.partials._price')
 
             <div class="card mt-25 p-4">
 
@@ -50,7 +42,7 @@
                                     <a
                                             @class([
                                                 'nav-link',
-                                                'active'=> $key==0
+                                                'active'=> $key==0,
                                             ])
                                             id="tab-v-{{ strtoupper($locale) }}-tab"
                                             data-bs-toggle="tab"
@@ -70,7 +62,7 @@
                                 <div
                                         @class([
                                             'tab-pane fade show',
-                                            'active'=> $key==0
+                                            'active'=> $key==0,
                                         ])
                                         id="tab-v-{{ strtoupper($locale) }}"
                                         role="tabpanel"
@@ -102,27 +94,6 @@
                 </div>
                 {{--        end tabs--}}
 
-                <div class="row">
-                    <div class="col-12 col-lg-6">
-                        <x-input
-                                with="25"
-                                type="text"
-                                title="{{__('admin.price')}}"
-                                name="price"
-                                :item="$item"
-                        />
-                    </div>
-                    <div class="col-12 col-lg-6">
-                        <x-input
-                                with="25"
-                                type="text"
-                                title="{{__('admin.newPrice')}}"
-                                name="newPrice"
-                                :item="$item"
-                        />
-                    </div>
-                </div>
-
 
                 <x-input
                         with="25"
@@ -132,14 +103,46 @@
                         :item="$item"
                 />
 
-                <div class="d-flex">
-                    <div class="mr-3 pr-4">
+                <div class="d-flex flex-column">
+
+                    <div class="mr-3 ">
                         <label for="is_new">{{__('admin.new')}}</label>
-                        <input @checked($item->is_new) type="checkbox" name="is_new" id="is_new">
+                        <input
+                                @checked($item->is_new)
+                                type="checkbox"
+                                name="is_new"
+                                id="is_new"
+                        >
                     </div>
-                    <div class="mr-3 ml-5" style="margin-left: 15px;">
-                        <label for="is_bestseller">{{__('admin.bestseller')}}</label>
-                        <input @checked($item->is_bestseller) type="checkbox" name="is_bestseller" id="is_bestseller">
+
+                    <div class="" style="">
+                        <label for="is_public">{{__('admin.is_public')}}</label>
+                        <input
+                                @checked($item->is_public)
+                                type="checkbox"
+                                name="is_public"
+                                id="is_public"
+                        >
+                    </div>
+
+                    <div class="" style="">
+                        <label for="is_top">{{__('admin.is_top')}}</label>
+                        <input
+                                @checked($item->is_top)
+                                type="checkbox"
+                                name="is_top"
+                                id="is_top"
+                        >
+                    </div>
+
+                    <div class="" style="">
+                        <label for="in_stock">{{__('admin.in_stock')}}</label>
+                        <input
+                                @checked($item->in_stock)
+                                type="checkbox"
+                                name="in_stock"
+                                id="in_stock"
+                        >
                     </div>
                 </div>
             </div>
@@ -149,7 +152,7 @@
         @include('layout.admin.vertical_img')
 
         <div class="mb-4">
-            <small class="text-success">Розмір фото повинен бути 800px*60px</small>
+            <small class="text-success">Розмір фото повинен бути 1060px*1000px</small>
         </div>
     </div>
 </div>
@@ -169,11 +172,5 @@
 @pushonce('js')
     <script src="https://cdn.ckeditor.com/4.16.0/standard/ckeditor.js"></script>
     <script src="{{asset('js/OnlyNumberOrDotInDecimal.js')}}"></script>
-
-    <script>
-        $(document).ready(function () {
-            $('.category').select2().val({{$item->categories->pluck('id')}}).trigger('change')
-        });
-    </script>
 
 @endpushonce

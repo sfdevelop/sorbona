@@ -17,4 +17,6 @@ interface CategoryRepositoryInterface
     public function getCategoriesInMainPage(): array|Collection;
 
     public function getMainCategoriesWithChildrenOneLevel();
+
+    public function categoriesWithoutChildrenCategory(): array|Collection;
 }

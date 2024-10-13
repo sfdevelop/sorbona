@@ -32,8 +32,12 @@
                                 <table class="table mb-0 table-custom">
                                     <thead>
                                     <tr class="userDatatable-header">
+
                                         <th style="width: 40px">
                                             <span class="userDatatable-title">id</span>
+                                        </th>
+                                        <th style="width: 110px">
+                                            {{--                                            <span class="userDatatable-title">{{__('admin.title')}}</span>--}}
                                         </th>
                                         <th style="width: 100px">
                                             <span class="userDatatable-title">{{__('admin.image')}}</span>
@@ -45,7 +49,7 @@
                                             <span class="userDatatable-title">{{__('admin.price')}}</span>
                                         </th>
                                         <th>
-                                            <span class="userDatatable-title">{{__('admin.stickers')}}</span>
+                                            <span class="userDatatable-title">{{__('admin.sale_text')}}</span>
                                         </th>
                                         <th>
                                             <span class="userDatatable-title">{{__('admin.sort')}}</span>
@@ -64,21 +68,36 @@
                                                     {{$item->id}}
                                                 </div>
                                             </td>
+                                            <td style="width: 50px; font-size: 12px">
+                                                @if($item->is_public)
+                                                    <small class="bg-opacity-primary  color-primary px-2 radius mb-3">public</small>
+                                                @else
+                                                    <small class="bg-opacity-gray  color-gray px-2 radius mb-3">No public</small>
+                                                @endif
+                                            </td>
                                             <td>
                                                 <span class="author-info">
                                                     <img
-                                                            style="max-width: 60px"
+                                                            style="max-width: 60px; border-radius: 10px; box-shadow:  0 0 8px rgba(0, 0, 0, 0.1);"
                                                             src="{{$item->preview}}"
                                                             alt="admin author">
                                                 </span>
                                             </td>
+
                                             <td>
                                                 <div class="userDatatable-content">
-                                                    {{$item->title}} <br>
-                                                    @foreach($item->categories as $category)
-                                                        <small class="text-white px-1 bg-warning radius">{{$category->title}}</small>
-                                                        <br>
-                                                    @endforeach
+                                                    {{$item->title}}
+                                                    <br>
+                                                    @if($item->is_new)
+                                                        <span class="bg-opacity-success  color-success px-2 radius mb-3">New</span>
+                                                    @endif
+                                                    @if($item->is_top)
+                                                        <span class="bg-opacity-warning  color-warning px-2 radius mt-2">Top</span>
+                                                    @endif
+
+                                                    @if($item->sale)
+                                                        <span class="bg-opacity-danger  color-danger px-2 radius mt-2">Sale</span>
+                                                    @endif
                                                 </div>
                                             </td>
                                             <td>
@@ -90,13 +109,9 @@
                                             </td>
 
                                             <td>
-                                                <div class="userDatatable-content">
-                                                    @if($item->is_new)
-                                                        <span class="bg-opacity-success  color-success px-2 radius ">New</span>
-                                                    @endif
-
-                                                    @if($item->is_bestseller)
-                                                            <span class="bg-opacity-warning  color-warning px-2 radius mt-2">Bestseller</span>
+                                                <div class="userDatatable-content" style="margin-bottom: 10px;">
+                                                    @if($item->sale)
+                                                        {{Number::percentage($item->sale)}}
                                                     @endif
                                                 </div>
                                             </td>

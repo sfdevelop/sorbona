@@ -15,6 +15,7 @@ class DatabaseSeeder extends Seeder
     {
         $this->call([RoleSeeder::class]);
         $this->call([UserSeeder::class]);
+        $this->call([CurrencySeeder::class]);
 
         //
         if (env('APP_ENV') === 'local') {
@@ -35,6 +36,7 @@ class DatabaseSeeder extends Seeder
         $this->call([ReturnSeeder::class]);
         $this->call([OfertaSeeder::class]);
         $this->call([BenefitSeeder::class]);
+        $this->call([ProductSeeder::class]);
 
         $this->call([SettingSeeder::class]);
 

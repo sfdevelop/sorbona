@@ -2,11 +2,12 @@
 
 namespace Database\Factories;
 
+use App\Models\Category;
+use App\Models\Currency;
+use App\Models\Manufacturer;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-/**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Product>
- */
+
 class ProductFactory extends Factory
 {
     /**
@@ -24,8 +25,20 @@ class ProductFactory extends Factory
             'description:uk' => \FakeParagraph::countParagraph(4, 12),
 
             'price' => rand(5000, 7000),
-            'sku' => rand(100, 700),
-            'newPrice' => fake()->randomElement([fake()->randomFloat(2, 2000, 3000), null]),
+
+
+            'category_id'=>Category::query()->inRandomOrder()->value('id'),
+            'manufacturer_id'=>Manufacturer::query()->inRandomOrder()->value('id'),
+            'currency_id'=>Currency::query()->inRandomOrder()->value('id'),
+
+            'sku' => rand(100, 500),
+            'sale' => fake()->boolean(20) ? rand(10, 25) : null,
+
+            'priceTen' => rand(4000, 5000),
+            'priceTwenty' => rand(3800, 4000),
+            'is_top' => fake()->boolean(10),
+            'is_new' => fake()->boolean(15),
+
         ];
     }
 }

@@ -16,6 +16,7 @@ use Illuminate\Database\Eloquent\Attributes\ObservedBy;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Spatie\MediaLibrary\HasMedia;
@@ -38,7 +39,7 @@ class Product extends Model implements HasMedia, TranslatableContract
 
     protected $perPage = 20;
 
-    protected $with = ['media'];
+    protected $with = ['media','currency'];
 
     /**
      * @var array|string[]
@@ -53,25 +54,26 @@ class Product extends Model implements HasMedia, TranslatableContract
      */
     protected $fillable = [
         'category_id',
-        'price',
-        'newPrice',
-        'sort',
-        'colors',
-        'colorsIds',
-        'sizesIds',
-        'sizes',
+        'currency_id',
+        'manufacturer_id',
         'sku',
+        'price',
+        'sale',
+        'priceTen',
+        'priceTwenty',
+        'sort',
+
+        'is_public',
         'is_new',
-        'is_bestseller',
+        'is_top',
+        'in_stock',
     ];
 
     protected $casts = [
-        'colors' => 'array',
-        'colorsIds' => 'array',
-        'sizes' => 'array',
-        'sizesIds' => 'array',
+        'is_public' => 'boolean',
         'is_new' => 'boolean',
-        'is_bestseller' => 'boolean',
+        'is_top' => 'boolean',
+        'in_stock' => 'boolean',
     ];
 
     /**
@@ -81,9 +83,9 @@ class Product extends Model implements HasMedia, TranslatableContract
      * $imageCollectionName - image collection name
      * $noImage - url on image photo (no image)
      * */
-    private static int $imageWith = 800;
+    private static int $imageWith = 1060;
 
-    private static int $imageHeight = 600;
+    private static int $imageHeight = 1000;
 
     private static string $imageCollectionName = 'product';
 
@@ -94,8 +96,8 @@ class Product extends Model implements HasMedia, TranslatableContract
         'img_web',
         'preview',
         'created_format',
-        'old_price',
-        'now_price',
+//        'old_price',
+//        'now_price',
         //        'percent_sale',
         'short_description',
     ];
@@ -105,12 +107,14 @@ class Product extends Model implements HasMedia, TranslatableContract
         return $this->belongsToMany(Category::class)->withTranslation();
     }
 
-    /**
-     * @return HasMany
-     */
-    public function comments(): HasMany
+    public function currency(): BelongsTo
     {
-        return $this->hasMany(Comment::class)->public();
+        return $this->belongsTo(Currency::class);
+    }
+
+    public function filterValues(): BelongsToMany
+    {
+        return $this->belongsToMany(FilterValue::class, 'product_filter_value');
     }
 
     protected function shortDescription(): Attribute
@@ -122,8 +126,4 @@ class Product extends Model implements HasMedia, TranslatableContract
         );
     }
 
-    public function productColors()
-    {
-        return $this->belongsToMany(Color::class, 'color_product')->withTranslation();
-    }
 }

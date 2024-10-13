@@ -357,38 +357,6 @@ namespace App\Models{
 
 namespace App\Models{
 /**
- * App\Models\Comment
- *
- * @property int $id
- * @property int $product_id
- * @property int|null $user_id
- * @property string $name
- * @property string $text
- * @property \Illuminate\Support\Carbon|null $created_at
- * @property \Illuminate\Support\Carbon|null $updated_at
- * @property bool $is_public
- * @property-read mixed $created_format
- * @property-read mixed $created_human
- * @property-read \App\Models\Product $product
- * @property-read \App\Models\User|null $user
- * @method static \Illuminate\Database\Eloquent\Builder|Comment newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|Comment newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|Comment public()
- * @method static \Illuminate\Database\Eloquent\Builder|Comment query()
- * @method static \Illuminate\Database\Eloquent\Builder|Comment whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Comment whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Comment whereIsPublic($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Comment whereName($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Comment whereProductId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Comment whereText($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Comment whereUpdatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Comment whereUserId($value)
- */
-	class Comment extends \Eloquent {}
-}
-
-namespace App\Models{
-/**
  * App\Models\Currency
  *
  * @property int $id
@@ -953,22 +921,29 @@ namespace App\Models{
  * App\Models\Product
  *
  * @property int $id
+ * @property int $category_id
+ * @property int $currency_id
+ * @property int $manufacturer_id
  * @property string $slug
  * @property string $sku
  * @property float $price
- * @property float|null $newPrice
- * @property bool $is_new
- * @property bool $is_bestseller
+ * @property int|null $sale
+ * @property float|null $priceTen
+ * @property float|null $priceTwenty
  * @property int $sort
+ * @property bool $is_public
+ * @property bool $is_new
+ * @property bool $is_top
+ * @property bool $in_stock
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read mixed $additional_web
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Category> $categories
  * @property-read int|null $categories_count
- * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Comment> $comments
- * @property-read int|null $comments_count
  * @property-read mixed $created_format
  * @property-read mixed $created_human
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Currency> $currency
+ * @property-read int|null $currency_count
  * @property-read mixed $description_seo
  * @property-read mixed $img_jpg
  * @property-read mixed $img_main
@@ -982,8 +957,6 @@ namespace App\Models{
  * @property-read mixed $now_price
  * @property-read mixed $old_price
  * @property-read mixed $preview
- * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Color> $productColors
- * @property-read int|null $product_colors_count
  * @property-read mixed $short_description
  * @property-read mixed $title_seo
  * @property-read \App\Models\ProductTranslation|null $translation
@@ -1003,12 +976,19 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Product trans()
  * @method static \Illuminate\Database\Eloquent\Builder|Product translated()
  * @method static \Illuminate\Database\Eloquent\Builder|Product translatedIn(?string $locale = null)
+ * @method static \Illuminate\Database\Eloquent\Builder|Product whereCategoryId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Product whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Product whereCurrencyId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Product whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Product whereIsBestseller($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Product whereInStock($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Product whereIsNew($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Product whereNewPrice($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Product whereIsPublic($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Product whereIsTop($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Product whereManufacturerId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Product wherePrice($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Product wherePriceTen($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Product wherePriceTwenty($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Product whereSale($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Product whereSku($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Product whereSlug($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Product whereSort($value)
@@ -1040,27 +1020,6 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|ProductTranslation whereTitle($value)
  */
 	class ProductTranslation extends \Eloquent {}
-}
-
-namespace App\Models{
-/**
- * App\Models\See
- *
- * @property int $id
- * @property int $user_id
- * @property int $product_id
- * @property \Illuminate\Support\Carbon|null $created_at
- * @property \Illuminate\Support\Carbon|null $updated_at
- * @method static \Illuminate\Database\Eloquent\Builder|See newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|See newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|See query()
- * @method static \Illuminate\Database\Eloquent\Builder|See whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|See whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|See whereProductId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|See whereUpdatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|See whereUserId($value)
- */
-	class See extends \Eloquent {}
 }
 
 namespace App\Models{
@@ -1257,7 +1216,6 @@ namespace App\Models{
  * @property string|null $remember_token
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
- * @property-read array $wishlist_ids
  * @property-read \Illuminate\Notifications\DatabaseNotificationCollection<int, \Illuminate\Notifications\DatabaseNotification> $notifications
  * @property-read int|null $notifications_count
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Order> $orders
@@ -1266,12 +1224,8 @@ namespace App\Models{
  * @property-read int|null $permissions_count
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \Spatie\Permission\Models\Role> $roles
  * @property-read int|null $roles_count
- * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Product> $see
- * @property-read int|null $see_count
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \Laravel\Sanctum\PersonalAccessToken> $tokens
  * @property-read int|null $tokens_count
- * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Product> $wishlist
- * @property-read int|null $wishlist_count
  * @method static \Database\Factories\UserFactory factory($count = null, $state = [])
  * @method static \Illuminate\Database\Eloquent\Builder|User newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|User newQuery()

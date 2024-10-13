@@ -12,9 +12,9 @@ class ProductSeeder extends Seeder
 
     private static string $collectionName = 'product';
 
-    private static int $with = 800;
+    private static int $with = 1060;
 
-    private static int $height = 600;
+    private static int $height = 1000;
 
     /**
      * Run the database seeds.
@@ -23,6 +23,6 @@ class ProductSeeder extends Seeder
     {
         $items = Product::factory(100)->create();
 
-        $this->uploadImageToSeed($items);
+//        $this->uploadImageToSeed($items);
     }
 }

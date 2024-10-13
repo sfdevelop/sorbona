@@ -222,5 +222,7 @@ return [
 
         'LiqPayPaymentFacade' => \App\Facade\LiqPayFacade::class,
         'PaymentFacade' => \App\Facade\PaymentFacade::class,
+        'ManufacturerFacade' => \App\Facade\ManufacturerFacade::class,
+        'CurrencyFacade' => \App\Facade\CurrencyFacade::class,
     ])->toArray(),
 ];

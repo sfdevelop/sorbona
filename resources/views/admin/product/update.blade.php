@@ -34,7 +34,7 @@
 
                                     <li class="nav-item">
                                         <a class="nav-link" id="tab-v-3-tab" data-bs-toggle="tab" href="#tab-v-3"
-                                           role="tab" aria-selected="true">{{__('admin.add_color')}}</a>
+                                           role="tab" aria-selected="true">{{__('admin.filter')}}</a>
                                     </li>
 
                                 </ul>
@@ -66,8 +66,9 @@
 
                                 <div class="tab-pane fade  show" id="tab-v-3" role="tabpanel"
                                      aria-labelledby="tab-v-3-tab">
-                                    @livewire('admin.add-colors-to-product-live-wier',['product'=>$item])
+                                    @livewire('admin.add-filters-livewier',['product'=>$item])
                                 </div>
+
                            </div>
                         </div>
                     </div>

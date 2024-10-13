@@ -68,4 +68,13 @@ class CategoryRepository implements CategoryRepositoryInterface
 
         return $ddd->sortBy('title');
     }
+
+    public function categoriesWithoutChildrenCategory(): Collection|array
+    {
+        return Category::query()
+            ->doesntHave('childrenCategories')
+            ->withTranslation()
+            ->orderByTranslation('title')
+            ->get();
+    }
 }

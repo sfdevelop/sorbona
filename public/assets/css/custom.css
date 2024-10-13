@@ -41,3 +41,6 @@ table.table-custom .table-actions a:not(:last-child) {
     padding-bottom: 7px!important;
     border: none!important;
 }
+.select2{
+    text-align: left!important;
+}

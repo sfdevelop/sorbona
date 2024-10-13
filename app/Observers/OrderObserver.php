@@ -4,7 +4,6 @@ namespace App\Observers;
 
 use App\Events\MailFromChangeStatusOnSuccessOrderEvent;
 use App\Events\MailFromOrderEvent;
-use App\Jobs\DeleteItemOnSeeTableAfterOrderJob;
 use App\Models\Order;
 
 class OrderObserver
@@ -14,10 +13,6 @@ class OrderObserver
      */
     public function created(Order $order): void
     {
-        if (\Auth::check()) {
-            $user = \Auth::user();
-            DeleteItemOnSeeTableAfterOrderJob::dispatch($user);
-        }
         MailFromOrderEvent::dispatch($order, app()->getLocale());
     }
 

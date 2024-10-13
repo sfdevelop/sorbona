@@ -20223,6 +20223,15 @@ namespace App\Facade {
                         /** @var \App\Repository\Category\CategoryRepository $instance */
                         return $instance->getMainCategoriesWithChildrenOneLevel();
         }
+                    /**
+         * 
+         *
+         * @static 
+         */        public static function categoriesWithoutChildrenCategory()
+        {
+                        /** @var \App\Repository\Category\CategoryRepository $instance */
+                        return $instance->categoriesWithoutChildrenCategory();
+        }
             }
             /**
      * 
@@ -20347,6 +20356,34 @@ namespace App\Facade {
         {
                         /** @var \App\Services\PaymentOrder\PaymentOrder $instance */
                         return $instance->payment($payment, $order);
+        }
+            }
+            /**
+     * 
+     *
+     */        class ManufacturerFacade {
+                    /**
+         * 
+         *
+         * @static 
+         */        public static function getAllManufacturers()
+        {
+                        /** @var \App\Repository\Manufacture\ManufactureRepository $instance */
+                        return $instance->getAllManufacturers();
+        }
+            }
+            /**
+     * 
+     *
+     */        class CurrencyFacade {
+                    /**
+         * 
+         *
+         * @static 
+         */        public static function getAllCurrency()
+        {
+                        /** @var \App\Repository\Currency\CurrencyRepository $instance */
+                        return $instance->getAllCurrency();
         }
             }
     }
@@ -25981,6 +26018,8 @@ namespace  {
             class AdminUserFacade extends \App\Facade\AdminUserFacade {}
             class LiqPayPaymentFacade extends \App\Facade\LiqPayFacade {}
             class PaymentFacade extends \App\Facade\PaymentFacade {}
+            class ManufacturerFacade extends \App\Facade\ManufacturerFacade {}
+            class CurrencyFacade extends \App\Facade\CurrencyFacade {}
             class SEOMeta extends \Artesaos\SEOTools\Facades\SEOMeta {}
             class OpenGraph extends \Artesaos\SEOTools\Facades\OpenGraph {}
             class Twitter extends \Artesaos\SEOTools\Facades\TwitterCard {}

@@ -12,6 +12,10 @@ use App\Repository\Color\ColorRepository;
 use App\Repository\Color\ColorRepositoryInterface;
 use App\Repository\Comments\CommentsRepository;
 use App\Repository\Comments\CommentsRepositoryInterface;
+use App\Repository\Currency\CurrencyRepository;
+use App\Repository\Currency\CurrencyRepositoryInterface;
+use App\Repository\Manufacture\ManufactureRepository;
+use App\Repository\Manufacture\ManufactureRepositoryInterface;
 use App\Repository\Offer\OfferRepository;
 use App\Repository\Offer\OfferRepositoryInterface;
 use App\Repository\Order\OrderRepository;
@@ -145,6 +149,16 @@ class RepositoryProvider extends ServiceProvider
         $this->app->bind(
             CrudSeoServiceInterface::class,
             CrudSeoService::class
+        );
+
+        $this->app->bind(
+            ManufactureRepositoryInterface::class,
+            ManufactureRepository::class
+        );
+
+        $this->app->bind(
+            CurrencyRepositoryInterface::class,
+            CurrencyRepository::class
         );
     }
 

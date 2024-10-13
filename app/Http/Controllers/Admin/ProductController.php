@@ -23,11 +23,6 @@ class ProductController extends BaseAdminController
     {
         $items = Product::query()
             ->withTranslation()
-            ->with([
-                'categories' => function ($query) {
-                    $query->without('media');
-                },
-            ])
             ->oldest('sort')
             ->paginate();
 
@@ -50,10 +45,8 @@ class ProductController extends BaseAdminController
     /**
      * Store a newly created resource in storage.
      */
-    public function store(
-        StoreProductRequest $request,
-        Product $product,
-    ): RedirectResponse {
+    public function store(StoreProductRequest $request,        Product $product,    ): RedirectResponse
+    {
         return $this->baseStore($request, $product, self::$model);
     }
 

@@ -18,7 +18,6 @@ class Kernel extends ConsoleKernel
         // $schedule->command('inspire')->hourly();
         $schedule->command('import:alldata')->weekly();
         $schedule->command('model:prune')->daily();
-        $schedule->command('app:presale-send-mai')->dailyAt('10:00');
     }
 
     /**
