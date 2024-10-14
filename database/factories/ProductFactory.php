@@ -18,7 +18,7 @@ class ProductFactory extends Factory
     public function definition(): array
     {
         return [
-            'title:en' => fake()->text(50),
+            'title:ru' => fake()->text(50),
             'title:uk' => fake()->text(50),
 
             'description:ru' => \FakeParagraph::countParagraph(4, 12),
