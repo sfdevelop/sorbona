@@ -17,6 +17,17 @@
                     </div>
                 </div>
             @endif
+            <div class="card mt-3">
+                <div class="card-body">
+                    <x-input
+                            with="25"
+                            type="text"
+                            title="{{__('admin.slug')}}"
+                            name="slug"
+                            :item="$item"
+                    />
+                </div>
+            </div>
             <div class="card mt-25 p-4">
 
                 {{--        tabs--}}

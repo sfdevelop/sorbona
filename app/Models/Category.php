@@ -46,6 +46,7 @@ class Category extends Model implements HasMedia, TranslatableContract
         'sort',
         'in_main',
         'is_public',
+        'slug',
     ];
 
     protected $casts = [
