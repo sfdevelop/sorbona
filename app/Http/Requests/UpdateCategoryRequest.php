@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Astrotomic\Translatable\Validation\RuleFactory;
+use Illuminate\Validation\Rule;
 
 class UpdateCategoryRequest extends BaseRequest
 {
@@ -21,9 +22,18 @@ class UpdateCategoryRequest extends BaseRequest
      */
     public function rules(): array
     {
+        $categoryId = $this->route('category');
+
         $rules = [
             'sort' => 'required|string',
-            'slug' => 'required|string|max:255|unique:categories,slug|regex:/^[a-zA-Z0-9-]+$/',
+//            'slug' => 'required|string|max:255|unique:categories,slug|regex:/^[a-zA-Z0-9-]+$/'.Rule::unique('categories')->ignore($this->request->get('id')),
+            'slug' =>[
+                'required',
+                'string',
+                'max:255',
+                'regex:/^[a-zA-Z0-9-]+$/',
+            Rule::unique('categories')->ignore($categoryId)
+                ],
             'file' => 'nullable|image',
             'category_id' => 'nullable|sometimes:exists:categories,id',
             'in_main' => 'boolean',
