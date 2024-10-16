@@ -498,7 +498,8 @@
     <div class="navbar-right">
         <ul class="navbar-right__menu">
             <li class="nav-message">
-                <a class="nav-item-toggle ml-3" href="{{route('admin.start')}}"><i style="padding-right: 10px;" class="la la-question-circle pr-2"></i>   Інструкція</a>
+                <a class="nav-item-toggle ml-3" href="{{route('admin.start')}}"><i style="padding-right: 10px;" class="la la-question-circle pr-2"></i>
+                    {{__('admin.instruction')}}</a>
 
             </li>
 {{--            <li class="nav-search">--}}
