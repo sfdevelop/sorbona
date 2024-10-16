@@ -17,7 +17,7 @@ class DatabaseSeeder extends Seeder
         $this->call([UserSeeder::class]);
         $this->call([CurrencySeeder::class]);
 
-        //
+
         if (env('APP_ENV') === 'local') {
             $this->call([CategorySeeder::class]);
             $this->call([CategoryInMainSeeder::class]);
@@ -25,29 +25,15 @@ class DatabaseSeeder extends Seeder
             $this->call([SubcategoryThreeTreasSeeder::class]);
             $this->call([ManufacturerSeeder::class]);
             $this->call([ArticleSeeder::class]);
-
-            //            $this->call([ProductSeeder::class]);
-            //            $this->call([ProductCategorySeeder::class]);
-            //            $this->call([ColorSeeder::class]);
-            //            $this->call([BestsellerSeeder::class]);
-            //            $this->call([NewProductSeeder::class]);
         }
+
         $this->call([PoliticSeeder::class]);
         $this->call([ReturnSeeder::class]);
         $this->call([OfertaSeeder::class]);
         $this->call([BenefitSeeder::class]);
         $this->call([ProductSeeder::class]);
-
+        $this->call([MainSeeder::class]);
         $this->call([SettingSeeder::class]);
 
-        //
-        //        $this->call([SliderSeeder::class]);
-        //        $this->call([AboutMainSeeder::class]);
-        //        $this->call([ChoseSeeder::class]);
-        //        $this->call([WhyChooseSeeder::class]);
-        //        $this->call([ValuesSeeder::class]);
-        //        $this->call([OfferSeeder::class]);
-        //        $this->call([AboutPageSeeder::class]);
-//        $this->call([SettingSeeder::class]);
     }
 }

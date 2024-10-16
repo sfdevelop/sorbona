@@ -22,7 +22,7 @@ class SetLangAdminMiddleware
         app()->setLocale($lang);
 
         if ($request->is('admin/*')) {
-            app()->setLocale('uk');
+            app()->setLocale('ru');
         }
 
         return $next($request);

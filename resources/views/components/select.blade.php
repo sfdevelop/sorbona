@@ -4,7 +4,7 @@
             id="{{$name}}-Select"
             name="{{$name}}"
     >
-        <option value="">Оберіть</option>
+        <option value="">{{__('admin.choice')}}</option>
         @foreach ($categories as $category)
             <option value="{{ $category->id }}" @selected(old($name, $item->$name) == $category->id)>
                 {{$category->title}} @if(!empty($category->sectionTitle)) <small style="color: red!important; font-size: 11px"> ( {{$category->sectionTitle}} )</small>  @endif

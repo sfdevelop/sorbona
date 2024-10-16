@@ -80,7 +80,7 @@
         @include('layout.admin.vertical_img_original')
 
         <div class="mb-4">
-            <small class="text-success">Розмір фото повинен бути 50px*50px</small>
+            <small class="text-success">{{__('admin.size_photo')}} 50px*50px</small>
         </div>
     </div>
 </div>

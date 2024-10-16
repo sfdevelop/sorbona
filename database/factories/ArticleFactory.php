@@ -5,6 +5,7 @@ namespace Database\Factories;
 use App\Models\Category;
 use FakeParagraph;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Testing\Fakes\Fake;
 
 /**
  * @extends Factory<Category>
@@ -20,7 +21,7 @@ class ArticleFactory extends Factory
     {
         return [
             'title:ru' => fake()->text(50),
-            'title:uk' => fake()->text(50),
+            'title:uk' => Fake::text(50),
 
             'description:ru' => FakeParagraph::countParagraph(4, 12),
             'description:uk' => FakeParagraph::countParagraph(4, 12),
