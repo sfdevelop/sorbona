@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\FeedbackController;
+use App\Http\Controllers\Admin\Single\DeleteProductsController;
 use App\Http\Controllers\Admin\Single\ProfileController;
 use App\Http\Controllers\Admin\Single\SettingsController;
 
@@ -21,12 +22,11 @@ Route::resource('chose', \App\Http\Controllers\Admin\ChoseController::class)->na
 Route::resource('whyChoose', \App\Http\Controllers\Admin\WhyChooseController::class)->names('admin.whyChoose')->only(['index', 'edit', 'update']);
 Route::resource('values', \App\Http\Controllers\Admin\ValuesController::class)->names('admin.values');
 Route::resource('offer', \App\Http\Controllers\Admin\OfferController::class)->names('admin.offer');
-Route::resource('comment', \App\Http\Controllers\Admin\CommentController::class)->names('admin.comment');
 Route::resource('orders', \App\Http\Controllers\Admin\OrdersController::class)->names('admin.order')->only(['index', 'show', 'destroy']);
 Route::resource('feedback', FeedbackController::class)->names('admin.feedback')->only('index', 'show', 'destroy');
 Route::resource('subscribe', \App\Http\Controllers\Admin\SubscribeController::class)->names('admin.subscribe')->only(['index', 'destroy']);
 
-//Route::singleton('mainScreen', MainScreenController::class)->names('admin.mainScreen');
+
 Route::singleton('mainAbout', \App\Http\Controllers\Admin\Single\MainPageController::class)->names('admin.mainAbout');
 Route::singleton('pageAbout', \App\Http\Controllers\Admin\Single\AboutPageController::class)->names('admin.pageAbout');
 Route::singleton('setting', SettingsController::class)->names('admin.setting');
@@ -36,3 +36,5 @@ Route::singleton('politic', \App\Http\Controllers\Admin\Single\PoliticPageContro
 Route::singleton('return', \App\Http\Controllers\Admin\Single\ReturnPageController::class)->names('admin.return');
 Route::singleton('offerta', \App\Http\Controllers\Admin\Single\OfertaPageController::class)->names('admin.offerta');
 Route::singleton('optionMain', \App\Http\Controllers\Admin\Single\OptionMainPageController::class)->names('admin.optionMain');
+
+Route::delete('delete-products',DeleteProductsController::class)->name('admin.product.delete');

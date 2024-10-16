@@ -218,4 +218,7 @@ return [
     'instruction'=>'Инструкция',
     'clear'=>'Очистить',
     'view_products'=>'Товары в категории',
+    'search'=>'Найти',
+    'delete_success'=>'Выбранные товары удалены успешно',
+    'delete_warning'=>'Товары не выбраны',
 ];
