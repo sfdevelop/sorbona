@@ -78,9 +78,9 @@ class Category extends Model implements HasMedia, TranslatableContract
         'created_format',
     ];
 
-    public function products(): BelongsToMany
+    public function products(): HasMany
     {
-        return $this->belongsToMany(Product::class)->withTranslation();
+        return $this->hasMany(Product::class)->withTranslation();
     }
 
     public function categories(): HasMany

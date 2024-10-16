@@ -66,13 +66,7 @@
                                                     {{$item->sort}}
                                                 </div>
                                             </td>
-                                            <td>
-                                                <div class="table-actions">
-                                                    <x-edit-in-table model="category" :id="$item->id"/>
-
-                                                    <x-delete-in-table model="category" :id="$item->id"/>
-                                                </div>
-                                            </td>
+                                            @include('admin.category._action')
                                         </tr>
 
                                     @endforeach

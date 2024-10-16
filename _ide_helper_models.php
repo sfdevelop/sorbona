@@ -185,6 +185,7 @@ namespace App\Models{
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\CategoryTranslation> $translations
  * @property-read int|null $translations_count
  * @method static \Database\Factories\CategoryFactory factory($count = null, $state = [])
+ * @method static \Illuminate\Database\Eloquent\Builder|Category filter(\App\Http\Filters\FilterInterface $filter)
  * @method static \Illuminate\Database\Eloquent\Builder|Category findSimilarSlugs(string $attribute, array $config, string $slug)
  * @method static \Illuminate\Database\Eloquent\Builder|Category listsTranslations(string $translationField)
  * @method static \Illuminate\Database\Eloquent\Builder|Category newModelQuery()

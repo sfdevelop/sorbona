@@ -15,7 +15,7 @@ class CategoryController extends BaseAdminController
     public static string $model = 'category';
 
     public function __construct(
-        public string $nameImageCollection = 'category'
+        public string $nameImageCollection = 'category',
     ) {}
 
     /**
@@ -23,20 +23,27 @@ class CategoryController extends BaseAdminController
      */
     public function index(Request $request): View
     {
-
         $items = Category::query()
             ->Filter($this->filterAble($request->all(), CategoryFilter::class))
             ->whereNull('category_id')
-            ->withCount('childrenCategories')
-            ->with(['childrenCategories', 'childrenCategories.childrenCategories'])
+            ->withCount(['childrenCategories', 'products'])
+            ->with([
+                'childrenCategories' => function ($query) {
+                    $query->withCount('products');
+                }, 'childrenCategories.childrenCategories' => function ($query,
+                ) {
+                    $query->withCount('products');
+                },
+            ])
             ->withTranslation()
             ->oldest('sort')
             ->paginate();
 
         $title = 'category';
 
-        if (! empty($request->title)) {
-            return view('admin.category.index_filter', compact('title', 'items'));
+        if ( ! empty($request->title)) {
+            return view('admin.category.index_filter',
+                compact('title', 'items'));
         }
 
         return view('admin.'.self::$model.'.index', compact('title', 'items'));
@@ -56,8 +63,10 @@ class CategoryController extends BaseAdminController
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreCategoryRequest $request, Category $category): RedirectResponse
-    {
+    public function store(
+        StoreCategoryRequest $request,
+        Category $category,
+    ): RedirectResponse {
         return $this->baseStore($request, $category, self::$model);
     }
 
@@ -74,14 +83,17 @@ class CategoryController extends BaseAdminController
      */
     public function edit(Category $category): View
     {
-        return view('admin.'.self::$model.'.update', ['item' => $category, 'title' => 'Update category']);
+        return view('admin.'.self::$model.'.update',
+            ['item' => $category, 'title' => 'Update category']);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateCategoryRequest $request, Category $category): RedirectResponse
-    {
+    public function update(
+        UpdateCategoryRequest $request,
+        Category $category,
+    ): RedirectResponse {
         return $this->baseUpdate($request, $category, self::$model);
     }
 

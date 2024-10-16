@@ -14,6 +14,17 @@
             </td>
             <td>
                 <div class="table-actions">
+
+                    @if($childrenThree->products_count > 0)
+                        <a
+                                target="_blank"
+                                href="{{route('admin.product.index', ['category_id' => $childrenThree->id])}}"
+                                title="{{__('admin.view_products')}}"
+                        >
+                            <small class="text-gray"> {{$childrenThree->products_count}} </small> <i class="las la-tags"></i>
+                        </a>
+                    @endif
+
                     <x-edit-in-table model="category" :id="$childrenThree->id"/>
 
                     <x-delete-in-table model="category" :id="$childrenThree->id"/>
