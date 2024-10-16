@@ -216,4 +216,5 @@ return [
     'slug'=>'slug/alias',
     'size_photo'=>'Размер фото должен быть',
     'instruction'=>'Инструкция',
+    'clear'=>'Очистить',
 ];

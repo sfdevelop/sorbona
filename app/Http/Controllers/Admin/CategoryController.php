@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\Filters\CategoryFilter;
 use App\Http\Requests\StoreCategoryRequest;
 use App\Http\Requests\UpdateCategoryRequest;
 use App\Models\Category;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
 use Illuminate\View\View;
 
 class CategoryController extends BaseAdminController
@@ -19,9 +21,11 @@ class CategoryController extends BaseAdminController
     /**
      * Display a listing of the resource.
      */
-    public function index(): View
+    public function index(Request $request): View
     {
+
         $items = Category::query()
+            ->Filter($this->filterAble($request->all(), CategoryFilter::class))
             ->whereNull('category_id')
             ->withCount('childrenCategories')
             ->with(['childrenCategories', 'childrenCategories.childrenCategories'])
@@ -30,6 +34,10 @@ class CategoryController extends BaseAdminController
             ->paginate();
 
         $title = 'category';
+
+        if (! empty($request->title)) {
+            return view('admin.category.index_filter', compact('title', 'items'));
+        }
 
         return view('admin.'.self::$model.'.index', compact('title', 'items'));
     }

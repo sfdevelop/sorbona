@@ -7,7 +7,7 @@
             <div class="col-lg-12">
                 <div class="breadcrumb-main">
                     <h4 class="text-capitalize breadcrumb-title d-flex align-items-center">
-                        <span class="mx-10"> Категорії</span>
+                        <span class="mx-10"> Категорії22</span>
                         <x-create model="category"/>
                     </h4>
 
@@ -75,7 +75,6 @@
                                             </td>
                                         </tr>
 
-                                        @include('admin.category._category_two')
                                     @endforeach
                                     </tbody>
                                 </table>

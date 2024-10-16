@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\Traits\CreatedFormatTrait;
+use App\Models\Traits\Filterable;
 use App\Models\Traits\RegisterMediaTrait;
 use App\Models\Traits\SlugGableTrait;
 use App\Models\Traits\TranslateScopeTrait;
@@ -18,6 +19,7 @@ use Spatie\MediaLibrary\HasMedia;
 class Category extends Model implements HasMedia, TranslatableContract
 {
     use CreatedFormatTrait;
+    use Filterable;
     use HasFactory;
     use RegisterMediaTrait;
     use SlugGableTrait;
