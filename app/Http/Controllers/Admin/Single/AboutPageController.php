@@ -16,7 +16,7 @@ class AboutPageController extends BaseAdminController
     public function __construct(
         public string $nameImageCollection = 'aboutPagePhoto'
     ) {
-        $this->page = Page::query()->find(2);
+        $this->page = Page::query()->find(4);
     }
 
     /**

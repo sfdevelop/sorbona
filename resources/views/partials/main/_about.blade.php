@@ -3,14 +3,10 @@
             'has-child',
              'open'=>
                 Request::is(
-                        'admin/whyChoose',
-                        'admin/whyChoose/*',
-                        'admin/values',
-                        'admin/values/*',
-                        'admin/offer',
-                        'admin/offer/*',
-                        'admin/pageAbout',
-                        'admin/pageAbout/*',
+                        'admin/benefit',
+                        'admin/benefit/*',
+                        'admin/optionMain',
+                        'admin/optionMain/*',
                         )
     ])
 >
@@ -22,47 +18,25 @@
     <ul>
         <li class="l_sidebar">
             <a
-                    href="{{route('admin.pageAbout.edit')}}"
+                    href="{{route('admin.optionMain.edit')}}"
                     @class([
-                        'active'=> Request::is('admin/pageAbout/*','admin/pageAbout'),
+                        'active'=> Request::is('admin/optionMain/*','admin/optionMain'),
                         ])
             >
                 {{__('admin.option')}}
             </a>
         </li>
-        <li class="l_sidebar">
-            <a
-                    href="{{route('admin.whyChoose.index')}}"
-                    @class([
-                        'active'=> Request::is('admin/whyChoose/*','admin/whyChoose'),
-                        ])
-            >
-                {{__('admin.whoChose')}}
-            </a>
-        </li>
-
-
 
         <li class="l_sidebar">
             <a
-                    href="{{route('admin.values.index')}}"
+                    href="{{route('admin.benefit.index')}}"
                     @class([
-                        'active'=> Request::is('admin/values/*','admin/values'),
+                        'active'=> Request::is('admin/benefit/*','admin/benefit'),
                         ])
             >
-                {{__('admin.values')}}
+                {{__('admin.benefit')}}
             </a>
         </li>
 
-        <li class="l_sidebar">
-            <a
-                    href="{{route('admin.offer.index')}}"
-                    @class([
-                        'active'=> Request::is('admin/offer/*','admin/offer'),
-                        ])
-            >
-                {{__('admin.offer')}}
-            </a>
-        </li>
     </ul>
 </li>
