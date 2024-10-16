@@ -20,8 +20,8 @@ class CategoryFactory extends Factory
     {
       $faker =   \Faker\Factory::create('ru_RU');
         return [
-            'title:ru' => $faker->realText(10),
-            'title:uk' => $faker->realText(10),
+            'title:ru' => $faker->realText(rand(25, 40)),
+            'title:uk' => $faker->realText(rand(25, 40)),
 
             'description:ru' => FakeParagraph::countParagraph(4, 12),
             'description:uk' => FakeParagraph::countParagraph(4, 12),
