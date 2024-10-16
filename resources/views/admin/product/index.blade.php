@@ -19,6 +19,40 @@
             </div>
         </div>
 
+        <div class="card">
+            <div class="card-body">
+                <form action="{{route('admin.product.index')}}">
+                    <div class="row">
+                        <div class="col-12 col-lg-4">
+                            <x-input
+                                    with="25"
+                                    type="text"
+                                    title="{{__('admin.title')}}"
+                                    name="title"
+                                    :item="request()"
+                            />
+                        </div>
+
+                        <div class="col-12 col-lg-4">
+                            <x-input
+                                    with="25"
+                                    type="text"
+                                    title="{{__('admin.sku')}}"
+                                    name="sku"
+                                    :item="request()"
+                            />
+                        </div>
+                    </div>
+                    <button
+                            type="submit"
+                            class="btn btn-sm btn-primary"
+                    >
+                        Найти
+                    </button>
+                </form>
+            </div>
+        </div>
+
         <div class="row mb-50">
             <div class="col-12">
 
@@ -76,7 +110,8 @@
                                                 @if($item->is_public)
                                                     <small class="bg-opacity-primary  color-primary px-2 radius mb-3">public</small>
                                                 @else
-                                                    <small class="bg-opacity-gray  color-gray px-2 radius mb-3">No public</small>
+                                                    <small class="bg-opacity-gray  color-gray px-2 radius mb-3">No
+                                                        public</small>
                                                 @endif
                                             </td>
                                             <td>
@@ -90,7 +125,11 @@
 
                                             <td>
                                                 <div class="userDatatable-content">
+                                                    <small class="text-gray">{{__('admin.sku')}}: {{$item->sku}}</small><br>
+                                                    <small class="text-gray">{{__('admin.category')}}: {{$item->category->title}}</small><br>
+                                                    <a href="{{route('admin.product.edit', $item->id)}}">
                                                     {{$item->title}}
+                                                    </a>
                                                     <br>
                                                     @if($item->is_new)
                                                         <span class="bg-opacity-success  color-success px-2 radius mb-3">New</span>
@@ -108,9 +147,11 @@
                                                 <div class="userDatatable-content">
                                                     <small class="text-success">Ціна: {{$item->now_price}} ₴</small>
                                                     <br>
-                                                    <small class="text-primary">Ціна від {{$item->qtyMilkoopt}}: {{$item->price_from_ten}} ₴</small>
+                                                    <small class="text-primary">Ціна від {{$item->qtyMilkoopt}}
+                                                        : {{$item->price_from_ten}} ₴</small>
                                                     <br>
-                                                    <small class="text-warning">Ціна від {{$item->qtyOpt}}: {{$item->price_from_twenty}} ₴</small>
+                                                    <small class="text-warning">Ціна від {{$item->qtyOpt}}
+                                                        : {{$item->price_from_twenty}} ₴</small>
                                                 </div>
                                             </td>
 
@@ -147,7 +188,7 @@
                             </div>
                         </div>
                     </div>
-                    {{ $items->onEachSide(2)->links('pagination::default') }}
+                    {{ $items->onEachSide(2)->appends($_GET)->links('pagination::default') }}
                 </div>
             </div>
         </div>

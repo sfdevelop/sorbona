@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\Filters\ProductFilter;
 use App\Http\Requests\StoreProductRequest;
 use App\Http\Requests\UpdateProductRequest;
 use App\Models\Product;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
 use Illuminate\View\View;
 
 class ProductController extends BaseAdminController
@@ -19,11 +21,13 @@ class ProductController extends BaseAdminController
     /**
      * Display a listing of the resource.
      */
-    public function index(): View
+    public function index(Request $request): View
     {
         $items = Product::query()
+            ->Filter($this->filterAble($request->all(), ProductFilter::class))
             ->withTranslation()
-            ->oldest('sort')
+            ->with(['currency', 'category'])
+            ->latest('id')
             ->paginate();
 
         $title = 'product';

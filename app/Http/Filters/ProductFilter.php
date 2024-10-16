@@ -6,26 +6,24 @@ use Illuminate\Database\Eloquent\Builder;
 
 class ProductFilter extends AbstractFilter
 {
-    public const COLORS = 'colors';
+    public const TITLE = 'title';
+    public const SKU = 'sku';
 
     protected function getCallbacks(): array
     {
         return [
-            self::COLORS => [$this, 'colors'],
+            self::TITLE => [$this, 'title'],
+            self::SKU => [$this, 'sku'],
         ];
     }
 
-    /**
-     * @param  Builder  $builder
-     * @param  $value
-     * @return void
-     */
-    public function colors(Builder $builder, $value): void
+    public function title(Builder $builder, $value): void
     {
-        $array = explode(',', $value);
+        $builder->whereTranslationLike('title', '%'.$value.'%');
+    }
 
-        $builder->whereHas('productColors', function ($query) use ($array) {
-            $query->whereIn('color_id', $array);
-        });
+    public function sku(Builder $builder, $value): void
+    {
+        $builder->where('sku', $value);
     }
 }

@@ -32,12 +32,12 @@
                                 <table class="table mb-0 table-custom">
                                     <thead>
                                     <tr class="userDatatable-header">
-{{--                                        <th style="width: 40px">--}}
-{{--                                            <span class="userDatatable-title">id</span>--}}
-{{--                                        </th>--}}
-{{--                                        <th style="width: 100px">--}}
-{{--                                            <span class="userDatatable-title">{{__('admin.image')}}</span>--}}
-{{--                                        </th>--}}
+                                        {{--                                        <th style="width: 40px">--}}
+                                        {{--                                            <span class="userDatatable-title">id</span>--}}
+                                        {{--                                        </th>--}}
+                                        {{--                                        <th style="width: 100px">--}}
+                                        {{--                                            <span class="userDatatable-title">{{__('admin.image')}}</span>--}}
+                                        {{--                                        </th>--}}
                                         <th>
                                             <span class="userDatatable-title">{{__('admin.title')}}</span>
                                         </th>

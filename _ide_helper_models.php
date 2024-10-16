@@ -940,8 +940,7 @@ namespace App\Models{
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read mixed $additional_web
- * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Category> $categories
- * @property-read int|null $categories_count
+ * @property-read \App\Models\Category $category
  * @property-read mixed $created_format
  * @property-read mixed $created_human
  * @property-read \App\Models\Currency $currency

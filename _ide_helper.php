@@ -26036,11 +26036,6 @@ namespace  {
     }
 
 
-namespace Facades\Livewire {
-    /**
-     * @mixin \Livewire\GenerateSignedUploadUrl     */
-    class GenerateSignedUploadUrl extends \Livewire\GenerateSignedUploadUrl {}
-}
 
 
 

@@ -26,7 +26,6 @@ class Product extends Model implements HasMedia, TranslatableContract
 {
     use CreatedFormatTrait;
     use Filterable;
-    use Filterable;
     use HasFactory;
     use MetaDataPolymorphic;
     use ProductPriceTrait;
@@ -105,9 +104,10 @@ class Product extends Model implements HasMedia, TranslatableContract
         'short_description',
     ];
 
-    public function categories(): BelongsToMany
+
+    public function category(): BelongsTo
     {
-        return $this->belongsToMany(Category::class)->withTranslation();
+        return $this->belongsTo(Category::class)->withTranslation();
     }
 
     /**
