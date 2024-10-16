@@ -18,14 +18,13 @@ class CategoryFactory extends Factory
      */
     public function definition(): array
     {
+      $faker =   \Faker\Factory::create('ru_RU');
         return [
-            'title:ru' => fake()->text(50),
-            'title:uk' => fake()->text(50),
+            'title:ru' => $faker->realText(10),
+            'title:uk' => $faker->realText(10),
 
             'description:ru' => FakeParagraph::countParagraph(4, 12),
             'description:uk' => FakeParagraph::countParagraph(4, 12),
-
-            //            'salePercent' => rand(0, 100) <= 30 ? rand(1, 100) : null,
         ];
     }
 }
