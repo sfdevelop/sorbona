@@ -7,7 +7,7 @@
             <div class="col-lg-12">
                 <div class="breadcrumb-main">
                     <h4 class="text-capitalize breadcrumb-title d-flex align-items-center">
-                        <span class="mx-10"> Категорії</span>
+                        <span class="mx-10"> {{__('admin.category')}}</span>
                         <x-create model="category"/>
                     </h4>
 
@@ -26,7 +26,7 @@
 
                 <div class="card">
                     <div class="card-header color-dark fw-500">
-                        Категорії
+                        {{__('admin.category')}}
                     </div>
                     <div class="card-body p-0">
                         <div class="table4 p-25 mb-30">

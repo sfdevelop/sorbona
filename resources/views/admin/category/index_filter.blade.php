@@ -57,8 +57,9 @@
                                         <tr class="two_td">
                                             <td>
                                                 <div class="userDatatable-content">
-                                                    {{$item->title}}
-
+                                                    <a href="{{route('admin.category.edit', $item->id)}}">
+                                                        {{$item->title}}
+                                                    </a>
                                                 </div>
                                             </td>
                                             <td>
