@@ -168,7 +168,12 @@ class ProductFactory extends Factory
             'price' => rand(5000, 7000),
 
 
-            'category_id'=>Category::query()->inRandomOrder()->value('id'),
+            'category_id'=>Category::query()
+                ->doesntHave('childrenCategories')
+                ->doesntHave('childrenCategories.childrenCategories')
+                ->inRandomOrder()
+                ->value('id'),
+
             'manufacturer_id'=>Manufacturer::query()->inRandomOrder()->value('id'),
             'currency_id'=>Currency::query()->inRandomOrder()->value('id'),
 

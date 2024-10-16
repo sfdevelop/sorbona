@@ -4,11 +4,10 @@
         <tr class="two_td">
             <td style="padding-left:50px;">
                 <div class="userDatatable-content">
-
-                    {{--                    <i style="font-size: 15px; margin-right: 15px; color: #0A0A0A"--}}
-                    {{--                       class="las la-level-down-alt mr-4 "></i>--}}
                     <i class="las la-dot-circle"></i>
-                    {{$children->title}}
+                    <a href="{{route('admin.category.edit', $children->id)}}">
+                        {{$children->title}}
+                    </a>
                 </div>
             </td>
             <td>

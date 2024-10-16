@@ -43,12 +43,22 @@
                             />
                         </div>
                     </div>
-                    <button
-                            type="submit"
-                            class="btn btn-sm btn-primary"
-                    >
-                        Найти
-                    </button>
+                    <div class="d-flex">
+                        <button
+                                type="submit"
+                                class="btn btn-sm btn-primary"
+                        >
+                            Найти
+                        </button>
+
+                        <a
+                                style="margin-left: 10px;"
+                                href="{{route('admin.product.index')}}"
+                                class="btn btn-sm btn-warning ml-4"
+                        >
+                            {{__('admin.clear')}}
+                        </a>
+                    </div>
                 </form>
             </div>
         </div>
@@ -126,9 +136,10 @@
                                             <td>
                                                 <div class="userDatatable-content">
                                                     <small class="text-gray">{{__('admin.sku')}}: {{$item->sku}}</small><br>
-                                                    <small class="text-gray">{{__('admin.category')}}: {{$item->category->title}}</small><br>
+                                                    <small class="text-gray">{{__('admin.category')}}
+                                                        : {{$item->category->title}}</small><br>
                                                     <a href="{{route('admin.product.edit', $item->id)}}">
-                                                    {{$item->title}}
+                                                        {{$item->title}}
                                                     </a>
                                                     <br>
                                                     @if($item->is_new)
