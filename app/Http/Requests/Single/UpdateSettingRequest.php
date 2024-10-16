@@ -21,13 +21,14 @@ class UpdateSettingRequest extends BaseRequest
     public function rules(): array
     {
         $rules = [
-            'email'     => 'required|email:rfc,dns',
-            'phone'     => 'required|string',
-            'phone2'    => 'nullable|string',
-            'facebook'  => 'nullable|string',
-            'instagram' => 'nullable|string',
-            'website'   => 'required|string',
-            'map'       => 'required|string',
+            'email'            => 'required|email:rfc,dns',
+            'phone'            => 'required|string',
+            'phone2'           => 'nullable|string',
+            'facebook'         => 'nullable|string',
+            'instagram'        => 'nullable|string',
+            'website'          => 'required|string',
+            'map'              => 'required|string',
+            'product_per_page' => 'required|integer|between:1,100',
         ];
 
         $rules += RuleFactory::make([

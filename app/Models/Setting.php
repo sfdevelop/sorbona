@@ -32,5 +32,6 @@ class Setting extends Model implements TranslatableContract
         'phone2',
         'map',
         'website',
+        'product_per_page',
     ];
 }

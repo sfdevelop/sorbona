@@ -119,6 +119,16 @@
     </div>
 </div>
 
+<div class="col col-sm-4">
+    <x-input
+            with="25"
+            type="number"
+            title="{{__('validation.attributes.product_per_page')}}*"
+            name="product_per_page"
+            :item="$item"
+    />
+</div>
+
 <x-text-area
         with="25"
         title="{{__('validation.attributes.map')}}"
