@@ -3,31 +3,9 @@
     <div class="col-12 col-lg-8 order-1 order-lg-0">
         <div class=" mb-25">
             @php /** @var \App\Models\Product $item */ @endphp
-            <div class="card mt-25">
-                <div class="card-body">
 
-                    @include('admin.product.partials._category')
 
-                    <div class="row">
 
-                        @include('admin.product.partials._manufacturer')
-
-                        <div class="col-12 col-lg-6">
-
-                            <x-input
-                                    with="25"
-                                    type="text"
-                                    title="{{__('admin.sku')}}"
-                                    name="sku"
-                                    :item="$item"
-                            />
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            @include('admin.product.partials._price')
 
             <div class="card mt-25 p-4">
 
@@ -95,54 +73,84 @@
                 {{--        end tabs--}}
 
 
-                <x-input
-                        with="25"
-                        type="number"
-                        title="{{__('admin.sort')}}"
-                        name="sort"
-                        :item="$item"
-                />
+                <div class="card mt-25">
+                    <div class="card-body">
 
-                <div class="d-flex flex-column">
+                        @include('admin.product.partials._category')
 
-                    <div class="mr-3 ">
-                        <label for="is_new">{{__('admin.new')}}</label>
-                        <input
-                                @checked($item->is_new)
-                                type="checkbox"
-                                name="is_new"
-                                id="is_new"
-                        >
+                        <div class="row">
+
+                            @include('admin.product.partials._manufacturer')
+
+                            <div class="col-12 col-lg-6">
+
+                                <x-input
+                                        with="25"
+                                        type="text"
+                                        title="{{__('admin.sku')}}"
+                                        name="sku"
+                                        :item="$item"
+                                />
+
+                            </div>
+                        </div>
                     </div>
+                </div>
 
-                    <div class="" style="">
-                        <label for="is_public">{{__('admin.is_public')}}</label>
-                        <input
-                                @checked($item->is_public)
-                                type="checkbox"
-                                name="is_public"
-                                id="is_public"
-                        >
-                    </div>
+                @include('admin.product.partials._price')
 
-                    <div class="" style="">
-                        <label for="is_top">{{__('admin.is_top')}}</label>
-                        <input
-                                @checked($item->is_top)
-                                type="checkbox"
-                                name="is_top"
-                                id="is_top"
-                        >
-                    </div>
+                <div class="card mt-4">
+                    <div class="card-body">
+                        <x-input
+                                with="25"
+                                type="number"
+                                title="{{__('admin.sort')}}"
+                                name="sort"
+                                :item="$item"
+                        />
 
-                    <div class="" style="">
-                        <label for="in_stock">{{__('admin.in_stock')}}</label>
-                        <input
-                                @checked($item->in_stock)
-                                type="checkbox"
-                                name="in_stock"
-                                id="in_stock"
-                        >
+                        <div class="d-flex flex-column">
+
+                            <div class="mr-3 ">
+                                <label for="is_new">{{__('admin.new')}}</label>
+                                <input
+                                        @checked($item->is_new)
+                                        type="checkbox"
+                                        name="is_new"
+                                        id="is_new"
+                                >
+                            </div>
+
+                            <div class="" style="">
+                                <label for="is_public">{{__('admin.is_public')}}</label>
+                                <input
+                                        @checked($item->is_public)
+                                        type="checkbox"
+                                        name="is_public"
+                                        id="is_public"
+                                >
+                            </div>
+
+                            <div class="" style="">
+                                <label for="is_top">{{__('admin.is_top')}}</label>
+                                <input
+                                        @checked($item->is_top)
+                                        type="checkbox"
+                                        name="is_top"
+                                        id="is_top"
+                                >
+                            </div>
+
+                            <div class="" style="">
+                                <label for="in_stock">{{__('admin.in_stock')}}</label>
+                                <input
+                                        @checked($item->in_stock)
+                                        type="checkbox"
+                                        name="in_stock"
+                                        id="in_stock"
+                                >
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
