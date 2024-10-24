@@ -5,8 +5,6 @@
             @php /** @var \App\Models\Product $item */ @endphp
 
 
-
-
             <div class="card mt-25 p-4">
 
                 {{--        tabs--}}
@@ -62,7 +60,7 @@
                                             :locale="$locale"
                                     />
 
-{{--                                    @include('layout.SEOData.Seo')--}}
+                                    {{--                                    @include('layout.SEOData.Seo')--}}
 
                                 </div>
                             @endforeach
@@ -101,14 +99,15 @@
 
                 <div class="card mt-4">
                     <div class="card-body">
-                        <x-input
-                                with="25"
-                                type="number"
-                                title="{{__('admin.sort')}}"
-                                name="sort"
-                                :item="$item"
-                        />
-
+                        @if($item->exists)
+                            <x-input
+                                    with="25"
+                                    type="number"
+                                    title="{{__('admin.sort')}}"
+                                    name="sort"
+                                    :item="$item"
+                            />
+                        @endif
                         <div class="d-flex flex-column">
 
                             <div class="mr-3 ">

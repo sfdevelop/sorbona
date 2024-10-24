@@ -96,15 +96,15 @@
 
                 </div>
                 {{--        end tabs--}}
-
-                <x-input
-                        with="25"
-                        type="number"
-                        title="{{__('admin.sort')}}"
-                        name="sort"
-                        :item="$item"
-                />
-
+                @if($item->exists)
+                    <x-input
+                            with="25"
+                            type="number"
+                            title="{{__('admin.sort')}}"
+                            name="sort"
+                            :item="$item"
+                    />
+                @endif
                 <div class="d-flex flex-column">
                     <div class="mr-3 pr-4">
                         <label for="in_main">{{__('admin.in_main')}}</label>

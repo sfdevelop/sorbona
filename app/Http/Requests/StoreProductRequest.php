@@ -15,7 +15,6 @@ class StoreProductRequest extends BaseRequest
     public function rules(): array
     {
         $rules = [
-            'sort'           => 'required|string',
             'price'          => 'required|integer',
             'priceTen'          => 'required|integer',
             'priceTwenty'          => 'required|integer',

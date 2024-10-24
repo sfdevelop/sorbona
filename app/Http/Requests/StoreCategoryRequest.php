@@ -23,7 +23,7 @@ class StoreCategoryRequest extends BaseRequest
     public function rules(): array
     {
         $rules = [
-            'sort' => 'required|string',
+//            'sort' => 'required|string',
 //            'slug' => 'required|string|max:255|unique:categories,slug|regex:/^[a-zA-Z0-9-]+$/',
             'file' => 'nullable|image',
             'category_id' => 'nullable|sometimes:exists:categories,id',

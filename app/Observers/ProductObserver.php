@@ -9,15 +9,15 @@ class ProductObserver
     /**
      * Handle the Product "created" event.
      */
-    public function created(Product $product): void {}
+    public function created(Product $product): void
+    {
+        $product->update(['sort' => $product->id]);
+    }
 
     /**
      * Handle the Product "updated" event.
      */
-    public function updated(Product $product): void
-    {
-
-    }
+    public function updated(Product $product): void {}
 
     /**
      * Handle the Product "deleted" event.
