@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\FeedbackController;
 use App\Http\Controllers\Admin\Single\DeleteProductsController;
 use App\Http\Controllers\Admin\Single\ProfileController;
 use App\Http\Controllers\Admin\Single\SettingsController;
+use App\Http\Controllers\Admin\UploadController;
 
 Route::view('/start', 'admin/start/start')->name('admin.start');
 
@@ -38,3 +39,5 @@ Route::singleton('offerta', \App\Http\Controllers\Admin\Single\OfertaPageControl
 Route::singleton('optionMain', \App\Http\Controllers\Admin\Single\OptionMainPageController::class)->names('admin.optionMain');
 
 Route::delete('delete-products',DeleteProductsController::class)->name('admin.product.delete');
+
+Route::post('product/img', UploadController::class)->name('admin.product.uploadMedia');

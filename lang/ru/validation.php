@@ -224,5 +224,14 @@ return [
         'product_per_page'           => 'Продуктов на странице',
 
         'descriptionShort' => 'Краткое описание',
+
+        'notoriety' => 'Известный',
+        'assortment' => 'Ассортимент',
+        'cooperate' => 'Сотрудничество',
+        'comfort' => 'Удобство',
+        'filter_id' => 'Фильтр',
+        'value_id' => 'Значение',
+        'qtyMilkoopt' => 'Количество мелкоопт',
+        'qtyOpt' => 'Количество опт',
     ],
 ];
