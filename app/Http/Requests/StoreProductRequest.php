@@ -34,8 +34,8 @@ class StoreProductRequest extends BaseRequest
         ];
 
         $rules += RuleFactory::make([
-            '%title%'       => 'required|string',
-            '%description%' => 'required|string',
+            '%title%'       => 'nullable|sometimes|string',
+            '%description%' => 'nullable|sometimes|string',
         ]);
 
         return $rules;
