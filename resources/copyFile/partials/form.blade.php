@@ -84,7 +84,3 @@
         </div>
     </div>
 </div>
-
-@push('js')
-    <script src="https://cdn.ckeditor.com/4.16.0/standard/ckeditor.js"></script>
-@endpush
