@@ -3,8 +3,12 @@
 use App\Enum\StatusPaymentEnum;
 
 if ( ! function_exists('shortDescription')) {
-    function shortDescription(string $str, int $count = 50): string
+    function shortDescription(?string $str, int $count = 50): string
     {
+        if ($str==null) {
+            return '';
+        }
+
         if ($count < 0) {
             return '';
         }
