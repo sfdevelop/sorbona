@@ -24,9 +24,9 @@ class UpdateProductRequest extends BaseRequest
     {
         $rules = [
             'sort'           => 'required|string',
-            'price'          => 'required|integer',
-            'priceTen'          => 'required|integer',
-            'priceTwenty'          => 'required|integer',
+            'price'          => 'required',
+            'priceTen'          => 'required',
+            'priceTwenty'          => 'required',
             'sku'            => 'required',
             'category_id'    => 'required|integer',
             'manufacturer_id' => 'required|integer',

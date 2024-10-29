@@ -23,7 +23,7 @@
 @pushonce('js')
     <script>
         $(document).ready(function () {
-            $('.currency').select2().val({{$item->currency_id ?? 'null'}}).trigger('change')
+            $('.currency').select2().val({{old('currency_id', $item->currency_id)  ?? 'null'}}).trigger('change')
         });
     </script>
 @endpushonce

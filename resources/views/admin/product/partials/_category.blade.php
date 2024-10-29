@@ -22,7 +22,7 @@
 @pushonce('js')
     <script>
         $(document).ready(function () {
-            $('.category').select2().val({{$item->category_id ??  null}}).trigger('change')
+            $('.category').select2().val({{old('category_id', $item->category_id)  ??  null}}).trigger('change')
         });
     </script>
 @endpushonce
