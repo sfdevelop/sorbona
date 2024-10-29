@@ -18,33 +18,16 @@
     </div>
 </div>
 @pushonce('js')
-    <script src="https://cdn.ckeditor.com/ckeditor5/36.0.1/classic/ckeditor.js"></script>
-
+    <script src="https://cdn.ckeditor.com/4.16.0/standard/ckeditor.js"></script>
 
     <script type="text/javascript">
         document.addEventListener('DOMContentLoaded', function () {
             @foreach(config('translatable.locales') as $locale)
-            ClassicEditor
-                .create(document.querySelector('#editor-{{ $locale }}'), {
-                    ckfinder: {
-                        {{--uploadUrl: "{{ route('admin.product.uploadMedia', ['_token' => csrf_token() ]) }}"--}}
-                        uploadUrl: '{{route('admin.product.uploadMedia').'?_token='.csrf_token()}}',
-                    }
-                })
-                .then(editor => {
-                    editor.ui.view.editable.element.style.minHeight = '300px'; // Set your desired minimum height
-                })
-                .catch(error => {
-                    console.error(error);
-                });
+            CKEDITOR.replace('editor-{{ $locale }}', {
+                filebrowserUploadUrl: "{{ route('admin.product.uploadMedia', ['_token' => csrf_token() ]) }}",
+                filebrowserUploadMethod: 'form'
+            });
             @endforeach
         });
     </script>
-
 @endpushonce
-
-<style>
-    .ck-editor__editable {
-        min-height: 300px; /* Set your desired minimum height */
-    }
-</style>
