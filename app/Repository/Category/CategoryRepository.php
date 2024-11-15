@@ -47,6 +47,10 @@ class CategoryRepository implements CategoryRepositoryInterface
         return Category::query()
             ->trans()
             ->where('in_main', true)
+            ->where('is_public', true)
+            ->whereHas('childrenCategories')
+            ->with(['childrenCategories'])
+            ->withCount(['childrenCategories'])
             ->oldest('sort')
             ->get();
     }

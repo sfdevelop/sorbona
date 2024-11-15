@@ -29,20 +29,24 @@ class ProductRepository implements ProductRepositoryInterface
     public function getNewProducts(): array|Collection
     {
         return Product::query()
+            ->inRandomOrder()
             ->trans()
-            ->with('categories')
+            ->with(['category','manufacturer'])
             ->where('is_new', true)
             ->oldest('sort')
+            ->take(4)
             ->get();
     }
 
     public function getSaleProducts(): array|Collection
     {
         return Product::query()
+            ->inRandomOrder()
             ->trans()
-            ->with('categories')
-            ->whereNotNull('newPrice')
+            ->with(['category','manufacturer'])
+            ->whereNotNull('sale')
             ->oldest('sort')
+            ->take(4)
             ->get();
     }
 

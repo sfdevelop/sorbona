@@ -110,6 +110,11 @@ class Product extends Model implements HasMedia, TranslatableContract
         return $this->belongsTo(Category::class)->withTranslation();
     }
 
+    public function manufacturer()
+    {
+        return $this->belongsTo(Manufacturer::class)->withTranslation();
+    }
+
     /**
      * @return BelongsTo
      * @property-read

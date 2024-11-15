@@ -17,4 +17,25 @@ class HomepageViewModel extends BaseViewModel
     ) {
         //        $this->setSeoData($this->settingsRepository->getSetting());
     }
+
+    public function mainPageCategories()
+    {
+       return app()
+           ->make(CategoryRepositoryInterface::class)
+           ->getCategoriesInMainPage();
+    }
+
+    public function mainPageNewProducts()
+    {
+        return app()
+            ->make(ProductRepositoryInterface::class)
+            ->getNewProducts();
+    }
+
+    public function mainPageSaleProducts()
+    {
+        return app()
+            ->make(ProductRepositoryInterface::class)
+            ->getSaleProducts();
+    }
 }
