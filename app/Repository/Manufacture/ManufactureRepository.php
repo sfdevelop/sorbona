@@ -14,4 +14,12 @@ class ManufactureRepository implements ManufactureRepositoryInterface
             ->orderByTranslation('title')
             ->get();
     }
+
+    public function getAllManufacturersFromFront(): array|Collection
+    {
+        return Manufacturer::query()
+            ->trans()
+            ->oldest('sort')
+            ->get();
+    }
 }

@@ -23,4 +23,5 @@ return [
    'new_catalog'=>'Новинки каталога',
    'to_cart'=>'В корзину',
    'sale_product'=>'Товары со скидкой',
+   'manufacturers'=>'Производители',
 ];
