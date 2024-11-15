@@ -10,9 +10,7 @@ use App\ViewModels\HomepageViewModel;
 class HomeController extends BaseFrontController
 {
     public function __construct(
-        public SliderRepositoryInterface $sliderRepository,
-        public ProductRepositoryInterface $productRepository,
-        public CategoryRepositoryInterface $categoryRepository,
+
     ) {}
 
     /**
@@ -20,10 +18,6 @@ class HomeController extends BaseFrontController
      */
     public function __invoke(): HomepageViewModel
     {
-        return (new HomepageViewModel(
-            $this->sliderRepository,
-            $this->productRepository,
-            $this->categoryRepository,
-        ))->view('front.home.home');
+        return (new HomepageViewModel())->view('front.home.home');
     }
 }

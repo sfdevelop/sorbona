@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Http\Filters\CategoryFilter;
+use App\Models\Category;
 use App\Models\Setting;
 use App\Services\Translate\TranslateService;
 use App\Services\Translate\TranslateServiceInterface;
@@ -52,10 +54,23 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        if (Schema::hasTable('settings')) {
-            $setting = Setting::first();
+        if (Schema::hasTable('categories')) {
+            $categories=  Category::query()
+                ->whereNull('category_id')
+                ->withCount(['childrenCategories', 'products'])
+                ->with([
+                    'childrenCategories' => function ($query) {
+                        $query->withCount('products');
+                    }, 'childrenCategories.childrenCategories' => function ($query,
+                    ) {
+                        $query->withCount('products');
+                    },
+                ])
+                ->withTranslation()
+                ->oldest('sort')
+                ->paginate();
 
-            View::share('setting', $setting);
+            View::share('categories', $categories);
         }
     }
 }

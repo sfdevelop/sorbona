@@ -7,7 +7,7 @@ use App\Http\Controllers\Front\ProductsInCategoryController;
 use App\Http\Controllers\Front\SaleController;
 use App\Http\Controllers\Front\SubcategoryController;
 
-//Route::get('/', HomeController::class)->name('home');
+Route::get('/', HomeController::class)->name('home');
 //Route::get('category', CatalogController::class)->name('catalog');
 //Route::get('category/{category:slug}/subcategory', SubcategoryController::class)->name('subcategory');
 //Route::get('sale', SaleController::class)->name('sale');
