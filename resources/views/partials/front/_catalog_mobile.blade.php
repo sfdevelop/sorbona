@@ -30,12 +30,12 @@
                         <svg>
                             <use xlink:href="{{asset('front/img/icons/icons.svg#icon-search')}}"></use>
                         </svg>
-                        <input name="search" id="search" placeholder="Поиск" type="search" class="search__input"/>
+                        <input name="search" id="search" placeholder="{{__('front.search')}}" type="search" class="search__input"/>
                         <svg class="search__input_clear">
                             <use xlink:href="{{asset('front/img/icons/icons.svg#icon-close')}}"></use>
                         </svg>
                     </label>
-                    <button type="submit" class="search__button btn btn--line">Найти</button>
+                    <button type="submit" class="search__button btn btn--line">{{__('front.search')}}</button>
                 </form>
                 <div id="search-results" class="search-results">
                     <div class="search-results__wrap">
@@ -174,13 +174,13 @@
                         <svg>
                             <use xlink:href="{{asset('front/img/icons/icons.svg#icon-phone')}}"></use>
                         </svg>
-                        <a href="tel:+380503236661">+38 (050) 323-66-61</a>
+                        <a href="tel:{{$settings->phone}}">{{$settings->phone}}</a>
                     </div>
                     <div class="phone__item">
                         <svg>
                             <use xlink:href="{{asset('front/img/icons/icons.svg#icon-phone')}}"></use>
                         </svg>
-                        <a href="tel:+380676236661">+38 (067)-623-66-61</a>
+                        <a href="tel:{{$settings->phone2}}">{{$settings->phone2}}</a>
                     </div>
                 </div>
             </div>

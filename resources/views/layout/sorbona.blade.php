@@ -508,60 +508,7 @@
 
 <!-- END main page -->
 
-<footer class="footer">
-    <div class="footer__container">
-        <div class="footer__top">
-            <div class="footer__col">
-                <a href="/" class="footer__logo">
-                    <img src="img/footer-logo.svg" alt="image" loading="lazy" class="img-full" />
-                </a>
-                <p class="footer__text">
-                    Интернет-магазин запорно-сантехнической арматуры в Украине. Официальный дилер FADO в Харькове и области
-                </p>
-                <div class="footer__social">
-                    <a href="#" class="footer__social-link">
-                        <svg><use xlink:href="img/icons/icons.svg#social-facebook"></use></svg>
-                    </a>
-                    <a href="#" class="footer__social-link">
-                        <svg><use xlink:href="img/icons/icons.svg#social-instagram"></use></svg>
-                    </a>
-                </div>
-            </div>
-            <nav class="footer__nav">
-                <div class="footer-nav__col">
-                    <h4 class="footer-nav__title">Информация</h4>
-                    <ul class="footer-nav__list">
-                        <li class="footer-nav__item"><a href="/" class="footer-nav__link">Главная</a></li>
-                        <li class="footer-nav__item"><a href="manufacturers.html" class="footer-nav__link">Производители</a></li>
-                        <li class="footer-nav__item"><a href="about-company.html" class="footer-nav__link">О компании</a></li>
-                        <li class="footer-nav__item"><a href="#" class="footer-nav__link">Обмен и возврат</a></li>
-                        <li class="footer-nav__item"><a href="#" class="footer-nav__link">Новости</a></li>
-                        <li class="footer-nav__item"><a href="contact.html" class="footer-nav__link">Контакты</a></li>
-                    </ul>
-                </div>
-                <div class="footer-nav__col">
-                    <h4 class="footer-nav__title">Личный кабинет</h4>
-                    <ul class="footer-nav__list">
-                        <li class="footer-nav__item"><a href="#" class="footer-nav__link">Аккаунт</a></li>
-                        <li class="footer-nav__item"><a href="#" class="footer-nav__link">Мои заказы</a></li>
-                    </ul>
-                </div>
-            </nav>
-            <div class="footer__info">
-                <h4 class="footer-info__title">Контакты</h4>
-                <a href="tel:+380503236661" class="footer-info__item">+38 (050) 323-66-61</a>
-                <a href="tel:+380676236661" class="footer-info__item">+38 (067)-623-66-61</a>
-                <a href="mail:email@gmail.com" class="footer-info__item">email@gmail.com</a>
-                <p class="footer-info__item">Украина, г.Харьков,<br> ОФИС - пр. Московский, 196/1 студия "АртУм"</p>
-            </div>
-        </div>
-        <div class="footer__row">
-            <p class="footer-row__item">© 2023 SORBONA. Все права защищены</p>
-            <a href="privacy.html" class="footer-row__item">Политика конфиденциальности</a>
-            <div class="footer-row__creator">Создание сайта <img src="img/logo-webakula.svg" alt="image" loading="lazy" /></div>
-        </div>
-    </div>
-</footer>
+@include('partials.front.__footer')
 
 <script src="{{asset('front/js/plugins/plugins.min.js')}}"></script>
 

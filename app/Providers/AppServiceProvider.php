@@ -72,5 +72,12 @@ class AppServiceProvider extends ServiceProvider
 
             View::share('categories', $categories);
         }
+
+        if (Schema::hasTable('settings')) {
+            $settings=  Setting::query()
+                ->first();
+
+            View::share('settings', $settings);
+        }
     }
 }

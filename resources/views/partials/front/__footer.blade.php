@@ -1,60 +1,54 @@
 <footer class="footer">
-    @php /** @var \App\Models\Setting $setting */ @endphp
-    <div class="footer__top">
-        <div class="container">
-            <div class="footer__inner element-animation">
-                <div class="footer__col">
-                    <span>{{__('front.address')}}</span>
-                    <ul>
-                        <li>
-                            {{$setting->address}}
-                        </li>
+    <div class="footer__container">
+        <div class="footer__top">
+            <div class="footer__col">
+                <a href="{{route('home')}}" class="footer__logo">
+                    <img src="{{asset('front/img/footer-logo.svg')}}" alt="image" loading="lazy" class="img-full" />
+                </a>
+                <p class="footer__text">
+                    Интернет-магазин запорно-сантехнической арматуры в Украине. Официальный дилер FADO в Харькове и области
+                </p>
+                <div class="footer__social">
+                    <a target="_blank" href="{{$settings->facebook}}" class="footer__social-link">
+                        <svg><use xlink:href="{{asset('front/img/icons/icons.svg#social-facebook')}}"></use></svg>
+                    </a>
+                    <a target="_blank" href="{{$settings->instagram}}" class="footer__social-link">
+                        <svg><use xlink:href="{{asset('front/img/icons/icons.svg#social-instagram')}}"></use></svg>
+                    </a>
+                </div>
+            </div>
+            <nav class="footer__nav">
+                <div class="footer-nav__col">
+                    <h4 class="footer-nav__title">{{__('front.information')}}</h4>
+                    <ul class="footer-nav__list">
+                        <li class="footer-nav__item"><a href="/" class="footer-nav__link">{{__('front.menu.main')}}</a></li>
+                        <li class="footer-nav__item"><a href="manufacturers.html" class="footer-nav__link">{{__('front.menu.manufacturer')}}</a></li>
+                        <li class="footer-nav__item"><a href="about-company.html" class="footer-nav__link">{{__('front.menu.about')}}</a></li>
+                        <li class="footer-nav__item"><a href="#" class="footer-nav__link">{{__('front.menu.reload')}}</a></li>
+                        <li class="footer-nav__item"><a href="#" class="footer-nav__link">{{__('front.menu.news')}}</a></li>
+                        <li class="footer-nav__item"><a href="contact.html" class="footer-nav__link">{{__('front.menu.contacts')}}</a></li>
                     </ul>
                 </div>
-                <div class="footer__col">
-                    <span>{{__('front.say_hello')}}</span>
-                    <ul>
-                        <li>
-                            <a href="#">
-                                {{$setting->email}}
-                            </a>
-                        </li>
-                        <li>
-                            <a class="footer__tel" href="tel:{{$setting->phone}}">
-                                {{$setting->phone}}
-                            </a>
-                        </li>
+                <div class="footer-nav__col">
+                    <h4 class="footer-nav__title">Личный кабинет</h4>
+                    <ul class="footer-nav__list">
+                        <li class="footer-nav__item"><a href="#" class="footer-nav__link">Аккаунт</a></li>
+                        <li class="footer-nav__item"><a href="#" class="footer-nav__link">Мои заказы</a></li>
                     </ul>
                 </div>
-                <div class="footer__col">
-                    <span>{{__('front.social')}}</span>
-                    <ul>
-                        <li>
-                            <a href="{{$setting->instagram}}" rel="nofollow noopener noreferrer" target="_blank">
-                                Instagram
-                            </a>
-                        </li>
-                        <li>
-                            <a href="{{$setting->linkedin}}" rel="nofollow noopener noreferrer" target="_blank">
-                                TikTok
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-                @livewire('front.subscribe.subscribe-live-wier')
+            </nav>
+            <div class="footer__info">
+                <h4 class="footer-info__title">{{__('front.menu.contacts')}}</h4>
+                <a href="tel:{{$settings->phone}}" class="footer-info__item">{{$settings->phone}}</a>
+                <a href="tel:{{$settings->phone2}}" class="footer-info__item">{{$settings->phone2}}</a>
+                <a href="mail:{{$settings->email}}" class="footer-info__item">{{$settings->email}}</a>
+                <p class="footer-info__item">{{$settings->address}}</p>
             </div>
         </div>
-    </div>
-    <div class="footer__bottom">
-        <div class="container">
-            <div class="footer__inner">
-                <a href="#" class="footer__logo">
-                    <img src="{{asset('front/images/dest/icons/logo.svg')}}" alt="logo">
-                </a>
-                <p>
-                    © {{now()->format('Y')}} All rights reserved
-                </p>
-            </div>
+        <div class="footer__row">
+            <p class="footer-row__item">© 2023 SORBONA. {{__('front.proved')}}</p>
+            <a href="privacy.html" class="footer-row__item">{{__('front.policy')}}</a>
+            <div class="footer-row__creator">{{__('front.site')}}<img src="{{asset('front/img/logo-webakula.svg')}}" alt="image" loading="lazy" /></div>
         </div>
     </div>
 </footer>

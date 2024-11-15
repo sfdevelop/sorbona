@@ -7,7 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class SettingTranslation extends Model
 {
-    use HasFactory;
 
     protected $table = 'setting_translations';
 
@@ -15,9 +14,5 @@ class SettingTranslation extends Model
 
     protected $fillable = [
         'address',
-        'work',
-        'weekend',
-        'text',
-        'textForMail',
     ];
 }

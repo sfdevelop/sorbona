@@ -1,7 +1,7 @@
 <header class="header pc">
     <div class="header__top">
         <div class="header__container--big">
-            <a href="/" class="header__logo">
+            <a href="{{route('home')}}" class="header__logo">
                 <img src="{{asset('front/img/header-logo.svg')}}" alt="Sorbona" loading="lazy" class="img-full"/>
             </a>
 
@@ -13,7 +13,7 @@
                         <svg>
                             <use xlink:href="{{asset('front/img/icons/icons.svg#icon-phone')}}"></use>
                         </svg>
-                        <a href="tel:+380503236661">+38 (050) 323-66-61</a>
+                        <a href="tel:{{$settings->phone}}">{{$settings->phone}}</a>
                     </div>
                     <div class="phone__more">
                         <svg>
@@ -21,7 +21,7 @@
                         </svg>
                     </div>
                     <div class="phone__list">
-                        <a href="tel:+380676236661" class="phone-list__item">+38 (067)-623-66-61</a>
+                        <a href="tel:{{$settings->phone2}}" class="phone-list__item">{{$settings->phone2}}</a>
                     </div>
                 </div>
                 @include('partials.front._lang')
