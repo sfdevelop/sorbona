@@ -24,4 +24,9 @@ return [
    'to_cart'=>'В корзину',
    'sale_product'=>'Товары со скидкой',
    'manufacturers'=>'Производители',
+   'manufacturer'=>'Производитель',
+   'all_name'=>'Полное название:',
+   'year_start'=>'Год основания:',
+   'specialization'=>'Специализация:',
+   'shtab_flat'=>'Штаб-квартира:',
 ];

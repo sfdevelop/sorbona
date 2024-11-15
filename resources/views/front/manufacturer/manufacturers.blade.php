@@ -10,7 +10,7 @@
 
                     @foreach($manufacturers as $manufacturer)
                         @php /** @var \App\Models\Manufacturer $manufacturer */ @endphp
-                        <a href="manufacturers-page.html" class="manufacturers__item">
+                        <a href="{{route('manufacturerItem', $manufacturer->slug)}}" class="manufacturers__item">
                             <div class="manufacturers-item__logo">
                                 <img src="{{$manufacturer->img_web}}" alt="image" loading="lazy" class="img-full" />
                             </div>

@@ -3,6 +3,7 @@
 use App\Http\Controllers\Front\BestsellerController;
 use App\Http\Controllers\Front\CatalogController;
 use App\Http\Controllers\Front\HomeController;
+use App\Http\Controllers\Front\ManufacturerItemController;
 use App\Http\Controllers\Front\ManufacturersController;
 use App\Http\Controllers\Front\ProductsInCategoryController;
 use App\Http\Controllers\Front\SaleController;
@@ -10,6 +11,7 @@ use App\Http\Controllers\Front\SubcategoryController;
 
 Route::get('/', HomeController::class)->name('home');
 Route::get('manufacturers', ManufacturersController::class)->name('manufacturers');
+Route::get('manufacturer/{manufacturer:slug}', ManufacturerItemController::class)->name('manufacturerItem');
 //Route::get('category', CatalogController::class)->name('catalog');
 //Route::get('category/{category:slug}/subcategory', SubcategoryController::class)->name('subcategory');
 //Route::get('sale', SaleController::class)->name('sale');

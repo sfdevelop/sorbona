@@ -165,7 +165,7 @@ class ProductFactory extends Factory
             'description:ru' => \FakeParagraph::countParagraph(4, 12),
             'description:uk' => \FakeParagraph::countParagraph(4, 12),
 
-            'price' => rand(5000, 7000),
+            'price' => rand(200, 300),
 
 
             'category_id'=>Category::query()
@@ -180,8 +180,8 @@ class ProductFactory extends Factory
             'sku' => rand(100, 500),
             'sale' => fake()->boolean(20) ? rand(10, 25) : null,
 
-            'priceTen' => rand(4000, 5000),
-            'priceTwenty' => rand(3800, 4000),
+            'priceTen' => rand(150, 200),
+            'priceTwenty' => rand(100, 145),
             'is_top' => fake()->boolean(10),
             'is_new' => fake()->boolean(15),
 

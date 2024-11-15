@@ -539,6 +539,7 @@ namespace App\Models{
  * App\Models\Manufacturer
  *
  * @property int $id
+ * @property string $slug
  * @property int $sort
  * @property string|null $year
  * @property \Illuminate\Support\Carbon|null $created_at
@@ -558,6 +559,7 @@ namespace App\Models{
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\ManufacturerTranslation> $translations
  * @property-read int|null $translations_count
  * @method static \Database\Factories\ManufacturerFactory factory($count = null, $state = [])
+ * @method static \Illuminate\Database\Eloquent\Builder|Manufacturer findSimilarSlugs(string $attribute, array $config, string $slug)
  * @method static \Illuminate\Database\Eloquent\Builder|Manufacturer listsTranslations(string $translationField)
  * @method static \Illuminate\Database\Eloquent\Builder|Manufacturer newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Manufacturer newQuery()
@@ -571,12 +573,14 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Manufacturer translatedIn(?string $locale = null)
  * @method static \Illuminate\Database\Eloquent\Builder|Manufacturer whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Manufacturer whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Manufacturer whereSlug($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Manufacturer whereSort($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Manufacturer whereTranslation(string $translationField, $value, ?string $locale = null, string $method = 'whereHas', string $operator = '=')
  * @method static \Illuminate\Database\Eloquent\Builder|Manufacturer whereTranslationLike(string $translationField, $value, ?string $locale = null)
  * @method static \Illuminate\Database\Eloquent\Builder|Manufacturer whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Manufacturer whereYear($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Manufacturer withTranslation(?string $locale = null)
+ * @method static \Illuminate\Database\Eloquent\Builder|Manufacturer withUniqueSlugConstraints(\Illuminate\Database\Eloquent\Model $model, string $attribute, array $config, string $slug)
  */
 	class Manufacturer extends \Eloquent implements \Astrotomic\Translatable\Contracts\Translatable, \Spatie\MediaLibrary\HasMedia {}
 }
@@ -952,6 +956,7 @@ namespace App\Models{
  * @property-read mixed $img_main
  * @property-read mixed $img_original
  * @property-read mixed $img_web
+ * @property-read \App\Models\Manufacturer $manufacturer
  * @property-read mixed $many_web
  * @property-read \Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection<int, \Spatie\MediaLibrary\MediaCollections\Models\Media> $media
  * @property-read int|null $media_count
@@ -1015,8 +1020,8 @@ namespace App\Models{
  * @property int $id
  * @property int $product_id
  * @property string $locale
- * @property string $title
- * @property string $description
+ * @property string|null $title
+ * @property string|null $description
  * @method static \Illuminate\Database\Eloquent\Builder|ProductTranslation newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|ProductTranslation newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|ProductTranslation query()
@@ -1041,6 +1046,7 @@ namespace App\Models{
  * @property string|null $phone2
  * @property string|null $website
  * @property string|null $map
+ * @property int $product_per_page
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read mixed $description_seo
@@ -1070,6 +1076,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Setting whereMap($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Setting wherePhone($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Setting wherePhone2($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Setting whereProductPerPage($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Setting whereTranslation(string $translationField, $value, ?string $locale = null, string $method = 'whereHas', string $operator = '=')
  * @method static \Illuminate\Database\Eloquent\Builder|Setting whereTranslationLike(string $translationField, $value, ?string $locale = null)
  * @method static \Illuminate\Database\Eloquent\Builder|Setting whereUpdatedAt($value)

@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Models\Traits\CreatedFormatTrait;
 use App\Models\Traits\RegisterMediaTrait;
+use App\Models\Traits\SlugGableTrait;
 use App\Models\Traits\TranslateScopeTrait;
 use Astrotomic\Translatable\Contracts\Translatable as TranslatableContract;
 use Astrotomic\Translatable\Translatable;
@@ -18,6 +19,7 @@ class Manufacturer extends Model implements TranslatableContract, HasMedia
     use CreatedFormatTrait;
     use TranslateScopeTrait;
     use RegisterMediaTrait;
+    use SlugGableTrait;
 
     protected $table = 'manufacturers';
     protected $perPage = 20;
@@ -40,6 +42,7 @@ class Manufacturer extends Model implements TranslatableContract, HasMedia
         protected $fillable = [
             'sort',
             'year',
+            'slug',
         ];
 
     /**
