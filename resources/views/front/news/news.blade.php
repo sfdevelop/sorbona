@@ -10,7 +10,7 @@
 
                     @foreach($news as $item)
                         @php /** @var \App\Models\Article $item */ @endphp
-                        <a href="news-page.html" class="news__item">
+                        <a href="{{route('article', $item->slug)}}" class="news__item">
                             <div class="news-item__picture">
                                 <img src="{{$item->img_web}}" alt="image" loading="lazy" class="img-full" />
                             </div>

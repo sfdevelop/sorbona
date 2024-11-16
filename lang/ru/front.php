@@ -29,4 +29,5 @@ return [
    'year_start'=>'Год основания:',
    'specialization'=>'Специализация:',
    'shtab_flat'=>'Штаб-квартира:',
+   'news_random'=>'Похожие новости',
 ];
