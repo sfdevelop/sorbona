@@ -1,124 +1,55 @@
-@extends('layout.bureviy')
+@extends('layout.sorbona')
 @section('content')
-    @php /** @var \App\Models\Setting $setting */ @endphp
-    <div class="container">
-        <div class="breadcrumbs">
-            <div class="breadcrumbs__inner element-animation">
-                <ul class="breadcrumbs__list">
-                    <li><a href="#">{{__('front.menu.home')}}</a></li>
-                    <li><span>{{__('front.menu.contacts')}}</span></li>
-                </ul>
+    @php /** @var \App\Models\Setting $settings */ @endphp
+
+    <section class="section">
+        <div class="section__container section__container_p">
+            <div class="section__head">
+                <h1 class="section-head__title">{{__('front.menu.contacts')}}</h1>
             </div>
-        </div>
-    </div>
-
-    <section class="contacts">
-        <div class="container">
-            <h3 class="title element-animation">
-                {{__('front.menu.contacts')}}
-            </h3>
-            <ul class="contacts__list">
-                <li class="element-animation">
-                    <img src="{{asset('front/images/dest/icons/phone.svg')}}" alt="icon">
-                    <div class="contacts__list-info">
-                        <h6>
-                            {{__('front.phone')}}
-                        </h6>
-                        <ul>
-                            <li>
-                                <a href="tel:{{$setting->phone}}">{{$setting->phone}}</a>
-                            </li>
-                            <li>
-                                <a href="tel:{{$setting->phone2}}">{{$setting->phone2}}</a>
-                            </li>
-                        </ul>
+            <div class="contact">
+                <div class="contact__wrap">
+                    <div class="contact__body">
+                        <h3 class="contact-body__title">{{__('front.office')}}</h3>
+                        <div class="contact-body__item">
+                            <svg><use xlink:href="{{asset('front/img/icons/icons.svg#icon-pin')}}"></use></svg>
+                            <span>{{$settings->address}}</span>
+                        </div>
                     </div>
-                </li>
-                <li class="element-animation">
-                    <img src="{{asset('front/images/ico/location.svg')}}" alt="location">
-                    <div class="contacts__list-info">
-                        <h6>
-                            {{__('front.address')}}
-                        </h6>
-                        <ul>
-                            <li>
-                                {{$setting->address}}
-                            </li>
-                        </ul>
-                    </div>
-                </li>
-                <li class="element-animation">
-                    <img src="{{asset('front/images/ico/mail.svg')}}" alt="mail">
-                    <div class="contacts__list-info">
-                        <h6>
-                            E-mail
-                        </h6>
-                        <ul>
-                            <li>
-                                <a href="mailto:{{$setting->email}}">{{$setting->email}}</a>
-                            </li>
-                        </ul>
-                    </div>
-                </li>
-                <li class="element-animation">
-                    <img src="{{asset('front/images/ico/clock.svg')}}" alt="clock">
-                    <div class="contacts__list-info">
-                        <h6>
-                            {{__('front.work_schedule')}}
-                        </h6>
-                        <ul>
-                            <li>
-                                {{$setting->work}}
-                            </li>
-                            <li>
-                                {{$setting->weekend}}
-                            </li>
-                        </ul>
-                    </div>
-                </li>
-            </ul>
-            <div class="contacts__inner">
-                <div class="contacts__left element-animation">
-                    <strong>
-                        {!! __('front.have_questions') !!}
-                    </strong>
-                    <p>
-                        {{$setting->text}}
-                    </p>
-                    <span>
-                {{__('front.social_media')}}
-              </span>
-
-                    <ul class="social social_sf">
-                        <li>
-                            <a href="{{$setting->instagram}}">
-{{--                                <img src="{{asset('front/images/dest/icons/inst2.svg')}}" alt="icon">--}}
-                                <i class="demo-icon icon-insta"></i>
+                    <div class="contact__body">
+                        <h3 class="contact-body__title">{{__('front.menu.contacts')}}</h3>
+                        <div class="contact-body__line">
+                            <h4 style="text-transform: uppercase" class="contact-body__subtitle">{{__('front.phone')}}</h4>
+                            <a href="tel:{{$settings->phone}}" class="contact-body__item">
+                                <svg><use xlink:href="{{asset('front/img/icons/icons.svg#icon-phone')}}"></use></svg>
+                                <span><b>{{$settings->phone}}</b></span>
                             </a>
-                        </li>
-                        <li>
-                            <a href="{{$setting->linkedin}}">
-{{--                                <img src="{{asset('front/images/dest/icons/tiktok2.svg')}}" alt="icon">--}}
-                                <i class="demo-icon icon-tiktok"></i>
+                            <a href="tel:{{$settings->phone2}}" class="contact-body__item">
+                                <svg><use xlink:href="{{asset('front/img/icons/icons.svg#icon-phone')}}"></use></svg>
+                                <span><b>{{$settings->phone2}}</b></span>
                             </a>
-                        </li>
-                        <li>
-                            <a href="{{$setting->facebook}}">
-{{--                                <img src="{{asset('front/images/dest/icons/fb2.svg')}}" alt="icon">--}}
-                                <i class="demo-icon icon-facebook"></i>
+                        </div>
+                        <div class="contact-body__line">
+                            <h4 class="contact-body__subtitle">E-MAIL</h4>
+                            <a href="mailto:{{$settings->email}}" class="contact-body__item">
+                                <svg><use xlink:href="{{asset('front/img/icons/icons.svg#icon-email')}}"></use></svg>
+                                <span>{{$settings->email}}</span>
                             </a>
-                        </li>
-                    </ul>
+                        </div>
+                        <div class="contact-body__line">
+                            <h4 class="contact-body__subtitle">{{__('front.website')}}</h4>
+                            <a href="{{$settings->website}}" class="contact-body__item">
+                                <svg><use xlink:href="{{asset('front/img/icons/icons.svg#icon-web')}}"></use></svg>
+                                <span>{{$settings->website}}</span>
+                            </a>
+                        </div>
+                    </div>
                 </div>
-                <div class="contacts__right element-animation">
-                    @livewire('front.contacts.feed-back-live-wier')
+                <div class="contact__map">
+                 {!! $settings->map !!}
+{{--                    <svg><use xlink:href="{{asset('front/img/icons/icons.svg#icon-big-pin')}}"></use></svg>--}}
                 </div>
             </div>
         </div>
     </section>
-
 @endsection
-
-@push('css_front')
-    <link rel="stylesheet" href="{{asset('front/css/custom.css')}}?v={{ filemtime(public_path('front/css/custom.css'))}}">
-@endpush

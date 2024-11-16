@@ -4,5 +4,5 @@
     <a href="about-company.html" class="nav__link">{{__('front.menu.about')}}</a>
     <a href="#" class="nav__link">{{__('front.menu.reload')}}</a>
     <a href="{{route('news')}}" class="nav__link">{{__('admin.news')}}</a>
-    <a href="contact.html" class="nav__link">{{__('front.menu.contacts')}}</a>
+    <a href="{{route('contacts')}}" class="nav__link">{{__('front.menu.contacts')}}</a>
 </nav>

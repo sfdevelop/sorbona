@@ -8,6 +8,6 @@ class SettingRepository implements SettingRepositoryInterface
 {
     public function getSetting(): Setting
     {
-        return Setting::query()->first();
+        return Setting::query()->trans()->first();
     }
 }

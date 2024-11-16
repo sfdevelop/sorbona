@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Front\ArticleController;
+use App\Http\Controllers\Front\ContactsController;
 use App\Http\Controllers\Front\HomeController;
 use App\Http\Controllers\Front\ManufacturerItemController;
 use App\Http\Controllers\Front\ManufacturersController;
@@ -22,7 +23,7 @@ Route::get('article/{article:slug}', ArticleController::class)->name('article');
 //Route::get('login', \App\Http\Controllers\Front\LoginController::class)->name('login');
 //Route::get('sign-up', \App\Http\Controllers\Front\SignUpController::class)->name('signUp');
 //Route::get('cart', \App\Http\Controllers\Front\CartController::class)->name('cart');
-//Route::get('contacts', \App\Http\Controllers\Front\ContactsController::class)->name('contacts');
+Route::get('contacts', ContactsController::class)->name('contacts');
 //Route::get('search', \App\Http\Controllers\Front\SearchController::class)->name('search');
 //
 //Route::view('no-product-cart', 'front/cart/no_product_cart')->name('no_product_cart');
