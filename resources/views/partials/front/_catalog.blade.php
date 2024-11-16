@@ -4,7 +4,7 @@
 
         @foreach($categories as $category)
             <div class="catalog-menu__item">
-                <a href="#" class="catalog-menu__link">{{$category->title}}</a>
+                <a href="{{route('category', $category->slug)}}" class="catalog-menu__link">{{$category->title}}</a>
                 @if($category->children_categories_count > 0)
 
                     <div class="catalog-menu__sublist">
@@ -12,14 +12,14 @@
 
                         @foreach($category->childrenCategories as $children)
                             <div class="catalog-menu__sublist_item">
-                                <a href="#" class="catalog-menu__sublist__link">{{$children->title}}</a>
+                                <a href="{{route('category', $children->slug)}}" class="catalog-menu__sublist__link">{{$children->title}}</a>
 
                                 @if($children->childrenCategories->count() > 0)
                                     <div class="catalog-menu__sublists">
                                         <h4 class="catalog-menu__sublist-title">{{$children->title}}</h4>
 
-                                        @foreach($category->childrenCategories as $childrenThree)
-                                            <a href="#"
+                                        @foreach($children->childrenCategories as $childrenThree)
+                                            <a href="{{route('category', $childrenThree->slug)}}"
                                                class="catalog-menu__sublists__link">{{$childrenThree->title}}</a>
                                         @endforeach
 

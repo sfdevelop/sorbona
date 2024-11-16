@@ -3,24 +3,30 @@
 namespace App\ViewModels;
 
 use App\Http\Controllers\Traits\CustomSeoTrait;
+use App\Models\Category;
 use App\Repository\Category\CategoryRepositoryInterface;
+use App\Repository\Product\ProductRepositoryInterface;
 
 class CatalogViewModel extends BaseViewModel
 {
     use CustomSeoTrait;
 
-    public function __construct(
-        protected CategoryRepositoryInterface $categoryRepository,
-
-    ) {
+    public function __construct(public Category $category)
+    {
         //        $this->setSeoData($this->settingsRepository->getSetting());
     }
 
-    /**
-     * @return mixed
-     */
-    public function categories(): mixed
+    public function randomProducts()
     {
-        return $this->categoryRepository->getCategoriesWithoutChildrenCategories();
+        $categories_id =
+            $this->category
+                ->childrenCategories
+                ->pluck('id')
+                ->toArray();
+
+        return app()
+            ->make(ProductRepositoryInterface::class)
+            ->getRandomProductsInIdCategories($categories_id);
     }
+
 }

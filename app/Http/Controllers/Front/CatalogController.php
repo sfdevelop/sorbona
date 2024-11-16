@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Front;
 
+use App\Models\Category;
 use App\Repository\Category\CategoryRepositoryInterface;
 use App\ViewModels\CatalogViewModel;
 
@@ -11,11 +12,14 @@ class CatalogController extends BaseFrontController
         public CategoryRepositoryInterface $categoryRepository,
     ) {}
 
-    /**
-     * @return CatalogViewModel
-     */
-    public function __invoke(): CatalogViewModel
+
+    public function __invoke(Category $category)
     {
-        return (new CatalogViewModel($this->categoryRepository))->view('front.catalog.catalog');
+        $category->load('childrenCategories');
+
+        if ($category->childrenCategories->count() > 0){
+            return (new CatalogViewModel($category))->view('front.catalog.catalog');
+        }
+
     }
 }

@@ -4,7 +4,7 @@
             @foreach($mainPageCategories as $category)
                 @php /** @var \App\Models\Category $category */ @endphp
                 <div class="catalog__item catalog-item">
-                    <a href="subcategory.html" class="catalog-item__head">
+                    <a href="{{route('category', $category->slug)}}" class="catalog-item__head">
                         <p class="catalog-item__head-title">{{$category->title}}</p>
                         <img
                                 src="{{$category->img_web}}"
@@ -17,7 +17,7 @@
                         <div class="catalog-item__content">
                             <div class="catalog-item__content_body">
                                 @foreach($category->childrenCategories as $childCategory)
-                                    <a href="subcategory2.html" class="catalog-item__content-link">{{$childCategory->title}}</a>
+                                    <a href="{{route('category', $childCategory->slug)}}" class="catalog-item__content-link">{{$childCategory->title}}</a>
                                 @endforeach
                             </div>
                             @if($category->children_categories_count > 4)

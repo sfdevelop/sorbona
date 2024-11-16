@@ -16,16 +16,6 @@ class ProductRepository implements ProductRepositoryInterface
             ->get();
     }
 
-    public function getBestsellers(): array|Collection
-    {
-        return Product::query()
-            ->trans()
-            ->with('categories')
-            ->where('is_bestseller', true)
-            ->oldest('sort')
-            ->get();
-    }
-
     public function getNewProducts(): array|Collection
     {
         return Product::query()
@@ -88,5 +78,17 @@ class ProductRepository implements ProductRepositoryInterface
             ->pluck('productColors')
             ->flatten()
             ->unique('id');
+    }
+
+    public function getRandomProductsInIdCategories(array $categories_id): Collection
+    {
+        return Product::query()
+            ->inRandomOrder()
+            ->trans()
+            ->with(['category','manufacturer'])
+            ->whereIn('category_id', $categories_id)
+            ->oldest('sort')
+            ->take(8)
+            ->get();
     }
 }

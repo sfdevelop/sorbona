@@ -1,36 +1,66 @@
-@extends('layout.okplius')
+@extends('layout.sorbona')
 @section('content')
-    <section class="more-offers more-offers--category">
-        <div class="container">
-            <h3 class="title">{{__('front.menu.catalog')}}</h3>
+    @php /** @var \App\Models\Category $category */ @endphp
+    <div class="breadcrumb__container">
+        <ul class="breadcrumb">
+            <li><a href="{{route('home')}}">{{__('front.menu.main')}}</a></li>
+            <span>/</span>
+            <li>{{$category->title}}</li>
+        </ul>
+    </div>
 
-            <div class="breadcrumbs">
-                <div class="breadcrumbs__inner">
-                    <ul class="breadcrumbs__list">
-                        <li><a href="{{route('home')}}">{{__('front.menu.home')}}</a></li>
-                        <li><span>{{__('front.menu.catalog')}}</span></li>
-                    </ul>
-                </div>
-            </div>
 
-            <ul class="category-list">
-                @foreach($categories as $category)
-                    @php /** @var \App\Models\Category $category */ @endphp
-                    <li class="category-list__item" style="background-image: url({{$category->img_web}})">
-                        <h6>{{$category->title}}</h6>
+    <section class="catalog subcategory">
+        <div class="catalog__container">
+            <h1 class="catalog__title">{{$category->title}}</h1>
+            <div class="catalog__wrap">
 
-                        <a
-                                href="{{ $category->children_categories_count > 0 ? route('subcategory', $category->slug) : route('filter', $category->slug) }}"
-                                class="btn"
-                        >
-                            {{ __('front.view_more') }}
+                @foreach($category->childrenCategories as $childCategory)
+                    <div class="catalog__item catalog-item">
+                        <a href="{{route('category', $childCategory->slug)}}" class="catalog-item__head">
+                            <p class="catalog-item__head-title">{{$childCategory->title}}</p>
+                            <img
+                                    src="{{$childCategory->img_web}}"
+                                    alt="image"
+                                    loading="lazy"
+                                    class="catalog-item__head-img"
+                            />
                         </a>
+                        @if($childCategory->childrenCategories->count() >0 )
+                        <div class="catalog-item__content">
+                            <div class="catalog-item__content_body">
 
-                    </li>
+                                @foreach($childCategory->childrenCategories as $grandChildCategoryTwo)
+                                    <a href="{{route('category', $grandChildCategoryTwo->slug)}}" class="catalog-item__content-link">{{$grandChildCategoryTwo->title}}</a>
+                                @endforeach
+
+                            </div>
+                            @if($grandChildCategoryTwo->children_categories_count > 4)
+                                <div class="catalog-item__content-btn">
+                                    <span>{{__('front.moreCategory')}}</span>
+                                    <span>{{__('front.notMoreCategory')}}</span>
+                                    <svg><use xlink:href="{{asset('front/img/icons/icons.svg#icon-label-open')}}"></use></svg>
+                                </div>
+                            @endif
+                        </div>
+                        @endif
+                    </div>
                 @endforeach
-            </ul>
+
+            </div>
         </div>
     </section>
 
-    @livewire('front.subscribe.subscribe-live-wier')
+    <section class="section">
+        <div class="section__container section__container_pb section__container_fullmob">
+            <h2 class="section__title">Рекомендовано для вас</h2>
+            <div class="product-list">
+
+                @foreach($randomProducts as $productRandom)
+                   @include('layout.front.product._product', ['product' => $productRandom])
+                @endforeach
+
+            </div>
+        </div>
+    </section>
 @endsection

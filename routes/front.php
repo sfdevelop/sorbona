@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Front\AboutController;
 use App\Http\Controllers\Front\ArticleController;
+use App\Http\Controllers\Front\CatalogController;
 use App\Http\Controllers\Front\ContactsController;
 use App\Http\Controllers\Front\HomeController;
 use App\Http\Controllers\Front\ManufacturerItemController;
@@ -19,7 +20,7 @@ Route::get('article/{article:slug}', ArticleController::class)->name('article');
 Route::get('policy', PolicyController::class)->name('policy');
 Route::get('return', ReturnController::class)->name('return');
 Route::get('about', AboutController::class)->name('about');
-//Route::get('category', CatalogController::class)->name('catalog');
+Route::get('category/{category:slug}', CatalogController::class)->name('category');
 //Route::get('category/{category:slug}/subcategory', SubcategoryController::class)->name('subcategory');
 //Route::get('sale', SaleController::class)->name('sale');
 //Route::get('bestseller', BestsellerController::class)->name('bestseller');
