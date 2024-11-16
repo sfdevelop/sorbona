@@ -10,6 +10,7 @@ use Astrotomic\Translatable\Contracts\Translatable as TranslatableContract;
 use App\Models\Traits\SlugGableTrait;
 use Astrotomic\Translatable\Translatable;
 use Cviebrock\EloquentSluggable\Sluggable;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\MediaLibrary\HasMedia;
@@ -66,5 +67,15 @@ class Article extends Model implements TranslatableContract, HasMedia
         'img_article',
         'preview',
         'created_format',
+        'short_description',
     ];
+
+    protected function shortDescription(): Attribute
+    {
+        return Attribute::make(
+            get: function ($value) {
+                return shortDescription($this->description);
+            },
+        );
+    }
 }

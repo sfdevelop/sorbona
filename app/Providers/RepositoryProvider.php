@@ -4,6 +4,8 @@ namespace App\Providers;
 
 use App\Payment\LiqPayPayment;
 use App\Payment\LiqPayPaymentInterface;
+use App\Repository\Article\ArticleRepository;
+use App\Repository\Article\ArticleRepositoryInterface;
 use App\Repository\Category\CategoryRepository;
 use App\Repository\Category\CategoryRepositoryInterface;
 use App\Repository\Choise\ChoiceRepository;
@@ -159,6 +161,11 @@ class RepositoryProvider extends ServiceProvider
         $this->app->bind(
             CurrencyRepositoryInterface::class,
             CurrencyRepository::class
+        );
+
+        $this->app->bind(
+            ArticleRepositoryInterface::class,
+            ArticleRepository::class
         );
     }
 
