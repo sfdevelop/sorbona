@@ -21,12 +21,12 @@
                 <div class="footer-nav__col">
                     <h4 class="footer-nav__title">{{__('front.information')}}</h4>
                     <ul class="footer-nav__list">
-                        <li class="footer-nav__item"><a href="/" class="footer-nav__link">{{__('front.menu.main')}}</a></li>
-                        <li class="footer-nav__item"><a href="manufacturers.html" class="footer-nav__link">{{__('front.menu.manufacturer')}}</a></li>
-                        <li class="footer-nav__item"><a href="about-company.html" class="footer-nav__link">{{__('front.menu.about')}}</a></li>
-                        <li class="footer-nav__item"><a href="#" class="footer-nav__link">{{__('front.menu.reload')}}</a></li>
-                        <li class="footer-nav__item"><a href="#" class="footer-nav__link">{{__('front.menu.news')}}</a></li>
-                        <li class="footer-nav__item"><a href="contact.html" class="footer-nav__link">{{__('front.menu.contacts')}}</a></li>
+                        <li class="footer-nav__item"><a href="{{route('home')}}" class="footer-nav__link">{{__('front.menu.main')}}</a></li>
+                        <li class="footer-nav__item"><a href="{{route('manufacturers')}}" class="footer-nav__link">{{__('front.menu.manufacturer')}}</a></li>
+                        <li class="footer-nav__item"><a href="{{route('about')}}" class="footer-nav__link">{{__('front.menu.about')}}</a></li>
+                        <li class="footer-nav__item"><a href="{{route('return')}}" class="footer-nav__link">{{__('front.menu.reload')}}</a></li>
+                        <li class="footer-nav__item"><a href="{{route('news')}}" class="footer-nav__link">{{__('front.menu.news')}}</a></li>
+                        <li class="footer-nav__item"><a href="{{route('contacts')}}" class="footer-nav__link">{{__('front.menu.contacts')}}</a></li>
                     </ul>
                 </div>
                 <div class="footer-nav__col">
@@ -47,7 +47,7 @@
         </div>
         <div class="footer__row">
             <p class="footer-row__item">© 2023 SORBONA. {{__('front.proved')}}</p>
-            <a href="privacy.html" class="footer-row__item">{{__('front.policy')}}</a>
+            <a href="{{route('policy')}}" class="footer-row__item">{{__('front.policy')}}</a>
             <div class="footer-row__creator">{{__('front.site')}}<img src="{{asset('front/img/logo-webakula.svg')}}" alt="image" loading="lazy" /></div>
         </div>
     </div>

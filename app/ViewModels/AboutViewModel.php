@@ -3,6 +3,9 @@
 namespace App\ViewModels;
 
 use App\Http\Controllers\Traits\CustomSeoTrait;
+use App\Models\Page;
+use App\Repository\Benefits\BenefitRepositoryInterface;
+use App\Repository\Manufacture\ManufactureRepositoryInterface;
 use App\Repository\Offer\OfferRepositoryInterface;
 use App\Repository\Page\PageRepositoryInterface;
 use App\Repository\Values\ValuesRepositoryInterface;
@@ -13,45 +16,20 @@ class AboutViewModel extends BaseViewModel
 {
     use CustomSeoTrait;
 
-    public function __construct(
-        protected PageRepositoryInterface $pageRepository,
-        protected ValuesRepositoryInterface $valuesRepository,
-        protected OfferRepositoryInterface $offerRepository,
-        protected WhyChoiceRepositoryInterface $whyChoiceRepository,
-    ) {}
+    public function __construct(public Page $about) {}
 
-    /**
-     * @return \App\Models\Page
-     */
-    public function about(): \App\Models\Page
+    public function benefits(): Collection
     {
-        $result = $this->pageRepository->getPageFromId(2);
-        $this->setSeoData($result);
-
-        return $result;
+        return app()
+            ->make(BenefitRepositoryInterface::class)
+            ->getAllBenefits();
     }
 
-    /**
-     * @return Collection|null
-     */
-    public function values(): ?Collection
+    public function aboutManufacturers()
     {
-        return $this->valuesRepository->getAllValues();
+        return app()
+            ->make(ManufactureRepositoryInterface::class)
+            ->getManufacturersOnPage(10);
     }
 
-    /**
-     * @return Collection|null
-     */
-    public function offers(): ?Collection
-    {
-        return $this->offerRepository->getAllOffers();
-    }
-
-    /**
-     * @return Collection|null
-     */
-    public function whyChoices(): ?Collection
-    {
-        return $this->whyChoiceRepository->getAllWyChoice();
-    }
 }

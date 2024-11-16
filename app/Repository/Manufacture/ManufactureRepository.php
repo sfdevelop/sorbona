@@ -7,9 +7,13 @@ use Illuminate\Database\Eloquent\Collection;
 
 class ManufactureRepository implements ManufactureRepositoryInterface
 {
+
+    public function __construct(protected Manufacturer $manufacturer) {}
+
     public function getAllManufacturers(): array|Collection
     {
-        return Manufacturer::query()
+        return $this->manufacturer
+            ->query()
             ->withTranslation()
             ->orderByTranslation('title')
             ->get();
@@ -17,9 +21,21 @@ class ManufactureRepository implements ManufactureRepositoryInterface
 
     public function getAllManufacturersFromFront(): array|Collection
     {
-        return Manufacturer::query()
+        return $this->manufacturer
+            ->query()
             ->trans()
             ->oldest('sort')
+            ->get();
+    }
+
+    public function getManufacturersOnPage(int $take): array|Collection
+    {
+        return $this->manufacturer
+            ->query()
+            ->inRandomOrder()
+            ->trans()
+            ->oldest('sort')
+            ->take($take)
             ->get();
     }
 }

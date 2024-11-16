@@ -10,23 +10,17 @@ use App\ViewModels\AboutViewModel;
 
 class AboutController extends BaseFrontController
 {
-    public function __construct(
-        public PageRepositoryInterface $pageRepository,
-        public ValuesRepositoryInterface $valuesRepository,
-        public OfferRepositoryInterface $offerRepository,
-        public WhyChoiceRepositoryInterface $whyChoiceRepository,
-    ) {}
+    public function __construct() {}
 
     /**
      * @return AboutViewModel
      */
     public function __invoke(): AboutViewModel
     {
-        return (new AboutViewModel(
-            $this->pageRepository,
-            $this->valuesRepository,
-            $this->offerRepository,
-            $this->whyChoiceRepository,
-        ))->view('front.about.about');
+        $about = app()
+            ->make(PageRepositoryInterface::class)
+            ->getPageFromId(4);
+
+        return (new AboutViewModel($about))->view('front.about.about');
     }
 }

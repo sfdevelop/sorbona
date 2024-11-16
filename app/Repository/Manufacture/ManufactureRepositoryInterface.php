@@ -8,6 +8,7 @@ interface ManufactureRepositoryInterface
 {
     public function getAllManufacturers(): array|Collection;
     public function getAllManufacturersFromFront(): array|Collection;
+    public function getManufacturersOnPage(int $take): array|Collection;
 
 
 }

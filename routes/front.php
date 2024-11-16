@@ -1,11 +1,14 @@
 <?php
 
+use App\Http\Controllers\Front\AboutController;
 use App\Http\Controllers\Front\ArticleController;
 use App\Http\Controllers\Front\ContactsController;
 use App\Http\Controllers\Front\HomeController;
 use App\Http\Controllers\Front\ManufacturerItemController;
 use App\Http\Controllers\Front\ManufacturersController;
 use App\Http\Controllers\Front\NewsController;
+use App\Http\Controllers\Front\PolicyController;
+use App\Http\Controllers\Front\ReturnController;
 
 
 Route::get('/', HomeController::class)->name('home');
@@ -13,6 +16,9 @@ Route::get('manufacturers', ManufacturersController::class)->name('manufacturers
 Route::get('manufacturer/{manufacturer:slug}', ManufacturerItemController::class)->name('manufacturerItem');
 Route::get('news', NewsController::class)->name('news');
 Route::get('article/{article:slug}', ArticleController::class)->name('article');
+Route::get('policy', PolicyController::class)->name('policy');
+Route::get('return', ReturnController::class)->name('return');
+Route::get('about', AboutController::class)->name('about');
 //Route::get('category', CatalogController::class)->name('catalog');
 //Route::get('category/{category:slug}/subcategory', SubcategoryController::class)->name('subcategory');
 //Route::get('sale', SaleController::class)->name('sale');

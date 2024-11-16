@@ -6,6 +6,8 @@ use App\Payment\LiqPayPayment;
 use App\Payment\LiqPayPaymentInterface;
 use App\Repository\Article\ArticleRepository;
 use App\Repository\Article\ArticleRepositoryInterface;
+use App\Repository\Benefits\BenefitRepository;
+use App\Repository\Benefits\BenefitRepositoryInterface;
 use App\Repository\Category\CategoryRepository;
 use App\Repository\Category\CategoryRepositoryInterface;
 use App\Repository\Choise\ChoiceRepository;
@@ -166,6 +168,11 @@ class RepositoryProvider extends ServiceProvider
         $this->app->bind(
             ArticleRepositoryInterface::class,
             ArticleRepository::class
+        );
+
+        $this->app->bind(
+            BenefitRepositoryInterface::class,
+            BenefitRepository::class
         );
     }
 
