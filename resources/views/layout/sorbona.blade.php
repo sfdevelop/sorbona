@@ -24,6 +24,8 @@
 
 <script src="{{asset('front/js/app.min.js')}}"></script>
 
+@stack('frontJs')
+
 </body>
 
 </html>

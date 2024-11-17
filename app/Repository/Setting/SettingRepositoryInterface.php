@@ -7,4 +7,5 @@ use App\Models\Setting;
 interface SettingRepositoryInterface
 {
     public function getSetting(): Setting;
+    public function getPerPAge(): int;
 }

@@ -91,4 +91,14 @@ class ProductRepository implements ProductRepositoryInterface
             ->take(8)
             ->get();
     }
+
+    public function getCategoryProducts(int $category_id): Collection
+    {
+        return Product::query()
+            ->trans()
+            ->with(['category', 'manufacturer'])
+            ->where('category_id', $category_id)
+            ->oldest('sort')
+            ->get();
+    }
 }

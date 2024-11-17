@@ -21,4 +21,6 @@ interface ProductRepositoryInterface
 
     public function getUniqColorsFromProduct(int $category_id);
     public function getRandomProductsInIdCategories(array $categories_id):Collection;
+
+    public function getCategoryProducts(int $category_id):Collection;
 }

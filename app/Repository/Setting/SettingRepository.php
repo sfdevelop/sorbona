@@ -10,4 +10,9 @@ class SettingRepository implements SettingRepositoryInterface
     {
         return Setting::query()->trans()->first();
     }
+
+    public function getPerPAge(): int
+    {
+        return $this->getSetting()->product_per_page;
+    }
 }
