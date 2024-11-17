@@ -15,6 +15,7 @@ class ProductFiltersService
     public function productFilters(): Collection
     {
         $productsFiltered = $this->priceFilter();
+        $productsFiltered = $this->manufacturerFilter($productsFiltered);
 
         return $productsFiltered;
     }
@@ -56,9 +57,27 @@ class ProductFiltersService
         $minPrice = $arrayPrice['min_price'];
         $maxPrice = $arrayPrice['max_price'];
 
-        return $this->products->filter(function ($product) use ($minPrice, $maxPrice,) {
+        return $this->products->filter(function ($product) use ($minPrice, $maxPrice
+        ) {
                 return $product->now_price >= $minPrice
                     && $product->now_price <= $maxPrice;
             });
+    }
+
+    private function manufacturerFilter(Collection $collection): Collection
+    {
+        if ( ! $this->request->filled('manuf')) {
+            return $collection;
+        }
+
+        $manufParam = $this->request->input('manuf');
+
+        $manufacturerIds = explode(',', $manufParam);
+
+        $manufacturerIds = array_map('intval', $manufacturerIds);
+
+        return $collection->filter(function ($product) use ($manufacturerIds) {
+            return in_array($product->manufacturer_id, $manufacturerIds);
+        });
     }
 }

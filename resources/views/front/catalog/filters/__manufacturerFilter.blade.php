@@ -1,11 +1,11 @@
-<div class="filters__item ui accordion">
-    <div class="filters-item__head title">
-        <span class="filters-item__head-title">Торговая марка</span>
+<div @class(['filters__item ui accordion', 'is-active' => request()->manuf])>
+    <div @class(['filters-item__head title', 'active' => request()->manuf]) >
+        <span @class(['filters-item__head-title', 'active' => request()->manuf])>Торговая марка</span>
         <svg>
             <use xlink:href="{{asset('front/img/icons/icons.svg#icon-label-open')}}"></use>
         </svg>
     </div>
-    <div class="filters-item__body content">
+    <div @class(['filters-item__body content ', 'active' => request()->manuf])>
         <label for="filter-search" class="filters-item__search">
             <svg>
                 <use xlink:href="{{asset('front/img/icons/icons.svg#icon-search')}}"></use>
@@ -14,15 +14,51 @@
         </label>
         <div class="filters-item__checkboxes">
 
-
-            <div class="chbox">
-                <label class="chbox__label">
-                    <input type="checkbox" name="" class="chbox__input" value=""/>
-                    <span class="chbox__icon"></span>
-                    <p class="chbox__text">Bugatti <span>(12)</span></p>
-                </label>
-            </div>
-
+            @foreach($productsManufacturers as $manufacturer)
+                <div class="chbox">
+                    <label class="chbox__label">
+                        <input
+                                type="checkbox"
+                                name=""
+                                @checked( in_array($manufacturer->id, array_map('intval', explode(',', request()->input('manuf') ?? ''))))
+                                class="chbox__input"
+                                value="{{$manufacturer->id}}"
+                        />
+                        <span class="chbox__icon"></span>
+                        <p class="chbox__text">{{$manufacturer->name}}
+{{--                            <span>({{$manufacturer->product_count}})</span>--}}
+                        </p>
+                    </label>
+                </div>
+            @endforeach
         </div>
     </div>
 </div>
+
+@pushonce('frontJs')
+    <script>
+        $(document).ready(function() {
+
+            function getSelectedCheckboxes() {
+                let selectedValues = [];
+                $('.filters-item__checkboxes .chbox__input:checked').each(function() {
+                    selectedValues.push($(this).val());
+                });
+                return selectedValues;
+            }
+
+            function updateUrlParameter(param, paramVal) {
+                let url = new URL(window.location.href);
+                url.searchParams.set(param, paramVal);
+                window.history.replaceState(null, null, url.toString());
+            }
+
+
+            $('.filters-item__checkboxes .chbox__input').on('change', function() {
+                let selectedValues = getSelectedCheckboxes();
+                updateUrlParameter('manuf', selectedValues.join(','));
+                location.reload();
+            });
+        });
+    </script>
+@endpushonce

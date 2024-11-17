@@ -61,4 +61,18 @@ class CatalogWithProductViewModel extends BaseViewModel
         };
     }
 
+    public function productsManufacturers()
+    {
+        $manufacturers = $this->productsInCategory->groupBy('manufacturer.id')->map(function ($products, $manufacturerId) {
+            $manufacturer = $products->first()->manufacturer;
+            return (object) [
+                'id' => $manufacturer->id,
+                'name' => $manufacturer->title,
+                'product_count' => $products->count(),
+            ];
+        })->values();
+
+        return collect($manufacturers);
+    }
+
 }
