@@ -36,6 +36,6 @@ class FilterValue extends Model implements TranslatableContract
 
     public function filter(): BelongsTo
     {
-        return $this->belongsTo(Filter::class);
+        return $this->belongsTo(Filter::class)->withTranslation();
     }
 }

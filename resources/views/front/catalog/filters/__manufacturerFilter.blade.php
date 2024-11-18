@@ -12,8 +12,7 @@
             </svg>
             <input id="filter-search" type="search" placeholder="Поиск" autocomplete="off"/>
         </label>
-        <div class="filters-item__checkboxes">
-
+        <div class="filters-item__checkboxes unique-manufacturer-filter">
             @foreach($productsManufacturers as $manufacturer)
                 <div class="chbox">
                     <label class="chbox__label">
@@ -41,7 +40,7 @@
 
             function getSelectedCheckboxes() {
                 let selectedValues = [];
-                $('.filters-item__checkboxes .chbox__input:checked').each(function() {
+                $('.unique-manufacturer-filter .chbox__input:checked').each(function() {
                     selectedValues.push($(this).val());
                 });
                 return selectedValues;
@@ -53,8 +52,7 @@
                 window.history.replaceState(null, null, url.toString());
             }
 
-
-            $('.filters-item__checkboxes .chbox__input').on('change', function() {
+            $('.unique-manufacturer-filter .chbox__input').on('change', function() {
                 let selectedValues = getSelectedCheckboxes();
                 updateUrlParameter('manuf', selectedValues.join(','));
                 location.reload();

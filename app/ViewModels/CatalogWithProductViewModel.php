@@ -75,4 +75,31 @@ class CatalogWithProductViewModel extends BaseViewModel
         return collect($manufacturers);
     }
 
+    public function productsAllFilters()
+    {
+        $this->productsInCategory->load('filterValues.filter');
+        $filters = $this->productsInCategory->flatMap(function ($product) {
+            return $product->filterValues->map(function ($filterValue) {
+                return [
+                    'filter_name' => $filterValue->filter->title,
+                    'filter_id' => $filterValue->filter->id,
+                    'value' => [
+                        'id' => $filterValue->id,
+                        'title' => $filterValue->title,
+                    ],
+                ];
+            });
+        });
+
+        $groupedFilters = $filters->groupBy('filter_id')->map(function ($items, $filterId) {
+            return [
+                'filter_name' => $items->first()['filter_name'],
+                'filter_id' => $filterId,
+                'values' => $items->pluck('value')->unique('id'),
+            ];
+        });
+
+        return $groupedFilters;
+    }
+
 }

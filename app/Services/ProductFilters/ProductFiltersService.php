@@ -2,6 +2,7 @@
 
 namespace App\Services\ProductFilters;
 
+use App\Patterns\Chains\AllFilter;
 use App\Patterns\Chains\ManufacturerFilter;
 use App\Patterns\Chains\PriceFilter;
 use Illuminate\Database\Eloquent\Collection;
@@ -19,6 +20,7 @@ class ProductFiltersService
         $this->filters = [
             new PriceFilter($this->request),
             new ManufacturerFilter($this->request),
+            new AllFilter($this->request),
         ];
     }
 

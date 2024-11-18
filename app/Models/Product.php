@@ -126,7 +126,7 @@ class Product extends Model implements HasMedia, TranslatableContract
 
     public function filterValues(): BelongsToMany
     {
-        return $this->belongsToMany(FilterValue::class, 'product_filter_value');
+        return $this->belongsToMany(FilterValue::class, 'product_filter_value')->withTranslation();
     }
 
     protected function shortDescription(): Attribute
