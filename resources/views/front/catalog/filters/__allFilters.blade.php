@@ -3,7 +3,7 @@
     <div @class(['filters__item ui accordion', 'is-active' => $showAccordion])>
         <div @class(['filters-item__head title', 'active' => $showAccordion])>
             <span class="filters-item__head-title">
-                {{ $filter['filter_name'] }} - {{ $filter['filter_id'] }}
+                {{ $filter['filter_name'] }}
             </span>
             <svg>
                 <use xlink:href="{{ asset('front/img/icons/icons.svg#icon-label-open') }}"></use>

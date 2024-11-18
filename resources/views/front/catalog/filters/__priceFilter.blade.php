@@ -1,6 +1,6 @@
 <div @class(['filters__item ui accordion', 'is-active' => request()->price])>
     <div @class(['filters-item__head title', 'active' => request()->price]) >
-        <span @class(['filters-item__head-title', 'active' => request()->price])>Цена</span>
+        <span @class(['filters-item__head-title', 'active' => request()->price])>{{__('front.price')}}</span>
         <svg>
             <use xlink:href="{{asset('front/img/icons/icons.svg#icon-label-open')}}"></use>
         </svg>
@@ -20,9 +20,9 @@
             />
 
             <div class="filters-item__range_num">
-                        <span>от <input type="text" name="area_from" class="js-input-from rang_slider_from sf_from"
+                        <span>{{__('front.in')}}<input type="text" name="area_from" class="js-input-from rang_slider_from sf_from"
                                         value="100" readonly/></span>
-                <span>до <input type="text" name="area_to" class="js-input-to rang_slider_to" value="5000"
+                <span>{{__('front.to')}} <input type="text" name="area_to" class="js-input-to rang_slider_to" value="5000"
                                 readonly/></span>
             </div>
 

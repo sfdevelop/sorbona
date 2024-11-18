@@ -1,6 +1,6 @@
 <div @class(['filters__item ui accordion', 'is-active' => request()->manuf])>
     <div @class(['filters-item__head title', 'active' => request()->manuf]) >
-        <span @class(['filters-item__head-title', 'active' => request()->manuf])>Торговая марка</span>
+        <span @class(['filters-item__head-title', 'active' => request()->manuf])>{{__('front.marka')}}</span>
         <svg>
             <use xlink:href="{{asset('front/img/icons/icons.svg#icon-label-open')}}"></use>
         </svg>
