@@ -1,10 +1,8 @@
 @foreach($productsAllFilters as $filter)
-    @php $showAccordion =  in_array($filter['filter_id']  , array_map('intval', explode(',', request()->input('show') ?? '')))@endphp
+    @php $showAccordion = in_array($filter['filter_id'], array_map('intval', explode(',', request()->input('show') ?? ''))) @endphp
     <div @class(['filters__item ui accordion', 'is-active' => $showAccordion])>
         <div @class(['filters-item__head title', 'active' => $showAccordion])>
-            <span
-                    class="filters-item__head-title"
-            >
+            <span class="filters-item__head-title">
                 {{ $filter['filter_name'] }} - {{ $filter['filter_id'] }}
             </span>
             <svg>
@@ -17,17 +15,23 @@
                     <div class="chbox">
                         <label class="chbox__label">
                             <input
-                                    data-filter_id="{{ $filter['filter_id'] }}"
-                                    @checked( in_array($filterValue['id'] , array_map('intval', explode(',', request()->input('filters') ?? ''))))
-                                    type="checkbox"
-                                    name="filters[]"
-                                    class="chbox__input"
-                                    value="{{ $filterValue['id'] }}"
+                                @disabled(!in_array($filterValue['id'], $allFiltersIds))
+                                @readonly(!in_array($filterValue['id'], $allFiltersIds))
+                                data-filter_id="{{ $filter['filter_id'] }}"
+                                @checked(in_array($filterValue['id'], array_map('intval', explode(',', request()->input('filters') ?? ''))))
+                                type="checkbox"
+                                name="filters[]"
+                                class="chbox__input"
+                                value="{{ $filterValue['id'] }}"
                             />
-                            <span class="chbox__icon"></span>
+                            <span
+                                    class="chbox__icon"
+                                    @readonly(!in_array($filterValue['id'], $allFiltersIds))
+                                    @disabled(!in_array($filterValue['id'], $allFiltersIds))
+                            ></span>
                             <p class="chbox__text">
                                 {{ $filterValue['title'] }}
-                                 <span>({{ $filterValue['id'] }})</span>
+{{--                                <span>({{ $filterValue['id'] }})</span>--}}
                             </p>
                         </label>
                     </div>
@@ -36,7 +40,11 @@
         </div>
     </div>
 @endforeach
-
+<style>
+    input[type="checkbox"]:disabled + .chbox__icon + .chbox__text {
+        color: #ccc!important; /* Text color for the <p> element */
+    }
+</style>
 @pushonce('frontJs')
     <script>
         $(document).ready(function() {

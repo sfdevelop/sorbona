@@ -19,6 +19,7 @@ class CatalogWithProductViewModel extends BaseViewModel
         public Category $category,
         protected Request $request,
         protected Collection $productsInCategory,
+        protected ?Collection $filteredProducts = null,
     )
     {
         //        $this->setSeoData($this->settingsRepository->getSetting());
@@ -35,10 +36,23 @@ class CatalogWithProductViewModel extends BaseViewModel
     {
         $products = $this->sortProducts($this->productsInCategory);
 
+        $this->filteredProducts = $this->productsInCategory;
+
         $productsFilter = app()->make(ProductFiltersService::class, ['products' => $products, 'request' => $this->request]);
         $products= $productsFilter->productFilters();
 
+        $this->filteredProducts = $products;
+
         return $products->paginate($this->getSettingPerPage() ?? 12);
+    }
+
+    public function allFiltersIds()
+    {
+        $filterValueIds = $this->filteredProducts->flatMap(function ($product) {
+            return $product->filterValues->pluck('id');
+        })->unique()->values()->all();
+
+        return $filterValueIds;
     }
 
     public function maxPrice()
