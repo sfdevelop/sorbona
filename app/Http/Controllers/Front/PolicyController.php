@@ -2,15 +2,12 @@
 
 namespace App\Http\Controllers\Front;
 
-use App\Models\Article;
 use App\Repository\Page\PageRepositoryInterface;
-use App\ViewModels\ArticleViewModel;
 
 class PolicyController extends BaseFrontController
 {
     public function __construct(
     ) {}
-
 
     public function __invoke()
     {

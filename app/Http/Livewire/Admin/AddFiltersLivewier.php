@@ -2,7 +2,6 @@
 
 namespace App\Http\Livewire\Admin;
 
-use App\Http\Requests\Livewier\ColorToProductAdminRequest;
 use App\Http\Requests\Livewier\ProductValueRequest;
 use App\Models\Filter;
 use App\Models\Product;
@@ -39,7 +38,6 @@ class AddFiltersLivewier extends Component
 
     /**
      * @param  $field
-     *
      * @return void
      *
      * @throws ValidationException
@@ -48,7 +46,6 @@ class AddFiltersLivewier extends Component
     {
         $this->validateOnly($field);
     }
-
 
     public function mount(): void
     {
@@ -62,7 +59,7 @@ class AddFiltersLivewier extends Component
 
     public function valueSelected($valueId): void
     {
-        if ($valueId !== null && $valueId !== "") {
+        if ($valueId !== null && $valueId !== '') {
             $this->value_id = $valueId;
         } else {
             $this->value_id = null;
@@ -91,8 +88,7 @@ class AddFiltersLivewier extends Component
     }
 
     public function render(
-    ): \Illuminate\Contracts\View\Factory|\Illuminate\Foundation\Application|\Illuminate\Contracts\View\View|\Illuminate\Contracts\Foundation\Application
-    {
+    ): \Illuminate\Contracts\View\Factory|\Illuminate\Foundation\Application|\Illuminate\Contracts\View\View|\Illuminate\Contracts\Foundation\Application {
         $this->productFilters = $this->product->filterValues;
 
         return view('livewire.admin.add-filters-livewier');

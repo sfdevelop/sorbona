@@ -3,8 +3,6 @@
 namespace App\ViewModels;
 
 use App\Http\Controllers\Traits\CustomSeoTrait;
-use App\Models\Manufacturer;
-use App\Repository\Category\CategoryRepositoryInterface;
 use App\Repository\Manufacture\ManufactureRepositoryInterface;
 
 class ManufacturersViewModel extends BaseViewModel

@@ -17,7 +17,6 @@ return new class extends Migration
             $table->bigInteger('page_id')->unsigned();
             $table->string('locale')->index();
 
-
             $table->longText('titleSectionAboutUs')->nullable();
 
             $table->longText('titleDownAboutUs')->nullable();

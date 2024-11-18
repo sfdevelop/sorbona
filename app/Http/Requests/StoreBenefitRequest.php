@@ -3,7 +3,6 @@
 namespace App\Http\Requests;
 
 use Astrotomic\Translatable\Validation\RuleFactory;
-use Illuminate\Foundation\Http\FormRequest;
 
 class StoreBenefitRequest extends BaseRequest
 {
@@ -14,6 +13,7 @@ class StoreBenefitRequest extends BaseRequest
     {
         return true;
     }
+
     /**
      * Get the validation rules that apply to the request.
      *

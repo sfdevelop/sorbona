@@ -23,6 +23,6 @@ class ProductSeeder extends Seeder
     {
         $items = Product::factory(300)->create();
 
-//        $this->uploadImageToSeed($items);
+        //        $this->uploadImageToSeed($items);
     }
 }

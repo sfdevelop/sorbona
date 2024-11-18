@@ -10,14 +10,12 @@ use Illuminate\View\View;
 
 class BenefitController extends BaseAdminController
 {
+    public static string $model = 'benefit';
 
-     public static string $model = 'benefit';
+    public function __construct(
+        public string $nameImageCollection = 'benefit'
+    ) {}
 
-     public function __construct(
-         public string $nameImageCollection = 'benefit'
-     )
-     {
-     }
     /**
      * Display a listing of the resource.
      */
@@ -27,7 +25,7 @@ class BenefitController extends BaseAdminController
 
         $title = 'benefit';
 
-        return view('admin.' . self::$model . '.index', compact('title', 'items'));
+        return view('admin.'.self::$model.'.index', compact('title', 'items'));
     }
 
     /**
@@ -37,7 +35,7 @@ class BenefitController extends BaseAdminController
     {
         $title = 'Create benefit';
 
-        return view('admin.' . self::$model . '.create', compact('title'))
+        return view('admin.'.self::$model.'.create', compact('title'))
             ->with(['item' => $benefit]);
     }
 
@@ -46,7 +44,7 @@ class BenefitController extends BaseAdminController
      */
     public function store(StoreBenefitRequest $request, Benefit $benefit): RedirectResponse
     {
-       return $this->baseStore($request, $benefit, self::$model);
+        return $this->baseStore($request, $benefit, self::$model);
     }
 
     /**
@@ -62,7 +60,7 @@ class BenefitController extends BaseAdminController
      */
     public function edit(Benefit $benefit): View
     {
-      return view('admin.' . self::$model . '.update', ['item' => $benefit, 'title' => 'Update benefit']);
+        return view('admin.'.self::$model.'.update', ['item' => $benefit, 'title' => 'Update benefit']);
     }
 
     /**

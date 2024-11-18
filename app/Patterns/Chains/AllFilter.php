@@ -2,9 +2,9 @@
 
 namespace App\Patterns\Chains;
 
+use App\Models\Product;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\Request;
-use App\Models\Product;
 
 class AllFilter implements ProductFilterInterface
 {
@@ -12,8 +12,7 @@ class AllFilter implements ProductFilterInterface
 
     public function apply(Collection $products): Collection
     {
-
-        if (!$this->request->filled('filters')) {
+        if (! $this->request->filled('filters')) {
             return $products;
         }
 
@@ -21,7 +20,7 @@ class AllFilter implements ProductFilterInterface
         $filterValueIds = explode(',', $filtersParam);
         $filterValueIds = array_map('intval', $filterValueIds);
 
-        if (!empty($filterValueIds)) {
+        if (! empty($filterValueIds)) {
             $products = $products->filter(function (Product $product) use ($filterValueIds) {
                 return $product->filterValues->pluck('id')->intersect($filterValueIds)->isNotEmpty();
             });

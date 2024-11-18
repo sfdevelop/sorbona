@@ -11,31 +11,33 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\MediaLibrary\HasMedia;
 
-class Benefit extends Model implements TranslatableContract, HasMedia
+class Benefit extends Model implements HasMedia, TranslatableContract
 {
-    use HasFactory;
-    use Translatable;
     use CreatedFormatTrait;
-    use TranslateScopeTrait;
+    use HasFactory;
     use RegisterMediaTrait;
+    use Translatable;
+    use TranslateScopeTrait;
 
     protected $table = 'benefits';
+
     protected $perPage = 20;
+
     protected $with = 'media';
 
-        /**
-         * @var array|string[]
-         */
-        public array $translatedAttributes = [
-            'title',
-        ];
+    /**
+     * @var array|string[]
+     */
+    public array $translatedAttributes = [
+        'title',
+    ];
 
-        /**
-         * @var string[]
-         */
-        protected $fillable = [
-            'sort',
-        ];
+    /**
+     * @var string[]
+     */
+    protected $fillable = [
+        'sort',
+    ];
 
     /**
      * image data

@@ -15,12 +15,11 @@ class CatalogController extends BaseFrontController
         public CategoryRepositoryInterface $categoryRepository,
     ) {}
 
-
     public function __invoke(Category $category, Request $request)
     {
         $category->load('childrenCategories');
 
-        if ($category->childrenCategories->count() > 0){
+        if ($category->childrenCategories->count() > 0) {
             return (new CatalogViewModel($category))->view('front.catalog.catalog');
         }
 

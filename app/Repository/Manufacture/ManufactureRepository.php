@@ -7,7 +7,6 @@ use Illuminate\Database\Eloquent\Collection;
 
 class ManufactureRepository implements ManufactureRepositoryInterface
 {
-
     public function __construct(protected Manufacturer $manufacturer) {}
 
     public function getAllManufacturers(): array|Collection

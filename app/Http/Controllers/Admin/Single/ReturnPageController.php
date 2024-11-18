@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Admin\Single;
 
 use App\Http\Controllers\Admin\BaseAdminController;
-use App\Http\Requests\Single\AboutMainRequest;
 use App\Http\Requests\Single\ReturnRequest;
 use App\Models\Page;
 use Illuminate\Contracts\View\View;

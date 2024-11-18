@@ -4,7 +4,6 @@ namespace Database\Seeders;
 
 use App\Models\Manufacturer;
 use Database\Seeders\Traits\SeedUploadImageTrait;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class ManufacturerSeeder extends Seeder

@@ -5,7 +5,6 @@ namespace App\ViewModels;
 use App\Http\Controllers\Traits\CustomSeoTrait;
 use App\Models\Product;
 use App\Repository\Product\ProductRepositoryInterface;
-use App\Services\ProductAttrebuts\ProductAttributesServiceInterface;
 use Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection;
 
 class ProductViewModel extends BaseViewModel
@@ -15,7 +14,7 @@ class ProductViewModel extends BaseViewModel
     public function __construct(
         public Product $product,
     ) {
-//        $this->setSeoData($this->product);
+        //        $this->setSeoData($this->product);
     }
 
     /**

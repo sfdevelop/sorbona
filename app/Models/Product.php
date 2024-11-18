@@ -18,7 +18,6 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 use Spatie\MediaLibrary\HasMedia;
 
 #[ObservedBy([ProductObserver::class])]
@@ -38,7 +37,7 @@ class Product extends Model implements HasMedia, TranslatableContract
 
     protected $perPage = 20;
 
-    protected $with = ['media','currency'];
+    protected $with = ['media', 'currency'];
 
     /**
      * @var array|string[]
@@ -104,7 +103,6 @@ class Product extends Model implements HasMedia, TranslatableContract
         'short_description',
     ];
 
-
     public function category(): BelongsTo
     {
         return $this->belongsTo(Category::class)->withTranslation();
@@ -117,11 +115,12 @@ class Product extends Model implements HasMedia, TranslatableContract
 
     /**
      * @return BelongsTo
+     *
      * @property-read
      */
     public function currency(): BelongsTo
     {
-        return $this->belongsTo(Currency::class)->select(['id', 'title', 'currency' ]);
+        return $this->belongsTo(Currency::class)->select(['id', 'title', 'currency']);
     }
 
     public function filterValues(): BelongsToMany
@@ -137,5 +136,4 @@ class Product extends Model implements HasMedia, TranslatableContract
             },
         );
     }
-
 }

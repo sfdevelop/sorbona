@@ -5,7 +5,6 @@ namespace Database\Factories;
 use App\Models\Category;
 use FakeParagraph;
 use Illuminate\Database\Eloquent\Factories\Factory;
-use Illuminate\Support\Testing\Fakes\Fake;
 
 /**
  * @extends Factory<Category>
@@ -19,7 +18,8 @@ class ArticleFactory extends Factory
      */
     public function definition(): array
     {
-        $faker =   \Faker\Factory::create('ru_RU');
+        $faker = \Faker\Factory::create('ru_RU');
+
         return [
             'title:ru' => $faker->realText(50),
             'title:uk' => $faker->realText(50),

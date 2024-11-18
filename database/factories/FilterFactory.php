@@ -17,7 +17,7 @@ class FilterFactory extends Factory
      */
     public function definition(): array
     {
-        $items=[
+        $items = [
             'Тип змішувача',
             'Довжина виливу',
             'Тип управління',

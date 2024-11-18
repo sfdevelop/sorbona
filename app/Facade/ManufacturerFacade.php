@@ -2,7 +2,6 @@
 
 namespace App\Facade;
 
-use App\Repository\Category\CategoryRepositoryInterface;
 use App\Repository\Manufacture\ManufactureRepositoryInterface;
 use Illuminate\Support\Facades\Facade;
 

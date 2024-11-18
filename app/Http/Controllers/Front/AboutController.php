@@ -2,10 +2,7 @@
 
 namespace App\Http\Controllers\Front;
 
-use App\Repository\Offer\OfferRepositoryInterface;
 use App\Repository\Page\PageRepositoryInterface;
-use App\Repository\Values\ValuesRepositoryInterface;
-use App\Repository\WhyChooce\WhyChoiceRepositoryInterface;
 use App\ViewModels\AboutViewModel;
 
 class AboutController extends BaseFrontController

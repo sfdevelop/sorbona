@@ -10,14 +10,12 @@ use Illuminate\View\View;
 
 class CurrencyController extends BaseAdminController
 {
+    public static string $model = 'currency';
 
-     public static string $model = 'currency';
+    public function __construct(
+        public string $nameImageCollection = 'currency'
+    ) {}
 
-     public function __construct(
-         public string $nameImageCollection = 'currency'
-     )
-     {
-     }
     /**
      * Display a listing of the resource.
      */
@@ -27,7 +25,7 @@ class CurrencyController extends BaseAdminController
 
         $title = 'currency';
 
-        return view('admin.' . self::$model . '.index', compact('title', 'items'));
+        return view('admin.'.self::$model.'.index', compact('title', 'items'));
     }
 
     /**
@@ -37,7 +35,7 @@ class CurrencyController extends BaseAdminController
     {
         $title = 'Create currency';
 
-        return view('admin.' . self::$model . '.create', compact('title'))
+        return view('admin.'.self::$model.'.create', compact('title'))
             ->with(['item' => $currency]);
     }
 
@@ -46,7 +44,7 @@ class CurrencyController extends BaseAdminController
      */
     public function store(StoreCurrencyRequest $request, Currency $currency): RedirectResponse
     {
-       return $this->baseStore($request, $currency, self::$model);
+        return $this->baseStore($request, $currency, self::$model);
     }
 
     /**
@@ -62,7 +60,7 @@ class CurrencyController extends BaseAdminController
      */
     public function edit(Currency $currency): View
     {
-      return view('admin.' . self::$model . '.update', ['item' => $currency, 'title' => 'Update currency']);
+        return view('admin.'.self::$model.'.update', ['item' => $currency, 'title' => 'Update currency']);
     }
 
     /**

@@ -11,7 +11,7 @@ final class FakerParagraphProvider extends Base
         if (is_null($max)) {
             $max = ($min !== 8) ? 1 : 30;
         }
-        $faker =   \Faker\Factory::create('ru_RU');
+        $faker = \Faker\Factory::create('ru_RU');
 
         // Generate a block of text
         $text = $faker->realText(1200, 4);

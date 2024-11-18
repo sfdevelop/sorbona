@@ -4,7 +4,6 @@ namespace App\ViewModels;
 
 use App\Http\Controllers\Traits\CustomSeoTrait;
 use App\Models\Category;
-use App\Repository\Category\CategoryRepositoryInterface;
 use App\Repository\Product\ProductRepositoryInterface;
 
 class CatalogViewModel extends BaseViewModel
@@ -28,5 +27,4 @@ class CatalogViewModel extends BaseViewModel
             ->make(ProductRepositoryInterface::class)
             ->getRandomProductsInIdCategories($categories_id);
     }
-
 }

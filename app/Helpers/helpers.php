@@ -2,10 +2,10 @@
 
 use App\Enum\StatusPaymentEnum;
 
-if ( ! function_exists('shortDescription')) {
+if (! function_exists('shortDescription')) {
     function shortDescription(?string $str, int $count = 50): string
     {
-        if ($str==null) {
+        if ($str == null) {
             return '';
         }
 
@@ -19,7 +19,7 @@ if ( ! function_exists('shortDescription')) {
     }
 }
 
-if ( ! function_exists('getCountry')) {
+if (! function_exists('getCountry')) {
     function getCountry(string $currency): string
     {
         return match ($currency) {
@@ -30,7 +30,7 @@ if ( ! function_exists('getCountry')) {
     }
 }
 
-if ( ! function_exists('countWord')) {
+if (! function_exists('countWord')) {
     function countWord(string $str, int $maxCount): bool
     {
         $count = str_word_count($str, 0,
@@ -40,14 +40,14 @@ if ( ! function_exists('countWord')) {
     }
 }
 
-if ( ! function_exists('currencyUAH')) {
+if (! function_exists('currencyUAH')) {
     function currencyUAH(string $price): bool|string
     {
         return Number::currency($price, in: 'EUR', locale: 'lt');
     }
 }
 
-if ( ! function_exists('isIdInArray')) {
+if (! function_exists('isIdInArray')) {
     function isIdInArray($request, int $id): bool
     {
         //        $request = request()->query('colors');
@@ -67,7 +67,7 @@ if ( ! function_exists('isIdInArray')) {
     }
 }
 
-if ( ! function_exists('getAvatar')) {
+if (! function_exists('getAvatar')) {
     function getAvatar(string $name): string
     {
         return \Avatar::create($name)->setBackground('#1a1a1a')->toSvg();
@@ -77,7 +77,7 @@ if ( ! function_exists('getAvatar')) {
 /**
  * Преобразование в float и убираем значек гривні
  */
-if ( ! function_exists('strPriceToFloat')) {
+if (! function_exists('strPriceToFloat')) {
     function strPriceToFloat(string $inputString): float
     {
         $cleanedString = preg_replace('/[^\d,]/u', '', $inputString);
@@ -94,7 +94,7 @@ if ( ! function_exists('strPriceToFloat')) {
 /**
  * Переводимо статус оплати
  */
-if ( ! function_exists('translatePaymentPaid')) {
+if (! function_exists('translatePaymentPaid')) {
     function translatePaymentPaid(StatusPaymentEnum $paidName): string
     {
         return match ($paidName) {
@@ -108,7 +108,7 @@ if ( ! function_exists('translatePaymentPaid')) {
 /**
  * Переводимо статус оплати
  */
-if ( ! function_exists('translatePayment')) {
+if (! function_exists('translatePayment')) {
     function translatePayment(string $paymentName): string
     {
         return match ($paymentName) {
@@ -121,7 +121,7 @@ if ( ! function_exists('translatePayment')) {
 /**
  * Клас кнопки статусу замовлення та перевод
  */
-if ( ! function_exists('getClassAndTitleStatusOrder')) {
+if (! function_exists('getClassAndTitleStatusOrder')) {
     function getClassAndTitleStatusOrder(\App\Enum\StatusOrderEnum $title,
     ): string {
         $result = match ($title) {
@@ -141,7 +141,7 @@ if ( ! function_exists('getClassAndTitleStatusOrder')) {
 /**
  * Переводим способы доставки
  */
-if ( ! function_exists('translateDelivery')) {
+if (! function_exists('translateDelivery')) {
     function translateDelivery(string $delivery): string
     {
         $deliveryTranslations = [
@@ -157,7 +157,7 @@ if ( ! function_exists('translateDelivery')) {
 /**
  * Переклад для адмінки статусів замовлення
  */
-if ( ! function_exists('getClassAndTitleStatusOrderFromAdmin')) {
+if (! function_exists('getClassAndTitleStatusOrderFromAdmin')) {
     function getClassAndTitleStatusOrderFromAdmin($title): string
     {
         return match ($title) {

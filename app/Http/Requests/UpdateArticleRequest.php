@@ -4,7 +4,6 @@ namespace App\Http\Requests;
 
 use Astrotomic\Translatable\Validation\RuleFactory;
 use Illuminate\Contracts\Validation\ValidationRule;
-use Illuminate\Foundation\Http\FormRequest;
 
 class UpdateArticleRequest extends BaseRequest
 {

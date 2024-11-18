@@ -10,7 +10,6 @@ class ArticleController extends BaseFrontController
     public function __construct(
     ) {}
 
-
     public function __invoke(Article $article)
     {
         return (new ArticleViewModel($article))->view('front.news.article');

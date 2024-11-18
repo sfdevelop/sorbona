@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Patterns\Chains;
+
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\Request;
 
@@ -10,7 +11,7 @@ class ManufacturerFilter implements ProductFilterInterface
 
     public function apply(Collection $products): Collection
     {
-        if (!$this->request->filled('manuf')) {
+        if (! $this->request->filled('manuf')) {
             return $products;
         }
 

@@ -5,11 +5,10 @@ namespace App\Models;
 use App\Models\Traits\CreatedFormatTrait;
 use App\Models\Traits\MetaDataPolymorphic;
 use App\Models\Traits\RegisterMediaTrait;
+use App\Models\Traits\SlugGableTrait;
 use App\Models\Traits\TranslateScopeTrait;
 use Astrotomic\Translatable\Contracts\Translatable as TranslatableContract;
-use App\Models\Traits\SlugGableTrait;
 use Astrotomic\Translatable\Translatable;
-use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -19,18 +18,20 @@ use Spatie\MediaLibrary\HasMedia;
  * @property int title
  * @property int description
  */
-class Article extends Model implements TranslatableContract, HasMedia
+class Article extends Model implements HasMedia, TranslatableContract
 {
+    use CreatedFormatTrait;
     use HasFactory;
+    use MetaDataPolymorphic;
+    use RegisterMediaTrait;
     use SlugGableTrait;
     use Translatable;
-    use RegisterMediaTrait;
-    use CreatedFormatTrait;
-    use MetaDataPolymorphic;
     use TranslateScopeTrait;
 
     protected $table = 'articles';
+
     protected $perPage = 20;
+
     protected $with = 'media';
 
     /**
@@ -57,8 +58,11 @@ class Article extends Model implements TranslatableContract, HasMedia
      * $noImage - url on image photo (no image)
      * */
     private static int $imageWith = 1540;
+
     private static int $imageHeight = 800;
+
     private static string $imageCollectionName = 'article';
+
     private static string $noImage = '/img/article.png';
 
     protected $appends = [

@@ -12,27 +12,28 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class FilterValue extends Model implements TranslatableContract
 {
+    use CreatedFormatTrait;
     use HasFactory;
     use Translatable;
-    use CreatedFormatTrait;
     use TranslateScopeTrait;
 
     protected $table = 'filter_values';
+
     protected $perPage = 20;
 
-        /**
-         * @var array|string[]
-         */
-        public array $translatedAttributes = [
-            'title',
-        ];
+    /**
+     * @var array|string[]
+     */
+    public array $translatedAttributes = [
+        'title',
+    ];
 
-        /**
-         * @var string[]
-         */
-        protected $fillable = [
-            'sort',
-        ];
+    /**
+     * @var string[]
+     */
+    protected $fillable = [
+        'sort',
+    ];
 
     public function filter(): BelongsTo
     {

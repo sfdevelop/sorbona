@@ -10,14 +10,12 @@ use Illuminate\View\View;
 
 class ManufacturerController extends BaseAdminController
 {
+    public static string $model = 'manufacturer';
 
-     public static string $model = 'manufacturer';
+    public function __construct(
+        public string $nameImageCollection = 'manufacturer'
+    ) {}
 
-     public function __construct(
-         public string $nameImageCollection = 'manufacturer'
-     )
-     {
-     }
     /**
      * Display a listing of the resource.
      */
@@ -27,7 +25,7 @@ class ManufacturerController extends BaseAdminController
 
         $title = 'manufacturer';
 
-        return view('admin.' . self::$model . '.index', compact('title', 'items'));
+        return view('admin.'.self::$model.'.index', compact('title', 'items'));
     }
 
     /**
@@ -37,7 +35,7 @@ class ManufacturerController extends BaseAdminController
     {
         $title = 'Create manufacturer';
 
-        return view('admin.' . self::$model . '.create', compact('title'))
+        return view('admin.'.self::$model.'.create', compact('title'))
             ->with(['item' => $manufacturer]);
     }
 
@@ -46,7 +44,7 @@ class ManufacturerController extends BaseAdminController
      */
     public function store(StoreManufacturerRequest $request, Manufacturer $manufacturer): RedirectResponse
     {
-       return $this->baseStore($request, $manufacturer, self::$model);
+        return $this->baseStore($request, $manufacturer, self::$model);
     }
 
     /**
@@ -62,7 +60,7 @@ class ManufacturerController extends BaseAdminController
      */
     public function edit(Manufacturer $manufacturer): View
     {
-      return view('admin.' . self::$model . '.update', ['item' => $manufacturer, 'title' => 'Update manufacturer']);
+        return view('admin.'.self::$model.'.update', ['item' => $manufacturer, 'title' => 'Update manufacturer']);
     }
 
     /**

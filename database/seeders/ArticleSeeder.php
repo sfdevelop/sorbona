@@ -3,7 +3,6 @@
 namespace Database\Seeders;
 
 use App\Models\Article;
-use App\Models\Category;
 use Database\Seeders\Traits\SeedUploadImageTrait;
 use Illuminate\Database\Seeder;
 

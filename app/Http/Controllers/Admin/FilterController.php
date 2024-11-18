@@ -10,14 +10,12 @@ use Illuminate\View\View;
 
 class FilterController extends BaseAdminController
 {
+    public static string $model = 'filter';
 
-     public static string $model = 'filter';
+    public function __construct(
+        public string $nameImageCollection = 'filter'
+    ) {}
 
-     public function __construct(
-         public string $nameImageCollection = 'filter'
-     )
-     {
-     }
     /**
      * Display a listing of the resource.
      */
@@ -27,7 +25,7 @@ class FilterController extends BaseAdminController
 
         $title = 'filter';
 
-        return view('admin.' . self::$model . '.index', compact('title', 'items'));
+        return view('admin.'.self::$model.'.index', compact('title', 'items'));
     }
 
     /**
@@ -37,7 +35,7 @@ class FilterController extends BaseAdminController
     {
         $title = 'Create filter';
 
-        return view('admin.' . self::$model . '.create', compact('title'))
+        return view('admin.'.self::$model.'.create', compact('title'))
             ->with(['item' => $filter]);
     }
 
@@ -46,7 +44,7 @@ class FilterController extends BaseAdminController
      */
     public function store(StoreFilterRequest $request, Filter $filter): RedirectResponse
     {
-       return $this->baseStore($request, $filter, self::$model);
+        return $this->baseStore($request, $filter, self::$model);
     }
 
     /**
@@ -62,7 +60,7 @@ class FilterController extends BaseAdminController
      */
     public function edit(Filter $filter): View
     {
-      return view('admin.' . self::$model . '.update', ['item' => $filter, 'title' => 'Update filter']);
+        return view('admin.'.self::$model.'.update', ['item' => $filter, 'title' => 'Update filter']);
     }
 
     /**

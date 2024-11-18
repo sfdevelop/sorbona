@@ -7,7 +7,6 @@ use App\Patterns\Chains\ManufacturerFilter;
 use App\Patterns\Chains\PriceFilter;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\Request;
-use App\Patterns\Chains\ProductFilterInterface;
 
 class ProductFiltersService
 {

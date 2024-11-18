@@ -3,40 +3,36 @@
 namespace App\Models\Traits;
 
 use Illuminate\Database\Eloquent\Casts\Attribute;
-use Number;
 
 trait ProductPriceTrait
 {
-
     public function oldPrice(): Attribute
     {
         return new Attribute(
-            get: fn()
-                => ! is_null($this->newPrice)
+            get: fn () => ! is_null($this->newPrice)
                 ? $this->attributes['price']
                 : null,
         );
     }
 
-
     public function nowPrice(): Attribute
     {
         return new Attribute(
-            get: fn() => $this->calculateNowPrice(),
+            get: fn () => $this->calculateNowPrice(),
         );
     }
 
     public function priceFromTen(): Attribute
     {
         return new Attribute(
-            get: fn() => $this->getPriceFromTen(),
+            get: fn () => $this->getPriceFromTen(),
         );
     }
 
     public function priceFromTwenty(): Attribute
     {
         return new Attribute(
-            get: fn() => $this->getPriceFromTwenty(),
+            get: fn () => $this->getPriceFromTwenty(),
         );
     }
 

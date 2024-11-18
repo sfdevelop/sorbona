@@ -10,14 +10,12 @@ use Illuminate\View\View;
 
 class ArticleController extends BaseAdminController
 {
+    public static string $model = 'article';
 
-     public static string $model = 'article';
+    public function __construct(
+        public string $nameImageCollection = 'article'
+    ) {}
 
-     public function __construct(
-         public string $nameImageCollection = 'article'
-     )
-     {
-     }
     /**
      * Display a listing of the resource.
      */
@@ -27,7 +25,7 @@ class ArticleController extends BaseAdminController
 
         $title = 'article';
 
-        return view('admin.' . self::$model . '.index', compact('title', 'items'));
+        return view('admin.'.self::$model.'.index', compact('title', 'items'));
     }
 
     /**
@@ -37,7 +35,7 @@ class ArticleController extends BaseAdminController
     {
         $title = 'Create article';
 
-        return view('admin.' . self::$model . '.create', compact('title'))
+        return view('admin.'.self::$model.'.create', compact('title'))
             ->with(['item' => $article]);
     }
 
@@ -46,7 +44,7 @@ class ArticleController extends BaseAdminController
      */
     public function store(StoreArticleRequest $request, Article $article): RedirectResponse
     {
-       return $this->baseStore($request, $article, self::$model);
+        return $this->baseStore($request, $article, self::$model);
     }
 
     /**
@@ -62,7 +60,7 @@ class ArticleController extends BaseAdminController
      */
     public function edit(Article $article): View
     {
-      return view('admin.' . self::$model . '.update', ['item' => $article, 'title' => 'Update article']);
+        return view('admin.'.self::$model.'.update', ['item' => $article, 'title' => 'Update article']);
     }
 
     /**

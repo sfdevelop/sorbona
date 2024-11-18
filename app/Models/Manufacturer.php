@@ -12,38 +12,40 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\MediaLibrary\HasMedia;
 
-class Manufacturer extends Model implements TranslatableContract, HasMedia
+class Manufacturer extends Model implements HasMedia, TranslatableContract
 {
-    use HasFactory;
-    use Translatable;
     use CreatedFormatTrait;
-    use TranslateScopeTrait;
+    use HasFactory;
     use RegisterMediaTrait;
     use SlugGableTrait;
+    use Translatable;
+    use TranslateScopeTrait;
 
     protected $table = 'manufacturers';
+
     protected $perPage = 20;
+
     protected $with = 'media';
 
-        /**
-         * @var array|string[]
-         */
-        public array $translatedAttributes = [
-            'title',
-            'description',
-            'all_title',
-            'specialization',
-            'flat',
-        ];
+    /**
+     * @var array|string[]
+     */
+    public array $translatedAttributes = [
+        'title',
+        'description',
+        'all_title',
+        'specialization',
+        'flat',
+    ];
 
-        /**
-         * @var string[]
-         */
-        protected $fillable = [
-            'sort',
-            'year',
-            'slug',
-        ];
+    /**
+     * @var string[]
+     */
+    protected $fillable = [
+        'sort',
+        'year',
+        'slug',
+    ];
 
     /**
      * image data

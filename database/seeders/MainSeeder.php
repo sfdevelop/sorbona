@@ -3,7 +3,6 @@
 namespace Database\Seeders;
 
 use App\Models\Page;
-use FakeParagraph;
 use Illuminate\Database\Seeder;
 
 class MainSeeder extends Seeder

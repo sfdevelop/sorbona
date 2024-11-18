@@ -41,7 +41,7 @@ class CategoryController extends BaseAdminController
 
         $title = 'category';
 
-        if ( ! empty($request->title)) {
+        if (! empty($request->title)) {
             return view('admin.category.index_filter',
                 compact('title', 'items'));
         }

@@ -12,7 +12,6 @@ use App\Http\Controllers\Front\PolicyController;
 use App\Http\Controllers\Front\ProductController;
 use App\Http\Controllers\Front\ReturnController;
 
-
 Route::get('/', HomeController::class)->name('home');
 Route::get('manufacturers', ManufacturersController::class)->name('manufacturers');
 Route::get('manufacturer/{manufacturer:slug}', ManufacturerItemController::class)->name('manufacturerItem');

@@ -28,5 +28,4 @@ class CategoryFilter extends AbstractFilter
                     $query->whereTranslationLike('title', '%'.$value.'%');
                 });
     }
-
 }

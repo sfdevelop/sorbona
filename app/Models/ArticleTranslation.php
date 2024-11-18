@@ -10,6 +10,7 @@ class ArticleTranslation extends Model
     use HasFactory;
 
     protected $table = 'article_translations';
+
     public $timestamps = false;
 
     /**

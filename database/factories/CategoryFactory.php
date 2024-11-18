@@ -192,9 +192,8 @@ class CategoryFactory extends Factory
             'Сифони з фільтром і підсвіткою',
         ];
         $category = $this->faker->unique()->randomElement($categories);
+
         return [
-
-
 
             'title:ru' => TranslateFacade::getTranslateText($category, 'ru'),
             'title:uk' => $category,

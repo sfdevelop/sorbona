@@ -9,19 +9,20 @@ use Illuminate\Database\Eloquent\Model;
 
 class Currency extends Model
 {
-    use HasFactory;
     use CreatedFormatTrait;
+    use HasFactory;
 
     protected $table = 'currencies';
+
     protected $perPage = 20;
 
-        /**
-         * @var string[]
-         */
-        protected $fillable = [
-            'title',
-            'currency',
-        ];
+    /**
+     * @var string[]
+     */
+    protected $fillable = [
+        'title',
+        'currency',
+    ];
 
     protected function currency(): Attribute
     {

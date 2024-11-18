@@ -12,29 +12,30 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Filter extends Model implements TranslatableContract
 {
+    use CreatedFormatTrait;
     use HasFactory;
     use Translatable;
-    use CreatedFormatTrait;
     use TranslateScopeTrait;
 
     protected $table = 'filters';
+
     protected $perPage = 20;
 
-        /**
-         * @var array|string[]
-         */
-        public array $translatedAttributes = [
-            'title',
-        ];
+    /**
+     * @var array|string[]
+     */
+    public array $translatedAttributes = [
+        'title',
+    ];
 
-        /**
-         * @var string[]
-         */
-        protected $fillable = [
-            'sort',
-        ];
+    /**
+     * @var string[]
+     */
+    protected $fillable = [
+        'sort',
+    ];
 
-    public function filterValues():HasMany
+    public function filterValues(): HasMany
     {
         return $this->hasMany(FilterValue::class);
     }

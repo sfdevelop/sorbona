@@ -2,7 +2,6 @@
 
 namespace App\Http\Livewire\Admin;
 
-
 use App\Models\Filter;
 use App\Models\FilterValue;
 use Illuminate\Contracts\View\View;
@@ -10,13 +9,14 @@ use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Validation\ValidationException;
 use Livewire\Component;
 
-
 class AddValueFromFilterLiveWier extends Component
 {
     public Filter $filter;
 
     public string $title_uk = '';
+
     public string $title_ru = '';
+
     public int $sort = 1;
 
     public Collection $filters;
@@ -31,7 +31,7 @@ class AddValueFromFilterLiveWier extends Component
         return [
             'title_uk' => 'required|string|max:255',
             'title_ru' => 'required|string|max:255',
-            'sort'     => 'required|integer|min:1',
+            'sort' => 'required|integer|min:1',
         ];
     }
 
@@ -45,7 +45,6 @@ class AddValueFromFilterLiveWier extends Component
 
     /**
      * @param  $field
-     *
      * @return void
      *
      * @throws ValidationException
@@ -54,7 +53,6 @@ class AddValueFromFilterLiveWier extends Component
     {
         $this->validateOnly($field);
     }
-
 
     public function deleteValue(FilterValue $filterValue): void
     {
@@ -70,7 +68,7 @@ class AddValueFromFilterLiveWier extends Component
         $this->filter->filterValues()->create([
             'title:ru' => $data['title_ru'],
             'title:uk' => $data['title_uk'],
-            'sort'     => $data['sort'],
+            'sort' => $data['sort'],
         ]);
 
         $this->resetData();

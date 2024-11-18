@@ -7,7 +7,9 @@ use Illuminate\Database\Eloquent\Builder;
 class ProductFilter extends AbstractFilter
 {
     public const TITLE = 'title';
+
     public const SKU = 'sku';
+
     public const CATEGORY_ID = 'category_id';
 
     protected function getCallbacks(): array

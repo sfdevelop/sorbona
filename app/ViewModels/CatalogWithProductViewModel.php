@@ -4,8 +4,6 @@ namespace App\ViewModels;
 
 use App\Http\Controllers\Traits\CustomSeoTrait;
 use App\Models\Category;
-use App\Repository\Category\CategoryRepositoryInterface;
-use App\Repository\Product\ProductRepositoryInterface;
 use App\Repository\Setting\SettingRepositoryInterface;
 use App\Services\ProductFilters\ProductFiltersService;
 use Illuminate\Database\Eloquent\Collection;
@@ -20,16 +18,15 @@ class CatalogWithProductViewModel extends BaseViewModel
         protected Request $request,
         protected Collection $productsInCategory,
         protected ?Collection $filteredProducts = null,
-    )
-    {
+    ) {
         //        $this->setSeoData($this->settingsRepository->getSetting());
     }
 
     protected function getSettingPerPage(): int
     {
-      return  app()
-          ->make(SettingRepositoryInterface::class)
-          ->getPerPAge();
+        return app()
+            ->make(SettingRepositoryInterface::class)
+            ->getPerPAge();
     }
 
     public function categoryProducts()
@@ -39,7 +36,7 @@ class CatalogWithProductViewModel extends BaseViewModel
         $this->filteredProducts = $this->productsInCategory;
 
         $productsFilter = app()->make(ProductFiltersService::class, ['products' => $products, 'request' => $this->request]);
-        $products= $productsFilter->productFilters();
+        $products = $productsFilter->productFilters();
 
         $this->filteredProducts = $products;
 
@@ -79,6 +76,7 @@ class CatalogWithProductViewModel extends BaseViewModel
     {
         $manufacturers = $this->productsInCategory->groupBy('manufacturer.id')->map(function ($products, $manufacturerId) {
             $manufacturer = $products->first()->manufacturer;
+
             return (object) [
                 'id' => $manufacturer->id,
                 'name' => $manufacturer->title,
@@ -115,5 +113,4 @@ class CatalogWithProductViewModel extends BaseViewModel
 
         return $groupedFilters;
     }
-
 }
