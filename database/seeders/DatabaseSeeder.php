@@ -37,5 +37,8 @@ class DatabaseSeeder extends Seeder
         $this->call([ProductSeeder::class]);
         $this->call([MainSeeder::class]);
         $this->call([SettingSeeder::class]);
+        $this->call([FilterSeeder::class]);
+        $this->call([FilterValueSeeder::class]);
+        $this->call([ProducFilterstSeeder::class]);
     }
 }
