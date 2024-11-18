@@ -20,7 +20,16 @@ interface ProductRepositoryInterface
     ): array|Collection;
 
     public function getUniqColorsFromProduct(int $category_id);
-    public function getRandomProductsInIdCategories(array $categories_id):Collection;
 
-    public function getCategoryProducts(int $category_id):Collection;
+    public function getRandomProductsInIdCategories(array $categories_id,
+    ): Collection;
+
+    public function getCategoryProducts(int $category_id): Collection;
+
+    public function getCategoryRandomProductsWithoutSelf(
+        int $category_id,
+        int $thisProductId,
+    ): Collection;
+
+    public function getProductsInIds(array $productIds): Collection;
 }

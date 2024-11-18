@@ -101,4 +101,30 @@ class ProductRepository implements ProductRepositoryInterface
             ->oldest('sort')
             ->get();
     }
+
+    public function getCategoryRandomProductsWithoutSelf(
+        int $category_id,
+        int $thisProductId
+    ): Collection {
+        return Product::query()
+            ->inRandomOrder()
+            ->trans()
+            ->with(['category', 'manufacturer'])
+            ->where('category_id', $category_id)
+            ->whereNot('id', $thisProductId)
+            ->oldest('sort')
+            ->take(8)
+            ->get();
+    }
+
+    public function getProductsInIds(array $productIds): Collection
+    {
+        return Product::query()
+            ->inRandomOrder()
+            ->trans()
+            ->with(['category','manufacturer'])
+            ->whereIn('id', $productIds)
+            ->oldest('sort')
+            ->get();
+    }
 }

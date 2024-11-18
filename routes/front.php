@@ -9,6 +9,7 @@ use App\Http\Controllers\Front\ManufacturerItemController;
 use App\Http\Controllers\Front\ManufacturersController;
 use App\Http\Controllers\Front\NewsController;
 use App\Http\Controllers\Front\PolicyController;
+use App\Http\Controllers\Front\ProductController;
 use App\Http\Controllers\Front\ReturnController;
 
 
@@ -26,7 +27,7 @@ Route::get('category/{category:slug}', CatalogController::class)->name('category
 //Route::get('bestseller', BestsellerController::class)->name('bestseller');
 ////Route::get('about-us', \App\Http\Controllers\Front\AboutController::class)->name('aboutUs');
 //Route::get('products-in-category/category/{category:slug}', ProductsInCategoryController::class)->name('filter');
-//Route::get('product/{product:slug}', \App\Http\Controllers\Front\ProductController::class)->name('product');
+Route::get('product/{product:slug}', ProductController::class)->name('product');
 //Route::get('login', \App\Http\Controllers\Front\LoginController::class)->name('login');
 //Route::get('sign-up', \App\Http\Controllers\Front\SignUpController::class)->name('signUp');
 //Route::get('cart', \App\Http\Controllers\Front\CartController::class)->name('cart');

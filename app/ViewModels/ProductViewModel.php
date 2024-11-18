@@ -4,6 +4,7 @@ namespace App\ViewModels;
 
 use App\Http\Controllers\Traits\CustomSeoTrait;
 use App\Models\Product;
+use App\Repository\Product\ProductRepositoryInterface;
 use App\Services\ProductAttrebuts\ProductAttributesServiceInterface;
 use Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection;
 
@@ -13,9 +14,8 @@ class ProductViewModel extends BaseViewModel
 
     public function __construct(
         public Product $product,
-        protected ProductAttributesServiceInterface $productAttributesService
     ) {
-        $this->setSeoData($this->product);
+//        $this->setSeoData($this->product);
     }
 
     /**
@@ -30,43 +30,36 @@ class ProductViewModel extends BaseViewModel
         return $photos->reverse();
     }
 
-    /**
-     * @return array
-     */
-    public function colors(): array
+    public function characteristics()
     {
-        $colorsArray = $this->product->colors;
-
-        if ($colorsArray) {
-            return $this->productAttributesService->getArrayColorsAttr($colorsArray);
-        }
-
-        return [];
+        return $this->product->filterValues;
     }
 
-    /**
-     * @return array
-     */
-    public function sizes(): array
+    public function miniOptions()
     {
-        $sizesArray = $this->product->sizes;
-
-        if ($sizesArray) {
-            return $this->productAttributesService->getArraySizesAttr($sizesArray);
-        }
-
-        return [];
+        return $this->characteristics()->take(3);
     }
 
-    /**
-     * @return array|mixed
-     */
-    public function wishlistOnAuthUser(): mixed
+    public function randomItems()
     {
-        if (! \Auth::check()) {
-            return [];
+        return app()
+            ->make(ProductRepositoryInterface::class)
+            ->getCategoryRandomProductsWithoutSelf(
+                category_id: $this->product->category_id,
+                thisProductId: $this->product->id,
+            );
+    }
+
+    public function seeProducts()
+    {
+        if (session('recently_viewed')) {
+            $idProducts = session('recently_viewed');
+
+            return app()
+                ->make(ProductRepositoryInterface::class)
+                ->getProductsInIds($idProducts);
         }
 
-        return \Auth::user()->wishlist_ids;
+        return collect([]);
     }
 }

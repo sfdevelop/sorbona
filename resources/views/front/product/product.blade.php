@@ -1,52 +1,86 @@
-@extends('layout.bureviy')
+@extends('layout.sorbona')
 @section('content')
     @php /** @var \App\Models\Product $product */ @endphp
-    <div class="container">
-        <div class="breadcrumbs">
-            <div class="breadcrumbs__inner element-animation">
-                <ul class="breadcrumbs__list">
-                    <li><a href="{{route('home')}}">{{__('front.menu.home')}}</a></li>
-                    <li><a href="{{route('catalog')}}">{{__('front.menu.catalog')}}</a></li>
-                    <li><a href="#">{{$product->category->title}}</a></li>
-                    <li><span>{{$product->title}}</span></li>
-                </ul>
-            </div>
-        </div>
-
-
-        <section class="product">
-            <div class="container">
-                <div class="product__inner">
-
-                    @include('front.product._photos_product')
-
-                    @livewire('front.product.add-to-cart-live-wier',
-                    [
-                        'product' => $product,
-                        'sizes' => $sizes,
-                        'colors' => $colors,
-                        'wishList' => $wishlistOnAuthUser
-                    ]
-                    )
-
-                </div>
-            </div>
-        </section>
-
+    <div class="breadcrumb__container--medium">
+        <ul class="breadcrumb">
+            <li><a href="{{route('home')}}">{{__('front.menu.main')}}</a></li>
+            @if ($product->category->parentCategory)
+                <span>/</span>
+                <li>
+                    <a href="{{route('category', $product->category->parentCategory->slug)}}">{{$product->category->parentCategory->title}}</a>
+                </li>
+            @endif
+            <span>/</span>
+            <li><a href="{{route('category', $product->category->slug)}}">{{$product->category->title}}</a></li>
+            <span>/</span>
+            <li>{{$product->title}}</li>
+        </ul>
     </div>
-    <section class="u-info">
-        <div class="container">
-            <div class="u-info__inner">
-                <div class="u-info__left">
-                    <h6 class="element-animation">
-                        {{__('front.description')}}
-                    </h6>
-                    <div class="element-animation">
-                        {!! $product->description !!}
+
+    <section class="section">
+        <div class="section__container--medium section__container_pb">
+            <div class="single__product">
+                <div class="single__product_head">
+                    <h1 class="single__product_title">{{$product->title}}</h1>
+                    <p class="single__product_article">{{__('front.sku')}} {{$product->sku}}</p>
+                </div>
+                <div class="single__product_body">
+
+                    @include('front.product._photo')
+
+                    <div class="single__product_wrapper">
+                        <div class="product-item__body">
+
+                            @include('front.product.__manufacturer')
+                            @include('front.product._price')
+
+
+                            <div class="product-item__bottom">
+                                <div class="product-item__quantity">
+                                    <button class="product-item__quantity_minus">
+                                        <svg>
+                                            <use xlink:href="img/icons/icons.svg#icon-minus"></use>
+                                        </svg>
+                                    </button>
+                                    <span id="add_num" class="product-item__quantity_num">1</span>
+                                    <button class="product-item__quantity_plus">
+                                        <svg>
+                                            <use xlink:href="img/icons/icons.svg#icon-plus"></use>
+                                        </svg>
+                                    </button>
+                                </div>
+                                <button class="product-item__tobasket btn">В корзину</button>
+                                <button class="product-item__buy btn btn--line">Купить в 1 клик</button>
+                            </div>
+
+                        </div>
+                        @include('front.product._miniFilters')
                     </div>
                 </div>
-                @include('front.product._comments')
+                <h3 class="single__product_info-title">{{__('front.characteristics')}}</h3>
+                <div class="single__product_info">
+                    @include('front.product._options')
+                    <div class="single__product_info-col">
+
+                        {!! $product->description  !!}
+
+                    </div>
+                </div>
             </div>
         </div>
     </section>
+
+    @include('front.product._randomProducts')
+    @include('front.product._seeProducts')
+
 @endsection
+
+@pushonce('frontJs')
+    <script>
+        $(document).ready(function () {
+            $('.single__product_info-col p').each(function () {
+                $(this).addClass('single__product_info-decription');
+            });
+        });
+    </script>
+@endpushonce

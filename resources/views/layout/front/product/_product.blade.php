@@ -1,7 +1,7 @@
-<div class="product-item ">
+<div class="product-item {{($swiper ?? false) ? 'swiper-slide' : ''}} ">
 
     @php /** @var \App\Models\Product $product */ @endphp
-    <a href="product.html" class="product-item__image">
+    <a href="{{route('product', $product->slug)}}" class="product-item__image">
         @if($product->is_new)
             <div class="product-item__label">NEW</div>
         @endif
@@ -10,7 +10,7 @@
 
     <div class="product-item__body">
         <div class="product-item__head">
-            <a href="product.html" class="product-item__title">{{$product->title}}</a>
+            <a href="{{route('product', $product->slug)}}" class="product-item__title">{{$product->title}}</a>
             <p class="product-item__subtitle">{{$product->manufacturer->title}}</p>
         </div>
         <div class="product-item__prices">
