@@ -53,24 +53,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        if (Schema::hasTable('categories')) {
-            $categories = Category::query()
-                ->whereNull('category_id')
-                ->withCount(['childrenCategories', 'products'])
-                ->with([
-                    'childrenCategories' => function ($query) {
-                        $query->withCount('products');
-                    }, 'childrenCategories.childrenCategories' => function ($query,
-                    ) {
-                        $query->withCount('products');
-                    },
-                ])
-                ->withTranslation()
-                ->oldest('sort')
-                ->paginate();
-
-            View::share('categories', $categories);
-        }
 
         if (Schema::hasTable('settings')) {
             $settings = Setting::query()
