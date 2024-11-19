@@ -20,7 +20,7 @@
                                     <a href="{{route('category', $childCategory->slug)}}" class="catalog-item__content-link">{{$childCategory->title}}</a>
                                 @endforeach
                             </div>
-                            @if($category->children_categories_count > 4)
+                            @if($category->children_categories_count >= 5)
                                 <div class="catalog-item__content-btn">
                                     <span>{{__('front.moreCategory')}}</span>
                                     <span>{{__('front.notMoreCategory')}}</span>
