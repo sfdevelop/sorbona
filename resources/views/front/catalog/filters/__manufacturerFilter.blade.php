@@ -1,11 +1,11 @@
-<div @class(['filters__item ui accordion', 'is-active' => request()->manuf])>
-    <div @class(['filters-item__head title', 'active' => request()->manuf]) >
-        <span @class(['filters-item__head-title', 'active' => request()->manuf])>{{__('front.marka')}}</span>
+<div @class(['filters__item ui accordion', 'is-active' => request()->brand])>
+    <div @class(['filters-item__head title', 'active' => request()->brand]) >
+        <span @class(['filters-item__head-title', 'active' => request()->brand])>{{__('front.marka')}}</span>
         <svg>
             <use xlink:href="{{asset('front/img/icons/icons.svg#icon-label-open')}}"></use>
         </svg>
     </div>
-    <div @class(['filters-item__body content ', 'active' => request()->manuf])>
+    <div @class(['filters-item__body content ', 'active' => request()->brand])>
         <label for="filter-search" class="filters-item__search">
             <svg>
                 <use xlink:href="{{asset('front/img/icons/icons.svg#icon-search')}}"></use>
@@ -19,13 +19,12 @@
                         <input
                                 type="checkbox"
                                 name=""
-                                @checked( in_array($manufacturer->id, array_map('intval', explode(',', request()->input('manuf') ?? ''))))
+                                @checked(in_array($manufacturer->slug, $manufacturerArray))
                                 class="chbox__input"
-                                value="{{$manufacturer->id}}"
+                                value="{{$manufacturer->slug}}"
                         />
                         <span class="chbox__icon"></span>
-                        <p class="chbox__text">{{$manufacturer->name}}
-{{--                            <span>({{$manufacturer->product_count}})</span>--}}
+                        <p class="chbox__text">{{$manufacturer->id}}
                         </p>
                     </label>
                 </div>
@@ -38,23 +37,32 @@
     <script>
         $(document).ready(function() {
 
-            function getSelectedCheckboxes() {
-                let selectedValues = [];
-                $('.unique-manufacturer-filter .chbox__input:checked').each(function() {
-                    selectedValues.push($(this).val());
-                });
-                return selectedValues;
-            }
-
-            function updateUrlParameter(param, paramVal) {
+            function updateUrlParameter(param, paramVal, action) {
                 let url = new URL(window.location.href);
-                url.searchParams.set(param, paramVal);
+                let params = url.searchParams;
+
+                if (action === 'add') {
+                    params.append(param, paramVal);
+                } else if (action === 'remove') {
+                    let values = params.getAll(param);
+                    params.delete(param);
+                    values.forEach(value => {
+                        if (value !== paramVal) {
+                            params.append(param, value);
+                        }
+                    });
+                }
+
                 window.history.replaceState(null, null, url.toString());
             }
 
             $('.unique-manufacturer-filter .chbox__input').on('change', function() {
-                let selectedValues = getSelectedCheckboxes();
-                updateUrlParameter('manuf', selectedValues.join(','));
+                let value = $(this).val();
+                if ($(this).is(':checked')) {
+                    updateUrlParameter('brand', value, 'add');
+                } else {
+                    updateUrlParameter('brand', value, 'remove');
+                }
                 location.reload();
             });
         });

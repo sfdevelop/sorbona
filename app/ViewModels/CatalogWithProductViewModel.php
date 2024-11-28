@@ -14,6 +14,7 @@ class CatalogWithProductViewModel extends BaseViewModel
     use CustomSeoTrait;
 
     public function __construct(
+        public ?array $manufacturerArray,
         public Category $category,
         protected Request $request,
         protected Collection $productsInCategory,
@@ -80,6 +81,7 @@ class CatalogWithProductViewModel extends BaseViewModel
             return (object) [
                 'id' => $manufacturer->id,
                 'name' => $manufacturer->title,
+                'slug' => $manufacturer->slug,
                 'product_count' => $products->count(),
             ];
         })->values();

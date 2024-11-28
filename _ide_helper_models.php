@@ -36,6 +36,7 @@ namespace App\Models{
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Metadata> $metadata
  * @property-read int|null $metadata_count
  * @property-read mixed $preview
+ * @property-read mixed $short_description
  * @property-read mixed $title_seo
  * @property-read \App\Models\ArticleTranslation|null $translation
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\ArticleTranslation> $translations
@@ -63,7 +64,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Article withTranslation(?string $locale = null)
  * @method static \Illuminate\Database\Eloquent\Builder|Article withUniqueSlugConstraints(\Illuminate\Database\Eloquent\Model $model, string $attribute, array $config, string $slug)
  */
-	class Article extends \Eloquent implements \Astrotomic\Translatable\Contracts\Translatable, \Spatie\MediaLibrary\HasMedia {}
+	class Article extends \Eloquent implements \Spatie\MediaLibrary\HasMedia, \Astrotomic\Translatable\Contracts\Translatable {}
 }
 
 namespace App\Models{
@@ -129,7 +130,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Benefit whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Benefit withTranslation(?string $locale = null)
  */
-	class Benefit extends \Eloquent implements \Astrotomic\Translatable\Contracts\Translatable, \Spatie\MediaLibrary\HasMedia {}
+	class Benefit extends \Eloquent implements \Spatie\MediaLibrary\HasMedia, \Astrotomic\Translatable\Contracts\Translatable {}
 }
 
 namespace App\Models{
@@ -424,6 +425,7 @@ namespace App\Models{
  * App\Models\Filter
  *
  * @property int $id
+ * @property string $slug
  * @property int $sort
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
@@ -435,6 +437,7 @@ namespace App\Models{
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\FilterTranslation> $translations
  * @property-read int|null $translations_count
  * @method static \Database\Factories\FilterFactory factory($count = null, $state = [])
+ * @method static \Illuminate\Database\Eloquent\Builder|Filter findSimilarSlugs(string $attribute, array $config, string $slug)
  * @method static \Illuminate\Database\Eloquent\Builder|Filter listsTranslations(string $translationField)
  * @method static \Illuminate\Database\Eloquent\Builder|Filter newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Filter newQuery()
@@ -448,11 +451,13 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Filter translatedIn(?string $locale = null)
  * @method static \Illuminate\Database\Eloquent\Builder|Filter whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Filter whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Filter whereSlug($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Filter whereSort($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Filter whereTranslation(string $translationField, $value, ?string $locale = null, string $method = 'whereHas', string $operator = '=')
  * @method static \Illuminate\Database\Eloquent\Builder|Filter whereTranslationLike(string $translationField, $value, ?string $locale = null)
  * @method static \Illuminate\Database\Eloquent\Builder|Filter whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Filter withTranslation(?string $locale = null)
+ * @method static \Illuminate\Database\Eloquent\Builder|Filter withUniqueSlugConstraints(\Illuminate\Database\Eloquent\Model $model, string $attribute, array $config, string $slug)
  */
 	class Filter extends \Eloquent implements \Astrotomic\Translatable\Contracts\Translatable {}
 }
@@ -582,7 +587,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Manufacturer withTranslation(?string $locale = null)
  * @method static \Illuminate\Database\Eloquent\Builder|Manufacturer withUniqueSlugConstraints(\Illuminate\Database\Eloquent\Model $model, string $attribute, array $config, string $slug)
  */
-	class Manufacturer extends \Eloquent implements \Astrotomic\Translatable\Contracts\Translatable, \Spatie\MediaLibrary\HasMedia {}
+	class Manufacturer extends \Eloquent implements \Spatie\MediaLibrary\HasMedia, \Astrotomic\Translatable\Contracts\Translatable {}
 }
 
 namespace App\Models{
