@@ -3,11 +3,11 @@
 namespace App\Http\Controllers\Front;
 
 use App\Repository\Page\PageRepositoryInterface;
+use App\ViewModels\PageViewModel;
 
 class ReturnController extends BaseFrontController
 {
-    public function __construct(
-    ) {}
+    public function __construct() {}
 
     public function __invoke()
     {
@@ -15,6 +15,7 @@ class ReturnController extends BaseFrontController
             ->make(PageRepositoryInterface::class)
             ->getPageFromId(2);
 
-        return view('front.page.policy', compact('policy'));
+        return (new PageViewModel())
+            ->view('front.page.policy', compact('policy'));
     }
 }
