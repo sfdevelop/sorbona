@@ -95,8 +95,11 @@ class CatalogWithProductViewModel extends BaseViewModel
 
     public function productsAllFilters()
     {
-        $this->productsInCategory->load('filterValues.filter');
-        $filters = $this->productsInCategory->flatMap(function ($product) {
+        $filteredProducts = $this->categoryProducts()->getCollection();
+        $allProducts = $this->productsInCategory;
+        $allProducts->load('filterValues.filter');
+
+        $filters = $allProducts->flatMap(function ($product) {
             return $product->filterValues->map(function ($filterValue) {
                 return [
                     'filter_name'        => $filterValue->filter->title,
@@ -111,17 +114,22 @@ class CatalogWithProductViewModel extends BaseViewModel
             });
         });
 
-        $groupedFilters =
-            $filters->groupBy('filter_id')->map(function ($items, $filterId) {
-                return [
-                    'filter_name'        => $items->first()['filter_name'],
-                    'filter_parent_slug' => $items->first()['filter_parent_slug'],
-                    'filter_id'          => $filterId,
-                    'values'             => $items
-                        ->pluck('value')
-                        ->unique('id'),
-                ];
+        $groupedFilters = $filters->groupBy('filter_id')->map(function ($items, $filterId) use ($filteredProducts) {
+            $values = $items->pluck('value')->unique('id')->map(function ($value) use ($filteredProducts) {
+                $count = $filteredProducts->filter(function ($product) use ($value) {
+                    return $product->filterValues->contains('id', $value['id']);
+                })->count();
+
+                return array_merge($value, ['count' => $count]);
             });
+
+            return [
+                'filter_name'        => $items->first()['filter_name'],
+                'filter_parent_slug' => $items->first()['filter_parent_slug'],
+                'filter_id'          => $filterId,
+                'values'             => $values,
+            ];
+        });
 
         return $groupedFilters;
     }

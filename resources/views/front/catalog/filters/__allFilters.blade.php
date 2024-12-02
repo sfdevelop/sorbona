@@ -32,7 +32,7 @@
                             ></span>
                             <p class="chbox__text">
                                 {{ $filterValue['title'] }}
-                                <span>({{ $filterValue['id'] }})</span>
+                                <span>({{ $filterValue['count'] }})</span>
                             </p>
                         </label>
                     </div>
