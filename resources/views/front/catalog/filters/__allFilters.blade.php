@@ -15,8 +15,8 @@
                     <div class="chbox">
                         <label class="chbox__label">
                             <input
-{{--                                @disabled(!in_array($filterValue['slug'], $arrayParametersValues))--}}
-{{--                                @readonly(!in_array($filterValue['slug'], $arrayParametersValues))--}}
+                                @disabled(!in_array($filterValue['id'], $allFiltersIds))
+                                @readonly(!in_array($filterValue['id'], $allFiltersIds))
                                 data-filter_id="{{ $filter['filter_id'] }}"
                                 data-parent="{{ $filter['filter_parent_slug'] }}"
                                 @checked(in_array($filterValue['slug'], $arrayParametersValues))
@@ -27,12 +27,12 @@
                             />
                             <span
                                     class="chbox__icon"
-{{--                                    @readonly(!in_array($filterValue['slug'], $arrayParametersValues))--}}
-{{--                                    @disabled(!in_array($filterValue['slug'], $arrayParametersValues))--}}
+                                    @readonly(!in_array($filterValue['id'], $allFiltersIds))
+                                    @disabled(!in_array($filterValue['id'], $allFiltersIds))
                             ></span>
                             <p class="chbox__text">
                                 {{ $filterValue['title'] }}
-{{--                                <span>({{ $filterValue['id'] }})</span>--}}
+                                <span>({{ $filterValue['id'] }})</span>
                             </p>
                         </label>
                     </div>

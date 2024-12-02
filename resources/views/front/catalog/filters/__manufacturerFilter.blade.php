@@ -25,6 +25,7 @@
                         />
                         <span class="chbox__icon"></span>
                         <p class="chbox__text">{{$manufacturer->name}}
+                                                            <span>({{ }})</span>
                         </p>
                     </label>
                 </div>
