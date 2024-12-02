@@ -6,6 +6,7 @@ use App\Http\Controllers\Traits\CustomSeoTrait;
 use App\Models\Category;
 use App\Repository\Setting\SettingRepositoryInterface;
 use App\Services\ProductFilters\ProductFiltersService;
+use App\Services\ProductFilters\UrlParametersService;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\Request;
 
@@ -36,7 +37,8 @@ class CatalogWithProductViewModel extends BaseViewModel
 
         $this->filteredProducts = $this->productsInCategory;
 
-        $productsFilter = app()->make(ProductFiltersService::class, ['products' => $products, 'request' => $this->request]);
+        $productsFilter = app()->make(ProductFiltersService::class,
+            ['products' => $products, 'request' => $this->request]);
         $products = $productsFilter->productFilters();
 
         $this->filteredProducts = $products;
@@ -75,16 +77,18 @@ class CatalogWithProductViewModel extends BaseViewModel
 
     public function productsManufacturers()
     {
-        $manufacturers = $this->productsInCategory->groupBy('manufacturer.id')->map(function ($products, $manufacturerId) {
-            $manufacturer = $products->first()->manufacturer;
+        $manufacturers = $this->productsInCategory
+            ->groupBy('manufacturer.id')
+            ->map(function ($products, $manufacturerId) {
+                $manufacturer = $products->first()->manufacturer;
 
-            return (object) [
-                'id' => $manufacturer->id,
-                'name' => $manufacturer->title,
-                'slug' => $manufacturer->slug,
-                'product_count' => $products->count(),
-            ];
-        })->values();
+                return (object) [
+                    'id'            => $manufacturer->id,
+                    'name'          => $manufacturer->title,
+                    'slug'          => $manufacturer->slug,
+                    'product_count' => $products->count(),
+                ];
+            })->values();
 
         return collect($manufacturers);
     }
@@ -95,24 +99,44 @@ class CatalogWithProductViewModel extends BaseViewModel
         $filters = $this->productsInCategory->flatMap(function ($product) {
             return $product->filterValues->map(function ($filterValue) {
                 return [
-                    'filter_name' => $filterValue->filter->title,
-                    'filter_id' => $filterValue->filter->id,
-                    'value' => [
-                        'id' => $filterValue->id,
+                    'filter_name'        => $filterValue->filter->title,
+                    'filter_id'          => $filterValue->filter->id,
+                    'filter_parent_slug' => $filterValue->filter->slug,
+                    'value'              => [
+                        'id'    => $filterValue->id,
                         'title' => $filterValue->title,
+                        'slug'  => $filterValue->slug,
                     ],
                 ];
             });
         });
 
-        $groupedFilters = $filters->groupBy('filter_id')->map(function ($items, $filterId) {
-            return [
-                'filter_name' => $items->first()['filter_name'],
-                'filter_id' => $filterId,
-                'values' => $items->pluck('value')->unique('id'),
-            ];
-        });
+        $groupedFilters =
+            $filters->groupBy('filter_id')->map(function ($items, $filterId) {
+                return [
+                    'filter_name'        => $items->first()['filter_name'],
+                    'filter_parent_slug' => $items->first()['filter_parent_slug'],
+                    'filter_id'          => $filterId,
+                    'values'             => $items
+                        ->pluck('value')
+                        ->unique('id'),
+                ];
+            });
 
         return $groupedFilters;
+    }
+
+    public function arrayUrlParameters(): array
+    {
+        return app()
+            ->make(UrlParametersService::class)
+            ->getUrlParameters($this->request->query());
+    }
+
+    public function arrayParametersValues(): array
+    {
+        return app()
+            ->make(UrlParametersService::class)
+            ->getParametersValues();
     }
 }

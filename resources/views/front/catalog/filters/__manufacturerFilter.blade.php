@@ -24,7 +24,7 @@
                                 value="{{$manufacturer->slug}}"
                         />
                         <span class="chbox__icon"></span>
-                        <p class="chbox__text">{{$manufacturer->id}}
+                        <p class="chbox__text">{{$manufacturer->name}}
                         </p>
                     </label>
                 </div>

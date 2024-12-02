@@ -2,7 +2,9 @@
 
 namespace App\Patterns\Chains;
 
+use App\Models\FilterValue;
 use App\Models\Product;
+use App\Services\ProductFilters\UrlParametersService;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\Request;
 
@@ -12,13 +14,15 @@ class AllFilter implements ProductFilterInterface
 
     public function apply(Collection $products): Collection
     {
-        if (! $this->request->filled('filters')) {
-            return $products;
-        }
+$parametersSlugs = app()
+    ->make(UrlParametersService::class)
+    ->getParametersValues();
 
-        $filtersParam = $this->request->input('filters');
-        $filterValueIds = explode(',', $filtersParam);
-        $filterValueIds = array_map('intval', $filterValueIds);
+        $filterValueIds =
+            FilterValue::query()
+                ->whereIn('slug', $parametersSlugs)
+                ->pluck('id')
+                ->toArray();
 
         if (! empty($filterValueIds)) {
             $products = $products->filter(function (Product $product) use ($filterValueIds) {

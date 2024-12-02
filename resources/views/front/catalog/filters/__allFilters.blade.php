@@ -1,5 +1,5 @@
 @foreach($productsAllFilters as $filter)
-    @php $showAccordion = in_array($filter['filter_id'], array_map('intval', explode(',', request()->input('show') ?? ''))) @endphp
+    @php $showAccordion = in_array($filter['filter_parent_slug'], $arrayUrlParameters) @endphp
     <div @class(['filters__item ui accordion', 'is-active' => $showAccordion])>
         <div @class(['filters-item__head title', 'active' => $showAccordion])>
             <span class="filters-item__head-title">
@@ -15,19 +15,20 @@
                     <div class="chbox">
                         <label class="chbox__label">
                             <input
-                                @disabled(!in_array($filterValue['id'], $allFiltersIds))
-                                @readonly(!in_array($filterValue['id'], $allFiltersIds))
+{{--                                @disabled(!in_array($filterValue['slug'], $arrayParametersValues))--}}
+{{--                                @readonly(!in_array($filterValue['slug'], $arrayParametersValues))--}}
                                 data-filter_id="{{ $filter['filter_id'] }}"
-                                @checked(in_array($filterValue['id'], array_map('intval', explode(',', request()->input('filters') ?? ''))))
+                                data-parent="{{ $filter['filter_parent_slug'] }}"
+                                @checked(in_array($filterValue['slug'], $arrayParametersValues))
                                 type="checkbox"
                                 name="filters[]"
                                 class="chbox__input"
-                                value="{{ $filterValue['id'] }}"
+                                value="{{ $filterValue['slug'] }}"
                             />
                             <span
                                     class="chbox__icon"
-                                    @readonly(!in_array($filterValue['id'], $allFiltersIds))
-                                    @disabled(!in_array($filterValue['id'], $allFiltersIds))
+{{--                                    @readonly(!in_array($filterValue['slug'], $arrayParametersValues))--}}
+{{--                                    @disabled(!in_array($filterValue['slug'], $arrayParametersValues))--}}
                             ></span>
                             <p class="chbox__text">
                                 {{ $filterValue['title'] }}
@@ -48,43 +49,29 @@
 @pushonce('frontJs')
     <script>
         $(document).ready(function() {
-            $('.unique-filter-container .chbox__input').on('change', function() {
+            $('.unique-filter-container input[type="checkbox"]').on('change', function() {
                 let url = new URL(window.location.href);
                 let params = new URLSearchParams(url.search);
-
-                let existingFilters = params.get('filters') ? params.get('filters').split(',') : [];
-                let existingShows = params.get('show') ? params.get('show').split(',') : [];
-
+                let parent = $(this).data('parent');
                 let value = $(this).val();
-                let filterId = $(this).data('filter_id').toString();
 
-                if ($(this).is(':checked')) {
-                    if (!existingFilters.includes(value)) {
-                        existingFilters.push(value);
-                    }
-                    if (!existingShows.includes(filterId)) {
-                        existingShows.push(filterId);
-                    }
+                if (this.checked) {
+                    // Додаємо новий параметр
+                    params.append(parent, value);
                 } else {
-                    existingFilters = existingFilters.filter(item => item !== value);
-                    if (!$('.unique-filter-container .chbox__input[data-filter_id="' + filterId + '"]:checked').length) {
-                        existingShows = existingShows.filter(item => item !== filterId);
+                    // Видаляємо параметр
+                    let entries = params.entries();
+                    params = new URLSearchParams();
+                    for(let pair of entries) {
+                        if (!(pair[0] === parent && pair[1] === value)) {
+                            params.append(pair[0], pair[1]);
+                        }
                     }
                 }
 
-                if (existingFilters.length > 0) {
-                    params.set('filters', existingFilters.join(','));
-                } else {
-                    params.delete('filters');
-                }
-
-                if (existingShows.length > 0) {
-                    params.set('show', existingShows.join(','));
-                } else {
-                    params.delete('show');
-                }
-
-                window.location.search = params.toString();
+                // Оновлюємо URL і перезавантажуємо сторінку
+                url.search = params.toString();
+                window.location.href = url.toString();
             });
         });
     </script>

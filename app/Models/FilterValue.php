@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\Traits\CreatedFormatTrait;
+use App\Models\Traits\SlugGableTrait;
 use App\Models\Traits\TranslateScopeTrait;
 use Astrotomic\Translatable\Contracts\Translatable as TranslatableContract;
 use Astrotomic\Translatable\Translatable;
@@ -16,6 +17,7 @@ class FilterValue extends Model implements TranslatableContract
     use HasFactory;
     use Translatable;
     use TranslateScopeTrait;
+    use SlugGableTrait;
 
     protected $table = 'filter_values';
 
