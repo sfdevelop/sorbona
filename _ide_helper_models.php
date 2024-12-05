@@ -486,6 +486,7 @@ namespace App\Models{
  * App\Models\FilterValue
  *
  * @property int $id
+ * @property string $slug
  * @property int $filter_id
  * @property int $sort
  * @property \Illuminate\Support\Carbon|null $created_at
@@ -497,6 +498,7 @@ namespace App\Models{
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\FilterValueTranslation> $translations
  * @property-read int|null $translations_count
  * @method static \Database\Factories\FilterValueFactory factory($count = null, $state = [])
+ * @method static \Illuminate\Database\Eloquent\Builder|FilterValue findSimilarSlugs(string $attribute, array $config, string $slug)
  * @method static \Illuminate\Database\Eloquent\Builder|FilterValue listsTranslations(string $translationField)
  * @method static \Illuminate\Database\Eloquent\Builder|FilterValue newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|FilterValue newQuery()
@@ -511,11 +513,13 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|FilterValue whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|FilterValue whereFilterId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|FilterValue whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|FilterValue whereSlug($value)
  * @method static \Illuminate\Database\Eloquent\Builder|FilterValue whereSort($value)
  * @method static \Illuminate\Database\Eloquent\Builder|FilterValue whereTranslation(string $translationField, $value, ?string $locale = null, string $method = 'whereHas', string $operator = '=')
  * @method static \Illuminate\Database\Eloquent\Builder|FilterValue whereTranslationLike(string $translationField, $value, ?string $locale = null)
  * @method static \Illuminate\Database\Eloquent\Builder|FilterValue whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|FilterValue withTranslation(?string $locale = null)
+ * @method static \Illuminate\Database\Eloquent\Builder|FilterValue withUniqueSlugConstraints(\Illuminate\Database\Eloquent\Model $model, string $attribute, array $config, string $slug)
  */
 	class FilterValue extends \Eloquent implements \Astrotomic\Translatable\Contracts\Translatable {}
 }
@@ -1100,10 +1104,12 @@ namespace App\Models{
  * @property string $locale
  * @property string $address
  * @property string|null $textForMail
+ * @property string|null $cooperate
  * @method static \Illuminate\Database\Eloquent\Builder|SettingTranslation newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|SettingTranslation newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|SettingTranslation query()
  * @method static \Illuminate\Database\Eloquent\Builder|SettingTranslation whereAddress($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|SettingTranslation whereCooperate($value)
  * @method static \Illuminate\Database\Eloquent\Builder|SettingTranslation whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|SettingTranslation whereLocale($value)
  * @method static \Illuminate\Database\Eloquent\Builder|SettingTranslation whereSettingId($value)

@@ -1,4 +1,5 @@
 <footer class="footer">
+    @php /** @var \App\Models\Setting $settings */ @endphp
     <div class="footer__container">
         <div class="footer__top">
             <div class="footer__col">
@@ -6,7 +7,7 @@
                     <img src="{{asset('front/img/footer-logo.svg')}}" alt="image" loading="lazy" class="img-full" />
                 </a>
                 <p class="footer__text">
-                    Интернет-магазин запорно-сантехнической арматуры в Украине. Официальный дилер FADO в Харькове и области
+                    {{$settings->textForMail}}
                 </p>
                 <div class="footer__social">
                     <a target="_blank" href="{{$settings->facebook}}" class="footer__social-link">
@@ -46,7 +47,7 @@
             </div>
         </div>
         <div class="footer__row">
-            <p class="footer-row__item">© 2023 SORBONA. {{__('front.proved')}}</p>
+            <p class="footer-row__item">{{$settings->cooperate}}</p>
             <a href="{{route('policy')}}" class="footer-row__item">{{__('front.policy')}}</a>
             <div class="footer-row__creator">{{__('front.site')}}<img src="{{asset('front/img/logo-webakula.svg')}}" alt="image" loading="lazy" /></div>
         </div>

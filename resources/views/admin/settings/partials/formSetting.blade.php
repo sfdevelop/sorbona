@@ -48,6 +48,24 @@
                                     :item="$item"
                                     :locale="$locale"
                             />
+
+                            <x-input-lang
+                                    with="25"
+                                    type="text"
+                                    title="{{__('admin.cooperate')}}*"
+                                    name="cooperate"
+                                    :item="$item"
+                                    :locale="$locale"
+                            />
+
+                            <x-input-lang
+                                    with="25"
+                                    type="text"
+                                    title="{{__('admin.textForMail')}}*"
+                                    name="textForMail"
+                                    :item="$item"
+                                    :locale="$locale"
+                            />
                             {{--                            @include('layout.SEOData.Seo')--}}
                         </div>
                     @endforeach

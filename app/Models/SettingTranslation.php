@@ -12,5 +12,7 @@ class SettingTranslation extends Model
 
     protected $fillable = [
         'address',
+        'cooperate',
+        'textForMail',
     ];
 }

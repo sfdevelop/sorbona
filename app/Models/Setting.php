@@ -22,6 +22,8 @@ class Setting extends Model implements TranslatableContract
 
     public array $translatedAttributes = [
         'address',
+        'textForMail',
+        'cooperate',
     ];
 
     protected $fillable = [

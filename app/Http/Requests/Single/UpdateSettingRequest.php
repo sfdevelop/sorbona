@@ -27,12 +27,16 @@ class UpdateSettingRequest extends BaseRequest
             'facebook' => 'nullable|string',
             'instagram' => 'nullable|string',
             'website' => 'required|string',
-            'map' => 'required|string',
+            'map' => 'nullable|string',
+            'textForMail' => 'nurequiredllable|sometimes|string',
+            'cooperate' => 'required|sometimes|string',
             'product_per_page' => 'required|integer|between:1,100',
         ];
 
         $rules += RuleFactory::make([
             '%address%' => 'required|string',
+            '%cooperate%' => 'required|string',
+            '%textForMail%' => 'required|string',
         ]);
 
         return $rules;
