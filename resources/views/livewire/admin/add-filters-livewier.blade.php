@@ -6,6 +6,7 @@
             @foreach($productFilters as $productFilter)
                 <div class="d-flex justify-content-between my-4">
                     <div>
+                        {{ $productFilter->filter->title }}:
                         {{$productFilter->title}}
                     </div>
                     <div>

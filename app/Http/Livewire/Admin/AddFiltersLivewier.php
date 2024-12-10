@@ -89,7 +89,7 @@ class AddFiltersLivewier extends Component
 
     public function render(
     ): \Illuminate\Contracts\View\Factory|\Illuminate\Foundation\Application|\Illuminate\Contracts\View\View|\Illuminate\Contracts\Foundation\Application {
-        $this->productFilters = $this->product->filterValues;
+        $this->productFilters = $this->product->filterValues()->with('filter')->get();
 
         return view('livewire.admin.add-filters-livewier');
     }
