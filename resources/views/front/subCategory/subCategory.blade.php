@@ -17,7 +17,7 @@
             <ul class="category-list category-list--subcategory">
                 @foreach($subCategories as $subCategory)
                     @php /** @var \App\Models\Category $subCategory */ @endphp
-                    <li class="category-list__item" style="background-image: url({{$subCategory->img_web}});">
+                    <li class="category-list__item" style="background-image: url({{$subCategory->img_jpg}});">
                         <h6>{{$subCategory->title}}</h6>
                         <a href="{{route('filter', $subCategory->slug)}}" class="btn">View more</a>
                     </li>

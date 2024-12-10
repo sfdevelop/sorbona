@@ -7,7 +7,7 @@
                     <a href="{{route('category', $category->slug)}}" class="catalog-item__head">
                         <p class="catalog-item__head-title">{{$category->title}}</p>
                         <img
-                                src="{{$category->img_web}}"
+                                src="{{$category->img_jpg}}"
                                 alt="category-main-page-{{$category->title}}"
                                 loading="lazy"
                                 class="catalog-item__head-img"

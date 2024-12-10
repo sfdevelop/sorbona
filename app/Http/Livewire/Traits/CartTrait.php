@@ -120,7 +120,7 @@ trait CartTrait
             'quantity' => $this->productQty,
             'price' => \strPriceToFloat($this->product->now_price),
             'options' => [
-                'img' => $this->product->img_web,
+                'img' => $this->product->img_jpg,
                 'size' => $this->size,
                 'color' => $this->color,
             ],

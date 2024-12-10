@@ -5,7 +5,7 @@
         @if($product->is_new)
             <div class="product-item__label">NEW</div>
         @endif
-        <img src="{{$product->img_web}}" alt="image-product-{{$product->title}}" loading="lazy" class="img-full"/>
+        <img src="{{$product->img_jpg}}" alt="image-product-{{$product->title}}" loading="lazy" class="img-full"/>
     </a>
 
     <div class="product-item__body">

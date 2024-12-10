@@ -16,7 +16,7 @@
                     <h1 class="single-news__title">{{$article->title}}</h1>
                     <div class="single-news__date date">{{$article->created_at->format('d.m.Y')}}</div>
                     <div class="single-news__picture">
-                        <img src="{{$article->img_web}}"
+                        <img src="{{$article->img_jpg}}"
                              alt="image"
                              loading="lazy"
                              class="img-full"

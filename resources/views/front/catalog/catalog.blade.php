@@ -20,7 +20,7 @@
                         <a href="{{route('category', $childCategory->slug)}}" class="catalog-item__head">
                             <p class="catalog-item__head-title">{{$childCategory->title}}</p>
                             <img
-                                    src="{{$childCategory->img_web}}"
+                                    src="{{$childCategory->img_jpg}}"
                                     alt="image"
                                     loading="lazy"
                                     class="catalog-item__head-img"

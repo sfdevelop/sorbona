@@ -9,7 +9,7 @@
     </ul>
     <div class="card__img ">
         <a href="{{route('product', $product->slug)}}">
-            <img src="{{$product->img_web}}" alt="product-prew-{{$product->title}}">
+            <img src="{{$product->img_jpg}}" alt="product-prew-{{$product->title}}">
         </a>
     </div>
     <h6>

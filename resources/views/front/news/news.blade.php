@@ -12,7 +12,7 @@
                         @php /** @var \App\Models\Article $item */ @endphp
                         <a href="{{route('article', $item->slug)}}" class="news__item">
                             <div class="news-item__picture">
-                                <img src="{{$item->img_web}}" alt="image" loading="lazy" class="img-full" />
+                                <img src="{{$item->img_jpg}}" alt="image" loading="lazy" class="img-full" />
                             </div>
                             <div class="news-item__body">
                                 <div class="news-item__date date">{{$item->created_at->format('d.m.Y')}}</div>

@@ -12,7 +12,7 @@
                         @php /** @var \App\Models\Manufacturer $manufacturer */ @endphp
                         <a href="{{route('manufacturerItem', $manufacturer->slug)}}" class="manufacturers__item">
                             <div class="manufacturers-item__logo">
-                                <img src="{{$manufacturer->img_web}}" alt="image" loading="lazy" class="img-full" />
+                                <img src="{{$manufacturer->img_jpg}}" alt="image" loading="lazy" class="img-full" />
                             </div>
                             <h5  style="text-align: center" class="manufacturers-item__title">{{$manufacturer->title}}</h5>
                         </a>

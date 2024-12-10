@@ -12,7 +12,7 @@ class ProductCollectionConversion implements ConversionStrategy
                 'qty' => 1,
                 'price_item' => $product->price,
                 'price_all' => $product->price * 1,
-                'img' => $product->img_web,
+                'img' => $product->img_jpg,
                 'size' => $product->size ?? '',
                 'color' => $product->color ?? '',
             ];

@@ -18,7 +18,7 @@
                     </article>
                     <sidebar class="manufacturers__sidebar">
                         <div class="manufacturers-sidebar__logo">
-                            <img src="{{$manufacturer->img_web}}" alt="image" loading="lazy" class="img-full">
+                            <img src="{{$manufacturer->img_jpg}}" alt="image" loading="lazy" class="img-full">
                         </div>
                         <div class="manufacturers-sidebar__item">
                             <p class="manufacturers-sidebar-item__text">{{__('front.all_name')}}</p>
