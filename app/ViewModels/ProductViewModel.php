@@ -24,7 +24,7 @@ class ProductViewModel extends BaseViewModel
     {
         $photos = $this->product->getMedia('additional_photo_product');
 
-        $photos = $photos->push($this->product->getMedia('product')->first());
+        $photos = $photos->reverse()->push($this->product->getMedia('product')->first());
 
         return $photos->reverse();
     }
