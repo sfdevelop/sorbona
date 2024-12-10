@@ -15,7 +15,7 @@
             <h1 class="catalog__title">{{$category->title}}</h1>
             <div class="catalog__wrap">
 
-                @foreach($category->childrenCategories as $childCategory)
+                @foreach($category->childrenCategories->reverse() as $childCategory)
                     <div class="catalog__item catalog-item">
                         <a href="{{route('category', $childCategory->slug)}}" class="catalog-item__head">
                             <p class="catalog-item__head-title">{{$childCategory->title}}</p>

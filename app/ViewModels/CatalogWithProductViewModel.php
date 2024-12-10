@@ -70,8 +70,8 @@ class CatalogWithProductViewModel extends BaseViewModel
         return match ($this->request->sort) {
             'asc' => $products->sortBy('now_price'),
             'desc' => $products->sortByDesc('now_price'),
-            'default' => $products->sortBy('sort'),
-            default => $products,
+            'default' => $products->sortByDesc('sort'),
+            default => $products->reverse(),
         };
     }
 
