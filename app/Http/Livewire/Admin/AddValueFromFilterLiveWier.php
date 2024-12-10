@@ -29,9 +29,9 @@ class AddValueFromFilterLiveWier extends Component
     protected function rules(): array
     {
         return [
-            'title_uk' => 'required|string|max:255',
+            'title_uk' => 'nullable|sometimes|string|max:255',
             'title_ru' => 'required|string|max:255',
-            'sort' => 'required|integer|min:1',
+            'sort' => 'nullable|sometimes|integer|min:1',
         ];
     }
 
@@ -41,17 +41,6 @@ class AddValueFromFilterLiveWier extends Component
             'title_uk' => __('admin.value_uk'),
             'title_ru' => __('admin.value_ru'),
         ];
-    }
-
-    /**
-     * @param  $field
-     * @return void
-     *
-     * @throws ValidationException
-     */
-    public function updated($field): void
-    {
-        $this->validateOnly($field);
     }
 
     public function deleteValue(FilterValue $filterValue): void
@@ -74,7 +63,7 @@ class AddValueFromFilterLiveWier extends Component
         $this->resetData();
 
         $this->dispatchBrowserEvent('alert',
-            ['type' => 'success', 'message' => __('admin.create_ok')]);
+            ['type' => 'success', 'message' => __('admin.create_ok'), 'reload' => true]);
 
         $this->emit('refreshAddValueFromFilterLiveWier');
     }

@@ -13,12 +13,18 @@
                                 {{$item->sort}}
                             </div>
                         </div>
+
+
                         <a title="{{__('admin.delete')}}"
                            href="#"
                            wire:click.prevent="deleteValue( {{ $item->id }} )"
                            class="  btn-danger btn-sm btn-icon text-center">
                             <i class="las la-minus-circle"></i>
                         </a>
+                    </div>
+                    <div wire:ignore>
+                        <livewire:admin.modal-filter-value-live-wier :filter-value="$item->id"/>
+                        <div class="border-bottom mb-3 mt-3"></div>
                     </div>
                 @endforeach
             </div>
@@ -27,19 +33,19 @@
 
                 <div class="col-12 col-lg-6">
                     <x-input-live-wier
-                            model="title_uk"
-                            title="{{__('admin.value')}} UK*"
-                    />
-                </div>
-
-                <div class="col-12 col-lg-6">
-                    <x-input-live-wier
                             model="title_ru"
                             title="{{__('admin.value')}} RU*"
                     />
                 </div>
 
-                <div class="col-12">
+                <div class="col-12 col-lg-6">
+                    <x-input-live-wier
+                            model="title_uk"
+                            title="{{__('admin.value')}} UK*"
+                    />
+                </div>
+
+                <div class="col-12" hidden="">
                     <x-input-live-wier
                             type="number"
                             model="sort"

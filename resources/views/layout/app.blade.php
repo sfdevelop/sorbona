@@ -106,7 +106,13 @@
                 "closeButton": true,
                 "progressBar": true,
             }
+
+        if (event.detail.reload) {
+            window.location.reload();
+        }
+
         },
+
     );
 
 </script>

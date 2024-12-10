@@ -47,3 +47,6 @@ table.table-custom .table-actions a:not(:last-child) {
 *{
     text-transform:none!important;
 }
+.sf_mt_0{
+    margin-top: -15px;
+}
