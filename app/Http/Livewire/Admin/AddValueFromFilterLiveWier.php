@@ -13,6 +13,8 @@ class AddValueFromFilterLiveWier extends Component
 {
     public Filter $filter;
 
+    protected $updatesQueryString = ['show'];
+
     public string $title_uk = '';
 
     public string $title_ru = '';
@@ -20,6 +22,8 @@ class AddValueFromFilterLiveWier extends Component
     public int $sort = 1;
 
     public Collection $filters;
+    
+    public bool $show= false;
 
     protected $listeners = ['refreshAddValueFromFilterLiveWier' => '$refresh'];
 
@@ -43,6 +47,11 @@ class AddValueFromFilterLiveWier extends Component
         ];
     }
 
+    public function updatedShow(): void
+    {
+        $this->emit('refreshAddValueFromFilterLiveWier');
+    }
+
     public function deleteValue(FilterValue $filterValue): void
     {
         $filterValue->delete();
@@ -53,6 +62,10 @@ class AddValueFromFilterLiveWier extends Component
     public function addValue(): void
     {
         $data = $this->validate();
+
+        if ($this->show) {
+            $data['title_uk'] = $data['title_ru'];
+        }
 
         $this->filter->filterValues()->create([
             'title:ru' => $data['title_ru'],

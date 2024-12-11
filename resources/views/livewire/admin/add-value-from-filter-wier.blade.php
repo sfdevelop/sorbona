@@ -30,20 +30,29 @@
             </div>
             <div class="row border-top py-3">
                 <h5 class="pb-3">{{__('admin.addValue')}}</h5>
+                <br>
+                <div class="form-check mb-3">
+                    <input class="form-check-input" type="checkbox" wire:model="show" id="showUkField">
+                    <label class="form-check-label" for="showUkField">
+                        {{ __('admin.show_uk_field') }}
+                    </label>
+                </div>
 
                 <div class="col-12 col-lg-6">
                     <x-input-live-wier
                             model="title_ru"
-                            title="{{__('admin.value')}} RU*"
+                            title="{{__('admin.value')}} {{(!$show) ? 'RU': ''}}"
                     />
                 </div>
 
-                <div class="col-12 col-lg-6">
-                    <x-input-live-wier
-                            model="title_uk"
-                            title="{{__('admin.value')}} UK*"
-                    />
-                </div>
+                @if(! $show)
+                    <div class="col-12 col-lg-6">
+                        <x-input-live-wier
+                                model="title_uk"
+                                title="{{__('admin.value')}} UK*"
+                        />
+                    </div>
+                @endif
 
                 <div class="col-12" hidden="">
                     <x-input-live-wier
@@ -52,14 +61,15 @@
                             title="{{__('admin.sort')}}*"
                     />
                 </div>
-
-                <div class="col-1 mt-3">
-                    <button
-                            class="btn btn-primary"
-                            wire:click.prevent="addValue"
-                    >
-                        {{__('admin.add')}}
-                    </button>
+                <div class="row">
+                    <div class="col-1 mt-3">
+                        <button
+                                class="btn btn-primary"
+                                wire:click.prevent="addValue"
+                        >
+                            {{__('admin.add')}}
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
