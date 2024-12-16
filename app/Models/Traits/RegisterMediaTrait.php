@@ -52,7 +52,7 @@ trait RegisterMediaTrait
 
         if ($this instanceof Product) {
             $this->addMediaConversion('additional')
-                ->format('webp')
+//                ->format('webp')
                 ->fit('crop', 800, 733)
                 ->nonQueued();
 

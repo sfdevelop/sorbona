@@ -66,7 +66,7 @@ class AdditionalPhotoLiveWier extends Component
         \Spatie\MediaLibrary\MediaCollections\Models\Media::findOrFail($id)->delete();
 
         $this->dispatchBrowserEvent('alert',
-            ['type' => 'warning', 'message' => 'Фото успішно видалене.']);
+            ['type' => 'warning', 'message' => 'Фото удалено.']);
 
         $this->emit('refreshAdditionalPhotoLiveWier');
     }
@@ -80,11 +80,11 @@ class AdditionalPhotoLiveWier extends Component
             $this->product->addMedia($this->file)->toMediaCollection(self::$media);
 
             $this->dispatchBrowserEvent('alert',
-                ['type' => 'success', 'message' => 'Фото успішно завантажене']);
+                ['type' => 'success', 'message' => 'Фото удачно загружено']);
         } catch (FileDoesNotExist|FileIsTooBig $e) {
             \Log::error($e->getMessage());
             $this->dispatchBrowserEvent('alert',
-                ['type' => 'errors', 'message' => 'Щось пішло не так, перевірте Log ']);
+                ['type' => 'errors', 'message' => 'Что то пошло не так, проверьте лог файлы ']);
         }
 
         $this->reset(['file']);
@@ -92,12 +92,24 @@ class AdditionalPhotoLiveWier extends Component
         $this->emit('refreshAdditionalPhotoLiveWier');
     }
 
+    public function updatePhotoOrder($photoId, $order): void
+    {
+        $media = $this->product->getMedia(self::$media)->where('id', $photoId)->first();
+        if ($media) {
+            $media->order_column = $order;
+            $media->save();
+        }
+        $this->photos = $this->product->getMedia(self::$media)->sortBy('order_column');
+        $this->dispatchBrowserEvent('alert',
+            ['type' => 'success', 'message' => 'Порядок фото успешно обновлено']);
+    }
+
     /**
      * @return View
      */
     public function render(): View
     {
-        $this->photos = $this->product->getMedia(self::$media) ?? [];
+        $this->photos = $this->product->getMedia(self::$media)->sortBy('order_column') ?? [];
         $this->photoHover = $this->product->getMedia(self::$mediaHover) ?? [];
 
         return view('livewire.admin.additional-photo-live-wier');
