@@ -66,13 +66,13 @@
                 </div>
                 {{--        end tabs--}}
 
-                <x-input
-                        with="25"
-                        type="number"
-                        title="{{__('admin.sort')}}"
-                        name="sort"
-                        :item="$item"
-                />
+{{--                <x-input--}}
+{{--                        with="25"--}}
+{{--                        type="number"--}}
+{{--                        title="{{__('admin.sort')}}"--}}
+{{--                        name="sort"--}}
+{{--                        :item="$item"--}}
+{{--                />--}}
             </div>
         </div>
     </div>

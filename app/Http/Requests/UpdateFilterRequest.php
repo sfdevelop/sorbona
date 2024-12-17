@@ -22,7 +22,7 @@ class UpdateFilterRequest extends BaseRequest
     public function rules(): array
     {
         $rules = [
-            'sort' => 'required|string',
+            'sort' => 'nullable|string',
         ];
 
         $rules += RuleFactory::make([

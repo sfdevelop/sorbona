@@ -38,9 +38,9 @@
                                         <th>
                                             <span class="userDatatable-title">{{__('admin.title')}}</span>
                                         </th>
-                                        <th>
-                                            <span class="userDatatable-title">{{__('admin.sort')}}</span>
-                                        </th>
+{{--                                        <th>--}}
+{{--                                            <span class="userDatatable-title">{{__('admin.sort')}}</span>--}}
+{{--                                        </th>--}}
                                         <th>
                                             <span class="userDatatable-title"></span>
                                         </th>
@@ -59,11 +59,11 @@
                                                     {{$item->title}}
                                                 </div>
                                             </td>
-                                            <td>
-                                                <div class="userDatatable-content">
-                                                    {{$item->sort}}
-                                                </div>
-                                            </td>
+{{--                                            <td>--}}
+{{--                                                <div class="userDatatable-content">--}}
+{{--                                                    {{$item->sort}}--}}
+{{--                                                </div>--}}
+{{--                                            </td>--}}
                                             <td>
                                                 <div class="table-actions">
                                                     <x-edit-in-table model="filter" :id="$item->id"/>
