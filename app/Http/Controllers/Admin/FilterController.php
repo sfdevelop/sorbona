@@ -21,7 +21,7 @@ class FilterController extends BaseAdminController
      */
     public function index(): View
     {
-        $items = Filter::query()->withTranslation()->oldest('sort')->paginate();
+        $items = Filter::query()->withTranslation()->latest('id')->paginate();
 
         $title = 'filter';
 

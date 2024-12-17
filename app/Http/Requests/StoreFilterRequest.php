@@ -26,7 +26,7 @@ class StoreFilterRequest extends BaseRequest
         ];
 
         $rules += RuleFactory::make([
-            '%title%' => 'required|string',
+            '%title%' => 'nullable|string',
         ]);
 
         return $rules;
