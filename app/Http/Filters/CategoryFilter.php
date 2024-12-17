@@ -18,14 +18,14 @@ class CategoryFilter extends AbstractFilter
     public function title(Builder $builder, $value): void
     {
         $builder
-            ->whereTranslationLike('title', '%'.$value.'%')
-            ->orWhereHas('childrenCategories',
-                function (Builder $query) use ($value) {
-                    $query->whereTranslationLike('title', '%'.$value.'%');
-                })
-            ->orWhereHas('childrenCategories.childrenCategories',
-                function (Builder $query) use ($value) {
-                    $query->whereTranslationLike('title', '%'.$value.'%');
-                });
+            ->whereTranslationLike('title', '%'.$value.'%');
+//            ->orWhereHas('childrenCategories',
+//                function (Builder $query) use ($value) {
+//                    $query->whereTranslationLike('title', '%'.$value.'%');
+//                })
+//            ->orWhereHas('childrenCategories.childrenCategories',
+//                function (Builder $query) use ($value) {
+//                    $query->whereTranslationLike('title', '%'.$value.'%');
+//                });
     }
 }
