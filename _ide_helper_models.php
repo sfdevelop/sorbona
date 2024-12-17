@@ -427,6 +427,7 @@ namespace App\Models{
  * @property int $id
  * @property string $slug
  * @property int $sort
+ * @property bool $numeric
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read mixed $created_format
@@ -451,6 +452,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Filter translatedIn(?string $locale = null)
  * @method static \Illuminate\Database\Eloquent\Builder|Filter whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Filter whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Filter whereNumeric($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Filter whereSlug($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Filter whereSort($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Filter whereTranslation(string $translationField, $value, ?string $locale = null, string $method = 'whereHas', string $operator = '=')
@@ -469,7 +471,7 @@ namespace App\Models{
  * @property int $id
  * @property int $filter_id
  * @property string $locale
- * @property string $title
+ * @property string|null $title
  * @method static \Illuminate\Database\Eloquent\Builder|FilterTranslation newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|FilterTranslation newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|FilterTranslation query()

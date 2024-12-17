@@ -73,6 +73,16 @@
 {{--                        name="sort"--}}
 {{--                        :item="$item"--}}
 {{--                />--}}
+
+                <div class="" style="">
+                    <label for="numeric">{{__('admin.show_uk_field')}}</label>
+                    <input
+                            @checked($item->numeric)
+                            type="checkbox"
+                            name="numeric"
+                            id="numeric"
+                    >
+                </div>
             </div>
         </div>
     </div>

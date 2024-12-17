@@ -23,6 +23,7 @@ class UpdateFilterRequest extends BaseRequest
     {
         $rules = [
             'sort' => 'nullable|string',
+            'numeric' => 'boolean',
         ];
 
         $rules += RuleFactory::make([
@@ -30,5 +31,12 @@ class UpdateFilterRequest extends BaseRequest
         ]);
 
         return $rules;
+    }
+
+    protected function prepareForValidation(): void
+    {
+        $this->merge([
+            'numeric' => $this->boolean('numeric'),
+        ]);
     }
 }

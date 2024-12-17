@@ -36,6 +36,11 @@ class Filter extends Model implements TranslatableContract
     protected $fillable = [
         'slug',
         'sort',
+        'numeric',
+    ];
+
+    protected $casts = [
+        'numeric' => 'boolean',
     ];
 
     public function filterValues(): HasMany

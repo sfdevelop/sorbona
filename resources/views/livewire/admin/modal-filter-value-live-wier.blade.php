@@ -9,14 +9,14 @@
                        value="{{ $filterValue['translations'][0]['title'] ?? '' }}">
                 @error('title_ru') <span class="text-danger">{{ $message }}</span> @enderror
             </div>
-
-            <div class="col-md-4 mb-3">
-                <label for="title_uk" class="form-label">{{ __('admin.value') }} UK</label>
-                <input type="text" class="form-control" id="title_uk" wire:model="title_uk"
-                       value="{{ $filterValue['translations'][1]['title'] ?? '' }}">
-                @error('title_uk') <span class="text-danger">{{ $message }}</span> @enderror
-            </div>
-
+            @if(!$filterValue->filter->numeric)
+                <div class="col-md-4 mb-3">
+                    <label for="title_uk" class="form-label">{{ __('admin.value') }} UK</label>
+                    <input type="text" class="form-control" id="title_uk" wire:model="title_uk"
+                           value="{{ $filterValue['translations'][1]['title'] ?? '' }}">
+                    @error('title_uk') <span class="text-danger">{{ $message }}</span> @enderror
+                </div>
+            @endif
             <div class="col-md-4 mb-3">
                 <label for="sort" class="form-label">{{ __('admin.sort') }}</label>
                 <input type="text" class="form-control" id="sort" wire:model="sort"

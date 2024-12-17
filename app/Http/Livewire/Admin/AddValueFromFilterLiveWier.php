@@ -39,6 +39,11 @@ class AddValueFromFilterLiveWier extends Component
         ];
     }
 
+    public function mount(): void
+    {
+        $this->show = $this->filter->numeric;
+    }
+
     protected function getValidationAttributes(): array
     {
         return [

@@ -12,7 +12,7 @@ class ModalFilterValueLiveWier extends Component
     public $title_ru;
     public $sort = 1;
 
-    public bool $show = false;
+    public bool $show = true;
 
     protected $rules = [
         'title_uk' => 'nullable|min:3',
@@ -40,10 +40,21 @@ class ModalFilterValueLiveWier extends Component
     {
         $this->validate();
 
-        $this->filterValue->translations()->updateOrCreate(
-            ['locale' => 'uk'],
-            ['title' => $this->title_uk],
-        );
+        if ($this->filterValue->filter->numeric) {
+
+            $this->filterValue->translations()->updateOrCreate(
+                ['locale' => 'uk'],
+                ['title' => $this->title_ru],
+            );
+
+        } else{
+
+            $this->filterValue->translations()->updateOrCreate(
+                ['locale' => 'uk'],
+                ['title' => $this->title_uk],
+            );
+
+        }
 
         $this->filterValue->translations()->updateOrCreate(
             ['locale' => 'ru'],
