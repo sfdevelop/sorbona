@@ -49,7 +49,7 @@ class AddFiltersLivewier extends Component
 
     public function mount(): void
     {
-        $this->filters = Filter::query()->withTranslation()->get();
+        $this->filters = Filter::query()->withTranslation()->latest('id')->get();
     }
 
     public function filterSelected(?int $filterId): void
