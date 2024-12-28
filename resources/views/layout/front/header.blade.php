@@ -37,4 +37,7 @@
     <link rel="stylesheet" href="{{asset('front/css/plugins/plugins.min.css')}}">
 
     <link rel="stylesheet" href="{{asset('front/css/style.min.css')}}">
+    <link rel="stylesheet" href="{{asset('css/sf_style.css')}}?v={{ filemtime(public_path('css/sf_style.css'))}}">
+
+    @livewireStyles
 </head>

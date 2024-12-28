@@ -1,58 +1,55 @@
 <div>
-    <form class="form ">
+    <form
+            id="signup"
+            class="form"
+    >
+        <div class="form-group__inputs_line">
 
-        <div class="form__inpur-wrap @if($errors->has('name')) error @endif ">
-            <span>{{__('front.first_and_last_name')}}</span>
-            <input
+            <x-input-live-wier
+                    model="name"
                     type="text"
-                    placeholder="{{__('front.first_and_last_name')}}"
-                    wire:model="name"
-            >
+                    title="{{__('front.name')}}"
+            />
 
-            @if ($errors->has('name'))
-                <span class="invalid-feedback">{{ $errors->first('name') }}</span>
-            @endif
+            <x-input-live-wier
+                    model="surname"
+                    type="text"
+                    title="{{__('front.surname')}}"
+            />
 
-        </div>
+            <x-input-live-wier
+                    model="mailPhone"
+                    type="text"
+                    title="{{__('front.emailPhone')}}"
+            />
 
-        <div class="form__inpur-wrap @if($errors->has('email')) error @endif ">
-            <span>E-mail</span>
-            <input
-                    type="email"
-                    placeholder="E-mail"
-                    wire:model="email"
-            >
-            @if ($errors->has('email'))
-                <span class="invalid-feedback">{{ $errors->first('email') }}</span>
-            @endif
-        </div>
-
-        <div class="form__inpur-wrap  @if($errors->has('password')) error @endif ">
-            <span>{{__('front.password')}}</span>
-            <input
+            <x-input-live-wier
+                    model="password"
                     type="password"
-                    placeholder="{{__('front.password')}}"
-                    wire:model="password"
-            >
-            @if ($errors->has('password'))
-                <span>{{ $errors->first('password') }}</span>
-            @endif
-        </div>
+                    title="{{__('front.password')}}"
+            />
 
-        <div class="form__inpur-wrap @if($errors->has('password_confirmation')) error @endif ">
-            <span>{{__('front.repeat_password')}}</span>
-            <input
+            <x-input-live-wier
+                    model="password_confirmation"
                     type="password"
-                    placeholder="{{__('front.repeat_password')}}"
-                    wire:model="password_confirmation"
-            >
-            @if ($errors->has('password_confirmation'))
-                <span>{{ $errors->first('password_confirmation') }}</span>
-            @endif
+                    title="{{__('front.password')}}"
+            />
         </div>
 
-        <button wire:click.prevent="userRegistered" class="btn btn--transparent">
-            {{__('front.sign_up')}} <img src="{{asset('front/images/dest/icons/arrow-btn.svg')}}" alt="decor">
-        </button>
+        <p class="form__text">{{__('front.password_text')}}</p>
+
+        <a
+                class="form__button btn btn--full"
+                wire:click.prevent="userRegistered"
+        >
+            {{__("front.registration_on")}}
+        </a>
+
+        <div class="form__agreement">
+            {{__('front.registration_on_click_text')}}
+            <a href="{{route('policy')}}">{{__('front.policy')}}</a> {{__('front.and')}}
+            <a href="{{route('policy')}}">{{__('front.oferta')}}</a>
+        </div>
+
     </form>
 </div>

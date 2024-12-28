@@ -2,4 +2,13 @@
   justify-content: center !important;
 }
 
+.text-danger {
+  color: red;
+  font-size: 12px;
+}
+
+.toast-message {
+  font-size: 13px !important;
+}
+
 /*# sourceMappingURL=sf_style.css.map */
