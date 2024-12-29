@@ -1,27 +1,44 @@
-@extends('layout.bureviy')
+@extends('layout.sorbona')
 @section('content')
-    <div class="container">
-        <div class="breadcrumbs">
-            <div class="breadcrumbs__inner ">
-                <ul class="breadcrumbs__list">
-                    <li><a href="{{route('home')}}">{{__('front.menu.home')}}</a></li>
-                    <li><span>Profile</span></li>
-                </ul>
+    <section class="section">
+        <div class="section__container--medium section__container_p">
+            <div class="account">
+
+                @include('partials.front.cabinet.sidebar')
+
+                <div class="account__page">
+                    <div class="account__main">
+                        <h1 class="account__title">Приветствуем вас, {{auth()->user()->name ?? ''}}!</h1>
+                        <div class="account-main__head">
+                            <div class="account-main-head__text">Дата регистрации:
+                                <span>{{auth()->user()->created_at->format('d.m.Y')}}</span></div>
+                            <div class="account-main-head__text">Дата подтверждения типа аккаунта:
+                                <span>{{auth()->user()->created_at->format('d.m.Y')}}</span></div>
+                        </div>
+                        <div class="account-main__body">
+                            <div class="account-main-body__item">
+                                <p>Тип аккаунта</p>
+                                <h3>{{translateUserRole(auth()->user()->roles->first()->name)}}</h3>
+                            </div>
+                            <div class="account-main-body__item">
+                                <p>Выполнено заказов на сумму</p>
+                                <h3> {{Number::formatCurrencyUAH(auth()->user()->totalCash )}}</h3>
+                            </div>
+                        </div>
+                        <div class="account-main__content">
+                            <p>
+                                {{__('front.account_text')}}
+                            </p>
+                            <ul>
+                                <li>{!! __('front.role.user_description') !!}</li>
+                                <li>{!! __('front.role.melokoopt_description') !!}</li>
+                                <li>{!! __('front.role.opt_description') !!}</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </div>
-
-        <section class="cabinet">
-            <div class="container">
-                <h3 class="title ">
-                    {{__('front.profile')}}
-                </h3>
-                <div class="cabinet__inner">
-
-                    <x-cabinet.info/>
-
-                    @livewire('front.cabinet.info-live-wier')
-                </div>
-            </div>
-        </section>
-    </div>
+    </section>
 @endsection

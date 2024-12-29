@@ -167,3 +167,14 @@ if (! function_exists('getClassAndTitleStatusOrderFromAdmin')) {
         };
     }
 }
+
+if (! function_exists('translateUserRole')) {
+    function translateUserRole(string $role): string
+    {
+        $roleTranslations = [
+            'user' => __('front.role.user'),
+        ];
+
+        return $roleTranslations[$role] ?? $role;
+    }
+}

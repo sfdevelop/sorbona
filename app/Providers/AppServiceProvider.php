@@ -12,6 +12,9 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 
+use Number;
+use NumberFormatter;
+
 class AppServiceProvider extends ServiceProvider
 {
     /**
@@ -53,6 +56,12 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+
+        Number::macro('formatCurrencyUAH', function ($value) {
+            $formatter = new NumberFormatter('uk_UA', NumberFormatter::CURRENCY);
+            $formatter->setSymbol(NumberFormatter::CURRENCY_SYMBOL, 'грн');
+            return $formatter->formatCurrency($value, 'UAH');
+        });
 
         if (Schema::hasTable('settings')) {
             $settings = Setting::query()
