@@ -23,7 +23,7 @@
                     <p class="chbox__text">{{__('front.remember_me')}}</p>
                 </label>
             </div>
-            <a href="recover.html" class="form__link">{{__('front.reload_password')}}</a>
+            <a href="{{route('recover')}}" class="form__link">{{__('front.reload_password')}}</a>
         </div>
         <button
                 wire:click.prevent="login"

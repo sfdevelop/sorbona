@@ -37,3 +37,5 @@ Route::get('contacts', ContactsController::class)->name('contacts');
 //Route::view('cart-thx', 'front/cart/cart_thx')->name('cart_thx');
 //Route::view('cart-thx-error', 'front/cart/cart-thx-error')->name('cart-thx-error');
 //Route::view('cart-thx-success', 'front/cart/cart-thx-success')->name('cart-thx-success');
+
+Route::get('recover', \App\Http\Controllers\Front\RecoverController::class)->name('recover');
