@@ -20,17 +20,17 @@
                 <label class="chbox__label">
                     <input type="checkbox" name="" class="chbox__input" value="" />
                     <span class="chbox__icon"></span>
-                    <p class="chbox__text">Запомнить меня</p>
+                    <p class="chbox__text">{{__('front.remember_me')}}</p>
                 </label>
             </div>
-            <a href="recover.html" class="form__link">Восстановить пароль</a>
+            <a href="recover.html" class="form__link">{{__('front.reload_password')}}</a>
         </div>
         <button
                 wire:click.prevent="login"
                 type="submit"
                 class="form__button btn btn--full"
         >
-            Войти
+            {{__('front.enter')}}
         </button>
     </form>
 </div>

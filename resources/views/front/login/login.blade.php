@@ -11,7 +11,7 @@
                     <div class="at__body">
                         <div class="rc-login">
                             <div class="rc-login__head">
-                                <h3 class="rc-login-head__title">Войдите в профиль</h3>
+                                <h3 class="rc-login-head__title">{{__('front.enter_profile')}}</h3>
                             </div>
 
                             @livewire('front.user.log-in-live-wier')
