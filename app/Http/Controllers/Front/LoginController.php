@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Front;
 
+use App\ViewModels\LoginViewModel;
+
 class LoginController extends BaseFrontController
 {
     public function __construct() {}
@@ -12,6 +14,6 @@ class LoginController extends BaseFrontController
             return view('front.cabinet.info.info');
         }
 
-        return view('front.login.login');
+        return (new LoginViewModel())->view('front.login.login');
     }
 }

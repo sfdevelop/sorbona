@@ -5,7 +5,7 @@
             <div class="section__wrapper">
                 <div class="at">
                     <div class="at__head">
-                        <a href="" class="at-head__link">{{__('front.enter')}}</a>
+                        <a href="{{route('login')}}" class="at-head__link">{{__('front.enter')}}</a>
                         <a href="{{route('signup')}}" class="at-head__link current">{{__('front.registration')}}</a>
                     </div>
                     <div class="at__body">

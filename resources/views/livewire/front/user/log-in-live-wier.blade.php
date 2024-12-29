@@ -1,27 +1,36 @@
 <div>
-    <form class="form ">
+    <form action="#" id="login" class="rc-login__form form">
+        <div class="form-group__inputs_line">
 
-        <div class="form__inpur-wrap">
-            <span>E-mail</span>
-            <input
+            <x-input-live-wier
+                    model="login"
                     type="text"
-                    placeholder="E-mail"
-                    wire:model="email"
-            >
-        </div>
+                    title="{{__('front.emailPhone')}}"
+            />
 
-        <div class="form__inpur-wrap">
-            <span>{{__('front.password')}}</span>
-            <input
+            <x-input-live-wier
+                    model="password"
                     type="password"
-                    placeholder="{{__('front.password')}}"
-                    wire:model="password"
-            >
+                    title="{{__('front.password')}}"
+            />
+
         </div>
-
-        <button wire:click.prevent="login" class="btn btn--transparent">
-            {{__('front.log_in')}} <img src="{{asset('front/images/dest/icons/arrow-btn.svg')}}" alt="decor">
+        <div class="form__line">
+            <div class="chbox">
+                <label class="chbox__label">
+                    <input type="checkbox" name="" class="chbox__input" value="" />
+                    <span class="chbox__icon"></span>
+                    <p class="chbox__text">Запомнить меня</p>
+                </label>
+            </div>
+            <a href="recover.html" class="form__link">Восстановить пароль</a>
+        </div>
+        <button
+                wire:click.prevent="login"
+                type="submit"
+                class="form__button btn btn--full"
+        >
+            Войти
         </button>
-
     </form>
 </div>
