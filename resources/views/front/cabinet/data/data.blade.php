@@ -49,7 +49,7 @@
                                 <div class="account-detail-item-body__item">
                                     <span>{{__('front.current_password')}}</span>
                                     <div class="account-detail-item-body__password">
-                                        <input type="password" value="{{ Hash::make(auth()->user()->password)}}"/>
+                                        <input type="password" value="{{ $currentPassword}}"/>
                                         <div class="form-item__password_show"></div>
                                     </div>
                                 </div>

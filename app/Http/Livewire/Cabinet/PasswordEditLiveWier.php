@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Cabinet;
 
+use App\Services\User\CryptUnCryptData;
 use Auth;
 use Hash;
 use Livewire\Component;
@@ -40,6 +41,8 @@ class PasswordEditLiveWier extends Component
         $user->update([
             'password' => Hash::make($this->password),
         ]);
+
+        app()->make(CryptUnCryptData::class)->saveEncryptedDataToUser($this->password);
 
         $this->dispatchBrowserEvent('alert', [
             'type' => 'success',
