@@ -33,7 +33,7 @@
                     type="submit"
                     class="form__button btn"
             >
-                Обновить данные
+                {{__('front.update_data')}}
             </button>
 
             <a

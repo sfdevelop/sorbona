@@ -8,20 +8,20 @@
 
                 <div class="account__page">
                     <div class="account__main">
-                        <h1 class="account__title">Приветствуем вас, {{auth()->user()->name ?? ''}}!</h1>
+                        <h1 class="account__title">{{__('front.info_hello')}} {{auth()->user()->name ?? ''}}!</h1>
                         <div class="account-main__head">
-                            <div class="account-main-head__text">Дата регистрации:
+                            <div class="account-main-head__text">{{__('front.data_registration')}}
                                 <span>{{auth()->user()->created_at->format('d.m.Y')}}</span></div>
-                            <div class="account-main-head__text">Дата подтверждения типа аккаунта:
+                            <div class="account-main-head__text">{{__('front.data_confirm_type_account')}}
                                 <span>{{auth()->user()->created_at->format('d.m.Y')}}</span></div>
                         </div>
                         <div class="account-main__body">
                             <div class="account-main-body__item">
-                                <p>Тип аккаунта</p>
+                                <p>{{__('front.type_account')}}</p>
                                 <h3>{{translateUserRole(auth()->user()->roles->first()->name)}}</h3>
                             </div>
                             <div class="account-main-body__item">
-                                <p>Выполнено заказов на сумму</p>
+                                <p>{{__('admin.order_total')}}</p>
                                 <h3> {{Number::formatCurrencyUAH(auth()->user()->totalCash )}}</h3>
                             </div>
                         </div>
