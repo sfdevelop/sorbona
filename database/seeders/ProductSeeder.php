@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\Product;
 use Database\Seeders\Traits\SeedUploadImageTrait;
+use DB;
 use Illuminate\Database\Seeder;
 
 class ProductSeeder extends Seeder
@@ -18,10 +19,14 @@ class ProductSeeder extends Seeder
 
     /**
      * Run the database seeds.
+     *
+     * @throws \Throwable
      */
     public function run(): void
     {
-        $items = Product::factory(300)->create();
+        DB::transaction(function () {
+            $items = Product::factory(10000)->create();
+        });
 
         //        $this->uploadImageToSeed($items);
     }

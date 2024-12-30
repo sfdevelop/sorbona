@@ -139,7 +139,7 @@
             @endguest
 
             @auth
-                <a href="#" class="header__login autorized">
+                <a href="{{route('cabinet')}}" class="header__login autorized">
                     <div class="header__login-icon">
                         <svg><use xlink:href="{{asset('front/img/icons/icons.svg#icon-login')}}"></use></svg>
                     </div>

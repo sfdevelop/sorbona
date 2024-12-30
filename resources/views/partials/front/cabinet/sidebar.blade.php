@@ -6,7 +6,7 @@
         </div>
         <div class="account-sidebar__list">
             <a href="{{route('cabinet')}}" class="account-sidebar__page current">{{__('front.menu.main')}}</a>
-{{--            <a href="account-detail.html" class="account-sidebar__page">Мои данные</a>--}}
+            <a href="{{route('cabinet.info')}}" class="account-sidebar__page">Мои данные</a>
 {{--            <a href="account-order.html" class="account-sidebar__page">Мои заказы</a>--}}
         </div>
     </div>

@@ -344,14 +344,17 @@ class ProductFactory extends Factory
 
         ];
 
-        $product = $this->faker->unique()->randomElement($productNames);
+        $product = $this->faker->randomElement($productNames);
 
         return [
-            'title:ru' => TranslateFacade::getTranslateText($product, 'ru'),
+            'title:ru' => $product,
             'title:uk' => $product,
 
-            'description:ru' => \FakeParagraph::countParagraph(4, 12),
-            'description:uk' => \FakeParagraph::countParagraph(4, 12),
+//            'description:ru' => \FakeParagraph::countParagraph(4, 12),
+//            'description:uk' => \FakeParagraph::countParagraph(4, 12),
+
+            'description:ru' => $this->faker->realText(),
+            'description:uk' => $this->faker->realText(),
 
             'price' => rand(200, 300),
 
