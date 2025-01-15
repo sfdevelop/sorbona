@@ -28,25 +28,7 @@ class SearchViewModel extends BaseViewModel
 
     public function searchCategories()
     {
-        $searchText = trim($this->query);
-
-        $categoriesWithCounts = Product::query()
-            ->trans()
-            ->whereTranslationLike('title', "%{$searchText}%", app()->getLocale())
-            ->select('category_id')
-            ->with('category') // Assuming a relationship 'category' exists in the Product model
-            ->groupBy('category_id')
-            ->selectRaw('category_id, COUNT(*) as product_count')
-            ->get();
-
-        // Build result with links
-        return $categoriesWithCounts->map(function ($data) use ($searchText) {
-            return [
-                'name' => $data->category->title,
-                'count' => $data->product_count,
-                'url' => url("search/{$data->category->slug}/".urlencode($searchText)),
-            ];
-        });
+        return $this->productRepository->searchCategories($this->query);
     }
 
     protected function sortProducts(array|Collection $products)

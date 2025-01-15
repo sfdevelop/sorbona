@@ -47,7 +47,7 @@
 
 </article>
 
-@pushonce('frontJs')
+
    @pushonce('frontJs')
         <script>
             $(document).ready(function() {
@@ -81,4 +81,3 @@
             });
         </script>
     @endpushonce
-@endpushonce

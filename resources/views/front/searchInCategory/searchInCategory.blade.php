@@ -29,7 +29,7 @@
                                     <span class="filters-item__head-title">{{ __('search.found-categories') }}</span>
                                     <svg><use xlink:href="img/icons/icons.svg#icon-label-open"></use></svg>
                                 </div>
-                                <div class="filters-item__body content">
+                                <div class="filters-item__body content active">
                                     <div class="filters-item__categorys">
                                         @foreach($searchCategories as $category)
                                         <a href="{{ $category['url'] }}" class="filters-item__category">

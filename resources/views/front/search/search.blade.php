@@ -19,7 +19,7 @@
                     <sidebar class="category__sidebar">
                         <div class="filters">
                             <div class="filters__head">
-                                <h3 class="filters__head-title">{{ __('search.caterories') }}</h3>
+                                <h3 class="filters__head-title">{{ __('search.categories') }}</h3>
                                 <button class="filters__close">
                                     <svg><use xlink:href="img/icons/icons.svg#icon-close"></use></svg>
                                 </button>
@@ -29,7 +29,7 @@
                                     <span class="filters-item__head-title">{{ __('search.found-categories') }}</span>
                                     <svg><use xlink:href="img/icons/icons.svg#icon-label-open"></use></svg>
                                 </div>
-                                <div class="filters-item__body content">
+                                <div class="filters-item__body content active">
                                     <div class="filters-item__categorys">
                                         @foreach($searchCategories as $category)
                                         <a href="{{ $category['url'] }}" class="filters-item__category">
