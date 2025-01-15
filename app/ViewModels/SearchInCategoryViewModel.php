@@ -3,15 +3,17 @@
 namespace App\ViewModels;
 
 use App\Models\Product;
+use App\Models\Category;
 use App\Repository\Product\ProductRepositoryInterface;
 use App\Repository\Setting\SettingRepositoryInterface;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\Request;
 
-class SearchViewModel extends BaseViewModel
+class SearchInCategoryViewModel extends BaseViewModel
 {
     public function __construct(
         protected string $query,
+        protected Category $category,
         protected Request $request,
         public ProductRepositoryInterface $productRepository
     ) {}
@@ -21,7 +23,7 @@ class SearchViewModel extends BaseViewModel
      */
     public function products()
     {
-        $products = $this->productRepository->searchProducts($this->query);
+        $products = $this->productRepository->searchProducts($this->query, $this->category);
 
         return $this->sortProducts($products)->paginate($this->getSettingPerPage() ?? 12);
     }

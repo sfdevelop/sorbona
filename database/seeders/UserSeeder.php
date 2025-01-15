@@ -13,6 +13,8 @@ class UserSeeder extends Seeder
      */
     public function run(): void
     {
+        User::all()->each(function(User $user) { $user->delete(); });
+
         $data = [
             'name' => 'admin',
             'email' => 'admin@admin.com',

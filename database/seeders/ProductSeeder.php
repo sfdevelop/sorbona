@@ -25,7 +25,7 @@ class ProductSeeder extends Seeder
     public function run(): void
     {
         DB::transaction(function () {
-            $items = Product::factory(10000)->create();
+            $items = Product::factory(100)->create();
         });
 
         //        $this->uploadImageToSeed($items);

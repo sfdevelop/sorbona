@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 
 interface ProductRepositoryInterface
 {
-    public function searchProducts(string $request): array|Collection;
+    public function searchProducts(string $searchText, $category = null): array|Collection;
 
     public function getNewProducts(): array|Collection;
 

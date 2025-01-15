@@ -8,12 +8,19 @@ use Illuminate\Database\Eloquent\Collection;
 
 class ProductRepository implements ProductRepositoryInterface
 {
-    public function searchProducts(string $request): array|Collection
+    public function searchProducts(string $searchText, $category = null): array|Collection
     {
-        return Product::query()
+        $results = Product::query()
             ->trans()
-            ->whereTranslationLike('title', "%{$request}%", app()->getLocale())
-            ->get();
+            ->with(['category'])
+            ->whereTranslationLike('title', "%{$searchText}%", app()->getLocale());
+
+        if ($category)
+            $results->whereHas('category', function ($query) use ($category) {
+                $query->where('categories.id', $category->id);
+            });
+
+        return $results->get();
     }
 
     public function getNewProducts(): array|Collection
