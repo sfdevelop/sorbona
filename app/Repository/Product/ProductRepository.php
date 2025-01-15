@@ -10,7 +10,7 @@ class ProductRepository implements ProductRepositoryInterface
 {
     public function searchCategories(String $searchText): array
     {
-        $searchText = trim($this->query);
+        $searchText = trim($this->$searchText);
 
         $categoriesWithCounts = Product::query()
             ->trans()
