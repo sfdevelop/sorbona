@@ -39,7 +39,7 @@
                 </div>
                 @endforeach
             </div>
-            @if (count($searchThreeProducts) > 0))
+            @if (count($searchThreeProducts) > 0)
             <a href="{{ route('search', $search) }}" class="search-results__btn btn btn--line">{{ __('search.show-all-results') }}</a>
             @endif
         </div>
