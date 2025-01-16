@@ -38,6 +38,8 @@ class SearchLiveWier extends Component
             $this->searchThreeProducts = $searchProducts->take(3);
             $this->productsCount = $searchProducts->count();
         }
+        else
+            $this->resetDataLess3();
     }
 
     /**
@@ -57,6 +59,13 @@ class SearchLiveWier extends Component
     public function resetData(): void
     {
         $this->reset('search');
+        $this->searchFourProducts = [];
+        $this->searchThreeProducts = [];
+        $this->productsCount = 0;
+    }
+
+    public function resetDataLess3(): void
+    {
         $this->searchFourProducts = [];
         $this->searchThreeProducts = [];
         $this->productsCount = 0;
