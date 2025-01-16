@@ -8,26 +8,33 @@ use Illuminate\Database\Eloquent\Collection;
 
 class ProductRepository implements ProductRepositoryInterface
 {
-    public function searchCategories(String $searchText): array
+    public function searchCategories(string $searchText)
     {
-        $searchText = trim($this->$searchText);
+        $searchText = trim($searchText);
 
         $categoriesWithCounts = Product::query()
             ->trans()
-            ->whereTranslationLike('title', "%{$searchText}%", app()->getLocale())
-//            ->orWhere('title', 'LIKE', "%{$searchText}%")
+            ->where(function ($query) use ($searchText) {
+                $query->whereTranslationLike('title', "%{$searchText}%", app()->getLocale())
+                    ->orWhere('sku', $searchText)
+                    ->orWhereTranslationLike('description', "%{$searchText}%", app()->getLocale())
+                    ->orWhereHas('manufacturer', function ($query) use ($searchText) {
+                        $query->whereTranslationLike('title', 'LIKE', "%{$searchText}%");
+                    });
+            })
             ->select('category_id')
             ->with('category') // Assuming a relationship 'category' exists in the Product model
             ->groupBy('category_id')
             ->selectRaw('category_id, COUNT(*) as product_count')
             ->get();
 
+        //        dd($categoriesWithCounts);
         // Build result with links
         return $categoriesWithCounts->map(function ($data) use ($searchText) {
             return [
                 'name' => $data->category->title,
                 'count' => $data->product_count,
-                'url' => url("search/{$data->category->slug}/".urlencode($searchText)),
+                'url' => url("search/{$data->category->slug}/$searchText"),
             ];
         });
     }
@@ -37,13 +44,20 @@ class ProductRepository implements ProductRepositoryInterface
         $results = Product::query()
             ->trans()
             ->with(['category', 'manufacturer'])
-            ->whereTranslationLike('title', "%{$searchText}%", app()->getLocale());
-//            ->orWhere('sku', "{$searchText}");
+            ->where(function ($query) use ($searchText) {
+                $query->whereTranslationLike('title', "%{$searchText}%", app()->getLocale())
+                    ->orWhere('sku', 'LIKE', "%{$searchText}%")
+                    ->orWhereTranslationLike('description', "%{$searchText}%", app()->getLocale())
+                    ->orWhereHas('manufacturer', function ($query) use ($searchText) {
+                        $query->whereTranslationLike('title', 'LIKE', "%{$searchText}%");
+                    });
+            });
 
-        if ($category)
+        if ($category) {
             $results->whereHas('category', function ($query) use ($category) {
                 $query->where('categories.id', $category->id);
             });
+        }
 
         return $results->get();
     }

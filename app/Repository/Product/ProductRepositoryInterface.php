@@ -9,7 +9,7 @@ interface ProductRepositoryInterface
 {
     public function searchProducts(string $searchText, $category): array|Collection;
 
-    public function searchCategories(string $searchText): array;
+    public function searchCategories(string $searchText);
 
     public function getNewProducts(): array|Collection;
 
