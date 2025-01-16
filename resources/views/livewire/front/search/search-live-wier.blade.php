@@ -51,7 +51,9 @@
         $(document).ready(function() {
             $('#search-form').on('submit', function (e) {
                 e.preventDefault();
-                location.href = "{{route('search', $search)}}" + "/" + $('#search').val();
+                let search = $('#search').val();
+                if (search.length > 0)
+                    location.href = "{{route('search', $search)}}" + "/" + search;
             }
         )});
     </script>
