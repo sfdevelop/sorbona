@@ -5,7 +5,7 @@
     <button class="search_close-mob">
         <svg><use xlink:href="{{asset('front/img/icons/icons.svg#icon-label-open')}}"></use></svg>
     </button>
-    <form class="search">
+    <form class="search" id="search-form">
         <label for="search">
             <svg><use xlink:href="img/icons/icons.svg#icon-search"></use></svg>
             <input
@@ -46,3 +46,13 @@
     </div>
     @endif
 </div>
+@pushonce('frontJs')
+    <script>
+        $(document).ready(function() {
+            $('#search-form').on('submit', function (e) {
+                e.preventDefault();
+                location.href = "{{route('search', $search)}}" + "/" + $('#search').val();
+            }
+        )});
+    </script>
+@endpushonce
