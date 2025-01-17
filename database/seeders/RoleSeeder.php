@@ -12,8 +12,12 @@ class RoleSeeder extends Seeder
      */
     public function run(): void
     {
-        Role::all()->each(function(Role $role) { $role->delete(); });
+        Role::all()->each(function (Role $role) {
+            $role->delete();
+        });
         Role::create(['name' => 'admin']);
         Role::create(['name' => 'user']);
+        Role::create(['name' => 'smallopt']);
+        Role::create(['name' => 'bigopt']);
     }
 }

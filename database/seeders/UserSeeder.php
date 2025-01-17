@@ -13,7 +13,9 @@ class UserSeeder extends Seeder
      */
     public function run(): void
     {
-        User::all()->each(function(User $user) { $user->delete(); });
+        User::all()->each(function (User $user) {
+            $user->delete();
+        });
 
         $data = [
             'name' => 'admin',
@@ -25,5 +27,39 @@ class UserSeeder extends Seeder
         //        User::factory(1)->create();
         $userAdmin = User::create($data);
         $userAdmin->assignRole('admin');
+
+        $data = [
+            'name' => 'user',
+            'email' => 'user@admin.com',
+            'email_verified_at' => now(),
+            'password' => 'password', // password
+            'remember_token' => Str::random(10),
+        ];
+        //        User::factory(1)->create();
+        $userUser = User::create($data);
+        $userUser->assignRole('user');
+
+        $data = [
+            'name' => 'smallopt',
+            'email' => 'smallopt@admin.com',
+            'email_verified_at' => now(),
+            'password' => 'password', // password
+            'remember_token' => Str::random(10),
+        ];
+        //        User::factory(1)->create();
+        $userSmallOpt = User::create($data);
+        $userSmallOpt->assignRole('smallopt');
+
+        $data = [
+            'name' => 'bigopt',
+            'email' => 'bigopt@admin.com',
+            'email_verified_at' => now(),
+            'password' => 'password', // password
+            'remember_token' => Str::random(10),
+        ];
+        //        User::factory(1)->create();
+        $userBigOpt = User::create($data);
+        $userBigOpt->assignRole('bigopt');
+
     }
 }
