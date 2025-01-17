@@ -64,6 +64,7 @@ return [
     'characteristics'                => 'Характеристики',
     'similar'                        => 'Похожие',
     'your_see'                       => 'Вы смотрели',
+    'recommended_for_you'            => 'Рекомендовано для вас',
 
     //    29_12
     'registration'                   => "Регистрация",

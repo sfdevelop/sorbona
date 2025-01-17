@@ -64,4 +64,5 @@ return [
     'characteristics' => 'Характеристики',
     'similar' => 'Схожі',
     'your_see' => 'Ви дивилися',
+    'recommended_for_you' => 'Рекомендовано для вас',
 ];
