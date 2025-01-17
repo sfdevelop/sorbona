@@ -59,7 +59,7 @@ class RouteServiceProvider extends ServiceProvider
                 ->prefix('admin')
                 ->group(base_path('routes/admin.php'));
 
-            Route::middleware(['web', 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath', 'auth', 'role:user', SetLangAdminMiddleware::class])
+            Route::middleware(['web', 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath', 'auth', 'role:user|smallopt|bigopt', SetLangAdminMiddleware::class])
                 ->namespace($this->namespace)
                 ->prefix(LaravelLocalization::setLocale().'/cabinet')
                 ->group(base_path('routes/cabinet.php'));
