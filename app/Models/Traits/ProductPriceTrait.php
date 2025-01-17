@@ -6,6 +6,23 @@ use Illuminate\Database\Eloquent\Casts\Attribute;
 
 trait ProductPriceTrait
 {
+    private function getPriceByGroup()
+    {
+        $user = auth()->user();
+        $price = $this->calculateNowPrice();
+
+        if ($user && $user->roles->count() === 1) {
+            $group = $user->roles->first();
+            switch ($group->name) {
+                case 'smallopt': $price = $this->getPriceFromTen();
+                    break;
+                case 'bigopt': $price = $this->getPriceFromTwenty();
+                    break;
+            }
+        }
+        return $price;
+    }
+
     public function oldPrice(): Attribute
     {
         return new Attribute(
@@ -18,7 +35,8 @@ trait ProductPriceTrait
     public function nowPrice(): Attribute
     {
         return new Attribute(
-            get: fn () => $this->calculateNowPrice(),
+//            get: fn () => $this->calculateNowPrice(),
+            get: fn () => $this->getPriceByGroup(),
         );
     }
 
