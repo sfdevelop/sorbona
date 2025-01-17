@@ -13,8 +13,9 @@
             <div class="catalog__container section__container_fullmob">
                 <div class="catalog__head">
                     <h1 class="catalog__title">{{ __('search.title') }}</h1>
-                    <p class="catalog__subtitle">{{ __('search.found-total') }} {{ trans_choice('search.products', $products->count()) }}</p>
+                    <p class="catalog__subtitle">{{ __('search.found-total') }} {{  $products->count()}} {{ trans_choice('search.products', $products->count()) }}</p>
                 </div>
+                @if (count($products) > 0)
                 <div class="category">
                     <sidebar class="category__sidebar">
                         <div class="filters">
@@ -43,6 +44,14 @@
                     </sidebar>
                     @include('front.search._products_in_category')
                 </div>
+                @else
+                    <div class="notfound">
+                        <div class="notfound__picture">
+                            <img src="/front/img/search/catalog-notfound.svg" alt="image" loading="lazy" class="img-full">
+                        </div>
+                        <h1 class="notfound__title">{{ __('search.no_results') }}</h1>
+                    </div>
+                @endif;
             </div>
         </section>
 @endsection
