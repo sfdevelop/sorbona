@@ -25,6 +25,7 @@ Route::group(['middleware' => 'guest'], function () {
     Route::post('/signup', [AuthController::class, 'signup'])->name('signup');
 });
 
-Route::post('/logout', [AuthController::class, 'logout'])->name('logout')->middleware('auth');
+// Route::post('/logout', [AuthController::class, 'logout'])->name('logout')->middleware('auth');
+Route::match(['get', 'post'], '/logout', [AuthController::class, 'logout'])->name('logout')->middleware('auth');
 
 Route::match(['get', 'post'], 'liqpay/result/', LiqPayResultController::class)->name('public.liqpay.result');

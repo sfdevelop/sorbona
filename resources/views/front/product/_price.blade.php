@@ -12,14 +12,18 @@
         @endif
     </div>
     <div class="product-item__prices_right">
+        @unlessrole('smallopt|bigopt')
         <div class="price__number">
             <span>{{Number::currency(number: $product->price_from_ten, in: 'UAH', locale: 'uk')}}</span> {{__('front.in')}}
             {{$product->qtyMilkoopt}} шт
         </div>
+        @endunlessrole
+        @unlessrole('bigopt')
         <div class="price__number">
             <span>{{Number::currency(number: $product->price_from_twenty, in: 'UAH', locale: 'uk')}}</span> {{__('front.in')}} {{$product->qtyOpt}}
             шт
         </div>
+        @endunlessrole
     </div>
 </div>
 <p class="price__info">{{__('front.text_guest')}}</p>

@@ -9,18 +9,14 @@ trait ProductPriceTrait
     private function getPriceByGroup()
     {
         $user = auth()->user();
-        $price = $this->calculateNowPrice();
-
-        if ($user && $user->roles->count() === 1) {
-            $group = $user->roles->first();
-            switch ($group->name) {
-                case 'smallopt': $price = $this->getPriceFromTen();
-                    break;
-                case 'bigopt': $price = $this->getPriceFromTwenty();
-                    break;
-            }
+        if ($user) {
+            return match ($user->roles->first()->name) {
+                'smallopt' => $this->getPriceFromTen(),
+                'bigopt' => $this->getPriceFromTwenty(),
+                default => $this->calculateNowPrice()
+            };
         }
-        return $price;
+        return $this->calculateNowPrice();
     }
 
     public function oldPrice(): Attribute
@@ -35,7 +31,7 @@ trait ProductPriceTrait
     public function nowPrice(): Attribute
     {
         return new Attribute(
-//            get: fn () => $this->calculateNowPrice(),
+            //            get: fn () => $this->calculateNowPrice(),
             get: fn () => $this->getPriceByGroup(),
         );
     }

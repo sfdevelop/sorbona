@@ -18,8 +18,12 @@
                 <div class="price"><span>{{Number::currency(number: $product->now_price,in: 'UAH', locale: 'uk') }}</span></div>
             </div>
             <div class="product-item__prices_right">
+                @unlessrole('smallopt|bigopt')
                 <div class="price__number"><span>{{Number::currency(number: $product->price_from_ten,in: 'UAH', locale: 'uk') }}</span> от {{$product->qtyMilkoopt}} шт</div>
+                @endunlessrole
+                @unlessrole('bigopt')
                 <div class="price__number"><span>{{Number::currency(number: $product->price_from_twenty,in: 'UAH', locale: 'uk') }}</span> от {{$product->qtyOpt}} шт</div>
+                @endunlessrole
             </div>
         </div>
         <div class="product-item__bottom">
