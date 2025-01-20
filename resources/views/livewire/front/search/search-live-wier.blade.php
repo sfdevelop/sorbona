@@ -1,4 +1,4 @@
-<div class="header__search">
+<div>
     <button class="search_open-mob">
         <svg><use xlink:href="{{asset('front/img/icons/icons.svg#icon-search')}}"></use></svg>
     </button>
@@ -7,7 +7,7 @@
     </button>
     <form class="search" id="search-form">
         <label for="search">
-            <svg><use xlink:href="img/icons/icons.svg#icon-search"></use></svg>
+            <svg><use xlink:href="{{asset('front/img/icons/icons.svg#icon-search')}}"></use></svg>
             <input
                 wire:model="search"
                 name="search"
@@ -15,7 +15,7 @@
                 placeholder="{{ __('search.placeholder') }}"
                 type="search"
                 class="search__input" />
-            <svg class="search__input_clear"><use xlink:href="img/icons/icons.svg#icon-close"></use></svg>
+            <svg class="search__input_clear"><use xlink:href="{{asset('front/img/icons/icons.svg#icon-close')}}"></use></svg>
         </label>
         <button type="submit" class="search__button btn btn--line">{{__('front.search')}}</button>
     </form>
@@ -45,7 +45,6 @@
         </div>
     </div>
     @endif
-</div>
 @pushonce('frontJs')
     <script>
         $(document).ready(function() {
@@ -58,3 +57,4 @@
         )});
     </script>
 @endpushonce
+</div>
