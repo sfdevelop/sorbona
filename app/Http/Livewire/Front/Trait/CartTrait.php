@@ -47,11 +47,13 @@ trait CartTrait
         if ($hasProductInCart) {
             $item = reset($hasProductInCart); // Получаем первый элемент из массива
             $this->updateCartItem($shoppingCart, $item);
-            $this->dispatchBrowserEvent('alert', ['type' => 'success', 'message' => __('front.product_added_to_cart')]);
+//            $this->dispatchBrowserEvent('alert', ['type' => 'success', 'message' => __('front.product_added_to_cart')]);
         } else {
             $this->createCartItem($shoppingCart, $productId);
-            $this->dispatchBrowserEvent('alert', ['type' => 'success', 'message' => __('front.product_added_to_cart')]);
+//            $this->dispatchBrowserEvent('alert', ['type' => 'success', 'message' => __('front.product_added_to_cart')]);
         }
+
+        $this->emit('refreshCart');
     }
 
     /**

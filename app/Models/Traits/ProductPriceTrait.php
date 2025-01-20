@@ -76,4 +76,16 @@ trait ProductPriceTrait
 
         return $this->priceTwenty * $currencyValue;
     }
+
+    public function getPriceByCount($count)
+    {
+        $smallOpt = $this->qtyMilkoopt;
+        $bigOpt = $this->qtyOpt;
+
+        return match (true) {
+            ($count >= $smallOpt) && ($count < $bigOpt) => $this->getPriceFromTen(),
+            ($count >= $bigOpt) => $this->getPriceFromTwenty(),
+            default => $this->calculateNowPrice(),
+        };
+    }
 }

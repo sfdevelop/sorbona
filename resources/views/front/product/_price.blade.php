@@ -2,7 +2,13 @@
         @php /** @var \App\Models\Product $product */ @endphp>
     <div class="product-item__prices_left">
         <div class="price">
-            <span>{{Number::currency(number: $product->now_price, in: 'UAH', locale: 'uk')}}</span>
+            <span>
+            @if ($productQty == 1)
+                {{Number::currency(number: $product->now_price, in: 'UAH', locale: 'uk')}}
+            @else
+                {{  $priceProduct }}
+            @endif
+            </span>
             @if($product->sale>0)
                 <div class="label">-{{$product->sale}}% *</div>
             @endif

@@ -40,7 +40,9 @@
 
             </div>
 
+            <div class="header__search">
             @livewire('front.search.search-live-wier')
+            </div>
 
             <div class="header__line"></div>
 
@@ -67,22 +69,8 @@
 
 
             <span class="header__line"></span>
-            <div class="header__basket">
-                <div class="header__basket_icon">
-                    <svg><use xlink:href="{{asset('front/img/icons/icons.svg#icon-basket')}}"></use></svg>
-                </div>
-                <span>{{__('front.cart')}}</span>
-            </div>
-            <div class="mini-cart empty">
-                <div class="mini-cart__wrapper">
-                    <div class="mini-cart__close">
-                        <svg><use xlink:href="{{asset('front/img/icons/icons.svg#icon-close')}}"></use></svg>
-                    </div>
-                    <div class="mini-cart__empty">
-                        <img src="{{asset('front/img/empty-mini-cart.png')}}" alt="image" loading="lazy">
-                        <p>{{__('front.cart_empty')}}</p>
-                    </div>
-                </div>
+            <div>
+            @livewire('front.layout.header-basket-live-wire')
             </div>
             <div class="layout"></div>
 

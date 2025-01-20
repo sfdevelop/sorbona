@@ -32,26 +32,8 @@
                         <div class="product-item__body">
 
                             @include('front.product.__manufacturer')
-                            @include('front.product._price')
+                            @livewire('front.product.product-live-wire', ['product' => $product])
 
-
-                            <div class="product-item__bottom">
-                                <div class="product-item__quantity">
-                                    <button class="product-item__quantity_minus">
-                                        <svg>
-                                            <use xlink:href="img/icons/icons.svg#icon-minus"></use>
-                                        </svg>
-                                    </button>
-                                    <span id="add_num" class="product-item__quantity_num">1</span>
-                                    <button class="product-item__quantity_plus">
-                                        <svg>
-                                            <use xlink:href="img/icons/icons.svg#icon-plus"></use>
-                                        </svg>
-                                    </button>
-                                </div>
-                                <button class="product-item__tobasket btn">В корзину</button>
-                                <button class="product-item__buy btn btn--line">Купить в 1 клик</button>
-                            </div>
 
                         </div>
                         @include('front.product._miniFilters')
