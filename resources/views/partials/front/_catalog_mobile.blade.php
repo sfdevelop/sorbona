@@ -147,7 +147,7 @@
                 <div class="header__catalog">
                     <div class="catalog-btn">
                         <svg>
-                            <use xlink:href="{{asset('front/img/icons/icons.#icon-burger')}}"></use>
+                            <use xlink:href="{{asset('front/img/icons/icons.svg#icon-burger')}}"></use>
                         </svg>
                         <p>{{__('front.catalog_products')}}</p>
                     </div>
