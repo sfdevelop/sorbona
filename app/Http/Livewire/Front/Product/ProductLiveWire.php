@@ -30,13 +30,13 @@ class ProductLiveWire extends Component
     public function plusQty(): void
     {
         $this->productQty++;
-        $this->newPrice();
     }
 
     public function minusQty(): void
     {
-        $this->productQty--;
-        $this->newPrice();
+        if ($this->productQty > 1) {
+            $this->productQty--;
+        }
     }
 
     protected function newPrice(): void
@@ -54,7 +54,7 @@ class ProductLiveWire extends Component
      */
     public function render(): Factory|Application|View|\Illuminate\Contracts\Foundation\Application
     {
-        //        $this->productsInCart = $this->getItemsFromCart();
+        $this->newPrice();
         $this->total = $this->getTotalPriceInCart();
 
         return view('livewire.front.product.product-live-wire');

@@ -18,7 +18,9 @@
 </div>
 <div class="product-item__bottom">
     <div class="product-item__quantity">
-        <button class="product-item__quantity_minus" wire:click.prevent="minusQty">
+        <button
+            @disabled($productQty == 1)
+            class="product-item__quantity_minus" wire:click.prevent="minusQty">
             <svg>
                 <use xlink:href="{{asset('front/img/icons/icons.svg#icon-minus')}}"></use>
             </svg>

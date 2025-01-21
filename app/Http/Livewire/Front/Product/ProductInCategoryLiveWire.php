@@ -35,8 +35,8 @@ class ProductInCategoryLiveWire extends Component
 
     public function minusQty(): void
     {
-        $this->productQty--;
-//        $this->newPrice();
+        if ($this->productQty > 1)
+            $this->productQty--;
     }
 
     protected function newPrice(): void
