@@ -63,6 +63,12 @@ trait ProductPriceTrait
         return $price * (1 - $this->sale / 100);
     }
 
+    private function calculateNowPriceWithoutDiscount(): bool|string|null
+    {
+        $currencyValue = $this->currency['currency'];
+        return $this->price * $currencyValue;
+    }
+
     private function getPriceFromTen(): bool|string|null
     {
         $currencyValue = $this->currency['currency'];
@@ -85,6 +91,7 @@ trait ProductPriceTrait
         return match (true) {
             ($count >= $smallOpt) && ($count < $bigOpt) => $this->getPriceFromTen(),
             ($count >= $bigOpt) => $this->getPriceFromTwenty(),
+            ($count != 1) => $this->calculateNowPriceWithoutDiscount(),
             default => $this->calculateNowPrice(),
         };
     }
