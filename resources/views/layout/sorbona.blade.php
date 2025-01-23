@@ -58,6 +58,7 @@
     @endforeach
     @endif
 </script>
+<script src="{{ asset('front/js/custom.js') }}?v={{ time() }}"
 </body>
 
 </html>

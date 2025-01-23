@@ -20,7 +20,9 @@
             </svg>
         </button>
     </div>
-    <button class="product-item__tobasket btn">{{ __('cart.add_to_cart') }}</button>
+    <button
+        wire:click.prevent="addToCart"
+        class="product-item__tobasket btn">{{ __('cart.add_to_cart') }}</button>
     <button class="product-item__buy btn btn--line">{{ __('cart.buy_one_click') }}</button>
 </div>
 </div>

@@ -72,8 +72,6 @@
             <div>
             @livewire('front.layout.header-basket-live-wire')
             </div>
-            <div class="layout"></div>
-
         </div>
     </div>
 </header>

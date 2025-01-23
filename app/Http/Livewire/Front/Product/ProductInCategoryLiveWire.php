@@ -35,8 +35,9 @@ class ProductInCategoryLiveWire extends Component
 
     public function minusQty(): void
     {
-        if ($this->productQty > 1)
+        if ($this->productQty > 1) {
             $this->productQty--;
+        }
     }
 
     protected function newPrice(): void
@@ -44,12 +45,6 @@ class ProductInCategoryLiveWire extends Component
         $priceProduct = $this->product->getPriceByCount($this->productQty);
         $round = round(($priceProduct * $this->productQty), 2);
         $this->priceProduct = Number::currency(number: $round, in: 'UAH', locale: 'uk');
-    }
-
-    public function addToCart(): void
-    {
-        $this->addToCartProduct();
-        \Log::info(print_r($this->getItemsFromCart(), true));
     }
 
     /**

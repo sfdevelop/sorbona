@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers\Front;
 
+use App\Http\Livewire\Front\Trait\CartTrait;
 use App\Models\Product;
 use App\Services\SeeProduct\SeeProductsService;
 use App\ViewModels\ProductViewModel;
 
 class ProductController extends BaseFrontController
 {
+    use CartTrait;
     public function __construct() {}
 
     /**
@@ -16,6 +18,7 @@ class ProductController extends BaseFrontController
      */
     public function __invoke(Product $product): ProductViewModel
     {
+        $this->getTotalPriceInCartSolana();
         app()
             ->make(SeeProductsService::class)
             ->updateRecentlyViewedProducts($product->id);

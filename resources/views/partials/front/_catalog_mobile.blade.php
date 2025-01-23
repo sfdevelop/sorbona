@@ -134,7 +134,6 @@
                     </div>
                 </div>
             </div>
-            <div class="layout"></div>
 
             @include('partials.front._lang')
         </div>

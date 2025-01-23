@@ -2,6 +2,8 @@
 
 namespace App\Http\Livewire\Front\Trait;
 
+use App\Models\Product;
+use Illuminate\Support\Number;
 use Jackiedo\Cart\Exceptions\InvalidAssociatedException;
 use Jackiedo\Cart\Exceptions\InvalidModelException;
 use Jackiedo\Cart\Facades\Cart;
@@ -9,6 +11,8 @@ use Jackiedo\Cart\Facades\Cart;
 trait CartTrait
 {
     public static string $nameShopping = 'shop-user-default';
+
+    public bool $isShowToast = false;
 
     public function __construct()
     {
@@ -47,13 +51,18 @@ trait CartTrait
         if ($hasProductInCart) {
             $item = reset($hasProductInCart); // Получаем первый элемент из массива
             $this->updateCartItem($shoppingCart, $item);
-//            $this->dispatchBrowserEvent('alert', ['type' => 'success', 'message' => __('front.product_added_to_cart')]);
         } else {
             $this->createCartItem($shoppingCart, $productId);
-//            $this->dispatchBrowserEvent('alert', ['type' => 'success', 'message' => __('front.product_added_to_cart')]);
         }
 
-        $this->emit('refreshCart');
+        if ($this->isShowToast) {
+            $this->dispatchBrowserEvent('alert', ['type' => 'success', 'message' => __('cart.product_added_to_cart')]);
+        }
+
+        $priceWithCount = $this->product->getPriceByCount($this->productQty);
+        $round = round(($priceWithCount * $this->productQty), 2);
+        $priceWithCount = Number::currency(number: $round, in: 'UAH', locale: 'uk');
+        $this->emit('refreshCart', $this->isShowToast, $this->product->slug, $this->product->title, $this->productQty, $priceWithCount, $this->getTotalPriceInCartSolana(), $this->product->img_web);
     }
 
     /**
@@ -192,6 +201,18 @@ trait CartTrait
         return $this->getShoppingCart()->getDetails()->get('total');
     }
 
+    public function getTotalPriceInCartSolana(): string
+    {
+        $totalPriceInCartSolana = 0;
+        $items = $this->getShoppingCart()->getDetails()->get('items');
+        foreach ($items as $item) {
+            $product = Product::find($item->id);
+            $priceWithCount = $product->getPriceByCount($item->quantity) * $item->quantity;
+            $totalPriceInCartSolana += $priceWithCount;
+        }
+        return $totalPriceInCartSolana;
+    }
+
     /**
      * @return mixed
      *
@@ -202,5 +223,10 @@ trait CartTrait
     public function getQtySum(): mixed
     {
         return $this->getShoppingCart()->getDetails()->get('quantities_sum');
+    }
+
+    public function addToCart(): void
+    {
+        $this->addToCartProduct();
     }
 }
