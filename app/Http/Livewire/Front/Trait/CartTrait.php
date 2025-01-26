@@ -62,7 +62,7 @@ trait CartTrait
         $priceWithCount = $this->product->getPriceByCount($this->productQty);
         $round = round(($priceWithCount * $this->productQty), 2);
         $priceWithCount = Number::currency(number: $round, in: 'UAH', locale: 'uk');
-        $this->emit('refreshCart', $this->isShowToast, $this->product->slug, $this->product->title, $this->productQty, $priceWithCount, $this->getTotalPriceInCartSolana(), $this->product->img_web);
+        $this->emit('refreshCart', $this->isShowToast, $this->product->slug, $this->product->title, $this->productQty, $priceWithCount, $this->getTotalPriceInCartSorbona(), $this->product->img_web);
     }
 
     /**
@@ -201,16 +201,16 @@ trait CartTrait
         return $this->getShoppingCart()->getDetails()->get('total');
     }
 
-    public function getTotalPriceInCartSolana(): string
+    public function getTotalPriceInCartSorbona(): string
     {
-        $totalPriceInCartSolana = 0;
+        $totalPriceInCartSorbona = 0;
         $items = $this->getShoppingCart()->getDetails()->get('items');
         foreach ($items as $item) {
             $product = Product::find($item->id);
             $priceWithCount = $product->getPriceByCount($item->quantity) * $item->quantity;
-            $totalPriceInCartSolana += $priceWithCount;
+            $totalPriceInCartSorbona = $totalPriceInCartSorbona + $priceWithCount;
         }
-        return $totalPriceInCartSolana;
+        return $totalPriceInCartSorbona;
     }
 
     /**

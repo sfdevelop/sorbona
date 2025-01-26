@@ -12,6 +12,7 @@ return [
     'catalog_products'               => 'Каталог товаров',
     'cart'                           => 'Корзина',
     'cart_empty'                     => 'Ваша корзина пуста',
+    'product_removed_from_cart' => 'Товар был удален из корзины',
     'sign_in'                        => 'Войти',
     'search'                         => 'Найти',
     'information'                    => 'Информация',

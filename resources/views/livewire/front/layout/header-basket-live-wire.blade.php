@@ -1,5 +1,5 @@
 <div>
-    <div class="header__basket" data-href="/cart.html">
+    <div class="header__basket" data-href="{{ route('cart') }}">
         <div class="header__basket_icon">
             <svg>
                 <use xlink:href="{{ asset('front/img/icons/icons.svg#icon-basket') }}"></use>
@@ -42,7 +42,7 @@
                 </div>
                 <div class="mini-cart-bottom__buttons">
                     <a href="#" onclick="return removeCartDiv();" class="mini-cart-bottom__btn btn btn--line">{{ __('cart.continue_to_buy') }}</a>
-                    <a href="cart.html" class="mini-cart-bottom__btn btn">{{ __('cart.goto_cart') }}</a>
+                    <a href="{{ route('cart') }}" class="mini-cart-bottom__btn btn">{{ __('cart.goto_cart') }}</a>
                 </div>
             </div>
         </div>

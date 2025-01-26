@@ -29,7 +29,7 @@ Route::get('category/{category:slug}', CatalogController::class)->name('category
 Route::get('product/{product:slug}', ProductController::class)->name('product');
 Route::get('login', \App\Http\Controllers\Front\LoginController::class)->name('login');
 Route::get('sign-up', \App\Http\Controllers\Front\SignUpController::class)->name('signUp');
-// Route::get('cart', \App\Http\Controllers\Front\CartController::class)->name('cart');
+Route::get('cart', \App\Http\Controllers\Front\CartController::class)->name('cart');
 Route::get('contacts', ContactsController::class)->name('contacts');
 // Route::get('search', \App\Http\Controllers\Front\SearchController::class)->name('search');
 Route::get('search/{search}', \App\Http\Controllers\Front\SearchController::class)->name('search');

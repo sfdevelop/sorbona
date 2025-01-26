@@ -3,12 +3,12 @@
 namespace App\Http\Controllers\Front;
 
 use App\Http\Controllers\Controller;
-use App\Http\Livewire\Traits\CartTrait;
+use App\Http\Livewire\Front\Trait\CartTrait;
 use App\ViewModels\CartViewModel;
 
 class CartController extends Controller
 {
-    use CartTrait;
+//    use CartTrait;
 
     public function __construct(
 

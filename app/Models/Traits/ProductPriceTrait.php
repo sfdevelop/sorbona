@@ -16,6 +16,7 @@ trait ProductPriceTrait
                 default => $this->calculateNowPrice()
             };
         }
+
         return $this->calculateNowPrice();
     }
 
@@ -63,9 +64,27 @@ trait ProductPriceTrait
         return $price * (1 - $this->sale / 100);
     }
 
+    public function getPriceWithDiscount(int $quantity): ?string
+    {
+        $currencyValue = $this->currency['currency'];
+        $price = $this->price * $currencyValue;
+
+        $user = auth()->user();
+        if ($user && ! in_array($user->roles->first()->name, ['smallopt', 'bigopt'])) {
+            return 0;
+        }
+
+        if (is_null($this->sale) || $quantity != 1) {
+            return 0;
+        }
+
+        return $price;
+    }
+
     private function calculateNowPriceWithoutDiscount(): bool|string|null
     {
         $currencyValue = $this->currency['currency'];
+
         return $this->price * $currencyValue;
     }
 
