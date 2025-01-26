@@ -18,7 +18,6 @@ class ProductController extends BaseFrontController
      */
     public function __invoke(Product $product): ProductViewModel
     {
-//        $this->getTotalPriceInCartSolana();
         app()
             ->make(SeeProductsService::class)
             ->updateRecentlyViewedProducts($product->id);
