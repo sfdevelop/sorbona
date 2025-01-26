@@ -49,7 +49,7 @@ class ImportDataNpCommand extends Command
                     'Language' => 'ua',
                     // "CityName" => "Прилуки"
                 ],
-                'apiKey' => env('NOVA_POCHTA_API_KEY'),
+                'apiKey' => config('custom.API_NOVA_POCHTA_KEY'),
             ],
         ]);
         $data = json_decode($response->getBody()->getContents());

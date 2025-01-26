@@ -18,7 +18,7 @@ class Pochtomat extends Command
      *
      * @var string
      */
-    protected $description = 'Формування поштоматів';
+    protected $description = 'Формування відділень';
 
     /**
      * Execute the console command.
