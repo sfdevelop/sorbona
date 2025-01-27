@@ -12,7 +12,7 @@ class PolicyViewModel extends BaseViewModel
 {
     use CustomSeoTrait;
 
-    public function __construct(public Page $about) {}
+    public function __construct(public Page $policy) {}
 
     public function benefits(): Collection
     {
