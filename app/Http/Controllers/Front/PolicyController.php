@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Front;
 
 use App\Repository\Page\PageRepositoryInterface;
+use App\ViewModels\PolicyViewModel;
 
 class PolicyController extends BaseFrontController
 {
@@ -15,6 +16,6 @@ class PolicyController extends BaseFrontController
             ->make(PageRepositoryInterface::class)
             ->getPageFromId(1);
 
-        return view('front.page.policy', compact('policy'));
+        return (new PolicyViewModel($policy))->view('front.page.policy');
     }
 }

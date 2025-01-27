@@ -87,7 +87,7 @@
                     </div>
                 </div>
                 <div class="cart-order__buttons">
-                    <a href="#" class="cart-order__btn btn">{{ __('cart.checkout') }}</a>
+                    <a href="{{ route('checkout') }}" class="cart-order__btn btn">{{ __('cart.checkout') }}</a>
                     <a href="{{ Session::get('current_url') }}"
                        class="cart-order__btn btn btn--invis">{{ __('cart.continue_to_buy') }}</a>
                 </div>
