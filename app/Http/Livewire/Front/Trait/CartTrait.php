@@ -139,6 +139,7 @@ trait CartTrait
         $this->getShoppingCart()->updateItem($item['hash'], [
             'quantity' => $newQty,
         ]);
+        $this->emit('refreshCart', true);
     }
 
     /**
@@ -153,6 +154,7 @@ trait CartTrait
         $this->getShoppingCart()->updateItem($item['hash'], [
             'quantity' => $newQty,
         ]);
+        $this->emit('refreshCart', true);
     }
 
     /**
@@ -163,6 +165,7 @@ trait CartTrait
     public function clearCart(): void
     {
         $this->getShoppingCart()->destroy();
+        $this->emit('refreshCart', true);
     }
 
     /**
