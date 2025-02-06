@@ -63,6 +63,7 @@ trait CartTrait
         $round = round(($priceWithCount * $this->productQty), 2);
         $priceWithCount = Number::currency(number: $round, in: 'UAH', locale: 'uk');
         $this->emit('refreshCart', $this->isShowToast, $this->product->slug, $this->product->title, $this->productQty, $priceWithCount, $this->getTotalPriceInCartSorbona(), $this->product->img_web);
+        $this->emit('refreshHeaderUser');
     }
 
     /**
@@ -124,6 +125,8 @@ trait CartTrait
             $item = reset($hasProductInCart); // Получаем первый элемент из массива
             $shoppingCartDelete->removeItem($item->getHash());
             $this->dispatchBrowserEvent('alert', ['type' => 'success', 'message' => __('front.product_removed_from_cart')]);
+            $this->emit('refreshCart', true);
+            $this->emit('refreshHeaderUser');
         }
     }
 
@@ -139,6 +142,8 @@ trait CartTrait
         $this->getShoppingCart()->updateItem($item['hash'], [
             'quantity' => $newQty,
         ]);
+        $this->emit('refreshCart', true);
+        $this->emit('refreshHeaderUser');
     }
 
     /**
@@ -153,16 +158,22 @@ trait CartTrait
         $this->getShoppingCart()->updateItem($item['hash'], [
             'quantity' => $newQty,
         ]);
+        $this->emit('refreshCart', true);
+        $this->emit('refreshHeaderUser');
     }
 
     /**
      * Удаление корзины
      *
-     * @return void
+     * @return \Illuminate\Http\RedirectResponse|void
      */
-    public function clearCart(): void
+    public function clearCart()
     {
         $this->getShoppingCart()->destroy();
+        $this->emit('refreshCart', true);
+        $this->emit('refreshHeaderUser');
+        return redirect()->route('cart');
+
     }
 
     /**
@@ -210,6 +221,7 @@ trait CartTrait
             $priceWithCount = $product->getPriceByCount($item->quantity) * $item->quantity;
             $totalPriceInCartSorbona = $totalPriceInCartSorbona + $priceWithCount;
         }
+
         return $totalPriceInCartSorbona;
     }
 

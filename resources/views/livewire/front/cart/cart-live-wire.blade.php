@@ -1,6 +1,6 @@
 <div class="section__container--medium section__container_fullmob">
     <div class="section__breadcrumbs">
-        <a href="{{ url()->previous() }}" class="section-breadcrumbs__back">
+        <a href="{{ Session::get('current_url') }}" class="section-breadcrumbs__back">
             <svg>
                 <use xlink:href="{{ asset('front/img/icons/icons.svg#icon-slider-arrow-prev') }}"></use>
             </svg>
@@ -87,8 +87,8 @@
                     </div>
                 </div>
                 <div class="cart-order__buttons">
-                    <a href="#" class="cart-order__btn btn">{{ __('cart.checkout') }}</a>
-                    <a href="{{ url()->previous() }}"
+                    <a href="{{ route('checkout') }}" class="cart-order__btn btn">{{ __('cart.checkout') }}</a>
+                    <a href="{{ Session::get('current_url') }}"
                        class="cart-order__btn btn btn--invis">{{ __('cart.continue_to_buy') }}</a>
                 </div>
             </div>

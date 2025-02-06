@@ -21,13 +21,16 @@ class HeaderBasketLiveWire extends Component
     public int $productQty = 1;
 
     public string $img;
+
     public string $priceWithCount = '';
+
     public string $total;
+
     public string $slug;
 
     protected $listeners = ['refreshCart'];
 
-    public function refreshCart(bool $isShowToast, string $slug, string $title, int $productQty, string $priceWithCount, string $totalPriceInCartSolana, string $img = '/img/product.png')
+    public function refreshCart(bool $isShowToast = false, string $slug = '', string $title = '', int $productQty = 0, string $priceWithCount = '', string $totalPriceInCartSolana = '', string $img = '/img/product.png'): void
     {
         $this->title = $title;
         $this->img = $img;

@@ -24,7 +24,7 @@
         <div class="search-results__wrap">
             <p class="search-results__title">{{ __('search.found-in-products') }} {{ $productsCount }}</p>
             <div class="search-results__list">
-                @foreach($searchThreeProducts as $threeProduct)
+                @foreach($searchFourProducts as $threeProduct)
                 <div class="search-results__item">
                     <a href="{{ route('product', $threeProduct->slug) }}" class="search-results-item__picture">
                         <img src="{{ $threeProduct->img_web }}" loading="lazy" class="img-full" alt="product-search-{{ $threeProduct->title }}"/>

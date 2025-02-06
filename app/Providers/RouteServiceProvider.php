@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\Facades\Route;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
+use App\Http\Middleware\StoreCurrentUrl;
 
 class RouteServiceProvider extends ServiceProvider
 {
@@ -49,7 +50,7 @@ class RouteServiceProvider extends ServiceProvider
                 ->namespace($this->namespace)
                 ->group(base_path('routes/web.php'));
 
-            Route::middleware(['web', 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath', SetLangAdminMiddleware::class])
+            Route::middleware(['web', StoreCurrentUrl::class, 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath', SetLangAdminMiddleware::class])
                 ->namespace($this->namespace)
                 ->prefix(LaravelLocalization::setLocale())
                 ->group(base_path('routes/front.php'));
@@ -59,7 +60,7 @@ class RouteServiceProvider extends ServiceProvider
                 ->prefix('admin')
                 ->group(base_path('routes/admin.php'));
 
-            Route::middleware(['web', 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath', 'auth', 'role:user|smallopt|bigopt', SetLangAdminMiddleware::class])
+            Route::middleware(['web', StoreCurrentUrl::class, 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath', 'auth', 'role:user|smallopt|bigopt', SetLangAdminMiddleware::class])
                 ->namespace($this->namespace)
                 ->prefix(LaravelLocalization::setLocale().'/cabinet')
                 ->group(base_path('routes/cabinet.php'));

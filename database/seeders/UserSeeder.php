@@ -29,7 +29,9 @@ class UserSeeder extends Seeder
         $userAdmin->assignRole('admin');
 
         $data = [
-            'name' => 'user',
+            'name' => 'Name',
+            'surname' => 'Surname',
+            'phone' => '+380931904415',
             'email' => 'user@admin.com',
             'email_verified_at' => now(),
             'password' => 'password', // password
