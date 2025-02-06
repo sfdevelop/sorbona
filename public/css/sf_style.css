@@ -22,4 +22,8 @@
     z-index: 1;
 }
 
+.header .search-results {
+    display: block;
+}
+
 /*# sourceMappingURL=sf_style.css.map */

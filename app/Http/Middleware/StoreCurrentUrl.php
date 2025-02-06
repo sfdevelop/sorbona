@@ -19,7 +19,7 @@ class StoreCurrentUrl
         $currentUrl = Url()->current();
 
         // Если текущий маршрут не "cart", записываем его в сессию
-        if (! str_contains($currentUrl, 'cart')) {
+        if (! str_contains($currentUrl, 'cart') && ! str_contains($currentUrl, 'checkout')) {
             Session::put('current_url', $currentUrl);
         }
 
