@@ -13,7 +13,7 @@
             <div class="catalog__container section__container_fullmob">
                 <div class="catalog__head">
                     <h1 class="catalog__title">{{ __('search.title') }}</h1>
-                    <p class="catalog__subtitle">{{ __('search.found-total') }} {{  $products->count()}} {{ trans_choice('search.products', $products->count()) }}</p>
+                    <p class="catalog__subtitle">{{ __('search.found-total') }} {{  $products->total()}} {{ trans_choice('search.products', $products->count()) }}</p>
                 </div>
                 @if (count($products) > 0)
                 <div class="category">
