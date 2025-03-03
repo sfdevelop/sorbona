@@ -4,7 +4,7 @@
         <svg>
             <use xlink:href="{{asset('front/img/icons/icons.svg#icon-search')}}"></use>
         </svg>
-        <input wire:model="search" autocomplete="off" name="search" id="search-mobile" placeholder="{{__('front.search')}}" type="search" class="search__input"/>
+        <input value="{{ $search }}" wire:model="search" autocomplete="off" name="search" id="search-mobile" placeholder="{{__('front.search')}}" type="search" class="search__input"/>
         <svg class="search__input_clear">
             <use xlink:href="{{asset('front/img/icons/icons.svg#icon-close')}}"></use>
         </svg>

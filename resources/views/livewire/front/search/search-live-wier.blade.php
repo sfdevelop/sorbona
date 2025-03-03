@@ -13,8 +13,10 @@
                 name="search"
                 id="search"
                 placeholder="{{ __('search.placeholder') }}"
-                type="search"
-                class="search__input" />
+                type="text"
+                class="search__input"
+                value="{{ $search }}"
+                />
             <svg class="search__input_clear"><use xlink:href="{{asset('front/img/icons/icons.svg#icon-close')}}"></use></svg>
         </label>
         <button type="submit" class="search__button btn btn--line">{{__('front.search')}}</button>

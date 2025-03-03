@@ -47,7 +47,7 @@ class SearchInCategoryViewModel extends BaseViewModel
             return [
                 'name' => $data->category->title,
                 'count' => $data->product_count,
-                'url' => url("search/{$data->category->slug}?query=".urlencode($searchText)),
+                'url' => url("search/{$data->category->slug}?search=".urlencode($searchText)),
             ];
         });
     }

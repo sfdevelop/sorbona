@@ -76,6 +76,7 @@ class SearchMobileLiveWire extends Component
      */
     public function render(): View
     {
+        $this->search = request()->get('search', $this->search);
         return view('livewire.front.search.search-mobile-live-wire');
     }
 }
