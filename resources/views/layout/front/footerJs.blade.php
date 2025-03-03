@@ -13,6 +13,6 @@
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
 @livewireScripts
-<script src="{{asset('front/js/main.min.js')}}"></script>
+ <script src="{{asset('front/js/main.min.js')}}"></script>
 
 @stack('frontJs')

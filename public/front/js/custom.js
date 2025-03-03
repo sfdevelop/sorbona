@@ -4,3 +4,8 @@ function removeCartDiv()
     $('.layout').remove();
     return false;
 }
+
+function checkoutDoAsGuest()
+{
+    $('#btnCheckoutAsGuest').click();
+}

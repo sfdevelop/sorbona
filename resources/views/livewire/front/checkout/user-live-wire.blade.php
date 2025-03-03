@@ -1,7 +1,7 @@
 <div class="checkout__body">
     <div class="checkout-body__head">
         @guest
-        <button class="checkout-body-head__tab checkout-body-head__tab--active">{{ __('checkout.new_user') }}</button>
+        <button id="btnCheckoutAsGuest" class="checkout-body-head__tab checkout-body-head__tab--active">{{ __('checkout.new_user') }}</button>
         @endguest
         <button class="checkout-body-head__tab">{{ __('checkout.registered_user') }}</button>
     </div>
@@ -162,7 +162,7 @@
                 <div class="form__group">
                     <div class="form-group__head">
                         <h3 class="form-group__head-title">{{ __('checkout.comment') }}</h3>
-                        <button class="form-group__head-delete">{{ __('checkout.comment_clear') }}</button>
+                        <button onclick="$('#comment').val('');return false;" class="form-group__head-delete">{{ __('checkout.comment_clear') }}</button>
                     </div>
                     <div class="form-group__inputs_line">
                         <div class="form__item">
@@ -197,7 +197,7 @@
 
                         <div class="form__buttons">
                             <button type="submit" class="form__button btn" disabled="">{{ __('checkout.btn_login') }}</button>
-                            <a href="#" class="form__button btn btn--line">{{ __('checkout.buy_as_guest') }}</a>
+                            <a href="#" onclick="checkoutDoAsGuest();" class="form__button btn btn--line">{{ __('checkout.buy_as_guest') }}</a>
                         </div>
                     </form>
                 </div>
