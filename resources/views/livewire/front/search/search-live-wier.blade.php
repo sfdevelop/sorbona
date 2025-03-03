@@ -52,7 +52,7 @@
                 e.preventDefault();
                 let search = $('#search').val();
                 if (search.length > 0)
-                    location.href = "{{route('search', $search)}}" + "/" + search;
+                    location.href = "{{route('search')}}" + "?search=" + encodeURIComponent(search);
             }
         )});
     </script>

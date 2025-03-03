@@ -34,7 +34,7 @@ class ProductRepository implements ProductRepositoryInterface
             return [
                 'name' => $data->category->title,
                 'count' => $data->product_count,
-                'url' => url("search/{$data->category->slug}/$searchText"),
+                'url' => url("search/{$data->category->slug}")."?search=$searchText",
             ];
         });
     }

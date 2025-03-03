@@ -13,10 +13,9 @@ class SearchController extends Controller
         public ProductRepositoryInterface $productRepository
     ) {}
 
-    public function __invoke(String $search, Request $request)
+    public function __invoke(Request $request)
     {
-#        $query = $request->input('search');
-
+        $search = request('search');
         return (new SearchViewModel($search, $request, $this->productRepository))->view('front.search.search');
     }
 }
