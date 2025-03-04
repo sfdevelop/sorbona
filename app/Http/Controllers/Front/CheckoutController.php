@@ -16,6 +16,9 @@ class CheckoutController extends Controller
 
     public function __invoke()
     {
+        if ($this->getItemsFromCart()->count() == 0)
+            return redirect()->route('cart');
+
         return (new CheckoutViewModel)->view('front.checkout.checkout');
     }
 }

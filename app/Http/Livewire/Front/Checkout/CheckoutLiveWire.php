@@ -6,12 +6,12 @@ namespace App\Http\Livewire\Front\Checkout;
 // use App\Actions\Order\GetCityNovaPochtaAction;
 // use App\Actions\Order\GetPaymentAction;
 // use App\Actions\Order\GetRegionNovaPochtaAction;
-use App\Models\Product;
-use App\Http\Livewire\Product\ProductBaseComponent;
 use App\Http\Livewire\Front\Trait\CartTrait;
+use App\Http\Livewire\Product\ProductBaseComponent;
 use App\Http\Livewire\Traits\CreateOrderTrait;
 use App\Http\Livewire\Traits\DeliveryDataFromOrderTrait;
 use App\Http\Requests\LiveWier\CreateOrderRequest;
+use App\Models\Product;
 use Illuminate\Contracts\View\View;
 use Illuminate\Validation\ValidationException;
 use Jackiedo\Cart\Exceptions\InvalidAssociatedException;
@@ -24,21 +24,32 @@ class CheckoutLiveWire extends ProductBaseComponent
     use DeliveryDataFromOrderTrait;
 
     public array|object $productsInCart;
+
     public string $totalDiscounts;
 
     public string $name = '';
+
     public string $surname = '';
+
     public string $phone = '';
+
     public string $email = '';
 
+    public string $selectedNpCity = '';
+    public array|object $NpCities;
+
     public string $selectedRegion = '';
+
     public string $selectedCity = '';
+
     public string $selectedAddress = '';
+
     public string $paymentDescription = '';
 
     public string $textOrder = '';
 
     public string $UkrIndex = '';
+
     public string $UkrAddress = '';
 
     public string $MeestIndex = '';
@@ -63,11 +74,11 @@ class CheckoutLiveWire extends ProductBaseComponent
 
     protected function rules(): array
     {
-        return (new CreateOrderRequest())->rules();
+        return (new CreateOrderRequest)->rules();
     }
 
     /**
-     * @param $field
+     * @param  $field
      * @return void
      *
      * @throws ValidationException
@@ -77,24 +88,52 @@ class CheckoutLiveWire extends ProductBaseComponent
         $this->validateOnly($field);
     }
 
-    /**
-     * @return void
-     */
-    public function mount(): void
+    public function mount()
     {
+        $this->productsInCart = [];
+        $this->totalDiscounts = 0;
+
+        $productsInCart = $this->getItemsFromCart();
+        foreach ($productsInCart as $productItem) {
+            $productId = $productItem->id;
+            $product = Product::find($productId);
+            $productQuantity = $productItem->quantity;
+            $withoutDiscount = $product->getPriceWithDiscount($productQuantity);
+
+            $price = $product->getPriceByCount($productQuantity);
+            $this->totalDiscounts += $withoutDiscount ?? $withoutDiscount - $price;
+            //            \Log::info("Discount $withoutDiscount Price: $price Total discounts: ".$this->totalDiscounts);
+            $this->productsInCart[] = [
+                'id' => $productId,
+                'sku' => $product->sku,
+                'slug' => $product->slug,
+                'title' => $product->title,
+                'img' => $product->img_web,
+                'quantity' => $productQuantity,
+                'withoutDiscount' => $withoutDiscount,
+                'price' => $price,
+                'item' => $productItem,
+            ];
+        }
+        $this->total = $this->getTotalPriceInCartSorbona();
+
         if (\Auth::check()) {
             $this->name = \Auth::user()->name;
             $this->surname = \Auth::user()->surname;
-//            $this->father = \Auth::user()->father ?? '';
+            //            $this->father = \Auth::user()->father ?? '';
             $this->phone = \Auth::user()->phone ?? '';
             $this->email = \Auth::user()->email;
         }
-//        $this->regions = GetRegionNovaPochtaAction::run();
-//        $this->selectPayment($this->payment);
+        //        $this->regions = GetRegionNovaPochtaAction::run();
+        //        $this->selectPayment($this->payment);
+
+//        if ($this->delivery == 'deliveryMethodNp')
+   //         $this->NpCities = GetCityNovaPochtaAction::run();
     }
 
     /**
-     * @param $option
+
+     * @param  $option
      * @return void
      */
     public function selectDelivery($option): void
@@ -173,25 +212,15 @@ class CheckoutLiveWire extends ProductBaseComponent
         }
 
         $this->selectedRegion = '';
-
         $this->selectedCity = '';
-
         $this->selectedAddress = '';
-
         $this->textOrder = '';
-
         $this->UkrIndex = '';
-
         $this->UkrAddress = '';
-
         $this->MeestIndex = '';
-
         $this->MeestAddress = '';
-
         $this->delivery = 'novaPochta';
-
         $this->payment = 'paymentCard';
-
         $this->seeAddress = false;
 
         $this->clearCart();
@@ -205,33 +234,6 @@ class CheckoutLiveWire extends ProductBaseComponent
      */
     public function render(): View
     {
-        $this->productsInCart = [];
-        $this->totalDiscounts = 0;
-
-        $productsInCart = $this->getItemsFromCart();
-        foreach ($productsInCart as $productItem) {
-            $productId = $productItem->id;
-            $product = Product::find($productId);
-            $productQuantity = $productItem->quantity;
-            $withoutDiscount = $product->getPriceWithDiscount($productQuantity);
-
-            $price = $product->getPriceByCount($productQuantity);
-            $this->totalDiscounts += $withoutDiscount ?? $withoutDiscount - $price;
-//            \Log::info("Discount $withoutDiscount Price: $price Total discounts: ".$this->totalDiscounts);
-            $this->productsInCart[] = [
-                'id' => $productId,
-                'sku' => $product->sku,
-                'slug' => $product->slug,
-                'title' => $product->title,
-                'img' => $product->img_web,
-                'quantity' => $productQuantity,
-                'withoutDiscount' => $withoutDiscount,
-                'price' => $price,
-                'item' => $productItem,
-            ];
-        }
-        $this->total = $this->getTotalPriceInCartSorbona();
-
         if ($this->selectedRegion) {
             $this->cities = GetCityNovaPochtaAction::run($this->selectedRegion);
         }
@@ -240,8 +242,8 @@ class CheckoutLiveWire extends ProductBaseComponent
             $this->address = GetAddressNovaPochtaAction::run($this->selectedCity);
         }
 
-//        $this->productsInCart = $this->getItemsFromCart();
-//        $this->total = $this->getTotalPriceInCart();
+        //        $this->productsInCart = $this->getItemsFromCart();
+        //        $this->total = $this->getTotalPriceInCart();
 
         return view('livewire.front.checkout.checkout-live-wire');
     }

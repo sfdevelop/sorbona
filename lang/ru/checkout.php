@@ -57,4 +57,5 @@ return [
     'password_placeholder' => 'Введите ваш пароль',
     'btn_login' => 'Войти',
     'buy_as_guest' => 'Купить как гость',
+    'search_text' => 'Поиск',
 ];

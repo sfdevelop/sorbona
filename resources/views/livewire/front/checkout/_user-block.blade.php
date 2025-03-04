@@ -40,6 +40,7 @@
                             <div class="radio">
                                 <label class="radio__label">
                                     <input type="radio" name="delivery_method" class="radio__input"
+                                           wire:click.prevent="selectDelivery('deliveryMethodLocal')"
                                            @checked($delivery == 'deliveryMethodLocal')
                                            value="deliveryMethodLocal">
                                     <span class="radio__icon"></span>
@@ -55,6 +56,7 @@
                             <div class="radio">
                                 <label class="radio__label">
                                     <input type="radio" name="delivery_method" class="radio__input"
+                                           wire:click.prevent="selectDelivery('deliveryMethodNp')"
                                            @checked($delivery == 'deliveryMethodNp')
                                            value="deliveryMethodNp">
                                     <span class="radio__icon"></span>
@@ -64,8 +66,10 @@
                             <div @class(['form-radio__body', 'show' => $delivery == 'deliveryMethodNp'])>
                                 <div class="form-group__inputs">
                                     <div class="form__item">
-                                        <label for="city_order" class="form__label">{{ __('checkout.delivery_method_np_city') }}</label>
-                                        <select id="city_order" placeholder="{{ __('checkout.delivery_method_np_city_placeholder') }}" class="form__select form__select_search wide" style="opacity: 0; width: 0px; padding: 0px; height: 0px;">
+                                        <label for="np-city" class="form__label">{{ __('checkout.delivery_method_np_city') }}</label>
+                                        <select id="np-city"
+                                                wire:model="selectedNpCity"
+                                                placeholder="{{ __('checkout.delivery_method_np_city_placeholder') }}" class="form__select wide">
                                             <option value="" disabled="" selected="">{{ __('checkout.delivery_method_np_city_placeholder') }}</option>
                                             <option value="1">Харьков</option>
                                             <option value="2">Киев</option>
@@ -73,8 +77,8 @@
                                         </select>
                                     </div>
                                     <div class="form__item">
-                                        <label for="branch_order" class="form__label">{{ __('checkout.delivery_method_np_depot') }}</label>
-                                        <select id="branch_order" placeholder="{{ __('checkout.delivery_method_np_depot_placeholder') }}" class="form__select form__select_search wide">
+                                        <label for="np-depot" class="form__label">{{ __('checkout.delivery_method_np_depot') }}</label>
+                                        <select id="np-depot" placeholder="{{ __('checkout.delivery_method_np_depot_placeholder') }}" class="niceSelect form__select ">
                                             <option value="" disabled selected>{{ __('checkout.delivery_method_np_depot_placeholder') }}</option>
                                             <option value="1">Отделение 1</option>
                                             <option value="2">Отделение 2</option>
@@ -88,6 +92,7 @@
                             <div class="radio">
                                 <label class="radio__label">
                                     <input type="radio" name="delivery_method" class="radio__input"
+                                           wire:click.prevent="selectDelivery('deliveryMethodUp')"
                                            @checked($delivery == 'deliveryMethodUp')
                                            value="deliveryMethodUp">
                                     <span class="radio__icon"></span>
@@ -219,3 +224,23 @@
         @endguest
     </div>
 </div>
+@pushonce('frontJs')
+    <script>
+        function initNiceSelect()
+        {
+            var options_np_city = { searchable: true, placeholder: "{{ __('checkout.delivery_method_np_city_placeholder') }}", searchtext: "{{ __('checkout.search_text') }}"};
+            NiceSelect.bind(document.getElementById('np-city'), options_np_city);
+
+            var options_np_depot = { searchable: true, placeholder: "{{ __('checkout.delivery_method_np_depot_placeholder') }}", searchtext: "{{ __('checkout.search_text') }}"};
+            NiceSelect.bind(document.getElementById('np-depot'), options_np_depot);
+
+        }
+        document.addEventListener("livewire:load", function () {
+            initNiceSelect();
+        });
+
+        Livewire.hook('message.processed', (message, component) => {
+            initNiceSelect();
+        });
+    </script>
+@endpushonce
