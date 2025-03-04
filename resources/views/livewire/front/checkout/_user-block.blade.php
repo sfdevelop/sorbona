@@ -15,19 +15,19 @@
                     <div class="form-group__inputs">
                         <div class="form__item">
                             <label for="name" class="form__label">{{ __('checkout.first_name') }}</label>
-                            <input value="{{ auth()->user()->name ?? '' }}" type="text" name="name" id="name" class="form__input" placeholder="{{ __('checkout.first_name_placeholder') }}" required="">
+                            <input value="{{ $name }}" type="text" name="name" id="name" class="form__input" placeholder="{{ __('checkout.first_name_placeholder') }}" required="">
                         </div>
                         <div class="form__item">
                             <label for="surname" class="form__label">{{ __('checkout.last_name') }}</label>
-                            <input value="{{ auth()->user()->surname ?? '' }}" type="text" name="surname" id="surname" class="form__input" placeholder="{{ __('checkout.last_name_placeholder') }}" required="">
+                            <input value="{{ $surname }}" type="text" name="surname" id="surname" class="form__input" placeholder="{{ __('checkout.last_name_placeholder') }}" required="">
                         </div>
                         <div class="form__item">
                             <label for="phone" class="form__label">{{ __('checkout.phone') }}</label>
-                            <input value="{{ auth()->user()->phone ?? '' }}" type="phone" name="phone" id="phone" class="form__input" placeholder="{{ __('checkout.phone_placeholder') }}" required="" inputmode="text">
+                            <input value="{{ $phone }}" type="phone" name="phone" id="phone" class="form__input" placeholder="{{ __('checkout.phone_placeholder') }}" required="" inputmode="text">
                         </div>
                         <div class="form__item">
                             <label for="email" class="form__label">{{ __('checkout.email') }}</label>
-                            <input value="{{ auth()->user()->email ?? '' }}" type="email" name="email" id="email" class="form__input" placeholder="{{ __('checkout.email_placeholder') }}" required="">
+                            <input value="{{ $email }}" type="email" name="email" id="email" class="form__input" placeholder="{{ __('checkout.email_placeholder') }}" required="">
                         </div>
                     </div>
                 </div>
@@ -39,12 +39,14 @@
                         <div class="form__radio">
                             <div class="radio">
                                 <label class="radio__label">
-                                    <input type="radio" name="delivery_method" class="radio__input" value="">
+                                    <input type="radio" name="delivery_method" class="radio__input"
+                                           @checked($delivery == 'deliveryMethodLocal')
+                                           value="deliveryMethodLocal">
                                     <span class="radio__icon"></span>
                                     <span class="radio__text">{{ __('checkout.delivery_method_local') }}</span>
                                 </label>
                             </div>
-                            <div class="form-radio__body">
+                            <div @class(['form-radio__body', 'show' => $delivery == 'deliveryMethodLocal'])>
                                 <p>{{ __('checkout.delivery_method_local_address_1') }}</p>
                                 <p>{{ __('checkout.delivery_method_local_address_2') }}</p>
                             </div>
@@ -52,12 +54,14 @@
                         <div class="form__radio">
                             <div class="radio">
                                 <label class="radio__label">
-                                    <input type="radio" name="delivery_method" class="radio__input" value="">
+                                    <input type="radio" name="delivery_method" class="radio__input"
+                                           @checked($delivery == 'deliveryMethodNp')
+                                           value="deliveryMethodNp">
                                     <span class="radio__icon"></span>
                                     <span class="radio__text">{{ __('checkout.delivery_method_np') }}</span>
                                 </label>
                             </div>
-                            <div class="form-radio__body">
+                            <div @class(['form-radio__body', 'show' => $delivery == 'deliveryMethodNp'])>
                                 <div class="form-group__inputs">
                                     <div class="form__item">
                                         <label for="city_order" class="form__label">{{ __('checkout.delivery_method_np_city') }}</label>
@@ -83,12 +87,14 @@
                         <div class="form__radio">
                             <div class="radio">
                                 <label class="radio__label">
-                                    <input type="radio" name="delivery_method" class="radio__input" value="">
+                                    <input type="radio" name="delivery_method" class="radio__input"
+                                           @checked($delivery == 'deliveryMethodUp')
+                                           value="deliveryMethodUp">
                                     <span class="radio__icon"></span>
                                     <span class="radio__text">{{ __('checkout.delivery_method_up') }}</span>
                                 </label>
                             </div>
-                            <div class="form-radio__body">
+                            <div @class(['form-radio__body', 'show' => $delivery == 'deliveryMethodUp'])>
                                 <div class="form-group__line">
                                     <div class="form__item">
                                         <label for="region" class="form__label">{{ __('checkout.delivery_method_up_region') }}</label>
@@ -116,7 +122,9 @@
                         <div class="form__radio">
                             <div class="radio">
                                 <label class="radio__label">
-                                    <input type="radio" name="payment_method" class="radio__input" value="">
+                                    <input type="radio" name="payment_method" class="radio__input"
+                                           @checked($payment == 'paymentMethodCod')
+                                           value="paymentMethodCod">
                                     <span class="radio__icon"></span>
                                     <span class="radio__text">{{ __('checkout.payment_method_cod') }}</span>
                                 </label>
@@ -125,7 +133,9 @@
                         <div class="form__radio">
                             <div class="radio">
                                 <label class="radio__label">
-                                    <input type="radio" name="payment_method" class="radio__input" value="">
+                                    <input type="radio" name="payment_method" class="radio__input"
+                                           @checked($payment == 'paymentMethodCard')
+                                           value="paymentMethodCard">
                                     <span class="radio__icon"></span>
                                     <span class="radio__text">{{ __('checkout.payment_method_card') }}</span>
                                 </label>
@@ -134,7 +144,9 @@
                         <div class="form__radio">
                             <div class="radio">
                                 <label class="radio__label">
-                                    <input type="radio" name="payment_method" class="radio__input" value="">
+                                    <input type="radio" name="payment_method" class="radio__input"
+                                           @checked($payment == 'paymentMethodBank')
+                                           value="paymentMethodBank">
                                     <span class="radio__icon"></span>
                                     <span class="radio__text">{{ __('checkout.payment_method_bank') }}</span>
                                 </label>
