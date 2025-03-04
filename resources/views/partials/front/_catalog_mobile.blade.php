@@ -25,9 +25,11 @@
                         <use xlink:href="{{asset('front/img/icons/icons.svg#icon-label-open')}}"></use>
                     </svg>
                 </button>
+                <!-- search-mobile-live-wire start -->
                 <div class="search">
                 @livewire('front.search.search-mobile-live-wire')
                 </div>
+                <!-- search-mobile-live-wire end -->
             </div>
 
             <div class="header__basket">
