@@ -11,8 +11,18 @@ class ProductRepository implements ProductRepositoryInterface
     public function searchCategories(string $searchText)
     {
         $searchText = trim($searchText);
+        $locale = app()->getLocale();
+        $categoriesWithCounts = Product::search($searchText)
+            ->with(['translations' => function ($query) use ($locale) {
+                $query->where('locale', $locale);
+            }])
+        ->select('category_id')
+        ->with('category') // Assuming a relationship 'category' exists in the Product model
+        ->groupBy('category_id')
+        ->selectRaw('category_id, COUNT(*) as product_count')
+        ->get();
 
-        $categoriesWithCounts = Product::query()
+/*        $categoriesWithCounts = Product::query()
             ->trans()
             ->where(function ($query) use ($searchText) {
                 $query->whereTranslationLike('title', "%{$searchText}%", app()->getLocale())
@@ -27,7 +37,7 @@ class ProductRepository implements ProductRepositoryInterface
             ->groupBy('category_id')
             ->selectRaw('category_id, COUNT(*) as product_count')
             ->get();
-
+*/
         //        dd($categoriesWithCounts);
         // Build result with links
         return $categoriesWithCounts->map(function ($data) use ($searchText) {

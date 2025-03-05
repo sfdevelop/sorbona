@@ -32,10 +32,12 @@ class SearchInCategoryViewModel extends BaseViewModel
     {
         $searchText = trim($this->query);
 
-        $categoriesWithCounts = Product::query()
-            ->trans()
-            ->whereTranslationLike('title', "%{$searchText}%", app()->getLocale())
-            ->orWhere('sku', "{$searchText}")
+        $searchText = trim($searchText);
+        $locale = app()->getLocale();
+        $categoriesWithCounts = Product::search($searchText)
+            ->with(['translations' => function ($query) use ($locale) {
+                $query->where('locale', $locale);
+            }])
             ->select('category_id')
             ->with('category') // Assuming a relationship 'category' exists in the Product model
             ->groupBy('category_id')
