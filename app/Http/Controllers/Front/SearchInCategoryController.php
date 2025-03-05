@@ -22,6 +22,7 @@ class SearchInCategoryController extends BaseFrontController
     public function __invoke(Category $category, Request $request): SearchInCategoryViewModel|ViewModel
     {
         $search = request('search');
+
         return (new SearchInCategoryViewModel(
             category: $category,
             query: $search,

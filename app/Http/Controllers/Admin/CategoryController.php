@@ -42,7 +42,6 @@ class CategoryController extends BaseAdminController
         $title = 'category';
 
         if (! empty($request->title)) {
-
             $items = Category::query()
                 ->Filter($this->filterAble($request->all(), CategoryFilter::class))
                 ->withCount(['childrenCategories', 'products'])

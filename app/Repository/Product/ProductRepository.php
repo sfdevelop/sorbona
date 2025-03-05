@@ -41,27 +41,27 @@ class ProductRepository implements ProductRepositoryInterface
 
     public function searchProducts(string $searchText, $category = null): array|Collection
     {
-/*
-        $results = Product::query()
-            ->trans()
-            ->with(['category', 'manufacturer'])
-            ->where(function ($query) use ($searchText) {
-                $query->whereTranslationLike('title', "%{$searchText}%", app()->getLocale())
-                    ->orWhere('sku', 'LIKE', "%{$searchText}%")
-                    ->orWhereTranslationLike('description', "%{$searchText}%", app()->getLocale())
-                    ->orWhereHas('manufacturer', function ($query) use ($searchText) {
-                        $query->whereTranslationLike('title', 'LIKE', "%{$searchText}%");
+        /*
+                $results = Product::query()
+                    ->trans()
+                    ->with(['category', 'manufacturer'])
+                    ->where(function ($query) use ($searchText) {
+                        $query->whereTranslationLike('title', "%{$searchText}%", app()->getLocale())
+                            ->orWhere('sku', 'LIKE', "%{$searchText}%")
+                            ->orWhereTranslationLike('description', "%{$searchText}%", app()->getLocale())
+                            ->orWhereHas('manufacturer', function ($query) use ($searchText) {
+                                $query->whereTranslationLike('title', 'LIKE', "%{$searchText}%");
+                            });
                     });
-            });
 
-        if ($category) {
-            $results->whereHas('category', function ($query) use ($category) {
-                $query->where('categories.id', $category->id);
-            });
-        }
+                if ($category) {
+                    $results->whereHas('category', function ($query) use ($category) {
+                        $query->where('categories.id', $category->id);
+                    });
+                }
 
-        return $results->get();
-*/
+                return $results->get();
+        */
         $locale = app()->getLocale();
         $products = Product::search($searchText)
             ->with(['translations' => function ($query) use ($locale) {
@@ -73,7 +73,6 @@ class ProductRepository implements ProductRepositoryInterface
                 $query->where('categories.id', $category->id);
             });
         }
-
 
         return $products->get();
     }

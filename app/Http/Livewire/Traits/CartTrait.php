@@ -7,7 +7,7 @@ use Jackiedo\Cart\Exceptions\InvalidAssociatedException;
 use Jackiedo\Cart\Exceptions\InvalidModelException;
 use Jackiedo\Cart\Facades\Cart;
 
-//use function App\Http\Livewire\Front\Trait\strPriceToFloat;
+// use function App\Http\Livewire\Front\Trait\strPriceToFloat;
 
 trait CartTrait
 {

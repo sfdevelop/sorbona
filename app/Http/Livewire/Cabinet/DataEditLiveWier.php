@@ -3,14 +3,17 @@
 namespace App\Http\Livewire\Cabinet;
 
 use App\Rules\InternationalPhoneNumber;
-use Livewire\Component;
 use Illuminate\Support\Facades\Auth;
+use Livewire\Component;
 
 class DataEditLiveWier extends Component
 {
     public string $name = '';
+
     public string $surname = '';
+
     public string $email = '';
+
     public string $phone = '';
 
     public function mount(): void
@@ -27,8 +30,8 @@ class DataEditLiveWier extends Component
         return [
             'name' => 'required|string|max:255',
             'surname' => 'required|string|max:255',
-            'email'                 => ['nullable', 'sometimes', 'string', 'email', 'unique:users,email,NULL,id,email,NULL'],
-            'phone'                 => ['nullable', 'sometimes', 'string',  new InternationalPhoneNumber],
+            'email' => ['nullable', 'sometimes', 'string', 'email', 'unique:users,email,NULL,id,email,NULL'],
+            'phone' => ['nullable', 'sometimes', 'string',  new InternationalPhoneNumber],
         ];
     }
 

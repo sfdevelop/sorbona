@@ -15,7 +15,7 @@ class CustomBuilderProvider extends ServiceProvider
      */
     public function register(): void
     {
-        //custom paginate
+        // custom paginate
         Collection::macro('paginate', function ($perPage = 20, $total = null, $page = null, $pageName = 'page') {
             $page = $page ?: LengthAwarePaginator::resolveCurrentPage($pageName);
 

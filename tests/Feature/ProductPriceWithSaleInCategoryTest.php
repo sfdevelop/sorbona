@@ -1,15 +1,15 @@
 <?php
 
 //
-//namespace Feature;
+// namespace Feature;
 //
-//use App\Models\Category;
-//use App\Models\Product;
-//use Illuminate\Foundation\Testing\RefreshDatabase;
-//use Tests\TestCase;
+// use App\Models\Category;
+// use App\Models\Product;
+// use Illuminate\Foundation\Testing\RefreshDatabase;
+// use Tests\TestCase;
 //
-//class ProductPriceWithSaleInCategoryTest extends TestCase
-//{
+// class ProductPriceWithSaleInCategoryTest extends TestCase
+// {
 //    use RefreshDatabase;
 //
 //    /**
@@ -145,4 +145,4 @@
 //        $product->categories()->sync([$category->id, $category2->id, $category3->id, $category4->id]);
 //        $this->assertEquals('1 020,00 ₴', $product->nowPrice);
 //    }
-//}
+// }

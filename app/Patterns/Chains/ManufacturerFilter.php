@@ -13,7 +13,7 @@ class ManufacturerFilter implements ProductFilterInterface
 
     public function apply(Collection $products): Collection
     {
-        if ( ! $this->request->filled('brand')) {
+        if (! $this->request->filled('brand')) {
             return $products;
         }
 

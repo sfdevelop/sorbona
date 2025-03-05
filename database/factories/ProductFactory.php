@@ -2,7 +2,6 @@
 
 namespace Database\Factories;
 
-use App\Facade\TranslateFacade;
 use App\Models\Category;
 use App\Models\Currency;
 use App\Models\Manufacturer;
@@ -350,8 +349,8 @@ class ProductFactory extends Factory
             'title:ru' => $product,
             'title:uk' => $product,
 
-//            'description:ru' => \FakeParagraph::countParagraph(4, 12),
-//            'description:uk' => \FakeParagraph::countParagraph(4, 12),
+            //            'description:ru' => \FakeParagraph::countParagraph(4, 12),
+            //            'description:uk' => \FakeParagraph::countParagraph(4, 12),
 
             'description:ru' => $this->faker->realText(),
             'description:uk' => $this->faker->realText(),

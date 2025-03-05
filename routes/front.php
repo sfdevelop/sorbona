@@ -12,8 +12,6 @@ use App\Http\Controllers\Front\PolicyController;
 use App\Http\Controllers\Front\ProductController;
 use App\Http\Controllers\Front\ReturnController;
 
-use App\Http\Controllers\Front\CheckoutController;
-
 Route::get('/', HomeController::class)->name('home');
 Route::get('manufacturers', ManufacturersController::class)->name('manufacturers');
 Route::get('manufacturer/{manufacturer:slug}', ManufacturerItemController::class)->name('manufacturerItem');
@@ -23,11 +21,11 @@ Route::get('policy', PolicyController::class)->name('policy');
 Route::get('return', ReturnController::class)->name('return');
 Route::get('about', AboutController::class)->name('about');
 Route::get('category/{category:slug}', CatalogController::class)->name('category');
-//Route::get('category/{category:slug}/subcategory', SubcategoryController::class)->name('subcategory');
-//Route::get('sale', SaleController::class)->name('sale');
-//Route::get('bestseller', BestsellerController::class)->name('bestseller');
-////Route::get('about-us', \App\Http\Controllers\Front\AboutController::class)->name('aboutUs');
-//Route::get('products-in-category/category/{category:slug}', ProductsInCategoryController::class)->name('filter');
+// Route::get('category/{category:slug}/subcategory', SubcategoryController::class)->name('subcategory');
+// Route::get('sale', SaleController::class)->name('sale');
+// Route::get('bestseller', BestsellerController::class)->name('bestseller');
+// //Route::get('about-us', \App\Http\Controllers\Front\AboutController::class)->name('aboutUs');
+// Route::get('products-in-category/category/{category:slug}', ProductsInCategoryController::class)->name('filter');
 Route::get('product/{product:slug}', ProductController::class)->name('product');
 Route::get('login', \App\Http\Controllers\Front\LoginController::class)->name('login');
 Route::get('sign-up', \App\Http\Controllers\Front\SignUpController::class)->name('signUp');
@@ -39,9 +37,9 @@ Route::get('search/{category:slug}', \App\Http\Controllers\Front\SearchInCategor
 Route::get('cart', \App\Http\Controllers\Front\CartController::class)->name('cart');
 Route::get('checkout', \App\Http\Controllers\Front\CheckoutController::class)->name('checkout');
 //
-//Route::view('no-product-cart', 'front/cart/no_product_cart')->name('no_product_cart');
-//Route::view('cart-thx', 'front/cart/cart_thx')->name('cart_thx');
-//Route::view('cart-thx-error', 'front/cart/cart-thx-error')->name('cart-thx-error');
-//Route::view('cart-thx-success', 'front/cart/cart-thx-success')->name('cart-thx-success');
+// Route::view('no-product-cart', 'front/cart/no_product_cart')->name('no_product_cart');
+// Route::view('cart-thx', 'front/cart/cart_thx')->name('cart_thx');
+// Route::view('cart-thx-error', 'front/cart/cart-thx-error')->name('cart-thx-error');
+// Route::view('cart-thx-success', 'front/cart/cart-thx-success')->name('cart-thx-success');
 
 Route::get('recover', \App\Http\Controllers\Front\RecoverController::class)->name('recover');

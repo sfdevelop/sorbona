@@ -36,6 +36,7 @@ class CheckoutLiveWire extends ProductBaseComponent
     public string $email = '';
 
     public string $selectedNpCity = '';
+
     public array|object $NpCities;
 
     public string $selectedRegion = '';
@@ -127,12 +128,11 @@ class CheckoutLiveWire extends ProductBaseComponent
         //        $this->regions = GetRegionNovaPochtaAction::run();
         //        $this->selectPayment($this->payment);
 
-//        if ($this->delivery == 'deliveryMethodNp')
-   //         $this->NpCities = GetCityNovaPochtaAction::run();
+        //        if ($this->delivery == 'deliveryMethodNp')
+        //         $this->NpCities = GetCityNovaPochtaAction::run();
     }
 
     /**
-
      * @param  $option
      * @return void
      */

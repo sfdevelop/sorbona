@@ -6,7 +6,6 @@ use App\Models\Filter;
 use App\Models\FilterValue;
 use Illuminate\Contracts\View\View;
 use Illuminate\Database\Eloquent\Collection;
-use Illuminate\Validation\ValidationException;
 use Livewire\Component;
 
 class AddValueFromFilterLiveWier extends Component
@@ -22,8 +21,8 @@ class AddValueFromFilterLiveWier extends Component
     public int $sort = 1;
 
     public Collection $filters;
-    
-    public bool $show= false;
+
+    public bool $show = false;
 
     protected $listeners = ['refreshAddValueFromFilterLiveWier' => '$refresh'];
 

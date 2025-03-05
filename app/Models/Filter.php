@@ -15,9 +15,9 @@ class Filter extends Model implements TranslatableContract
 {
     use CreatedFormatTrait;
     use HasFactory;
+    use SlugGableTrait;
     use Translatable;
     use TranslateScopeTrait;
-    use SlugGableTrait;
 
     protected $table = 'filters';
 

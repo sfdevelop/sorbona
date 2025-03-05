@@ -3,13 +3,13 @@
 namespace App\Providers;
 
 use App\Http\Middleware\SetLangAdminMiddleware;
+use App\Http\Middleware\StoreCurrentUrl;
 use Illuminate\Cache\RateLimiting\Limit;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\Facades\Route;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
-use App\Http\Middleware\StoreCurrentUrl;
 
 class RouteServiceProvider extends ServiceProvider
 {

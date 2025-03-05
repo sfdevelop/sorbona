@@ -8,10 +8,8 @@ trait SortTraitLivewier
 {
     public function sortCollection(array|Collection $productsQuery)
     {
-
         return match ($this->order) {
             'lowest_price' => $productsQuery->sortBy(function ($product) {
-
                 return transformNovPriceFromSort($product);
             }),
             'highest_price' => $productsQuery->sortByDesc(function ($product) {

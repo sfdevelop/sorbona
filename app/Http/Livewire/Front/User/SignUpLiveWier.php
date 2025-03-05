@@ -2,21 +2,21 @@
 
 namespace App\Http\Livewire\Front\User;
 
-use App\Http\Requests\Livewier\RegisteredUserCollectionRequest;
 use App\Models\User;
 use App\Rules\InternationalPhoneNumber;
 use App\Services\User\CryptUnCryptData;
 use Auth;
 use Illuminate\Validation\ValidationException;
 use Livewire\Component;
-use phpDocumentor\Reflection\Exception;
 
 class SignUpLiveWier extends Component
 {
     public string $name = '';
 
     public string $phone = '';
+
     public string $mailPhone = '';
+
     public string $surname = '';
 
     public string $email = '';
@@ -30,20 +30,20 @@ class SignUpLiveWier extends Component
     protected function rules(): array
     {
         return [
-            'name'                  => 'required|string|min:3',
-            'surname'               => 'required|string|min:3',
-            'email'                 => [
+            'name' => 'required|string|min:3',
+            'surname' => 'required|string|min:3',
+            'email' => [
                 'nullable', 'sometimes', 'string', 'email',
                 'unique:users,email,NULL,id,email,NULL',
             ],
-            'phone'                 => [
+            'phone' => [
                 'nullable', 'sometimes', 'string', new InternationalPhoneNumber,
             ],
-            'password'              => ['required', 'sometimes'],
+            'password' => ['required', 'sometimes'],
             'password_confirmation' => [
                 'required', 'sometimes', 'min:6', 'same:password',
             ],
-            'mailPhone'             => ['required', 'string'],
+            'mailPhone' => ['required', 'string'],
         ];
     }
 
@@ -72,7 +72,6 @@ class SignUpLiveWier extends Component
 
     /**
      * @param  $field
-     *
      * @return void
      *
      * @throws ValidationException
@@ -89,13 +88,13 @@ class SignUpLiveWier extends Component
 
         try {
             $userData = [
-                'name'     => $data['name'],
-                'surname'  => $data['surname'],
+                'name' => $data['name'],
+                'surname' => $data['surname'],
                 'password' => $data['password'],
-                'phone'    => $data['phone'],
+                'phone' => $data['phone'],
             ];
 
-            if ( ! empty($data['email'])) {
+            if (! empty($data['email'])) {
                 $userData['email'] = $data['email'];
             } else {
                 $userData['email'] =
@@ -106,8 +105,8 @@ class SignUpLiveWier extends Component
             $user->assignRole('user');
 
             $this->dispatchBrowserEvent('alert',
-                ['type'    => 'success',
-                 'message' => __('front.registration_success'),
+                ['type' => 'success',
+                    'message' => __('front.registration_success'),
                 ]);
 
             $this->reset([
@@ -119,13 +118,11 @@ class SignUpLiveWier extends Component
                 'password_confirmation',
             ]);
 
-
             Auth::login($user);
 
             app()->make(CryptUnCryptData::class)->saveEncryptedDataToUser($data['password']);
 
             return redirect()->intended(route('cabinet.info'));
-
         } catch (\Exception $exception) {
             \Log::error($exception->getMessage());
             $this->dispatchBrowserEvent('alert',
@@ -134,8 +131,7 @@ class SignUpLiveWier extends Component
     }
 
     public function render(
-    ): \Illuminate\Contracts\View\Factory|\Illuminate\Foundation\Application|\Illuminate\Contracts\View\View|\Illuminate\View\View|\Illuminate\Contracts\Foundation\Application
-    {
+    ): \Illuminate\Contracts\View\Factory|\Illuminate\Foundation\Application|\Illuminate\Contracts\View\View|\Illuminate\View\View|\Illuminate\Contracts\Foundation\Application {
         return view('livewire.front.user.sign-up-live-wier');
     }
 }

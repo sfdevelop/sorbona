@@ -62,6 +62,5 @@ class UserSeeder extends Seeder
         //        User::factory(1)->create();
         $userBigOpt = User::create($data);
         $userBigOpt->assignRole('bigopt');
-
     }
 }

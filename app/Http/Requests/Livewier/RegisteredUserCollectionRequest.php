@@ -5,7 +5,6 @@ namespace App\Http\Requests\Livewier;
 use App\Models\User;
 use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Validation\Rule;
 use Illuminate\Validation\Rules\Password;
 
 class RegisteredUserCollectionRequest extends FormRequest
@@ -30,17 +29,17 @@ class RegisteredUserCollectionRequest extends FormRequest
             'surname' => 'required|string|min:3',
             'email' => ['nullable', 'sometimes', 'string'],
             'phone' => ['nullable', 'sometimes', 'string'],
-//            'password' => ['required', 'sometimes', Password::min(8)->uncompromised()->letters()->numbers()],
+            //            'password' => ['required', 'sometimes', Password::min(8)->uncompromised()->letters()->numbers()],
             'password' => ['required', 'sometimes'],
             'password_confirmation' => ['required', 'sometimes', 'min:6', 'same:password'],
             'mailPhone' => ['required', 'string'],
-            ];
+        ];
     }
 
     protected function prepareForValidation(): void
     {
         $mailPhone = $this->input('mailPhone');
-    
+
         // Більш надійна перевірка email
         if (preg_match('/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/', $mailPhone)) {
             $this->merge([

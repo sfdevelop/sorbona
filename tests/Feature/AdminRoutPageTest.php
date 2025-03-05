@@ -14,7 +14,7 @@ class AdminRoutPageTest extends TestCase
 
     public User $user;
 
-    public function setUp(): void
+    protected function setUp(): void
     {
         parent::setUp();
 
@@ -73,7 +73,7 @@ class AdminRoutPageTest extends TestCase
         $response->assertSee(__('admin.chose'));
     }
 
-    public function test_admin_whyChoose_index_is_accessible()
+    public function test_admin_why_choose_index_is_accessible()
     {
         $response = $this
             ->actingAs($this->user)

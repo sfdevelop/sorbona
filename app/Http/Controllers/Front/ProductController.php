@@ -10,6 +10,7 @@ use App\ViewModels\ProductViewModel;
 class ProductController extends BaseFrontController
 {
     use CartTrait;
+
     public function __construct() {}
 
     /**

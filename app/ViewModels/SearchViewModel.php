@@ -2,7 +2,6 @@
 
 namespace App\ViewModels;
 
-use App\Models\Product;
 use App\Repository\Product\ProductRepositoryInterface;
 use App\Repository\Setting\SettingRepositoryInterface;
 use Illuminate\Database\Eloquent\Collection;

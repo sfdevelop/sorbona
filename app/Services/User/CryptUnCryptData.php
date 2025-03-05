@@ -5,7 +5,8 @@ namespace App\Services\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Crypt;
 
-class CryptUnCryptData {
+class CryptUnCryptData
+{
     public function cryptData(string $data): string
     {
         return Crypt::encryptString($data);

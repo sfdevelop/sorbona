@@ -9,15 +9,17 @@ use Livewire\Component;
 
 class PasswordEditLiveWier extends Component
 {
-    public string $oldPassword= '';
+    public string $oldPassword = '';
+
     public string $password = '';
+
     public string $password_confirmation = '';
 
     protected function rules(): array
     {
         return [
             'oldPassword' => 'required|string',
-            'password'              => ['required', 'sometimes'],
+            'password' => ['required', 'sometimes'],
             'password_confirmation' => [
                 'required', 'sometimes', 'min:6', 'same:password',
             ],
@@ -30,11 +32,12 @@ class PasswordEditLiveWier extends Component
 
         $user = Auth::user();
 
-        if (!Hash::check($this->oldPassword, $user->password)) {
+        if (! Hash::check($this->oldPassword, $user->password)) {
             $this->dispatchBrowserEvent('alert', [
                 'type' => 'error',
-                'message' => __('front.old_password_error')
+                'message' => __('front.old_password_error'),
             ]);
+
             return;
         }
 
@@ -46,12 +49,11 @@ class PasswordEditLiveWier extends Component
 
         $this->dispatchBrowserEvent('alert', [
             'type' => 'success',
-            'message' => __('front.password_success_update')
+            'message' => __('front.password_success_update'),
         ]);
 
         return redirect()->route('cabinet.info');
     }
-
 
     public function render()
     {

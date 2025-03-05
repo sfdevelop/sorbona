@@ -172,8 +172,8 @@ trait CartTrait
         $this->getShoppingCart()->destroy();
         $this->emit('refreshCart', true);
         $this->emit('refreshHeaderUser');
-        return redirect()->route('cart');
 
+        return redirect()->route('cart');
     }
 
     /**

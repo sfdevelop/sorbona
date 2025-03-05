@@ -5,7 +5,6 @@ namespace App\ViewModels;
 use App\Http\Controllers\Traits\CustomSeoTrait;
 use App\Models\Page;
 use App\Repository\Benefits\BenefitRepositoryInterface;
-use App\Repository\Manufacture\ManufactureRepositoryInterface;
 use Illuminate\Database\Eloquent\Collection;
 
 class PolicyViewModel extends BaseViewModel
@@ -20,5 +19,4 @@ class PolicyViewModel extends BaseViewModel
             ->make(BenefitRepositoryInterface::class)
             ->getAllBenefits();
     }
-
 }

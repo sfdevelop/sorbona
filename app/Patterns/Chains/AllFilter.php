@@ -14,9 +14,9 @@ class AllFilter implements ProductFilterInterface
 
     public function apply(Collection $products): Collection
     {
-$parametersSlugs = app()
-    ->make(UrlParametersService::class)
-    ->getParametersValues();
+        $parametersSlugs = app()
+            ->make(UrlParametersService::class)
+            ->getParametersValues();
 
         $filterValueIds =
             FilterValue::query()

@@ -1,4 +1,5 @@
 <?php
+
 return [
     'placeholder' => 'Пошук',
     'sku' => 'Артикул',

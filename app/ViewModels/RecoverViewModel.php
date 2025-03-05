@@ -3,7 +3,6 @@
 namespace App\ViewModels;
 
 use App\Http\Controllers\Traits\CustomSeoTrait;
-use App\Repository\Product\ProductRepositoryInterface;
 
 class RecoverViewModel extends BaseViewModel
 {
@@ -14,5 +13,4 @@ class RecoverViewModel extends BaseViewModel
     ) {
         //        $this->setSeoData($this->settingsRepository->getSetting());
     }
-
 }
