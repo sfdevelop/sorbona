@@ -21,8 +21,8 @@
 @include('partials.front.__footer')
 
 <script src="{{asset('front/js/plugins/plugins.min.js')}}"></script>
-
 <script src="{{asset('front/js/app.min.js')}}"></script>
+<script src="{{asset('front/js/nice-select2/nice-select2.js')}}"></script>
 
 @livewireScripts
 
@@ -58,6 +58,7 @@
     @endforeach
     @endif
 </script>
+
 <script src="{{ asset('front/js/custom.js') }}?v={{ time() }}"
 </body>
 

@@ -33,8 +33,8 @@ Route::get('login', \App\Http\Controllers\Front\LoginController::class)->name('l
 Route::get('sign-up', \App\Http\Controllers\Front\SignUpController::class)->name('signUp');
 Route::get('contacts', ContactsController::class)->name('contacts');
 // Route::get('search', \App\Http\Controllers\Front\SearchController::class)->name('search');
-Route::get('search/{search}', \App\Http\Controllers\Front\SearchController::class)->name('search');
-Route::get('search/{category:slug}/{search}', \App\Http\Controllers\Front\SearchInCategoryController::class)->name('search-in-category');
+Route::get('search', \App\Http\Controllers\Front\SearchController::class)->name('search');
+Route::get('search/{category:slug}', \App\Http\Controllers\Front\SearchInCategoryController::class)->name('search-in-category');
 
 Route::get('cart', \App\Http\Controllers\Front\CartController::class)->name('cart');
 Route::get('checkout', \App\Http\Controllers\Front\CheckoutController::class)->name('checkout');

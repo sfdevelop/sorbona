@@ -4,7 +4,7 @@
         <svg>
             <use xlink:href="{{asset('front/img/icons/icons.svg#icon-search')}}"></use>
         </svg>
-        <input wire:model="search" autocomplete="off" name="search" id="search-mobile" placeholder="{{__('front.search')}}" type="search" class="search__input"/>
+        <input value="{{ $search }}" wire:model="search" autocomplete="off" name="search" id="search-mobile" placeholder="{{__('front.search')}}" type="search" class="search__input"/>
         <svg class="search__input_clear">
             <use xlink:href="{{asset('front/img/icons/icons.svg#icon-close')}}"></use>
         </svg>
@@ -33,12 +33,12 @@
             @endforeach
         </div>
         @if (count($searchThreeProducts) > 0)
-        <a href="{{ route('search', $search) }}" class="search-results__btn btn btn--line">{{ __('search.show-all-results') }}</a>
+        <a href="{{ route('search') }}?search={{ $search }}" class="search-results__btn btn btn--line">{{ __('search.show-all-results') }}</a>
         @endif
     </div>
 </div>
-</div>
 @endif
+</div>
 @pushonce('frontJs')
     <script>
         $(document).ready(function() {
@@ -46,7 +46,7 @@
                     e.preventDefault();
                     let search = $('#search-mobile').val();
                     if (search.length > 0)
-                        location.href = "{{route('search', $search)}}" + "/" + search;
+                        location.href = "{{route('search')}}" + "?search=" + encodeURIComponent(search);
                 }
             )});
     </script>

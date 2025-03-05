@@ -13,6 +13,7 @@ use App\Observers\ProductObserver;
 use Astrotomic\Translatable\Contracts\Translatable as TranslatableContract;
 use Astrotomic\Translatable\Translatable;
 use Illuminate\Database\Eloquent\Attributes\ObservedBy;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -135,5 +136,18 @@ class Product extends Model implements HasMedia, TranslatableContract
                 return shortDescription($this->description);
             },
         );
+    }
+
+    public function scopeSearch(Builder $query, string $searchTerm): Builder
+    {
+        $words = explode(' ', $searchTerm);
+
+        return $query->whereHas('translations', function (Builder $query) use ($words) {
+            $query->where(function (Builder $query) use ($words) {
+                foreach ($words as $word) {
+                    $query->where('title', 'LIKE', "%{$word}%");
+                }
+            });
+        });
     }
 }

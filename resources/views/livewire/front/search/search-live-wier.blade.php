@@ -13,8 +13,11 @@
                 name="search"
                 id="search"
                 placeholder="{{ __('search.placeholder') }}"
-                type="search"
-                class="search__input" />
+                autocomplete="off"
+                type="text"
+                class="search__input"
+                value="{{ $search }}"
+                />
             <svg class="search__input_clear"><use xlink:href="{{asset('front/img/icons/icons.svg#icon-close')}}"></use></svg>
         </label>
         <button type="submit" class="search__button btn btn--line">{{__('front.search')}}</button>
@@ -40,7 +43,7 @@
                 @endforeach
             </div>
             @if (count($searchThreeProducts) > 0)
-            <a href="{{ route('search', $search) }}" class="search-results__btn btn btn--line">{{ __('search.show-all-results') }}</a>
+            <a href="{{ route('search') }}?search={{ $search }}" class="search-results__btn btn btn--line">{{ __('search.show-all-results') }}</a>
             @endif
         </div>
     </div>
@@ -52,7 +55,7 @@
                 e.preventDefault();
                 let search = $('#search').val();
                 if (search.length > 0)
-                    location.href = "{{route('search', $search)}}" + "/" + search;
+                    location.href = "{{route('search')}}" + "?search=" + encodeURIComponent(search);
             }
         )});
     </script>

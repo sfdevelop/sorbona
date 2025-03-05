@@ -34,13 +34,14 @@ class ProductRepository implements ProductRepositoryInterface
             return [
                 'name' => $data->category->title,
                 'count' => $data->product_count,
-                'url' => url("search/{$data->category->slug}/$searchText"),
+                'url' => url("search/{$data->category->slug}")."?search=$searchText",
             ];
         });
     }
 
     public function searchProducts(string $searchText, $category = null): array|Collection
     {
+/*
         $results = Product::query()
             ->trans()
             ->with(['category', 'manufacturer'])
@@ -60,6 +61,21 @@ class ProductRepository implements ProductRepositoryInterface
         }
 
         return $results->get();
+*/
+        $locale = app()->getLocale();
+        $products = Product::search($searchText)
+            ->with(['translations' => function ($query) use ($locale) {
+                $query->where('locale', $locale);
+            }]);
+
+        if ($category) {
+            $products->whereHas('category', function ($query) use ($category) {
+                $query->where('categories.id', $category->id);
+            });
+        }
+
+
+        return $products->get();
     }
 
     public function getNewProducts(): array|Collection

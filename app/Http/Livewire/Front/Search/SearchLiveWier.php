@@ -2,12 +2,12 @@
 
 namespace App\Http\Livewire\Front\Search;
 
+use App\Facade\ProductFacade;
 use App\Http\Livewire\Front\Trait\CartTrait;
 use App\Models\Product;
 use Illuminate\Contracts\View\View;
 use Illuminate\Database\Eloquent\Collection;
 use Livewire\Component;
-use App\Facade\ProductFacade;
 
 class SearchLiveWier extends Component
 {
@@ -37,9 +37,9 @@ class SearchLiveWier extends Component
             $this->searchFourProducts = $searchProducts->take(4);
             $this->searchThreeProducts = $searchProducts->take(3);
             $this->productsCount = $searchProducts->count();
-        }
-        else
+        } else {
             $this->resetDataLess3();
+        }
     }
 
     /**
@@ -76,6 +76,7 @@ class SearchLiveWier extends Component
      */
     public function render(): View
     {
+        $this->search = request()->get('search', $this->search);
         return view('livewire.front.search.search-live-wier');
     }
 }

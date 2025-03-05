@@ -34,8 +34,8 @@
 
     </script>
 
+    <link rel="stylesheet" href="{{asset('front/css/nice-select2/nice-select2.css')}}" />
     <link rel="stylesheet" href="{{asset('front/css/plugins/plugins.min.css')}}">
-
     <link rel="stylesheet" href="{{asset('front/css/style.min.css')}}">
     <link rel="stylesheet" href="{{asset('css/sf_style.css')}}?v={{time()}}">
 
