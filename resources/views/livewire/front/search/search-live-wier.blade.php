@@ -13,6 +13,7 @@
                 name="search"
                 id="search"
                 placeholder="{{ __('search.placeholder') }}"
+                autocomplete="off"
                 type="text"
                 class="search__input"
                 value="{{ $search }}"
