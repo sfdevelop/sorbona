@@ -2,25 +2,20 @@
 
 namespace App\Models;
 
-// use App\Model\Traits\Filterable;
+use App\Models\Traits\CreatedFormatTrait;
 use App\Models\Traits\TranslateScopeTrait;
 use Astrotomic\Translatable\Contracts\Translatable as TranslatableContract;
 use Astrotomic\Translatable\Translatable;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class NovaPochtaDetachment extends Model implements TranslatableContract
+class NovaPochtaDetachmentTranslation extends Model
 {
-    //    use Filterable;
-    use Translatable;
-    use TranslateScopeTrait;
+    public $timestamps = false;
 
-    public array $translatedAttributes = [
+    protected $fillable = [
         'region',
         'city',
         'address',
-    ];
-
-    protected $fillable = [
-        'id',
     ];
 }

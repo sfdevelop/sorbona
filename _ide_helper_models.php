@@ -684,22 +684,59 @@ namespace App\Models{
  * App\Models\NovaPochtaDetachment
  *
  * @property int $id
- * @property string $region
- * @property string $city
- * @property string $address
+ * @property string|null $region
+ * @property string|null $city
+ * @property string|null $address
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \App\Models\NovaPochtaDetachmentTranslation|null $translation
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\NovaPochtaDetachmentTranslation> $translations
+ * @property-read int|null $translations_count
+ * @method static \Illuminate\Database\Eloquent\Builder|NovaPochtaDetachment listsTranslations(string $translationField)
  * @method static \Illuminate\Database\Eloquent\Builder|NovaPochtaDetachment newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|NovaPochtaDetachment newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|NovaPochtaDetachment notTranslatedIn(?string $locale = null)
+ * @method static \Illuminate\Database\Eloquent\Builder|NovaPochtaDetachment orWhereTranslation(string $translationField, $value, ?string $locale = null)
+ * @method static \Illuminate\Database\Eloquent\Builder|NovaPochtaDetachment orWhereTranslationLike(string $translationField, $value, ?string $locale = null)
+ * @method static \Illuminate\Database\Eloquent\Builder|NovaPochtaDetachment orderByTranslation(string $translationField, string $sortMethod = 'asc')
  * @method static \Illuminate\Database\Eloquent\Builder|NovaPochtaDetachment query()
+ * @method static \Illuminate\Database\Eloquent\Builder|NovaPochtaDetachment trans()
+ * @method static \Illuminate\Database\Eloquent\Builder|NovaPochtaDetachment translated()
+ * @method static \Illuminate\Database\Eloquent\Builder|NovaPochtaDetachment translatedIn(?string $locale = null)
  * @method static \Illuminate\Database\Eloquent\Builder|NovaPochtaDetachment whereAddress($value)
  * @method static \Illuminate\Database\Eloquent\Builder|NovaPochtaDetachment whereCity($value)
  * @method static \Illuminate\Database\Eloquent\Builder|NovaPochtaDetachment whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|NovaPochtaDetachment whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|NovaPochtaDetachment whereRegion($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|NovaPochtaDetachment whereTranslation(string $translationField, $value, ?string $locale = null, string $method = 'whereHas', string $operator = '=')
+ * @method static \Illuminate\Database\Eloquent\Builder|NovaPochtaDetachment whereTranslationLike(string $translationField, $value, ?string $locale = null)
  * @method static \Illuminate\Database\Eloquent\Builder|NovaPochtaDetachment whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|NovaPochtaDetachment withTranslation(?string $locale = null)
  */
-	class NovaPochtaDetachment extends \Eloquent {}
+	class NovaPochtaDetachment extends \Eloquent implements \Astrotomic\Translatable\Contracts\Translatable {}
+}
+
+namespace App\Models{
+/**
+ * App\Models\NovaPochtaDetachmentTranslation
+ *
+ * @property int $id
+ * @property int $nova_pochta_detachment_id
+ * @property string $locale
+ * @property string|null $region
+ * @property string|null $city
+ * @property string|null $address
+ * @method static \Illuminate\Database\Eloquent\Builder|NovaPochtaDetachmentTranslation newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|NovaPochtaDetachmentTranslation newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|NovaPochtaDetachmentTranslation query()
+ * @method static \Illuminate\Database\Eloquent\Builder|NovaPochtaDetachmentTranslation whereAddress($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|NovaPochtaDetachmentTranslation whereCity($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|NovaPochtaDetachmentTranslation whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|NovaPochtaDetachmentTranslation whereLocale($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|NovaPochtaDetachmentTranslation whereNovaPochtaDetachmentId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|NovaPochtaDetachmentTranslation whereRegion($value)
+ */
+	class NovaPochtaDetachmentTranslation extends \Eloquent {}
 }
 
 namespace App\Models{
@@ -994,6 +1031,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Product orWhereTranslationLike(string $translationField, $value, ?string $locale = null)
  * @method static \Illuminate\Database\Eloquent\Builder|Product orderByTranslation(string $translationField, string $sortMethod = 'asc')
  * @method static \Illuminate\Database\Eloquent\Builder|Product query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Product search(string $searchTerm)
  * @method static \Illuminate\Database\Eloquent\Builder|Product trans()
  * @method static \Illuminate\Database\Eloquent\Builder|Product translated()
  * @method static \Illuminate\Database\Eloquent\Builder|Product translatedIn(?string $locale = null)
@@ -1193,22 +1231,53 @@ namespace App\Models{
  * App\Models\StatesNovaPochta
  *
  * @property int $id
- * @property string $region
- * @property string $city
- * @property string $address
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \App\Models\StatesNovaPochtaTranslation|null $translation
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\StatesNovaPochtaTranslation> $translations
+ * @property-read int|null $translations_count
+ * @method static \Illuminate\Database\Eloquent\Builder|StatesNovaPochta listsTranslations(string $translationField)
  * @method static \Illuminate\Database\Eloquent\Builder|StatesNovaPochta newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|StatesNovaPochta newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|StatesNovaPochta notTranslatedIn(?string $locale = null)
+ * @method static \Illuminate\Database\Eloquent\Builder|StatesNovaPochta orWhereTranslation(string $translationField, $value, ?string $locale = null)
+ * @method static \Illuminate\Database\Eloquent\Builder|StatesNovaPochta orWhereTranslationLike(string $translationField, $value, ?string $locale = null)
+ * @method static \Illuminate\Database\Eloquent\Builder|StatesNovaPochta orderByTranslation(string $translationField, string $sortMethod = 'asc')
  * @method static \Illuminate\Database\Eloquent\Builder|StatesNovaPochta query()
- * @method static \Illuminate\Database\Eloquent\Builder|StatesNovaPochta whereAddress($value)
- * @method static \Illuminate\Database\Eloquent\Builder|StatesNovaPochta whereCity($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|StatesNovaPochta trans()
+ * @method static \Illuminate\Database\Eloquent\Builder|StatesNovaPochta translated()
+ * @method static \Illuminate\Database\Eloquent\Builder|StatesNovaPochta translatedIn(?string $locale = null)
  * @method static \Illuminate\Database\Eloquent\Builder|StatesNovaPochta whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|StatesNovaPochta whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|StatesNovaPochta whereRegion($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|StatesNovaPochta whereTranslation(string $translationField, $value, ?string $locale = null, string $method = 'whereHas', string $operator = '=')
+ * @method static \Illuminate\Database\Eloquent\Builder|StatesNovaPochta whereTranslationLike(string $translationField, $value, ?string $locale = null)
  * @method static \Illuminate\Database\Eloquent\Builder|StatesNovaPochta whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|StatesNovaPochta withTranslation(?string $locale = null)
  */
-	class StatesNovaPochta extends \Eloquent {}
+	class StatesNovaPochta extends \Eloquent implements \Astrotomic\Translatable\Contracts\Translatable {}
+}
+
+namespace App\Models{
+/**
+ * App\Models\StatesNovaPochtaTranslation
+ *
+ * @property int $id
+ * @property int $states_nova_pochta_id
+ * @property string $locale
+ * @property string|null $region
+ * @property string|null $city
+ * @property string|null $address
+ * @method static \Illuminate\Database\Eloquent\Builder|StatesNovaPochtaTranslation newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|StatesNovaPochtaTranslation newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|StatesNovaPochtaTranslation query()
+ * @method static \Illuminate\Database\Eloquent\Builder|StatesNovaPochtaTranslation whereAddress($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|StatesNovaPochtaTranslation whereCity($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|StatesNovaPochtaTranslation whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|StatesNovaPochtaTranslation whereLocale($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|StatesNovaPochtaTranslation whereRegion($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|StatesNovaPochtaTranslation whereStatesNovaPochtaId($value)
+ */
+	class StatesNovaPochtaTranslation extends \Eloquent {}
 }
 
 namespace App\Models{

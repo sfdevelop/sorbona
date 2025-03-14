@@ -55,15 +55,26 @@ class ImportDataNpCommand extends Command
         $data = json_decode($response->getBody()->getContents());
 
         foreach ($this->getWarehouseData($data->data) as $item) {
-            NovaPochtaDetachment::firstOrCreate([
-                'address' => $item->Description,
-            ], [
-                'region' => $item->SettlementAreaDescription,
-                'city' => $item->CityDescription,
+            $detachment = NovaPochtaDetachment::firstOrCreate([
                 'address' => $item->Description,
             ]);
+
+            $detachment->translateOrNew('uk')->region = $item->SettlementAreaDescription;
+            $detachment->translateOrNew('uk')->city = $item->CityDescription;
+            $detachment->translateOrNew('uk')->address = $item->Description;
+
+            $regionTranslations = $this->getRegionTranslations();
+
+            $regionRu = $regionTranslations[$item->SettlementAreaDescription] ??
+                $item->SettlementAreaDescription;
+
+            $detachment->translateOrNew('ru')->region = $regionRu;
+            $detachment->translateOrNew('ru')->city = $item->CityDescriptionRu;
+            $detachment->translateOrNew('ru')->address = $item->DescriptionRu;
+
+            $detachment->save();
         }
-        $this->info('Створили ');
+        $this->info('Створили відділення Нової Пошти з українськими та російськими перекладами');
     }
 
     /**
@@ -73,7 +84,41 @@ class ImportDataNpCommand extends Command
     private function getWarehouseData($data): \Generator
     {
         foreach ($data as $item) {
+            //            dd($item);
             yield $item;
         }
+    }
+
+    private function getRegionTranslations(): array
+    {
+        return [
+            'Вінницька' => 'Винницкая',
+            'Волинська' => 'Волынская',
+            'Дніпропетровська' => 'Днепропетровская',
+            'Донецька' => 'Донецкая',
+            'Житомирська' => 'Житомирская',
+            'Закарпатська' => 'Закарпатская',
+            'Запорізька' => 'Запорожская',
+            'Івано-Франківська' => 'Ивано-Франковская',
+            'Київська' => 'Киевская',
+            'Кіровоградська' => 'Кировоградская',
+            'Луганська' => 'Луганская',
+            'Львівська' => 'Львовская',
+            'Миколаївська' => 'Николаевская',
+            'Одеська' => 'Одесская',
+            'Полтавська' => 'Полтавская',
+            'Рівненська' => 'Ровенская',
+            'Сумська' => 'Сумская',
+            'Тернопільська' => 'Тернопольская',
+            'Харківська' => 'Харьковская',
+            'Херсонська' => 'Херсонская',
+            'Хмельницька' => 'Хмельницкая',
+            'Черкаська' => 'Черкасская',
+            'Чернівецька' => 'Черновицкая',
+            'Чернігівська' => 'Черниговская',
+            'Автономна Республіка Крим' => 'Автономная Республика Крым',
+            'м. Київ' => 'г. Киев',
+            'м. Севастополь' => 'г. Севастополь',
+        ];
     }
 }

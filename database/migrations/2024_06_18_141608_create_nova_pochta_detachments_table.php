@@ -15,9 +15,9 @@ class CreateNovaPochtaDetachmentsTable extends Migration
     {
         Schema::create('nova_pochta_detachments', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('region');
-            $table->string('city');
-            $table->string('address');
+            $table->string('region')->nullable();
+            $table->string('city')->nullable();
+            $table->string('address')->nullable();
             $table->timestamps();
         });
     }
