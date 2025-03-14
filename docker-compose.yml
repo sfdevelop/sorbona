@@ -27,6 +27,18 @@ services:
             - mailpit
             - redis
             - meilisearch
+    phpmyadmin:
+        image: 'phpmyadmin:latest'
+        ports:
+            - 8081:80
+        environment:
+            MYSQL_ROOT_PASSWORD: '${DB_PASSWORD}'
+        links:
+            - "mysql:db"
+        depends_on:
+            - mysql
+        networks:
+            - sail
     mysql:
         image: 'mysql/mysql-server:8.0'
         ports:
