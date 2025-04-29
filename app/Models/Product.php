@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Models\Traits\CreatedFormatTrait;
 use App\Models\Traits\Filterable;
 use App\Models\Traits\MetaDataPolymorphic;
+use App\Models\Traits\PriceFromProductReplaceDotTrait;
 use App\Models\Traits\ProductPriceTrait;
 use App\Models\Traits\RegisterMediaTrait;
 use App\Models\Traits\SlugGableTrait;
@@ -33,6 +34,7 @@ class Product extends Model implements HasMedia, TranslatableContract
     use SlugGableTrait;
     use Translatable;
     use TranslateScopeTrait;
+    use PriceFromProductReplaceDotTrait;
 
     protected $table = 'products';
 
