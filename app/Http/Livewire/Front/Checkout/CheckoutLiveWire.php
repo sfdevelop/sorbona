@@ -120,7 +120,7 @@ class CheckoutLiveWire extends ProductBaseComponent
 
         if (\Auth::check()) {
             $this->name = \Auth::user()->name;
-            $this->surname = \Auth::user()->surname;
+            $this->surname = \Auth::user()->surname ?? '';
             //            $this->father = \Auth::user()->father ?? '';
             $this->phone = \Auth::user()->phone ?? '';
             $this->email = \Auth::user()->email;
