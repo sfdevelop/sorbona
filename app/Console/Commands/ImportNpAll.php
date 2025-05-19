@@ -28,7 +28,7 @@ class ImportNpAll extends Command
         $this->info('Start: '.date('Y-m-d H:i:s'));
 
         $this->call('import:np-regions');
-//        $this->call('import:np-cities');
+        $this->call('import:np-cities');
         $this->call('import:np-depots');
 
         $this->info('End: '.date('Y-m-d H:i:s'));

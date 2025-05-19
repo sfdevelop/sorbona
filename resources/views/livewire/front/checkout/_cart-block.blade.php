@@ -32,12 +32,13 @@
         </div>
         <div class="checkout-order__buttons">
             <button form="checkout_form" type="submit"
+                    wire:click.prevent="addOrder"
                     class="checkout-order__btn btn">{{ __('checkout.order_completed') }}</button>
         </div>
         @guest
             <div class="checkout-order-bottom__chbox chbox">
                 <label class="chbox__label">
-                    <input type="checkbox" name="" class="chbox__input" value="">
+                    <input type="checkbox" wire:model.lazy="register" name="register" class="chbox__input" value="">
                     <span class="chbox__icon"></span>
                     <span class="chbox__text">{{ __('checkout.register_on_site') }}</span>
                 </label>

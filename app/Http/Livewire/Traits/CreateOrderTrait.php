@@ -19,7 +19,7 @@ trait CreateOrderTrait
     public function createOrder(array $data, array $deliveryData)
     {
         try {
-            $order = new OrderManager($data, $this->total, $this->payment, $this->deliverySelect, $deliveryData, $this->deliverySelect);
+            $order = new OrderManager($data, $this->total, $this->payment, $this->delivery, $deliveryData, $this->delivery);
             $newOrder = $order->userOrder();
 
             $this->createOrderItems($newOrder);

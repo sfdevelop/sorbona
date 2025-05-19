@@ -86,7 +86,7 @@ class ImportNpCities extends Command
                         ], [
                             'ref' => $item->Ref,
                             'region_ref' => $item->Area,
-                            'name_ru' => $item->DescriptionRu,
+                            'name_ru' => $item->DescriptionRu ? $item->DescriptionRu : $item->Description,
                             'name_uk' => $item->Description,
                         ]);
                     }

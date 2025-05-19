@@ -26,4 +26,9 @@
     display: block;
 }
 
+.invalid-feedback {
+    color: red;
+    font-size: 12px;
+}
+
 /*# sourceMappingURL=sf_style.css.map */

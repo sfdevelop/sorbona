@@ -2,6 +2,9 @@
 
 namespace App\DeliveryMetods;
 
+use App\Models\NovaPochta\NovaPochtaCity;
+use App\Models\NovaPochta\NovaPochtaDepot;
+
 class NovaPochta implements DeliveryMethodInterface
 {
     protected string $selectedRegion;
@@ -26,8 +29,8 @@ class NovaPochta implements DeliveryMethodInterface
     {
         return [
             'region' => $this->selectedRegion,
-            'city' => $this->selectedCity,
-            'address' => $this->selectedAddress,
+            'city' => NovaPochtaCity::where('ref', $this->selectedCity)->first()->name,
+            'address' => NovaPochtaDepot::where('ref', $this->selectedAddress)->first()->name,
         ];
     }
 }

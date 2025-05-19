@@ -13,6 +13,7 @@ use App\Http\Controllers\Front\ProductController;
 use App\Http\Controllers\Front\ReturnController;
 
 use App\Http\Controllers\Front\CheckoutController;
+use App\Http\Controllers\Front\CartThxController;
 
 Route::get('/', HomeController::class)->name('home');
 Route::get('manufacturers', ManufacturersController::class)->name('manufacturers');
@@ -38,6 +39,8 @@ Route::get('search/{category:slug}', \App\Http\Controllers\Front\SearchInCategor
 
 Route::get('cart', \App\Http\Controllers\Front\CartController::class)->name('cart');
 Route::get('checkout', \App\Http\Controllers\Front\CheckoutController::class)->name('checkout');
+
+Route::get('cart-thx', \App\Http\Controllers\Front\CartThxController::class)->name('cart_thx');
 //
 //Route::view('no-product-cart', 'front/cart/no_product_cart')->name('no_product_cart');
 //Route::view('cart-thx', 'front/cart/cart_thx')->name('cart_thx');

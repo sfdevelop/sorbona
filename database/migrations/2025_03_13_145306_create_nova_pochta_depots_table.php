@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('ref');
             $table->string('city_ref');
-            $table->string('depot_number');
+            $table->integer('depot_number');
             $table->boolean('is_pochtomat');
             $table->string('name_ru');
             $table->string('name_uk');

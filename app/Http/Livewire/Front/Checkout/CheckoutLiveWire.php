@@ -2,15 +2,16 @@
 
 namespace App\Http\Livewire\Front\Checkout;
 
-// use App\Actions\Order\GetAddressNovaPochtaAction;
-// use App\Actions\Order\GetCityNovaPochtaAction;
-// use App\Actions\Order\GetPaymentAction;
-// use App\Actions\Order\GetRegionNovaPochtaAction;
+use App\Actions\Order\GetCityNovaPochtaAction;
+use App\Actions\Order\GetDepotNovaPochtaAction;
+use App\Actions\Order\GetPaymentAction;
 use App\Http\Livewire\Front\Trait\CartTrait;
+// use App\Actions\Order\GetRegionNovaPochtaAction;
 use App\Http\Livewire\Product\ProductBaseComponent;
 use App\Http\Livewire\Traits\CreateOrderTrait;
 use App\Http\Livewire\Traits\DeliveryDataFromOrderTrait;
-use App\Http\Requests\LiveWier\CreateOrderRequest;
+use App\Http\Livewire\Traits\PaymentDataFromOrderTrait;
+use App\Http\Requests\Livewier\CreateOrderRequest;
 use App\Models\Product;
 use Illuminate\Contracts\View\View;
 use Illuminate\Validation\ValidationException;
@@ -22,23 +23,53 @@ class CheckoutLiveWire extends ProductBaseComponent
     use CartTrait;
     use CreateOrderTrait;
     use DeliveryDataFromOrderTrait;
+    use PaymentDataFromOrderTrait;
+
+    private array $rulesRegister = [
+        'phone' => 'required|string|unique:users,phone',
+        'email' => 'required|string|email|unique:users,email',
+    ];
+
+    private array $rulesUp = [
+        'region' => 'required|string|min:3',
+        'locality' => 'required|string|min:3',
+        'index' => 'required|string',
+    ];
+
+    private $rulesBank = [
+        'companyName' => 'required|string|min:3',
+        'inn' => 'required|string|min:3',
+        'edrpou' => 'required|string',
+    ];
+
+    private $rulesNp = [
+        'selectedNpCity' => 'required|string',
+        'selectedNpDepot' => 'required|string',
+    ];
+
+    public string $login = '';
+
+    public string $password = '';
 
     public array|object $productsInCart;
 
     public string $totalDiscounts;
 
-    public string $name = '';
+    public string $name = 'Denys';
 
-    public string $surname = '';
+    public ?string $surname = 'Cherkasov';
 
-    public string $phone = '';
+    public string $phone = '+380931904412';
 
-    public string $email = '';
+    public string $email = 'denis.cherkasov@gmail.com';
 
     public string $selectedNpCity = '';
+
+    public string $selectedNpDepot = '';
+
     public array|object $NpCities;
 
-    public string $selectedRegion = '';
+    public string $selectedRegion = 'All';
 
     public string $selectedCity = '';
 
@@ -50,17 +81,15 @@ class CheckoutLiveWire extends ProductBaseComponent
 
     public string $UkrIndex = '';
 
+    public bool $register = false;
+
     public string $UkrAddress = '';
-
-    public string $MeestIndex = '';
-
-    public string $MeestAddress = '';
 
     public array|object $regions;
 
     public array|object $cities;
 
-    public array|object|null $address;
+    public array|object|null $depots;
 
     public string $delivery = 'deliveryMethodNp';
 
@@ -68,13 +97,59 @@ class CheckoutLiveWire extends ProductBaseComponent
 
     public bool $seeAddress = false;
 
+    public string $companyName = '';
+
+    public string $inn = '';
+
+    public string $edrpou = '';
+
+    public string $comment = '';
+
     public int|float|string $total;
 
-    protected $listeners = ['refreshCartOrderLiveWier' => '$refresh'];
+    public string $region = '';
+
+    public string $locality = '';
+
+    public string $index = '';
+
+    public bool $isTryLogin = false;
+
+    protected $listeners = [
+        'refreshCartOrderLiveWier' => '$refresh',
+        'updatedSelectedNpCity' => 'handleUpdatedSelectedNpCity',
+        'updatedSelectedNpDepot' => 'handleUpdatedSelectedNpDepot',
+        'changePhoneNumber' => 'handlePhoneNumber',
+    ];
+
+    public function handleUpdatedSelectedNpCity($value)
+    {
+        $this->selectedNpCity = $value;
+        $this->selectedNpDepot = '';
+        \Log::info('Np city:  '.$this->selectedNpCity);
+    }
+
+    private function determineLoginType(): string
+    {
+        return filter_var($this->login, FILTER_VALIDATE_EMAIL) ? 'email' : 'phone';
+    }
+
+    public function handleUpdatedSelectedNpDepot($value)
+    {
+        $this->selectedNpDepot = $value;
+        \Log::info('Np depot: '.$this->selectedNpDepot);
+    }
 
     protected function rules(): array
     {
-        return (new CreateOrderRequest)->rules();
+        $request = new CreateOrderRequest;
+
+        return $request->rules();
+    }
+
+    public function setSelectedNpDepot($value)
+    {
+        $this->selectedNpDepot = $value;
     }
 
     /**
@@ -127,12 +202,12 @@ class CheckoutLiveWire extends ProductBaseComponent
         //        $this->regions = GetRegionNovaPochtaAction::run();
         //        $this->selectPayment($this->payment);
 
-//        if ($this->delivery == 'deliveryMethodNp')
-   //         $this->NpCities = GetCityNovaPochtaAction::run();
+        $this->cities = [];
+        //        if ($this->delivery == 'deliveryMethodNp')
+        //         $this->NpCities = GetCityNovaPochtaAction::run();
     }
 
     /**
-
      * @param  $option
      * @return void
      */
@@ -150,11 +225,11 @@ class CheckoutLiveWire extends ProductBaseComponent
     {
         $this->payment = $payment;
 
-        $payment = GetPaymentAction::run($payment);
+        //        $payment = GetPaymentAction::run($payment);
 
-        $this->paymentDescription = $payment->description ?? '';
+        //        $this->paymentDescription = $payment->description ?? '';
 
-        $this->emit('refreshCartOrderLiveWier');
+        //        $this->emit('refreshCartOrderLiveWier');
     }
 
     /**
@@ -178,24 +253,52 @@ class CheckoutLiveWire extends ProductBaseComponent
         $this->seeAddress = true;
     }
 
-    /**
-     * @return void
-     */
-    public function addOrder(): void
+    public function updatedPhone($value): void
     {
+        $this->phone = $value;
+    }
+
+    private function createAndLoginUser() {}
+
+    /**
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function addOrder()
+    {
+        if ($this->register) {
+            $this->validate($this->rulesRegister);
+            $this->createAndLoginUser();
+        }
+
+        if ($this->delivery == 'deliveryMethodNp') {
+            $this->emit('validateNp', $this->selectedNpCity, $this->selectedNpDepot);
+        }
+
         $data = $this->validate();
 
         $deliveryData = $this->getDeliveryData();
+        $paymentData = $this->getPaymentData();
 
-        if (empty($deliveryData)) {
+        if ($this->delivery == 'deliveryMethodUp') {
+            $this->validate($this->rulesUp);
+        }
+
+        if ($this->payment == 'paymentMethodBank') {
+            $this->validate($this->rulesBank);
+        }
+
+        //        dd($deliveryData);
+
+        if (empty($deliveryData) || empty($paymentData)) {
             return;
         }
 
-        $this->createOrder($data, $deliveryData);
+        $order = $this->createOrder($data, $deliveryData);
 
         $this->resetData();
 
-        $this->emit('refreshCountItemsInCartLiveWier');
+        return redirect()->route('cart_thx', ['id' => $order->uuid]);
+        //        $this->emit('refreshCountItemsInCartLiveWier');
     }
 
     /**
@@ -206,7 +309,6 @@ class CheckoutLiveWire extends ProductBaseComponent
         if (! \Auth::check()) {
             $this->name = '';
             $this->surname = '';
-            $this->father = '';
             $this->phone = '';
             $this->email = '';
         }
@@ -226,6 +328,11 @@ class CheckoutLiveWire extends ProductBaseComponent
         $this->clearCart();
     }
 
+    public function clearComment()
+    {
+        $this->comment = '';
+    }
+
     /**
      * @return View
      *
@@ -234,16 +341,16 @@ class CheckoutLiveWire extends ProductBaseComponent
      */
     public function render(): View
     {
-        if ($this->selectedRegion) {
+        $this->cities = [];
+        $this->depots = [];
+
+        if ($this->delivery == 'deliveryMethodNp') {
             $this->cities = GetCityNovaPochtaAction::run($this->selectedRegion);
         }
 
-        if ($this->selectedCity) {
-            $this->address = GetAddressNovaPochtaAction::run($this->selectedCity);
+        if ($this->selectedNpCity != '') {
+            $this->depots = GetDepotNovaPochtaAction::run($this->selectedNpCity);
         }
-
-        //        $this->productsInCart = $this->getItemsFromCart();
-        //        $this->total = $this->getTotalPriceInCart();
 
         return view('livewire.front.checkout.checkout-live-wire');
     }

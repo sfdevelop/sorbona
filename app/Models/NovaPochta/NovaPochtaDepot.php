@@ -16,4 +16,11 @@ class NovaPochtaDepot extends Model
         'depot_number',
         'is_pochtomat'
     ];
+
+    public function getNameAttribute()
+    {
+        $locale = app()->getLocale() == 'uk' ? 'uk' : app()->getLocale();
+        return $locale == 'uk' ? ($this->name_uk ? $this->name_uk : $this->name_ru) : ($this->name_ru ? $this->name_ru : $this->name_uk);
+    }
+
 }

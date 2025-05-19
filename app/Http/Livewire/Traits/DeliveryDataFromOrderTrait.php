@@ -3,6 +3,8 @@
 namespace App\Http\Livewire\Traits;
 
 use App\DeliveryMetods\NovaPochta;
+use App\DeliveryMetods\UkrPochta;
+use App\DeliveryMetods\Local;
 
 trait DeliveryDataFromOrderTrait
 {
@@ -11,8 +13,10 @@ trait DeliveryDataFromOrderTrait
      */
     public function getDeliveryData(): array
     {
-        $deliveryMethod = match ($this->deliverySelect) {
-            'novaPochtaState' => new NovaPochta($this->selectedRegion, $this->selectedCity, $this->selectedPochta),
+        $deliveryMethod = match ($this->delivery) {
+            'deliveryMethodNp' => new NovaPochta($this->selectedRegion, $this->selectedNpCity, $this->selectedNpDepot),
+            'deliveryMethodUp' => new UkrPochta($this->region, $this->locality, $this->index),
+            'deliveryMethodLocal' => new Local(__('checkout.delivery_method_local_address_1')),
             default => null,
         };
 

@@ -10,8 +10,10 @@ class CreateOrderRequest extends FormRequest
     {
         return [
             'name' => 'required|string|min:3',
+            'surname' => 'required|string|min:3',
             'phone' => 'required|string',
             'email' => 'required|string|min:3|email:rfc,dns',
+            'delivery' => 'required|string',
             'payment' => 'required|string',
             'comment' => 'nullable|string',
             'total' => 'required|string',

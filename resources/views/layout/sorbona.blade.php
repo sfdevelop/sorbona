@@ -22,7 +22,7 @@
 
 <script src="{{asset('front/js/plugins/plugins.min.js')}}"></script>
 <script src="{{asset('front/js/app.min.js')}}"></script>
-<script src="{{asset('front/js/nice-select2/nice-select2.js')}}"></script>
+<script src="{{asset('front/js/nice-select2/nice-select2-custom.js')}}"></script>
 
 @livewireScripts
 

@@ -40,6 +40,7 @@ class ImportDataNpCommand extends Command
      */
     public function handle(): void
     {
+	$this->info('Starting getting wharehouses '.date('Y-m-d H:i:s'));
         $import = new ImportDataNp;
         $response = $import->client->request('GET', 'json/', [
             'json' => [
@@ -53,6 +54,10 @@ class ImportDataNpCommand extends Command
             ],
         ]);
         $data = json_decode($response->getBody()->getContents());
+	$this->info('Ending getting wharehouses '.date('Y-m-d H:i:s'));
+#	$this->info(print_r($data, 1));
+#	exit;
+
 
         foreach ($this->getWarehouseData($data->data) as $item) {
             NovaPochtaDetachment::firstOrCreate([
@@ -62,6 +67,8 @@ class ImportDataNpCommand extends Command
                 'city' => $item->CityDescription,
                 'address' => $item->Description,
             ]);
+	    $this->info('Inserting detachment and exit '.date('Y-m-d H:i:s'));
+	    exit;
         }
         $this->info('Створили ');
     }
