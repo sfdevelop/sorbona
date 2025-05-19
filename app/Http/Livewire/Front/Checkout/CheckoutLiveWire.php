@@ -13,6 +13,9 @@ use App\Http\Livewire\Traits\DeliveryDataFromOrderTrait;
 use App\Http\Livewire\Traits\PaymentDataFromOrderTrait;
 use App\Http\Requests\Livewier\CreateOrderRequest;
 use App\Models\Product;
+use App\Services\CartOrder\ProductsInCartService;
+use App\Services\CartOrder\RequestProductsFromCart;
+use Illuminate\Contracts\Container\BindingResolutionException;
 use Illuminate\Contracts\View\View;
 use Illuminate\Validation\ValidationException;
 use Jackiedo\Cart\Exceptions\InvalidAssociatedException;
@@ -163,44 +166,35 @@ class CheckoutLiveWire extends ProductBaseComponent
         $this->validateOnly($field);
     }
 
-    public function mount()
+    /**
+     * @throws InvalidAssociatedException
+     * @throws BindingResolutionException
+     * @throws InvalidModelException
+     */
+    public function mount(): void
     {
-        $this->productsInCart = [];
         $this->totalDiscounts = 0;
 
-        $productsInCart = $this->getItemsFromCart();
-        foreach ($productsInCart as $productItem) {
-            $productId = $productItem->id;
-            $product = Product::find($productId);
-            $productQuantity = $productItem->quantity;
-            $withoutDiscount = $product->getPriceWithDiscount($productQuantity);
+        $queryProducts = app()
+            ->make(RequestProductsFromCart::class)
+            ->getProductsFromArrayInCart();
 
-            $price = $product->getPriceByCount($productQuantity);
-            $this->totalDiscounts += $withoutDiscount ?? $withoutDiscount - $price;
-            //            \Log::info("Discount $withoutDiscount Price: $price Total discounts: ".$this->totalDiscounts);
-            $this->productsInCart[] = [
-                'id' => $productId,
-                'sku' => $product->sku,
-                'slug' => $product->slug,
-                'title' => $product->title,
-                'img' => $product->img_web,
-                'quantity' => $productQuantity,
-                'withoutDiscount' => $withoutDiscount,
-                'price' => $price,
-                'item' => $productItem,
-            ];
-        }
-        $this->total = $this->getTotalPriceInCartSorbona();
+        $this->productsInCart =
+            app()
+                ->make(ProductsInCartService::class)
+                ->getProductsInCart(
+                    totalDiscounts: $this->totalDiscounts,
+                    queryProducts: $queryProducts,
+                );
+
+        $this->total = $this->getTotalPriceInCartSorbona($queryProducts);
 
         if (\Auth::check()) {
             $this->name = \Auth::user()->name;
-            $this->surname = \Auth::user()->surname;
-            //            $this->father = \Auth::user()->father ?? '';
+            $this->surname = \Auth::user()->surname ?? '';
             $this->phone = \Auth::user()->phone ?? '';
             $this->email = \Auth::user()->email;
         }
-        //        $this->regions = GetRegionNovaPochtaAction::run();
-        //        $this->selectPayment($this->payment);
 
         $this->cities = [];
         //        if ($this->delivery == 'deliveryMethodNp')

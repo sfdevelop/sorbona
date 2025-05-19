@@ -33,6 +33,6 @@ class GetCityNovaPochtaAction
         return NovaPochtaCity::query()
             ->select('ref', 'name_ru', 'name_uk')
             ->orderBy("name_{$locale}")
-            ->get();
+            ->once();
     }
 }
