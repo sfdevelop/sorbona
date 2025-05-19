@@ -2,9 +2,7 @@
 
 namespace App\Rules;
 
-use Closure;
 use Illuminate\Contracts\Validation\Rule;
-use Illuminate\Contracts\Validation\ValidationRule;
 
 class InternationalPhoneNumber implements Rule
 {
@@ -19,6 +17,6 @@ class InternationalPhoneNumber implements Rule
 
     public function message(): string
     {
-        return __("front.phone_error");
+        return __('front.phone_error');
     }
 }

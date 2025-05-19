@@ -12,4 +12,5 @@ return [
     'URL_PROJECT' => env('APP_URL'),
 
     'APP_PART' => env('APP_ENV'),
+    'API_NOVA_POCHTA_KEY' => env('NOVA_POCHTA_API_KEY'),
 ];

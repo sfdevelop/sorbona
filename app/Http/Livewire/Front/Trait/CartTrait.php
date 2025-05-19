@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Front\Trait;
 
 use App\Models\Product;
+use App\Services\CartOrder\RequestProductsFromCart;
 use Illuminate\Support\Number;
 use Jackiedo\Cart\Exceptions\InvalidAssociatedException;
 use Jackiedo\Cart\Exceptions\InvalidModelException;
@@ -59,10 +60,14 @@ trait CartTrait
             $this->dispatchBrowserEvent('alert', ['type' => 'success', 'message' => __('cart.product_added_to_cart')]);
         }
 
+        $queryProducts = app()
+            ->make(RequestProductsFromCart::class)
+            ->getProductsFromArrayInCart();
+
         $priceWithCount = $this->product->getPriceByCount($this->productQty);
         $round = round(($priceWithCount * $this->productQty), 2);
         $priceWithCount = Number::currency(number: $round, in: 'UAH', locale: 'uk');
-        $this->emit('refreshCart', $this->isShowToast, $this->product->slug, $this->product->title, $this->productQty, $priceWithCount, $this->getTotalPriceInCartSorbona(), $this->product->img_web);
+        $this->emit('refreshCart', $this->isShowToast, $this->product->slug, $this->product->title, $this->productQty, $priceWithCount, $this->getTotalPriceInCartSorbona($queryProducts), $this->product->img_web);
         $this->emit('refreshHeaderUser');
     }
 
@@ -172,8 +177,8 @@ trait CartTrait
         $this->getShoppingCart()->destroy();
         $this->emit('refreshCart', true);
         $this->emit('refreshHeaderUser');
-        return redirect()->route('cart');
 
+        return redirect()->route('cart');
     }
 
     /**
@@ -212,12 +217,12 @@ trait CartTrait
         return $this->getShoppingCart()->getDetails()->get('total');
     }
 
-    public function getTotalPriceInCartSorbona(): string
+    public function getTotalPriceInCartSorbona($queryProducts): string
     {
         $totalPriceInCartSorbona = 0;
         $items = $this->getShoppingCart()->getDetails()->get('items');
         foreach ($items as $item) {
-            $product = Product::find($item->id);
+            $product = $queryProducts->find($item->id);
             $priceWithCount = $product->getPriceByCount($item->quantity) * $item->quantity;
             $totalPriceInCartSorbona = $totalPriceInCartSorbona + $priceWithCount;
         }

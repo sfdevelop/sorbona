@@ -4,21 +4,21 @@ namespace App\Http\Livewire\Front\User;
 
 use App\Rules\InternationalPhoneNumber;
 use Illuminate\Contracts\View\View;
-use Illuminate\Http\RedirectResponse;
-use Livewire\Component;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
+use Livewire\Component;
 
 class LogInLiveWier extends Component
 {
     public string $login = '';
+
     public string $password = '';
 
     public function login()
     {
         $loginType = $this->determineLoginType();
 
-        if ($loginType === 'phone' && !$this->validatePhoneNumber()) {
+        if ($loginType === 'phone' && ! $this->validatePhoneNumber()) {
             return;
         }
 
@@ -28,7 +28,6 @@ class LogInLiveWier extends Component
 
         $this->handleFailedLogin();
     }
-
 
     /**
      * @return View
@@ -46,14 +45,15 @@ class LogInLiveWier extends Component
     private function validatePhoneNumber(): bool
     {
         $validator = Validator::make(['phone' => $this->login], [
-            'phone' => ['required', new InternationalPhoneNumber()]
+            'phone' => ['required', new InternationalPhoneNumber],
         ]);
 
         if ($validator->fails()) {
             $this->dispatchBrowserEvent('alert', [
                 'type' => 'error',
-                'message' => $validator->errors()->first('phone')
+                'message' => $validator->errors()->first('phone'),
             ]);
+
             return false;
         }
 
@@ -85,7 +85,7 @@ class LogInLiveWier extends Component
     {
         $this->dispatchBrowserEvent('alert', [
             'type' => 'error',
-            'message' => __('front.not_login')
+            'message' => __('front.not_login'),
         ]);
 
         $this->reset('password');

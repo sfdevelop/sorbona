@@ -16,6 +16,7 @@ class SearchController extends Controller
     public function __invoke(Request $request)
     {
         $search = request('search');
+
         return (new SearchViewModel($search, $request, $this->productRepository))->view('front.search.search');
     }
 }

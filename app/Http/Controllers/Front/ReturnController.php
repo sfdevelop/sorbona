@@ -15,7 +15,7 @@ class ReturnController extends BaseFrontController
             ->make(PageRepositoryInterface::class)
             ->getPageFromId(2);
 
-        return (new PageViewModel())
+        return (new PageViewModel)
             ->view('front.page.policy', compact('policy'));
     }
 }

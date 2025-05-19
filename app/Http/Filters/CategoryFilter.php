@@ -19,13 +19,13 @@ class CategoryFilter extends AbstractFilter
     {
         $builder
             ->whereTranslationLike('title', '%'.$value.'%');
-//            ->orWhereHas('childrenCategories',
-//                function (Builder $query) use ($value) {
-//                    $query->whereTranslationLike('title', '%'.$value.'%');
-//                })
-//            ->orWhereHas('childrenCategories.childrenCategories',
-//                function (Builder $query) use ($value) {
-//                    $query->whereTranslationLike('title', '%'.$value.'%');
-//                });
+        //            ->orWhereHas('childrenCategories',
+        //                function (Builder $query) use ($value) {
+        //                    $query->whereTranslationLike('title', '%'.$value.'%');
+        //                })
+        //            ->orWhereHas('childrenCategories.childrenCategories',
+        //                function (Builder $query) use ($value) {
+        //                    $query->whereTranslationLike('title', '%'.$value.'%');
+        //                });
     }
 }

@@ -3,7 +3,6 @@
 namespace App\ViewModels;
 
 use App\Http\Controllers\Traits\CustomSeoTrait;
-use App\Repository\Product\ProductRepositoryInterface;
 
 class LoginViewModel extends BaseViewModel
 {
@@ -14,5 +13,4 @@ class LoginViewModel extends BaseViewModel
     ) {
         //        $this->setSeoData($this->settingsRepository->getSetting());
     }
-
 }

@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Front;
 
-use App\ViewModels\LoginViewModel;
 use App\ViewModels\RecoverViewModel;
 
 class RecoverController extends BaseFrontController
@@ -11,6 +10,6 @@ class RecoverController extends BaseFrontController
 
     public function __invoke()
     {
-        return (new RecoverViewModel())->view('front.login.recover');
+        return (new RecoverViewModel)->view('front.login.recover');
     }
 }

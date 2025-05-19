@@ -18,8 +18,6 @@ class CatalogController extends BaseFrontController
 
     public function __invoke(Category $category, Request $request)
     {
-
-
         $category->load('childrenCategories');
 
         if ($category->childrenCategories->count() > 0) {

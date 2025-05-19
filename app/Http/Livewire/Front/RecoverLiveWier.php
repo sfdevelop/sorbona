@@ -2,11 +2,11 @@
 
 namespace App\Http\Livewire\Front;
 
-use App\Services\Password\ResetPasswordFromMail;
-use Livewire\Component;
 use App\Models\User;
+use App\Services\Password\ResetPasswordFromMail;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
+use Livewire\Component;
 
 class RecoverLiveWier extends Component
 {
@@ -26,7 +26,7 @@ class RecoverLiveWier extends Component
             default => 'handleInvalidInput',
         };
 
-        $this->$action();
+        $this->{$action}();
     }
 
     private function isEmail(): bool
@@ -71,7 +71,6 @@ class RecoverLiveWier extends Component
         $this->showAlert('error', __('front.phone_error'));
     }
 
-
     private function sendPasswordResetEmail(User $user, string $newPassword): void
     {
         $emailContent = __('front.password_reset_email', [
@@ -89,14 +88,13 @@ class RecoverLiveWier extends Component
     private function showAlert(string $type, string $message): void
     {
         $this->dispatchBrowserEvent('alert', [
-            'type'    => $type,
+            'type' => $type,
             'message' => $message,
         ]);
     }
 
     public function render(
-    ): \Illuminate\Contracts\View\Factory|\Illuminate\Foundation\Application|\Illuminate\Contracts\View\View|\Illuminate\View\View|\Illuminate\Contracts\Foundation\Application
-    {
+    ): \Illuminate\Contracts\View\Factory|\Illuminate\Foundation\Application|\Illuminate\Contracts\View\View|\Illuminate\View\View|\Illuminate\Contracts\Foundation\Application {
         return view('livewire.front.recover-live-wier');
     }
 }

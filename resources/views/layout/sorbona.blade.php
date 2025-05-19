@@ -59,7 +59,7 @@
     @endif
 </script>
 
-<script src="{{ asset('front/js/custom.js') }}?v={{ time() }}"
+<script src="{{asset('front/js/custom.js')}}?v={{ filemtime(public_path('front/js/custom.js'))}}"></script>
 </body>
 
 </html>

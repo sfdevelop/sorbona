@@ -5,8 +5,8 @@ namespace App\ViewModels;
 use App\Models\Category;
 use Spatie\ViewModels\ViewModel;
 
-class BaseViewModel extends ViewModel {
-
+class BaseViewModel extends ViewModel
+{
     public function categories()
     {
         return Category::query()

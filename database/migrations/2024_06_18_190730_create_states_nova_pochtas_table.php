@@ -13,9 +13,9 @@ return new class extends Migration
     {
         Schema::create('states_nova_pochtas', function (Blueprint $table) {
             $table->id();
-            $table->string('region');
-            $table->string('city');
-            $table->string('address');
+//            $table->string('region');
+//            $table->string('city');
+//            $table->string('address');
             $table->timestamps();
         });
     }

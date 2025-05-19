@@ -2,8 +2,8 @@
 
 namespace App\Http\Livewire\Cabinet;
 
-use Livewire\Component;
 use Illuminate\Support\Facades\Auth;
+use Livewire\Component;
 
 class DeleteAccountLiveWier extends Component
 {

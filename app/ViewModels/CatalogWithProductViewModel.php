@@ -83,9 +83,9 @@ class CatalogWithProductViewModel extends BaseViewModel
                 $manufacturer = $products->first()->manufacturer;
 
                 return (object) [
-                    'id'            => $manufacturer->id,
-                    'name'          => $manufacturer->title,
-                    'slug'          => $manufacturer->slug,
+                    'id' => $manufacturer->id,
+                    'name' => $manufacturer->title,
+                    'slug' => $manufacturer->slug,
                     'product_count' => $products->count(),
                 ];
             })->values();
@@ -102,13 +102,13 @@ class CatalogWithProductViewModel extends BaseViewModel
         $filters = $allProducts->flatMap(function ($product) {
             return $product->filterValues->map(function ($filterValue) {
                 return [
-                    'filter_name'        => $filterValue->filter->title,
-                    'filter_id'          => $filterValue->filter->id,
+                    'filter_name' => $filterValue->filter->title,
+                    'filter_id' => $filterValue->filter->id,
                     'filter_parent_slug' => $filterValue->filter->slug,
-                    'value'              => [
-                        'id'    => $filterValue->id,
+                    'value' => [
+                        'id' => $filterValue->id,
                         'title' => $filterValue->title,
-                        'slug'  => $filterValue->slug,
+                        'slug' => $filterValue->slug,
                     ],
                 ];
             });
@@ -124,10 +124,10 @@ class CatalogWithProductViewModel extends BaseViewModel
             });
 
             return [
-                'filter_name'        => $items->first()['filter_name'],
+                'filter_name' => $items->first()['filter_name'],
                 'filter_parent_slug' => $items->first()['filter_parent_slug'],
-                'filter_id'          => $filterId,
-                'values'             => $values,
+                'filter_id' => $filterId,
+                'values' => $values,
             ];
         });
 

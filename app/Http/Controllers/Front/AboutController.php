@@ -12,7 +12,6 @@ class AboutController extends BaseFrontController
     /**
      * @return AboutViewModel
      */
-
     public function __invoke(): AboutViewModel
     {
         $about = app()

@@ -2,8 +2,9 @@
 
 namespace App\Services\ProductFilters;
 
-class UrlParametersService {
-    public function getUrlParameters( $request): array
+class UrlParametersService
+{
+    public function getUrlParameters($request): array
     {
         $parameters = $request;
 
@@ -18,7 +19,7 @@ class UrlParametersService {
 
     public function getParametersValues(): array
     {
-        $currentUrl = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+        $currentUrl = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? 'https' : 'http')."://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
 
         $parsedUrl = parse_url($currentUrl);
         $query = $parsedUrl['query'] ?? '';
@@ -35,7 +36,7 @@ class UrlParametersService {
                 $key = urldecode($parts[0]);
                 $value = urldecode($parts[1]);
 
-                if (!in_array($key, ['brand', 'sort', 'page'])) {
+                if (! in_array($key, ['brand', 'sort', 'page'])) {
                     $values[] = $value;
                 }
             }

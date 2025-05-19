@@ -2,14 +2,17 @@
 
 namespace App\Http\Livewire\Admin;
 
-use Livewire\Component;
 use App\Models\FilterValue;
+use Livewire\Component;
 
 class ModalFilterValueLiveWier extends Component
 {
     public $filterValue;
+
     public $title_uk;
+
     public $title_ru;
+
     public $sort = 1;
 
     public bool $show = true;
@@ -41,19 +44,15 @@ class ModalFilterValueLiveWier extends Component
         $this->validate();
 
         if ($this->filterValue->filter->numeric) {
-
             $this->filterValue->translations()->updateOrCreate(
                 ['locale' => 'uk'],
                 ['title' => $this->title_ru],
             );
-
-        } else{
-
+        } else {
             $this->filterValue->translations()->updateOrCreate(
                 ['locale' => 'uk'],
                 ['title' => $this->title_uk],
             );
-
         }
 
         $this->filterValue->translations()->updateOrCreate(
@@ -63,7 +62,7 @@ class ModalFilterValueLiveWier extends Component
 
         $this->filterValue->update(['sort' => $this->sort]);
 
-//        $this->emit('filterValueUpdated');
+        //        $this->emit('filterValueUpdated');
 
         $this->dispatchBrowserEvent('alert',
             ['type' => 'success', 'message' => 'Данные успешно обновлены', 'reload' => true]);
