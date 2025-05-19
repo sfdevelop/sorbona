@@ -4,6 +4,7 @@ namespace App\Http\Livewire\Front\Cart;
 
 use App\Http\Livewire\Front\Trait\CartTrait;
 use App\Models\Product;
+use App\Services\CartOrder\RequestProductsFromCart;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
@@ -51,9 +52,14 @@ class CartLiveWire extends Component
         $this->totalDiscounts = 0;
 
         $productsInCart = $this->getItemsFromCart();
+
+        $queryProducts = app()
+            ->make(RequestProductsFromCart::class)
+            ->getProductsFromArrayInCart();
+
         foreach ($productsInCart as $productItem) {
             $productId = $productItem->id;
-            $product = Product::find($productId);
+            $product = $queryProducts->find($productId);
             $productQuantity = $productItem->quantity;
             $withoutDiscount = $product->getPriceWithDiscount($productQuantity);
 
@@ -72,7 +78,7 @@ class CartLiveWire extends Component
                 'item' => $productItem,
             ];
         }
-        $this->total = $this->getTotalPriceInCartSorbona();
+        $this->total = $this->getTotalPriceInCartSorbona(queryProducts: $queryProducts);
 
         return view('livewire.front.cart.cart-live-wire');
     }

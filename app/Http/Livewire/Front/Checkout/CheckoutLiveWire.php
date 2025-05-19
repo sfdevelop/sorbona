@@ -12,6 +12,9 @@ use App\Http\Livewire\Traits\CreateOrderTrait;
 use App\Http\Livewire\Traits\DeliveryDataFromOrderTrait;
 use App\Http\Requests\LiveWier\CreateOrderRequest;
 use App\Models\Product;
+use App\Services\CartOrder\ProductsInCartService;
+use App\Services\CartOrder\RequestProductsFromCart;
+use Illuminate\Contracts\Container\BindingResolutionException;
 use Illuminate\Contracts\View\View;
 use Illuminate\Validation\ValidationException;
 use Jackiedo\Cart\Exceptions\InvalidAssociatedException;
@@ -78,45 +81,34 @@ class CheckoutLiveWire extends ProductBaseComponent
         return (new CreateOrderRequest)->rules();
     }
 
-    /**
-     * @param  $field
-     * @return void
-     *
-     * @throws ValidationException
-     */
     public function updated($field): void
     {
         $this->validateOnly($field);
     }
 
-    public function mount()
+    /**
+     * @throws InvalidAssociatedException
+     * @throws BindingResolutionException
+     * @throws InvalidModelException
+     */
+    public function mount(): void
     {
-        $this->productsInCart = [];
         $this->totalDiscounts = 0;
 
-        $productsInCart = $this->getItemsFromCart();
-        foreach ($productsInCart as $productItem) {
-            $productId = $productItem->id;
-            $product = Product::find($productId);
-            $productQuantity = $productItem->quantity;
-            $withoutDiscount = $product->getPriceWithDiscount($productQuantity);
 
-            $price = $product->getPriceByCount($productQuantity);
-            $this->totalDiscounts += $withoutDiscount ?? $withoutDiscount - $price;
-            //            \Log::info("Discount $withoutDiscount Price: $price Total discounts: ".$this->totalDiscounts);
-            $this->productsInCart[] = [
-                'id' => $productId,
-                'sku' => $product->sku,
-                'slug' => $product->slug,
-                'title' => $product->title,
-                'img' => $product->img_web,
-                'quantity' => $productQuantity,
-                'withoutDiscount' => $withoutDiscount,
-                'price' => $price,
-                'item' => $productItem,
-            ];
-        }
-        $this->total = $this->getTotalPriceInCartSorbona();
+        $queryProducts = app()
+            ->make(RequestProductsFromCart::class)
+            ->getProductsFromArrayInCart();
+
+        $this->productsInCart =
+            app()
+                ->make(ProductsInCartService::class)
+                ->getProductsInCart(
+                    totalDiscounts: $this->totalDiscounts,
+                    queryProducts: $queryProducts,
+                );
+
+        $this->total = $this->getTotalPriceInCartSorbona(queryProducts: $queryProducts);
 
         if (\Auth::check()) {
             $this->name = \Auth::user()->name;
@@ -134,6 +126,7 @@ class CheckoutLiveWire extends ProductBaseComponent
 
     /**
      * @param  $option
+     *
      * @return void
      */
     public function selectDelivery($option): void
@@ -144,6 +137,7 @@ class CheckoutLiveWire extends ProductBaseComponent
 
     /**
      * @param  string  $payment
+     *
      * @return void
      */
     public function selectPayment(string $payment): void
@@ -203,7 +197,7 @@ class CheckoutLiveWire extends ProductBaseComponent
      */
     protected function resetData(): void
     {
-        if (! \Auth::check()) {
+        if ( ! \Auth::check()) {
             $this->name = '';
             $this->surname = '';
             $this->father = '';
@@ -239,7 +233,8 @@ class CheckoutLiveWire extends ProductBaseComponent
         }
 
         if ($this->selectedCity) {
-            $this->address = GetAddressNovaPochtaAction::run($this->selectedCity);
+            $this->address =
+                GetAddressNovaPochtaAction::run($this->selectedCity);
         }
 
         //        $this->productsInCart = $this->getItemsFromCart();
