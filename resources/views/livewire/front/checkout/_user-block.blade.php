@@ -3,11 +3,11 @@
         @guest
         <button id="btnCheckoutAsGuest" class="checkout-body-head__tab checkout-body-head__tab--active">{{ __('checkout.new_user') }}</button>
         @endguest
-        <button class="checkout-body-head__tab
-        @if($isTryLogin)
-        checkout-body-head__tab--active')
-        @endif
-        ">{{ __('checkout.registered_user') }}</button>
+{{--        <button class="checkout-body-head__tab--}}
+{{--        @if($isTryLogin)--}}
+{{--        checkout-body-head__tab--active')--}}
+{{--        @endif--}}
+{{--        ">{{ __('checkout.registered_user') }}</button>--}}
     </div>
     <div>
         <div class="checkout-body__content

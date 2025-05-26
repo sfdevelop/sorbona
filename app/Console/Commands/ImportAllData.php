@@ -28,9 +28,9 @@ class ImportAllData extends Command
 	$this->info('Start: '.date('Y-m-d H:i:s'));
 
         $this->call('import:npdata');
-exit;
+//exit;
 
-        $this->call('import:pochtomat');
+//        $this->call('import:pochtomat');
 
 	$this->info('End: '.date('Y-m-d H:i:s'));
         $this->info('All data imported successfully!');
