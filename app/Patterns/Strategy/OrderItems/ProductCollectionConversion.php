@@ -8,7 +8,7 @@ class ProductCollectionConversion implements ConversionStrategy
     {
         return $data->map(function ($product) {
             return [
-                'title' => $product->title,
+                'title' => $product->title, 'sku' => $product->sku,
                 'qty' => 1,
                 'price_item' => $product->price,
                 'price_all' => $product->price * 1,

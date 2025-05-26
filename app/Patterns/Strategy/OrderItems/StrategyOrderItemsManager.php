@@ -2,6 +2,8 @@
 
 namespace App\Patterns\Strategy\OrderItems;
 
+use App\Patterns\Strategy\OrderItems\CartDetailsArrayConversion;
+
 class StrategyOrderItemsManager
 {
     /**
@@ -17,6 +19,7 @@ class StrategyOrderItemsManager
         $strategy = match (true) {
             $inputData instanceof \Illuminate\Database\Eloquent\Collection => new ProductCollectionConversion,
             $inputData instanceof \Jackiedo\Cart\Details => new CartDetailsConversion,
+            is_array($inputData) => new CartDetailsArrayConversion,
             default => throw new \InvalidArgumentException('Invalid data format'),
         };
 

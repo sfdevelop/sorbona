@@ -8,6 +8,7 @@ use App\Patterns\Strategy\OrderItems\StrategyOrderItemsManager;
 use Jackiedo\Cart\Exceptions\InvalidAssociatedException;
 use Jackiedo\Cart\Exceptions\InvalidModelException;
 use SebastianBergmann\Diff\Exception;
+use App\Http\Controllers\Traits\CustomCartTrait;
 
 trait CreateOrderTrait
 {
@@ -44,8 +45,9 @@ trait CreateOrderTrait
     protected function createOrderItems(Order $order): void
     {
         $strategy = new StrategyOrderItemsManager;
-        $items = $strategy->makeItemsUniform($this->getItemsFromCart());
-
+//        $items = $strategy->makeItemsUniform($this->getItemsFromCart());
+        $items = $strategy->makeItemsUniform($this->getCustomCart());
+//        dd($items);
         foreach ($items as $item) {
             $order->orderItems()->create($item);
         }

@@ -20,10 +20,12 @@ use Illuminate\Contracts\View\View;
 use Illuminate\Validation\ValidationException;
 use Jackiedo\Cart\Exceptions\InvalidAssociatedException;
 use Jackiedo\Cart\Exceptions\InvalidModelException;
+use App\Http\Controllers\Traits\CustomCartTrait;
 
 class CheckoutLiveWire extends ProductBaseComponent
 {
     use CartTrait;
+    use CustomCartTrait;
     use CreateOrderTrait;
     use DeliveryDataFromOrderTrait;
     use PaymentDataFromOrderTrait;
@@ -94,9 +96,9 @@ class CheckoutLiveWire extends ProductBaseComponent
 
     public array|object|null $depots;
 
-    public string $delivery = 'deliveryMethodNp';
+    public string $delivery = 'deliveryMethodLocal';
 
-    public string $payment = 'paymentMethodCard';
+    public string $payment = 'paymentMethodCod';
 
     public bool $seeAddress = false;
 

@@ -105,13 +105,13 @@ trait CartTrait
         $itemData = [
             'id' => $productId,
             'title' => $this->product->title,
+            'sku' => $this->product->sku,
             'quantity' => $this->productQty,
             'price' => strPriceToFloat($this->product->now_price),
             'options' => [
                 'img' => $this->product->img_web,
             ],
         ];
-
         $shoppingCart->addItem($itemData);
     }
 
