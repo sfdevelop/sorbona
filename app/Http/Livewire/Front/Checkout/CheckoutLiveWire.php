@@ -15,6 +15,8 @@ use App\Http\Requests\Livewier\CreateOrderRequest;
 use App\Models\Product;
 use App\Services\CartOrder\ProductsInCartService;
 use App\Services\CartOrder\RequestProductsFromCart;
+use App\Services\PaymentOrder\PaymentOrder;
+use App\Services\PaymentOrder\PaymentOrderInterface;
 use Illuminate\Contracts\Container\BindingResolutionException;
 use Illuminate\Contracts\View\View;
 use Illuminate\Validation\ValidationException;
@@ -267,6 +269,7 @@ class CheckoutLiveWire extends ProductBaseComponent
 
     /**
      * @return \Illuminate\Http\RedirectResponse
+     * @throws BindingResolutionException
      */
     public function addOrder()
     {
@@ -292,8 +295,6 @@ class CheckoutLiveWire extends ProductBaseComponent
             $this->validate($this->rulesBank);
         }
 
-        //        dd($deliveryData);
-
         if (empty($deliveryData) || empty($paymentData)) {
             return;
         }
@@ -301,6 +302,14 @@ class CheckoutLiveWire extends ProductBaseComponent
         $order = $this->createOrder($data, $deliveryData);
 
         $this->resetData();
+
+        $redirectLink =  app()
+            ->make(PaymentOrder::class)
+            ->payment(payment: $this->payment, order:  $order);
+
+        if ($redirectLink) {
+            return redirect()->to($redirectLink);
+        }
 
         return redirect()->route('cart_thx', $order->uuid);
         //        $this->emit('refreshCountItemsInCartLiveWier');
