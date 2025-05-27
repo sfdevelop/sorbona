@@ -4,13 +4,14 @@ namespace App\Http\Controllers\Front;
 
 use App\Http\Controllers\Controller;
 use App\ViewModels\CartThxViewModel;
+use App\Models\Order;
 
 class CartThxController extends Controller
 {
-    public function __construct() {}
-
-    public function __invoke(): CartThxViewModel
+    public function __invoke(Order $order): CartThxViewModel
     {
-        return (new CartThxViewModel)->view('front.cart-thx');
+        $order->load('orderItems');
+//        dd($order);
+        return (new CartThxViewModel($order))->view('front.cart-thx');
     }
 }

@@ -18,4 +18,6 @@ return [
     'thx-text' => '',
     'thx-products-in-order' => 'Товары в заказе',
     'sku' => 'Артикул:',
+    'delivery_text' => 'Доставка',
+    'payment_text' => 'Оплата',
 ];

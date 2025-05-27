@@ -294,7 +294,7 @@ class CheckoutLiveWire extends ProductBaseComponent
 
         $this->resetData();
 
-        return redirect()->route('cart_thx', ['id' => $order->uuid]);
+        return redirect()->route('cart_thx', $order->uuid);
         //        $this->emit('refreshCountItemsInCartLiveWier');
     }
 

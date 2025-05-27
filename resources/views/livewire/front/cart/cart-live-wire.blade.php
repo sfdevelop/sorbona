@@ -16,7 +16,7 @@
         @if ($productsInCart)
         <div class="cart__wrap">
             <div class="cart__list">
-                @foreach($productsInCart as $product)
+                @foreach($productsInCart['items'] as $product)
                     <div class="cart__item">
                         <a
                             wire:click.prevent="deleteItemOnCart({{$product['id']}})"
@@ -69,21 +69,21 @@
                     </div>
                 @endforeach
             </div>
-            @if ($productsInCart)
+            @if ($productsInCart['items'])
             <div class="cart__order">
                 <div class="cart-order__line">
                     <p class="cart-order__text">{{ __('cart.cart_total') }}</p>
                     <div class="cart-order__sum">
-                        @if ($totalDiscounts > 0)
-                            <span>{{ Number::currency(number: $totalDiscounts + $total, in: 'UAH', locale: 'uk') }}</span>
+                        @if ($productsInCart['totalDiscounts']> 0)
+                            <span>{{ Number::currency(number: $productsInCart['totalDiscounts'] + $productsInCart['total'], in: 'UAH', locale: 'uk') }}</span>
                         @endif
-                        <p>{{ Number::currency(number: $total, in: 'UAH', locale: 'uk') }}</p>
+                        <p>{{ Number::currency(number: $productsInCart['total'], in: 'UAH', locale: 'uk') }}</p>
                     </div>
                 </div>
                 <div class="cart-order__line">
                     <p class="cart-order__text">{{ __('cart.cart_total_price') }}</p>
                     <div class="cart-order__sum">
-                        <p>{{ Number::currency(number: $total, in: 'UAH', locale: 'uk') }}</p>
+                        <p>{{ Number::currency(number: $productsInCart['total'], in: 'UAH', locale: 'uk') }}</p>
                     </div>
                 </div>
                 <div class="cart-order__buttons">

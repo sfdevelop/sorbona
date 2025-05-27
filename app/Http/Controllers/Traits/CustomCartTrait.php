@@ -39,7 +39,7 @@ trait CustomCartTrait
                 'quantity' => $productQuantity,
                 'withoutDiscount' => $withoutDiscount,
                 'price' => $price,
-//                'item' => $productItem,
+                'item' => $productItem,
             ];
         }
         $_productsInCart['total'] = $this->getTotalPriceInCartSorbona(queryProducts: $queryProducts);

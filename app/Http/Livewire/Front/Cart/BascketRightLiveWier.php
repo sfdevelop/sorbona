@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Front\Cart;
 
+use App\Http\Controllers\Traits\CustomCartTrait;
 use App\Http\Livewire\Traits\CartTrait;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
@@ -14,10 +15,9 @@ use Livewire\Component;
 class BascketRightLiveWier extends Component
 {
     use CartTrait;
+    use CustomCartTrait;
 
     public array|object $productsInCart;
-
-    public int|float|string $total;
 
     protected $listeners = ['refreshBascketRightLiveWier' => '$refresh'];
 
@@ -88,9 +88,7 @@ class BascketRightLiveWier extends Component
      */
     public function render(): Factory|Application|View|\Illuminate\Contracts\Foundation\Application
     {
-        $this->productsInCart = $this->getItemsFromCart();
-        $this->total = $this->getTotalPriceInCart();
-
+        $this->productsInCart = $this->getCustomCart();
         return view('livewire.front.cart.bascket-right-live-wier');
     }
 }

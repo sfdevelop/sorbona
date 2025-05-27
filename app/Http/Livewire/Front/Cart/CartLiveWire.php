@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Front\Cart;
 
+use App\Http\Controllers\Traits\CustomCartTrait;
 use App\Http\Livewire\Front\Trait\CartTrait;
 use App\Models\Product;
 use App\Services\CartOrder\RequestProductsFromCart;
@@ -15,6 +16,7 @@ use Livewire\Component;
 class CartLiveWire extends Component
 {
     use CartTrait;
+    use CustomCartTrait;
 
     public array|object $productsInCart;
 
@@ -48,38 +50,7 @@ class CartLiveWire extends Component
      */
     public function render(): Factory|View|\Illuminate\Foundation\Application|Application
     {
-        $this->productsInCart = [];
-        $this->totalDiscounts = 0;
-
-        $productsInCart = $this->getItemsFromCart();
-
-        $queryProducts = app()
-            ->make(RequestProductsFromCart::class)
-            ->getProductsFromArrayInCart();
-
-        foreach ($productsInCart as $productItem) {
-            $productId = $productItem->id;
-            $product = $queryProducts->find($productId);
-            $productQuantity = $productItem->quantity;
-            $withoutDiscount = $product->getPriceWithDiscount($productQuantity);
-
-            $price = $product->getPriceByCount($productQuantity);
-            $this->totalDiscounts += $withoutDiscount ?? $withoutDiscount - $price;
-            \Log::info("Discount $withoutDiscount Price: $price Total discounts: ".$this->totalDiscounts);
-            $this->productsInCart[] = [
-                'id' => $productId,
-                'sku' => $product->sku,
-                'slug' => $product->slug,
-                'title' => $product->title,
-                'img' => $product->img_web,
-                'quantity' => $productQuantity,
-                'withoutDiscount' => $withoutDiscount,
-                'price' => $price,
-                'item' => $productItem,
-            ];
-        }
-        $this->total = $this->getTotalPriceInCartSorbona(queryProducts: $queryProducts);
-
+        $this->productsInCart = $this->getCustomCart();
         return view('livewire.front.cart.cart-live-wire');
     }
 }
