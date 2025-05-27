@@ -178,3 +178,27 @@ if (! function_exists('translateUserRole')) {
         return $roleTranslations[$role] ?? $role;
     }
 }
+
+if (! function_exists('deliveryMethodEnum')) {
+    function deliveryMethodEnum(string $methodTitle): ?\App\Enum\DeliveryMethodEnum
+    {
+        return match ($methodTitle) {
+            'deliveryMethodLocal' => \App\Enum\DeliveryMethodEnum::LOCAL,
+            'deliveryMethodNp' => \App\Enum\DeliveryMethodEnum::NOVA_POCHTA,
+            'deliveryMethodUp' => \App\Enum\DeliveryMethodEnum::UKR_POCHTA,
+            default => null,
+        };
+    }
+}
+
+if (! function_exists('paymentMethodEnum')) {
+    function paymentMethodEnum(string $methodTitle): ?\App\Enum\PaymentMethodEnum
+    {
+        return match ($methodTitle) {
+            'paymentMethodCod' => \App\Enum\PaymentMethodEnum::METHOD_COD,
+            'paymentMethodCard' => \App\Enum\PaymentMethodEnum::METHOD_CARD,
+            'paymentMethodBank' => \App\Enum\PaymentMethodEnum::METHOD_BANK,
+            default => null,
+        };
+    }
+}

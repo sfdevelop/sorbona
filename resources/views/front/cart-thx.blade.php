@@ -1,5 +1,6 @@
 @extends('layout.sorbona')
 @section('content')
+
     <section class="section section_lite">
         <div class="section__container--medium section__container_checkout">
             <div class="complete">
@@ -34,15 +35,26 @@
                     <div class="complete__info">
                         <div class="complete-info__item">
                             <h5 class="complete-info__title">{{ __('cart.delivery_text') }}</h5>
-                            <p class="complete-info__text">В отделение новой почты</p>
-                            <p class="complete-info__text">г. Харьков, отд. №164, ул. Тракторостроителей 64б</p>
-                            <p class="complete-info__text">TTH: 20450714677564</p>
+
+                            @php /** @var \App\Models\Order $order */ @endphp
+                            <p class="complete-info__text">{{deliveryMethodEnum($order->deliveryTitle)->getLabel()}}</p>
+
+                            <p class="complete-info__text">{{$deliveryAddress}}</p>
+
                         </div>
                         <div class="complete-info__item">
                             <h5 class="complete-info__title">{{ __('cart.payment_text') }}</h5>
-                            <p class="complete-info__text">картой онлайн</p>
-                            <p class="complete-info__text">Visa / Mastercard</p>
-                            <p class="complete-info__text">**** **** **** 2345</p>
+
+                            <p class="complete-info__text">{{paymentMethodEnum($order->payment)->getLabel()}}</p>
+
+                            @if(paymentMethodEnum($order->payment) === \App\Enum\PaymentMethodEnum::METHOD_CARD)
+
+                                <p class="complete-info__text text_{{$order->statusPay->getTextColor()}}">
+                                    {{$order->statusPay->getLabel()}}
+                                </p>
+                            @endif
+
+{{--                            <p class="complete-info__text">**** **** **** 2345</p>--}}
                         </div>
                         <div class="checkout-order-bottom__total">
                             <p class="checkout-order-bottom__total_text">{{ __('cart.cart_total') }}</p>

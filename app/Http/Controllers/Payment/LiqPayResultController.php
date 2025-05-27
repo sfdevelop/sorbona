@@ -23,7 +23,7 @@ class LiqPayResultController extends Controller
         if ($data['status'] == 'success') {
             $this->orderRepository->updateStatusPaymentOnSuccess($data['order_id']);
 
-            return redirect()->to(route('cart-thx-success'));
+            return redirect()->to(route('cart_thx', $data['order_id'] ));
         }
 
         $status = $data['status'];
@@ -32,6 +32,6 @@ class LiqPayResultController extends Controller
 
         Log::channel('errors_pay')->error("Status: $status Order_id: $data_id Description: $err_description Data/Time: ".now()->format('d/m/Y H:i'));
 
-        return redirect()->to(route('cart-thx-error'));
+        return redirect()->to(route('cart_thx', $data['order_id'] ));
     }
 }

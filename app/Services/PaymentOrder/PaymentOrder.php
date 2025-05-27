@@ -17,7 +17,7 @@ class PaymentOrder implements PaymentOrderInterface
      */
     public function payment(string $payment, Order $order): ?string
     {
-        if ($payment == 'paymentCard') {
+        if ($order->payment == 'paymentMethodCard') {
           return  app()
                 ->make(LiqPayPayment::class)
                 ->LiqPayPaymentClass(order: $order);

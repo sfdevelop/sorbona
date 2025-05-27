@@ -14,10 +14,13 @@ class CartThxViewModel extends BaseViewModel
 
     public function __construct(public Order $order) {}
 
-    public function benefits(): Collection
+    public function deliveryAddress(): string
     {
-        return app()
-            ->make(BenefitRepositoryInterface::class)
-            ->getAllBenefits();
+        $fields = ['city', 'region', 'address'];
+
+        return collect($fields)
+            ->map(fn($field) => $this->order->delivery[$field] ?? null)
+            ->filter()
+            ->join(', ');
     }
 }
