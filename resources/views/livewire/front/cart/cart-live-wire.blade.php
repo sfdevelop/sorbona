@@ -6,14 +6,14 @@
             </svg>
             <span>{{ __('cart.go_back') }}</span>
         </a>
-        @if ($productsInCart)
+        @if ($productsInCart['items'])
         <button wire:click.prevent="clearCart()" class="section-breadcrumbs__clean">{{ __('cart.clear_basket') }}</button>
         @endif
     </div>
 
     <div class="cart">
         <h1 class="cart__title">{{ __('front.cart') }}</h1>
-        @if ($productsInCart)
+        @if ($productsInCart['items'])
         <div class="cart__wrap">
             <div class="cart__list">
                 @foreach($productsInCart['items'] as $product)
