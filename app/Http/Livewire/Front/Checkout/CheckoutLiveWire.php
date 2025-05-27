@@ -60,13 +60,21 @@ class CheckoutLiveWire extends ProductBaseComponent
 
     public string $totalDiscounts;
 
-    public string $name = 'Denys';
+//    public string $name = 'Denys';
+//
+//    public ?string $surname = 'Cherkasov';
+//
+//    public string $phone = '+380931904412';
+//
+//    public string $email = 'denis.cherkasov@gmail.com';
 
-    public ?string $surname = 'Cherkasov';
+    public string $name = '';
 
-    public string $phone = '+380931904412';
+    public ?string $surname = '';
 
-    public string $email = 'denis.cherkasov@gmail.com';
+    public string $phone = '';
+
+    public string $email = '';
 
     public string $selectedNpCity = '';
 
@@ -124,7 +132,7 @@ class CheckoutLiveWire extends ProductBaseComponent
         'refreshCartOrderLiveWier' => '$refresh',
         'updatedSelectedNpCity' => 'handleUpdatedSelectedNpCity',
         'updatedSelectedNpDepot' => 'handleUpdatedSelectedNpDepot',
-        'changePhoneNumber' => 'handlePhoneNumber',
+//        'changePhoneNumber' => 'handlePhoneNumber',
     ];
 
     public function handleUpdatedSelectedNpCity($value)

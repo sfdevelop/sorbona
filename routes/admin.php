@@ -25,6 +25,7 @@ Route::resource('offer', \App\Http\Controllers\Admin\OfferController::class)->na
 Route::resource('orders', \App\Http\Controllers\Admin\OrdersController::class)->names('admin.order')->only(['index', 'show', 'destroy']);
 Route::resource('feedback', FeedbackController::class)->names('admin.feedback')->only('index', 'show', 'destroy');
 Route::resource('subscribe', \App\Http\Controllers\Admin\SubscribeController::class)->names('admin.subscribe')->only(['index', 'destroy']);
+Route::resource('status', \App\Http\Controllers\Admin\StatusController::class)->names('admin.status');
 
 Route::singleton('mainAbout', \App\Http\Controllers\Admin\Single\MainPageController::class)->names('admin.mainAbout');
 Route::singleton('pageAbout', \App\Http\Controllers\Admin\Single\AboutPageController::class)->names('admin.pageAbout');
