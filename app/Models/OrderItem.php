@@ -25,5 +25,6 @@ class OrderItem extends Model
         'img',
         'size',
         'color',
+        'slug',
     ];
 }

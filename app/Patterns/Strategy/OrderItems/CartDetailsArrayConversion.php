@@ -13,6 +13,7 @@ class CartDetailsArrayConversion implements ConversionStrategy
             $result[] = [
                 'title' => $item['title'],
                 'sku' => $item['sku'],
+                'slug' => $item['slug'],
                 'qty' => $item['quantity'],
                 'price_item' => $item['price'],
                 'price_all' => $item['price'] * $item['quantity'],
