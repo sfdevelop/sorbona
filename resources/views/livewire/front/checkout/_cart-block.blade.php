@@ -36,6 +36,7 @@
                     class="checkout-order__btn btn">{{ __('checkout.order_completed') }}</button>
         </div>
         @guest
+{{--
             <div class="checkout-order-bottom__chbox chbox">
                 <label class="chbox__label">
                     <input type="checkbox" wire:model.lazy="register" name="register" class="chbox__input" value="">
@@ -43,6 +44,7 @@
                     <span class="chbox__text">{{ __('checkout.register_on_site') }}</span>
                 </label>
             </div>
+--}}
         @endguest
         <p class="checkout-order-bottom__true">
             {!!  __('checkout.agree', ['policy_route' => route('policy')]) !!}
