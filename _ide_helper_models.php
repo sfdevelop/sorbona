@@ -739,6 +739,73 @@ namespace App\Models{
 	class NovaPochtaDetachmentTranslation extends \Eloquent {}
 }
 
+namespace App\Models\NovaPochta{
+/**
+ * App\Models\NovaPochta\NovaPochtaCity
+ *
+ * @property int $id
+ * @property string $ref
+ * @property string $region_ref
+ * @property string $name_ru
+ * @property string $name_uk
+ * @property-read mixed $name
+ * @method static \Illuminate\Database\Eloquent\Builder|NovaPochtaCity newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|NovaPochtaCity newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|NovaPochtaCity query()
+ * @method static \Illuminate\Database\Eloquent\Builder|NovaPochtaCity whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|NovaPochtaCity whereNameRu($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|NovaPochtaCity whereNameUk($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|NovaPochtaCity whereRef($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|NovaPochtaCity whereRegionRef($value)
+ */
+	class NovaPochtaCity extends \Eloquent {}
+}
+
+namespace App\Models\NovaPochta{
+/**
+ * App\Models\NovaPochta\NovaPochtaDepot
+ *
+ * @property int $id
+ * @property string $ref
+ * @property string $city_ref
+ * @property int $depot_number
+ * @property int $is_pochtomat
+ * @property string $name_ru
+ * @property string $name_uk
+ * @property-read mixed $name
+ * @method static \Illuminate\Database\Eloquent\Builder|NovaPochtaDepot newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|NovaPochtaDepot newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|NovaPochtaDepot query()
+ * @method static \Illuminate\Database\Eloquent\Builder|NovaPochtaDepot whereCityRef($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|NovaPochtaDepot whereDepotNumber($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|NovaPochtaDepot whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|NovaPochtaDepot whereIsPochtomat($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|NovaPochtaDepot whereNameRu($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|NovaPochtaDepot whereNameUk($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|NovaPochtaDepot whereRef($value)
+ */
+	class NovaPochtaDepot extends \Eloquent {}
+}
+
+namespace App\Models\NovaPochta{
+/**
+ * App\Models\NovaPochta\NovaPochtaRegion
+ *
+ * @property int $id
+ * @property string $ref
+ * @property string $name_ru
+ * @property string $name_uk
+ * @method static \Illuminate\Database\Eloquent\Builder|NovaPochtaRegion newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|NovaPochtaRegion newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|NovaPochtaRegion query()
+ * @method static \Illuminate\Database\Eloquent\Builder|NovaPochtaRegion whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|NovaPochtaRegion whereNameRu($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|NovaPochtaRegion whereNameUk($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|NovaPochtaRegion whereRef($value)
+ */
+	class NovaPochtaRegion extends \Eloquent {}
+}
+
 namespace App\Models{
 /**
  * App\Models\Offer
@@ -810,6 +877,7 @@ namespace App\Models{
  * App\Models\Order
  *
  * @property int $id
+ * @property string $uuid
  * @property int|null $user_id
  * @property string $name
  * @property string $phone
@@ -846,6 +914,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Order whereTotal($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Order whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Order whereUserId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Order whereUuid($value)
  */
 	class Order extends \Eloquent {}
 }
@@ -860,6 +929,7 @@ namespace App\Models{
  * @property string|null $size
  * @property string|null $color
  * @property string $title
+ * @property string $sku
  * @property int $qty
  * @property string $price_item
  * @property string $price_all
@@ -874,6 +944,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|OrderItem wherePriceItem($value)
  * @method static \Illuminate\Database\Eloquent\Builder|OrderItem whereQty($value)
  * @method static \Illuminate\Database\Eloquent\Builder|OrderItem whereSize($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|OrderItem whereSku($value)
  * @method static \Illuminate\Database\Eloquent\Builder|OrderItem whereTitle($value)
  */
 	class OrderItem extends \Eloquent {}
@@ -1015,6 +1086,8 @@ namespace App\Models{
  * @property-read mixed $preview
  * @property-read mixed $price_from_ten
  * @property-read mixed $price_from_twenty
+ * @property mixed $price_ten
+ * @property mixed $price_twenty
  * @property-read mixed $short_description
  * @property-read mixed $title_seo
  * @property-read \App\Models\ProductTranslation|null $translation
@@ -1278,6 +1351,61 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|StatesNovaPochtaTranslation whereStatesNovaPochtaId($value)
  */
 	class StatesNovaPochtaTranslation extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * App\Models\Status
+ *
+ * @property int $id
+ * @property string|null $text
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read mixed $created_format
+ * @property-read mixed $created_human
+ * @property-read \App\Models\StatusTranslation|null $translation
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\StatusTranslation> $translations
+ * @property-read int|null $translations_count
+ * @method static \Database\Factories\StatusFactory factory($count = null, $state = [])
+ * @method static \Illuminate\Database\Eloquent\Builder|Status listsTranslations(string $translationField)
+ * @method static \Illuminate\Database\Eloquent\Builder|Status newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Status newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Status notTranslatedIn(?string $locale = null)
+ * @method static \Illuminate\Database\Eloquent\Builder|Status orWhereTranslation(string $translationField, $value, ?string $locale = null)
+ * @method static \Illuminate\Database\Eloquent\Builder|Status orWhereTranslationLike(string $translationField, $value, ?string $locale = null)
+ * @method static \Illuminate\Database\Eloquent\Builder|Status orderByTranslation(string $translationField, string $sortMethod = 'asc')
+ * @method static \Illuminate\Database\Eloquent\Builder|Status query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Status trans()
+ * @method static \Illuminate\Database\Eloquent\Builder|Status translated()
+ * @method static \Illuminate\Database\Eloquent\Builder|Status translatedIn(?string $locale = null)
+ * @method static \Illuminate\Database\Eloquent\Builder|Status whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Status whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Status whereText($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Status whereTranslation(string $translationField, $value, ?string $locale = null, string $method = 'whereHas', string $operator = '=')
+ * @method static \Illuminate\Database\Eloquent\Builder|Status whereTranslationLike(string $translationField, $value, ?string $locale = null)
+ * @method static \Illuminate\Database\Eloquent\Builder|Status whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Status withTranslation(?string $locale = null)
+ */
+	class Status extends \Eloquent implements \Astrotomic\Translatable\Contracts\Translatable {}
+}
+
+namespace App\Models{
+/**
+ * App\Models\StatusTranslation
+ *
+ * @property int $id
+ * @property int $status_id
+ * @property string $locale
+ * @property string $title
+ * @method static \Illuminate\Database\Eloquent\Builder|StatusTranslation newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|StatusTranslation newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|StatusTranslation query()
+ * @method static \Illuminate\Database\Eloquent\Builder|StatusTranslation whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|StatusTranslation whereLocale($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|StatusTranslation whereStatusId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|StatusTranslation whereTitle($value)
+ */
+	class StatusTranslation extends \Eloquent {}
 }
 
 namespace App\Models{

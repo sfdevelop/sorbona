@@ -20,3 +20,18 @@
     background: rgba(0,0,0,.2);
     z-index: 1;
 }
+
+.header .search-results {
+  display: block;
+}
+
+.invalid-feedback {
+  color: red;
+  font-size: 12px;
+}
+.text_error{
+  color: red;
+}
+.text_success{
+  color: green;
+}

@@ -31,7 +31,7 @@ return [
     |
     */
 
-    'LIQPAY_PUBLIC_KEY' => env('LIQPAY_PUBLIC_KEY'),
+    'LIQPAY_PUBLIC_KEY' => env('LIQPAY_PUBLIC_KEY','sandbox_i84616908651'),
 
-    'LIQPAY_PRIVATE_KEY' => env('LIQPAY_PRIVATE_KEY'),
+    'LIQPAY_PRIVATE_KEY' => env('LIQPAY_PRIVATE_KEY', 'sandbox_gHZZtXhdJc3Biv7MaFQI18eHmJqAGP4wzDdUrttw'),
 ];

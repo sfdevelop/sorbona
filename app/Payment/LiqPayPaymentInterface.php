@@ -2,7 +2,9 @@
 
 namespace App\Payment;
 
+use App\Models\Order;
+
 interface LiqPayPaymentInterface
 {
-    public function LiqPayPaymentClass($order): string;
+    public function LiqPayPaymentClass(Order $order): string;
 }

@@ -13,7 +13,7 @@ class OrderRepository implements OrderRepositoryInterface
      */
     public function updateStatusPaymentOnSuccess(int $order_id): bool|int
     {
-        return Order::query()->find($order_id)->update([
+        return Order::query()->whereUuid($order_id)->update([
             'statusPay' => StatusPaymentEnum::SUCCESS,
         ]);
     }
