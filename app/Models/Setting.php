@@ -24,6 +24,8 @@ class Setting extends Model implements TranslatableContract
         'address',
         'textForMail',
         'cooperate',
+        'default_address',
+        'default_time_work',
     ];
 
     protected $fillable = [

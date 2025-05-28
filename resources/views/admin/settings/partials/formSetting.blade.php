@@ -61,11 +61,33 @@
                             <x-input-lang
                                     with="25"
                                     type="text"
-                                    title="{{__('admin.textForMail')}}*"
+                                    title="Текст в футере *"
                                     name="textForMail"
                                     :item="$item"
                                     :locale="$locale"
                             />
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <x-input-lang
+                                            with="25"
+                                            type="text"
+                                            title="Самовывоз адрес*"
+                                            name="default_address"
+                                            :item="$item"
+                                            :locale="$locale"
+                                    />
+                                </div>
+                                <div class="col-lg-6">
+                                    <x-input-lang
+                                            with="25"
+                                            type="text"
+                                            title="Время работы*"
+                                            name="default_time_work"
+                                            :item="$item"
+                                            :locale="$locale"
+                                    />
+                                </div>
+                            </div>
                             {{--                            @include('layout.SEOData.Seo')--}}
                         </div>
                     @endforeach

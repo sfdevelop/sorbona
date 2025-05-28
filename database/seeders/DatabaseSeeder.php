@@ -41,5 +41,7 @@ class DatabaseSeeder extends Seeder
         $this->call([FilterValueSeeder::class]);
         $this->call([ProducFilterstSeeder::class]);
         $this->call([NPSeeder::class]);
+        $this->call([SettingsAddressTimeWorkSeeder::class]);
+        $this->call([StatusSeeder::class]);
     }
 }

@@ -16,7 +16,7 @@ trait DeliveryDataFromOrderTrait
         $deliveryMethod = match ($this->delivery) {
             'deliveryMethodNp' => new NovaPochta($this->selectedRegion, $this->selectedNpCity, $this->selectedNpDepot),
             'deliveryMethodUp' => new UkrPochta($this->region, $this->locality, $this->index),
-            'deliveryMethodLocal' => new Local(__('checkout.delivery_method_local_address_1')),
+            'deliveryMethodLocal' => new Local(),
             default => null,
         };
 

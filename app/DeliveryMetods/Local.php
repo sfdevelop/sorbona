@@ -2,25 +2,31 @@
 
 namespace App\DeliveryMetods;
 
+use App\Repository\Setting\SettingRepository;
+
 class Local implements DeliveryMethodInterface
 {
-    public $address = '';
-    public function __construct($address)
+
+    final protected function getSetting()
     {
-        $this->address = $address;
+        return app()
+            ->make(SettingRepository::class)
+            ->getSetting();
     }
 
     public function isValid(): bool
     {
-        return ! empty($this->address);
+        return ! empty($this->getSetting());
     }
 
     public function getDeliveryData(): array
     {
+        $setting = $this->getSetting();
+
         return [
-            'region' => '',
-            'city' => '',
-            'address' => $this->address,
+            'region'  => '',
+            'city'    => '',
+            'address' => $setting->default_address,
         ];
     }
 }

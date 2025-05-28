@@ -14,5 +14,7 @@ class SettingTranslation extends Model
         'address',
         'cooperate',
         'textForMail',
+        'default_address',
+        'default_time_work',
     ];
 }
