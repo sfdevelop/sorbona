@@ -134,9 +134,13 @@ class CheckoutLiveWire extends ProductBaseComponent
         'refreshCartOrderLiveWier' => '$refresh',
         'updatedSelectedNpCity' => 'handleUpdatedSelectedNpCity',
         'updatedSelectedNpDepot' => 'handleUpdatedSelectedNpDepot',
-//        'changePhoneNumber' => 'handlePhoneNumber',
+        'changePhoneNumber' => 'handlePhoneNumber',
     ];
 
+    public function handlePhoneNumber($phone)
+    {
+        $this->phone = $phone;
+    }
     public function handleUpdatedSelectedNpCity($value)
     {
         $this->selectedNpCity = $value;
