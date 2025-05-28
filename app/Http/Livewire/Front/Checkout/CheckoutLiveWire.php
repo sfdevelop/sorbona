@@ -37,22 +37,22 @@ class CheckoutLiveWire extends ProductBaseComponent
         'email' => 'required|string|email|unique:users,email',
     ];
 
-    private array $rulesUp = [
-        'region' => 'required|string|min:3',
-        'locality' => 'required|string|min:3',
-        'index' => 'required|string',
-    ];
-
-    private $rulesBank = [
-        'companyName' => 'required|string|min:3',
-        'inn' => 'required|string|min:3',
-        'edrpou' => 'required|string',
-    ];
-
-    private $rulesNp = [
-        'selectedNpCity' => 'required|string',
-        'selectedNpDepot' => 'required|string',
-    ];
+//    private array $rulesUp = [
+//        'region' => 'required|string|min:3',
+//        'locality' => 'required|string|min:3',
+//        'index' => 'required|string',
+//    ];
+//
+//    private $rulesBank = [
+//        'companyName' => 'required|string|min:3',
+//        'inn' => 'required|string|min:3',
+//        'edrpou' => 'required|string',
+//    ];
+//
+//    private $rulesNp = [
+//        'selectedNpCity' => 'required|string',
+//        'selectedNpDepot' => 'required|string',
+//    ];
 
     public string $login = '';
 
@@ -161,9 +161,8 @@ class CheckoutLiveWire extends ProductBaseComponent
 
     protected function rules(): array
     {
-        $request = new CreateOrderRequest;
-
-        return $request->rules();
+        $request = new CreateOrderRequest();
+        return $request->setDeliveryAndPayment($this->delivery, $this->payment)->rules();
     }
 
     public function setSelectedNpDepot($value)
@@ -282,22 +281,10 @@ class CheckoutLiveWire extends ProductBaseComponent
             $this->createAndLoginUser();
         }
 
-        if ($this->delivery == 'deliveryMethodNp') {
-            $this->emit('validateNp', $this->selectedNpCity, $this->selectedNpDepot);
-        }
-
         $data = $this->validate();
 
         $deliveryData = $this->getDeliveryData();
         $paymentData = $this->getPaymentData();
-
-        if ($this->delivery == 'deliveryMethodUp') {
-            $this->validate($this->rulesUp);
-        }
-
-        if ($this->payment == 'paymentMethodBank') {
-            $this->validate($this->rulesBank);
-        }
 
         if (empty($deliveryData) || empty($paymentData)) {
             return;
@@ -354,8 +341,6 @@ class CheckoutLiveWire extends ProductBaseComponent
     /**
      * @return View
      *
-     * @throws InvalidAssociatedException
-     * @throws InvalidModelException
      */
     public function render(): View
     {
