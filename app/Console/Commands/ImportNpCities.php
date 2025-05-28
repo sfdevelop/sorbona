@@ -68,17 +68,18 @@ class ImportNpCities extends Command
 
                 $response = $import->client->request('GET', 'json/', [
                     'json' => [
-                        'modelName' => 'Address',
+                        'modelName' => 'AddressGeneral',
                         'calledMethod' => 'getCities',
                         'apiKey' => env('NOVA_POCHTA_API_KEY'),
                         'methodProperties' => [
                             'Limit' => 150,
-                            'Page' => $i,
+                            'Page' => "$i",
                         ],
                     ],
                 ]);
 
                 $data = json_decode($response->getBody()->getContents());
+
                 if ($data->success) {
                     foreach ($this->getData($data->data) as $item) {
                         NovaPochtaCity::firstOrCreate([
@@ -94,7 +95,7 @@ class ImportNpCities extends Command
             }
         }
 
-        $this->info('NovaPochta regions has been successfully imported!');
+        $this->info('NovaPochta cities has been successfully imported!');
     }
 
     /**

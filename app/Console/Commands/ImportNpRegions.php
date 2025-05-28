@@ -44,7 +44,7 @@ class ImportNpRegions extends Command
         $import = new ImportDataNp;
         $response = $import->client->request('GET', 'json/', [
             'json' => [
-                'modelName' => 'Address',
+                'modelName' => 'AddressGeneral',
                 'calledMethod' => 'getAreas',
                 'apiKey' => env('NOVA_POCHTA_API_KEY'),
             ],
@@ -58,7 +58,7 @@ class ImportNpRegions extends Command
                 'name_ru' => $item->DescriptionRu,
                 'name_uk' => $item->Description,
             ]);
-            $this->info('Inserting region '.date('Y-m-d H:i:s'));
+            $this->info('Inserting region '.$item->Description.' '.date('Y-m-d H:i:s'));
         }
         $this->info('NovaPochta regions has been successfully imported!');
     }

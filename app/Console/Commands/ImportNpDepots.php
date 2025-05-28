@@ -73,7 +73,7 @@ class ImportNpDepots extends Command
                         'apiKey' => env('NOVA_POCHTA_API_KEY'),
                         'methodProperties' => [
                             'Limit' => 150,
-                            'Page' => $i,
+                            'Page' => "$i",
                         ],
                     ],
                 ]);
