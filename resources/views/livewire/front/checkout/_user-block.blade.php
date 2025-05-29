@@ -69,7 +69,7 @@
                                 </label>
                             </div>
                             <div @class(['form-radio__body', 'show' => $delivery == 'deliveryMethodLocal'])>
-                                <p>{{ __('checkout.delivery_method_local_address_1') }}</p>
+                                <p>{{ $settings->default_address }}</p>
                                 <p>{{ __('checkout.delivery_method_local_address_2') }}</p>
                             </div>
                         </div>

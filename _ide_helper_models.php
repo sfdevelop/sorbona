@@ -930,6 +930,7 @@ namespace App\Models{
  * @property string|null $color
  * @property string $title
  * @property string $sku
+ * @property string $slug
  * @property int $qty
  * @property string $price_item
  * @property string $price_all
@@ -945,6 +946,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|OrderItem whereQty($value)
  * @method static \Illuminate\Database\Eloquent\Builder|OrderItem whereSize($value)
  * @method static \Illuminate\Database\Eloquent\Builder|OrderItem whereSku($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|OrderItem whereSlug($value)
  * @method static \Illuminate\Database\Eloquent\Builder|OrderItem whereTitle($value)
  */
 	class OrderItem extends \Eloquent {}
@@ -1217,12 +1219,16 @@ namespace App\Models{
  * @property string $locale
  * @property string $address
  * @property string|null $textForMail
+ * @property string|null $default_address
+ * @property string|null $default_time_work
  * @property string|null $cooperate
  * @method static \Illuminate\Database\Eloquent\Builder|SettingTranslation newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|SettingTranslation newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|SettingTranslation query()
  * @method static \Illuminate\Database\Eloquent\Builder|SettingTranslation whereAddress($value)
  * @method static \Illuminate\Database\Eloquent\Builder|SettingTranslation whereCooperate($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|SettingTranslation whereDefaultAddress($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|SettingTranslation whereDefaultTimeWork($value)
  * @method static \Illuminate\Database\Eloquent\Builder|SettingTranslation whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|SettingTranslation whereLocale($value)
  * @method static \Illuminate\Database\Eloquent\Builder|SettingTranslation whereSettingId($value)

@@ -28,7 +28,7 @@ class UpdateSettingRequest extends BaseRequest
             'instagram' => 'nullable|string',
             'website' => 'required|string',
             'map' => 'nullable|string',
-            'textForMail' => 'nurequiredllable|sometimes|string',
+            'textForMail' => 'nullable|sometimes|string',
             'cooperate' => 'required|sometimes|string',
             'product_per_page' => 'required|integer|between:1,100',
         ];
@@ -37,6 +37,8 @@ class UpdateSettingRequest extends BaseRequest
             '%address%' => 'required|string',
             '%cooperate%' => 'required|string',
             '%textForMail%' => 'required|string',
+            '%default_address%' => 'nullable|sometimes|string',
+            '%default_time_work%' => 'nullable|sometimes|string',
         ]);
 
         return $rules;
