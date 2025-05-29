@@ -8,7 +8,7 @@ use App\Models\Order;
 class OrderRepository implements OrderRepositoryInterface
 {
     /**
-     * @param  string  $order_id
+     * @param  string  $uuid
      *
      * @return bool|int
      */
