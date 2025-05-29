@@ -106,7 +106,7 @@ class CheckoutLiveWire extends ProductBaseComponent
 
     public array|object|null $depots;
 
-    public string $delivery = 'deliveryMethodLocal';
+    public string $delivery = 'deliveryMethodNp';
 
     public string $payment = 'paymentMethodCod';
 
