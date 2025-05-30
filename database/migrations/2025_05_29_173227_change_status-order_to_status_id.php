@@ -12,11 +12,11 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('orders', function (Blueprint $table) {
-            $table->unsignedBigInteger('status_id')->default(1);
+            $table->unsignedBigInteger('status_id')->nullable()->default(1);
             $table->foreign('status_id')
                 ->references('id')
                 ->on('statuses')
-                ->cascadeOnDelete();
+                ->onDelete('set null');
         });
     }
 
@@ -26,7 +26,7 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('orders', function (Blueprint $table) {
-            $table->dropForeign('orders_status_id_foreign');
+            //
         });
     }
 };
