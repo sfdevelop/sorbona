@@ -35,3 +35,27 @@
 .text_success{
   color: green;
 }
+
+.dropdown_cities {
+  position: absolute;
+  width: 100%;
+  max-height: 360px;
+  border: 1px solid #ccc;
+  padding: 10px;
+  background-color: #fff;
+  overflow-y: auto;
+  z-index: 9;
+
+  &__item {
+    padding-top: 4px;
+    padding-bottom: 4px;
+
+    &:hover {
+      cursor: pointer;
+      color: #f89eb8;
+    }
+  }
+}
+.wrap_delivery{
+  position: relative;
+}
