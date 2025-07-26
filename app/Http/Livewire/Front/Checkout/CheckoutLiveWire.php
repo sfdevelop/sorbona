@@ -347,13 +347,13 @@ class CheckoutLiveWire extends ProductBaseComponent
         $this->cities = [];
         $this->depots = [];
 
-        if ($this->delivery == 'deliveryMethodNp') {
-            $this->cities = GetCityNovaPochtaAction::run($this->selectedRegion);
-        }
-
-        if ($this->selectedNpCity != '') {
-            $this->depots = GetDepotNovaPochtaAction::run($this->selectedNpCity);
-        }
+//        if ($this->delivery == 'deliveryMethodNp') {
+//            $this->cities = GetCityNovaPochtaAction::run($this->selectedRegion);
+//        }
+//
+//        if ($this->selectedNpCity != '') {
+//            $this->depots = GetDepotNovaPochtaAction::run($this->selectedNpCity);
+//        }
 
         return view('livewire.front.checkout.checkout-live-wire');
     }
