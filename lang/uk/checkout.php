@@ -34,7 +34,7 @@ return [
     'delivery_method_up_region_placeholder' => 'Введіть область',
     'delivery_method_up_city' => 'Населений пункт',
     'delivery_method_up_city_placeholder' => 'Введіть населений пункт',
-    'delivery_method_up_index' => 'Індекс',
+    'delivery_method_up_index' => 'Відділення',
     'delivery_method_up_index_placeholder' => '__ ___',
     'payment_method' => 'Спосіб оплати',
     'payment_method_cod' => 'Накладений платіж',
