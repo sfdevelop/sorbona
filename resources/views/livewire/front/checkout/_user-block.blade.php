@@ -52,7 +52,10 @@
                         </div>
                     </div>
                 </div>
-                <div class="form__group">
+                <div class="form__group blur_delivery"
+                     wire:loading.class="loading"
+                     wire:target="selectDelivery"
+                >
                     <div class="form-group__head">
                         <h3 class="form-group__head-title">{{ __('checkout.delivery_method') }}</h3>
                     </div>
