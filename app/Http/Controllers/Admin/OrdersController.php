@@ -20,7 +20,10 @@ class OrdersController extends BaseAdminController
      */
     public function index(): View
     {
-        $items = Order::query()->latest('id')->paginate();
+        $items = Order::query()
+            ->with('status')
+            ->latest('id')
+            ->paginate();
 
         $title = 'order';
 

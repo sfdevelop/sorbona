@@ -891,24 +891,33 @@ namespace App\Models{
  * @property \App\Enum\StatusOrderEnum $statusOrder
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property int|null $status_id
+ * @property string|null $companyName
+ * @property string|null $inn
+ * @property string|null $edrpou
  * @property-read mixed $created_format
  * @property-read mixed $created_human
  * @property-read \Illuminate\Notifications\DatabaseNotificationCollection<int, \Illuminate\Notifications\DatabaseNotification> $notifications
  * @property-read int|null $notifications_count
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\OrderItem> $orderItems
  * @property-read int|null $order_items_count
+ * @property-read \App\Models\Status|null $status
  * @method static \Illuminate\Database\Eloquent\Builder|Order newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Order newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Order query()
  * @method static \Illuminate\Database\Eloquent\Builder|Order whereComment($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Order whereCompanyName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Order whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Order whereDelivery($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Order whereDeliveryTitle($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Order whereEdrpou($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Order whereEmail($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Order whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Order whereInn($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Order whereName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Order wherePayment($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Order wherePhone($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Order whereStatusId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Order whereStatusOrder($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Order whereStatusPay($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Order whereTotal($value)

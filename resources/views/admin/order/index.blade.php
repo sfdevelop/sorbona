@@ -78,17 +78,17 @@
                                             </td>
                                             <td>
                                                 <div class="userDatatable-content">
-                                                    {{getClassAndTitleStatusOrderFromAdmin($item->statusOrder)}}
+                                                    {{$item->status->title}}
                                                 </div>
                                             </td>
 
                                             <td>
                                                 <div class="userDatatable-content">
-                                                    Доставка: {{$item->deliveryTitle}}
+                                                    Доставка: {{deliveryMethodEnum($item->deliveryTitle)?->getLabel() ?? $item->deliveryTitle}}
                                                     <br>
-                                                    Оплата: <span class="text-success">{{translatePayment($item->payment)}}</span>
+                                                    Оплата: <span class="text-success">{{paymentMethodEnum($item->payment)?->getLabel() ?? $item->payment}}</span>
                                                     <br>
-                                                    Статус оплати: <span class="text-primary">{{$item->statusPay}}</span>
+                                                    Статус оплаты: <span class="text-primary">{{$item->statusPay}}</span>
                                                 </div>
                                             </td>
                                             <td>

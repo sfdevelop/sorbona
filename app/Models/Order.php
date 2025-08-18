@@ -35,6 +35,10 @@ class Order extends Model
         'deliveryCheck',
         'user_id',
         'statusOrder',
+        'status_id',
+        'companyName',
+        'inn',
+        'edrpou',
     ];
 
     protected $casts = [
@@ -55,6 +59,11 @@ class Order extends Model
     public function orderItems(): HasMany
     {
         return $this->hasMany(OrderItem::class);
+    }
+
+    public function status(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    {
+        return $this->belongsTo(Status::class);
     }
 
     /**

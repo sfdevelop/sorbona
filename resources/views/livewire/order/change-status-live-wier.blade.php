@@ -1,11 +1,11 @@
-<div>
+<div class="card-body border radius-md p-25">
     <div>
         <h6>Статус заказа:</h6>
         @php /**  @var \App\Models\Order $order */ @endphp
 
         <div class="d-flex justify-content-between my-2 border-bottom py-3">
                 <span style="border-radius:5px; color: #0A0A0A; "
-                      class="px-2 py-1 border-bottom">{{getClassAndTitleStatusOrderFromAdmin($order->statusOrder)}}</span>
+                      class="px-2 py-1 border-bottom">{{$order->status->title}}</span>
             <span></span>
         </div>
 
@@ -24,8 +24,8 @@
                 <option>Выберите статус</option>
                 @foreach($statuses as $status)
 
-                    <option value="{{$status}}">
-                        {{getClassAndTitleStatusOrderFromAdmin($status)}}
+                    <option value="{{$status->id}}">
+                        {{$status->title}}
                     </option>
 
                 @endforeach
@@ -36,7 +36,7 @@
             @endif
         </div>
 
-        <button class="btn btn-sm btn-primary" wire:click.prevent="changeStatus">Застосувати</button>
+        <button class="btn btn-sm btn-primary" wire:click.prevent="changeStatus">Применить</button>
 
     </div>
 </div>

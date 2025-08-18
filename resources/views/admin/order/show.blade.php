@@ -16,13 +16,25 @@
                                     {{--                                    </a>--}}
                                 </div>
                                 <div class="payment-invoice-address__area">
-                                    <h5>Доставка: {{translateDelivery($order->deliveryTitle)}}</h5>
+                                    <h5>Доставка: {{deliveryMethodEnum($order->deliveryTitle)?->getLabel() ?? $order->deliveryTitle}}</h5>
 
 
-                                        <address>{{$order->delivery['region']}}
-                                            <br> {{$order->delivery['city']}}
-                                            <br> {{$order->delivery['address']}}
-                                        </address>
+                                    <address>
+                                        @if($order->delivery['region'] !== '')
+                                            {{$order->delivery['region']}}
+                                            <br>
+                                        @endif
+
+                                        @if($order->delivery['city'] !== '')
+                                            {{$order->delivery['city']}}
+                                            <br>
+                                        @endif
+
+                                        @if($order->delivery['address'] !== '')
+                                            {{$order->delivery['address']}}
+                                            <br>
+                                        @endif
+                                    </address>
 
                                 </div>
                             </div><!-- End: .payment-invoice-address -->
@@ -31,10 +43,11 @@
                                 <div class="d-flex justify-content-center mb-lg-0 mb-25">
                                     <div class="payment-invoice-qr__number">
                                         <div class="display-3">
-                                            Замовлення
+                                            Заказ
                                         </div>
                                         <p>No : <span>#{{$order->id}}</span></p>
                                         <p>Date : <span>{{$order->created_at->format('d.m.Y H:i')}}</span></p>
+                                        <p>   Статус оплаты: <span class="text-primary">{{$order->statusPay}}</span> </p>
                                     </div>
                                 </div><!-- End: .d-flex -->
                                 <div class="d-flex justify-content-center mb-lg-0 mb-25">
@@ -59,9 +72,9 @@
                                         <tr class="product-cart__header">
                                             <th scope="col">#</th>
                                             <th scope="col">Товар</th>
-                                            <th scope="col" class="text-end">Ціна за од.</th>
-                                            <th scope="col" class="text-end">Кількість</th>
-                                            <th scope="col" class="text-end">Сума</th>
+                                            <th scope="col" class="text-end">Ціна за ед.</th>
+                                            <th scope="col" class="text-end">Кол-во</th>
+                                            <th scope="col" class="text-end">Сумма</th>
                                         </tr>
                                         </thead>
                                         <tbody>
@@ -91,9 +104,9 @@
                                             <td colspan="3"></td>
                                             <td class="order-summery float-right border-0   ">
                                                 <div class="total">
-                                                    <div class="subtotalTotal mb-0 text-end">
-                                                        Сума доставки :
-                                                    </div>
+{{--                                                    <div class="subtotalTotal mb-0 text-end">--}}
+{{--                                                        Сума доставки :--}}
+{{--                                                    </div>--}}
                                                     {{--                                                    <div class="taxes mb-0 text-end">--}}
                                                     {{--                                                        discount :--}}
                                                     {{--                                                    </div>--}}
@@ -102,13 +115,13 @@
                                                     {{--                                                    </div>--}}
                                                 </div>
                                                 <div class="total-money mt-2 text-end">
-                                                    <h6>До сплати :</h6>
+                                                    <h6>Всего :</h6>
                                                 </div>
                                             </td>
                                             @php /** @var \App\Models\Order $order */ @endphp
                                             <td>
                                                 <div class="total-order float-right text-end fs-14 fw-500">
-                                                    <h5 class="text-primary">{{Number::currency($order->total, in:'EUR', locale: 'lt') }}</h5>
+                                                    <h5 class="text-primary">{{$order->total }} грн.</h5>
                                                 </div>
                                             </td>
                                         </tr>
@@ -129,7 +142,13 @@
 {{--                                                                    </button>--}}
 {{--                                                                </div>--}}
                             </div><!-- End: .payment-invoice-table -->
-                                                        @livewire('order.change-status-live-wier', ['order' => $order])
+
+                            @if(!empty($order->companyName))
+                                @include('admin.order.table')
+                            @endif
+
+                            @livewire('order.change-status-live-wier', ['order' => $order])
+
                         </div><!-- End: .payment-invoice__body -->
                     </div><!-- End: .payment-invoice -->
                 </div><!-- End: .col -->

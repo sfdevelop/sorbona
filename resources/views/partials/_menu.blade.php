@@ -47,20 +47,20 @@
             <span>{{__('admin.orders')}}</span>
         </li>
 
-{{--        <li class="l_sidebar">--}}
-{{--            <a--}}
-{{--                    href="{{route('admin.order.index')}}"--}}
-{{--                    @class([--}}
-{{--                        'active'=> Request::is(--}}
-{{--                            'admin/orders/*',--}}
-{{--                            'admin/orders',--}}
-{{--                                 ),--}}
-{{--                        ])--}}
-{{--            >--}}
-{{--                <i class="nav-icon las la-wallet"></i>--}}
-{{--                <span class="menu-text">{{__('admin.orders')}}</span>--}}
-{{--            </a>--}}
-{{--        </li>--}}
+        <li class="l_sidebar">
+            <a
+                    href="{{route('admin.order.index')}}"
+                    @class([
+                        'active'=> Request::is(
+                            'admin/orders/*',
+                            'admin/orders',
+                                 ),
+                        ])
+            >
+                <i class="nav-icon las la-wallet"></i>
+                <span class="menu-text">{{__('admin.orders')}}</span>
+            </a>
+        </li>
 
         <li class="menu-title mt-30">
             <span>{{__('admin.page')}}</span>

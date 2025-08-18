@@ -71,6 +71,27 @@ class OrderBuilder
         return $this;
     }
 
+    public function setCompanyName(?string $companyName): self
+    {
+        $this->orderData['companyName'] = $companyName ?? null;
+
+        return $this;
+    }
+
+    public function setInn(?string $inn): self
+    {
+        $this->orderData['inn'] = $inn ?? null;
+
+        return $this;
+    }
+
+    public function setEdrpou(?string $edrpou): self
+    {
+        $this->orderData['edrpou'] = $edrpou ?? null;
+
+        return $this;
+    }
+
     public function create(): Order
     {
         return Order::create($this->orderData);

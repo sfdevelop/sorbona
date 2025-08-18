@@ -14,6 +14,9 @@ class OrderObserver
     public function created(Order $order): void
     {
         MailFromOrderEvent::dispatch($order, app()->getLocale());
+
+
+
     }
 
     /**
