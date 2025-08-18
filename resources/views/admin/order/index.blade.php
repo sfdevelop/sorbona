@@ -7,7 +7,7 @@
             <div class="col-lg-12">
                 <div class="breadcrumb-main">
                     <h4 class="text-capitalize breadcrumb-title d-flex align-items-center">
-                        <span class="mx-10"> Замовлення</span>
+                        <span class="mx-10"> Заказ</span>
                         {{--                        <x-create model="_________"/>--}}
                     </h4>
 
@@ -24,7 +24,7 @@
 
                 <div class="card">
                     <div class="card-header color-dark fw-500">
-                        Замовлення
+                        Заказ
                     </div>
                     <div class="card-body p-0">
                         <div class="table4 p-25 mb-30">
